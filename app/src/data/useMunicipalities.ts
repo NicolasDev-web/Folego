@@ -24,11 +24,10 @@ export function useMunicipalities(): MunicipalitiesState {
         return response.json() as Promise<MunicipalContextFile>;
       })
       .then((payload) => {
-        const pilot = payload.municipalities.filter((municipality) => municipality.pilot);
-        if (pilot.length !== 8) {
-          throw new Error("O piloto municipal não contém as oito cidades esperadas.");
+        if (payload.municipalities.length !== 184) {
+          throw new Error("A base municipal não contém os 184 municípios esperados.");
         }
-        setState({ status: "ready", municipalities: pilot, error: null });
+        setState({ status: "ready", municipalities: payload.municipalities, error: null });
       })
       .catch((error: unknown) => {
         if (error instanceof DOMException && error.name === "AbortError") return;

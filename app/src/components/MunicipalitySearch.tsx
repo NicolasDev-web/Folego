@@ -33,11 +33,11 @@ export function MunicipalitySearch({
   return (
     <section className="search-panel" aria-labelledby={`${inputId}-title`}>
       <div className="search-intro">
-        <p className="section-marker">Piloto de navegação</p>
+        <p className="section-marker">Navegação municipal</p>
         <h2 id={`${inputId}-title`}>Encontre uma cidade</h2>
         <p>
-          O piloto usa oito cidades da lista oficial de 184 municípios e dados de contexto do
-          Censo 2022.
+          Busque entre os 184 municípios oficiais. A lista, o mapa e a ficha usam o mesmo código
+          do IBGE.
         </p>
       </div>
 
@@ -70,7 +70,7 @@ export function MunicipalitySearch({
         ))}
       </ul>
       {filtered.length === 0 ? (
-        <p className="empty-search">Esta cidade não está no piloto. Tente outro nome.</p>
+        <p className="empty-search">Nenhum município corresponde a essa busca.</p>
       ) : null}
     </section>
   );

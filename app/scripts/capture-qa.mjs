@@ -18,6 +18,12 @@ const captures = [
     width: 390,
     height: 844,
   },
+  {
+    name: "cidades-sobral-1440.png",
+    path: "/cidades?cidade=sobral",
+    width: 1440,
+    height: 900,
+  },
 ];
 
 await mkdir(outputDirectory, { recursive: true });
@@ -35,11 +41,30 @@ try {
       reducedMotion: "reduce",
     });
     const page = await context.newPage();
+    const pageErrors = [];
+    page.on("pageerror", (error) => pageErrors.push(error.message));
     await page.goto(`${baseUrl}${capture.path}`, { waitUntil: "networkidle" });
+    if (pageErrors.length > 0) {
+      throw new Error(`${capture.name}: ${pageErrors.join(" | ")}`);
+    }
+    if (capture.path.startsWith("/cidades")) {
+      const shapeCount = await page.locator(".map-shape").count();
+      if (shapeCount !== 184) {
+        throw new Error(`${capture.name}: esperadas 184 geometrias; recebidas ${shapeCount}.`);
+      }
+    }
     await page.screenshot({
       path: resolve(outputDirectory, capture.name),
       fullPage: true,
     });
+    if (capture.name === "cidades-sobral-1440.png") {
+      await page.locator(".map-shape").filter({ hasText: "Fortaleza" }).click();
+      await page.waitForURL(/cidade=fortaleza/);
+      const selectedName = await page.locator(".map-selected-label strong").textContent();
+      if (selectedName !== "Fortaleza") {
+        throw new Error(`Seleção do mapa não sincronizou: ${selectedName ?? "sem nome"}.`);
+      }
+    }
     await context.close();
   }
 } finally {

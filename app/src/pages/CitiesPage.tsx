@@ -1,25 +1,34 @@
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { CoveragePanel } from "../components/CoveragePanel";
+import { MunicipalityMap } from "../components/MunicipalityMap";
 import { MunicipalitySearch } from "../components/MunicipalitySearch";
+import { useMunicipalGeometry } from "../data/useMunicipalGeometry";
 import { useMunicipalities } from "../data/useMunicipalities";
 
 export function CitiesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const municipalState = useMunicipalities();
+  const geometryState = useMunicipalGeometry();
   const selectedSlug = searchParams.get("cidade");
   const selected = useMemo(
     () =>
       municipalState.municipalities.find(
         (municipality) => municipality.slug === selectedSlug,
-      ) ?? municipalState.municipalities[0],
+      ) ?? municipalState.municipalities.find((municipality) => municipality.slug === "fortaleza"),
     [municipalState.municipalities, selectedSlug],
   );
+
+  function selectMunicipality(slug: string) {
+    const next = new URLSearchParams(searchParams);
+    next.set("cidade", slug);
+    setSearchParams(next);
+  }
 
   return (
     <main id="conteudo" className="cities-page">
       <header className="page-intro">
-        <p className="section-marker">Explorador municipal · protótipo</p>
+        <p className="section-marker">Explorador municipal · 184 municípios</p>
         <h1>O que já podemos dizer sobre sua cidade?</h1>
         <p>
           A população do Censo 2022 já está validada por código IBGE. A dívida local continua
@@ -46,13 +55,39 @@ export function CitiesPage() {
           <MunicipalitySearch
             municipalities={municipalState.municipalities}
             selectedId={selected.id}
-            onSelect={(municipality) => {
-              const next = new URLSearchParams(searchParams);
-              next.set("cidade", municipality.slug);
-              setSearchParams(next);
-            }}
+            onSelect={(municipality) => selectMunicipality(municipality.slug)}
           />
-          <CoveragePanel municipality={selected} />
+          <div className="city-detail">
+            {geometryState.status === "ready" ? (
+              <MunicipalityMap
+                collection={geometryState.collection}
+                municipalities={municipalState.municipalities}
+                selected={selected}
+                onSelect={(municipality) => selectMunicipality(municipality.slug)}
+              />
+            ) : (
+              <section
+                className={
+                  geometryState.status === "error"
+                    ? "map-state map-state-error"
+                    : "map-state"
+                }
+                aria-live="polite"
+              >
+                <h2>
+                  {geometryState.status === "error"
+                    ? "A malha municipal não carregou"
+                    : "Carregando o mapa do Ceará"}
+                </h2>
+                <p>
+                  {geometryState.status === "error"
+                    ? geometryState.error
+                    : "Conferindo as 184 geometrias oficiais do IBGE."}
+                </p>
+              </section>
+            )}
+            <CoveragePanel municipality={selected} />
+          </div>
         </div>
       ) : null}
     </main>

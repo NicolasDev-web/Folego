@@ -1,6 +1,6 @@
 # Explorador municipal — especificação
 
-Status: planejado. Dependências: 02 + 03; condicionado pela decisão 00.
+Status: em andamento. Dependências: 02 + 03; caminho B definido na fase 00.
 
 ## Objetivo
 

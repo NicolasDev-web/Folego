@@ -8,7 +8,7 @@ Este pacote contém planejamento SDD, auditoria da referência visual, direção
 
 ## Aplicação inicial
 
-Em 06/11/2026 começou a implementação da base em `app/`. A primeira versão navegável inclui a abertura editorial, as rotas de panorama, cidades e método, um piloto de busca municipal, estados explícitos de cobertura e filtros públicos persistidos na URL. A população do Censo 2022 já é mostrada como dado observado; a ausência de uma fonte municipal direta de dívida é mostrada como indisponibilidade, nunca como zero.
+Em 06/11/2026 começou a implementação da base em `app/`. A versão navegável inclui a abertura editorial, as rotas de panorama, cidades e método, busca nos 184 municípios, mapa oficial sincronizado, estados explícitos de cobertura e filtros públicos persistidos na URL. A população do Censo 2022 já é mostrada como dado observado; a ausência de uma fonte municipal direta de dívida é mostrada como indisponibilidade, nunca como zero.
 
 Para executar localmente:
 
@@ -36,9 +36,10 @@ Para refazer a coleta e as validações:
 
 ```bash
 python pipeline/extract/phase00_collect.py
+python pipeline/extract/municipal_geometries.py
 ```
 
-O relatório está em `02_fontes/RELATORIO_VIABILIDADE.md`, os metadados e hashes em `metadata/phase00_manifest.json` e a matriz do piloto em `data/processed/coverage_matrix.csv`.
+O relatório está em `02_fontes/RELATORIO_VIABILIDADE.md`, os metadados e hashes em `metadata/`, a matriz do piloto em `data/processed/coverage_matrix.csv` e o GeoJSON cartográfico em `data/processed/ce_municipalities_min.geojson`.
 
 ## Comece aqui
 
