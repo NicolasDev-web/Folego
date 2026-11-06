@@ -1,0 +1,13 @@
+:root {
+  color-scheme: light;
+  --bg: #f4f1e8; --surface: #fffef9; --ink: #142d2c; --muted: #4c6260;
+  --brand: #125c57; --hero: #103e3b; --accent: #b94d32; --line: #d7dcd3;
+  --missing: #c7cbc5;
+  --seq-1: #d2e3d6; --seq-2: #a7ccba; --seq-3: #76ad98;
+  --seq-4: #4b8c77; --seq-5: #276e60; --seq-6: #124f49;
+  --font-sans: "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --radius-sm: 4px; --radius-md: 8px; --content-max: 1320px;
+  --gutter: clamp(16px, 4vw, 56px); --motion-fast: 180ms;
+}
+/* Proposta inicial: validar contraste e semântica antes de produção. */

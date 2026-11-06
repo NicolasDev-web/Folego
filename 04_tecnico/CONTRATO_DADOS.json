@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ObservacaoFolego",
+  "type": "object",
+  "required": [
+    "source_id",
+    "metric_id",
+    "territory_id",
+    "territory_level",
+    "period",
+    "unit",
+    "value",
+    "status",
+    "universe",
+    "methodology_version"
+  ],
+  "properties": {
+    "source_id": {
+      "type": "string"
+    },
+    "metric_id": {
+      "type": "string"
+    },
+    "territory_id": {
+      "type": "string"
+    },
+    "territory_level": {
+      "enum": [
+        "BR",
+        "UF",
+        "municipio",
+        "sub_regiao",
+        "capital_pesquisa"
+      ]
+    },
+    "period": {
+      "type": "string",
+      "description": "AAAA ou AAAA-MM; frequência e referência no catálogo"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "universe": {
+      "type": "string"
+    },
+    "value": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "numerator": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "denominator": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "observado",
+        "parcial",
+        "suprimido",
+        "indisponivel",
+        "nao_aplicavel"
+      ]
+    },
+    "methodology_version": {
+      "type": "string"
+    },
+    "dimensions": {
+      "type": "object"
+    },
+    "collected_at": {
+      "type": "string"
+    },
+    "source_url": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "suprimido",
+              "indisponivel",
+              "nao_aplicavel"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "value": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "version": "1.0",
+  "date": "2026-11-05",
+  "files": [
+    {
+      "path": "01_contexto/METODOLOGIA_DIDATICA.md",
+      "size": 10130,
+      "sha256": "d34f8fdac8ab685440de915ff528690b4a6d7d2e7e89612d38cd71f8b424f1f2"
+    },
+    {
+      "path": "01_contexto/PRODUTO_E_NARRATIVA.md",
+      "size": 2659,
+      "sha256": "4af795331c4f36460939e3b4d4d8347f09f0e3276769c021714081368ab7e2ac"
+    },
+    {
+      "path": "02_fontes/CATALOGO.md",
+      "size": 5171,
+      "sha256": "e93ef7e80cf646c62751cb141f35de09b1e49678caf1c81c94769b0ab39b844f"
+    },
+    {
+      "path": "02_fontes/INDICADORES.md",
+      "size": 2241,
+      "sha256": "37043fd6d7b8f54849cf96efbb9891501b49143f54696608efa42006c51b7305"
+    },
+    {
+      "path": "02_fontes/VIABILIDADE_MUNICIPAL.md",
+      "size": 3829,
+      "sha256": "7fe4e5a8d40be92f33f231370ce2b737d097149e7a52686e9de481d28007d178"
+    },
+    {
+      "path": "03_design/ANALISE_REFERENCIA.md",
+      "size": 6168,
+      "sha256": "2982d620abf364c792345fcb247daa0b7053dca9465cbfb2e47b0a73a6c3e9b3"
+    },
+    {
+      "path": "03_design/COMPONENTES_GITHUB.md",
+      "size": 3175,
+      "sha256": "078257274cf370cc6e89f74927586fb38bc8bdea8eaf51fe4a66f193f9915af0"
+    },
+    {
+      "path": "03_design/UX_UI.md",
+      "size": 5416,
+      "sha256": "9a16f1b39635a88010ca40d0d6fa099899bc9ecce61f80a3472fc30801ad3639"
+    },
+    {
+      "path": "03_design/direcao_visual.png",
+      "size": 167599,
+      "sha256": "b10be05573e0d3f4d6b0363af01981cca193785c8f20cfe2cd44e8fbb15cece9"
+    },
+    {
+      "path": "03_design/direcao_visual.svg",
+      "size": 3877,
+      "sha256": "0588d7eb5d6e2a57c2f42f1070550f6a4aaae7852e4db88528b36b83de133542"
+    },
+    {
+      "path": "03_design/tokens.css",
+      "size": 607,
+      "sha256": "7b1b8f7bb6031bca858b8419fdb873ef3ac2d63c01fb843b44fa1fed43e87e7d"
+    },
+    {
+      "path": "04_tecnico/ARQUITETURA.md",
+      "size": 2888,
+      "sha256": "a1ced81f1272fa3e885d809a16841487711c01dbe9920c27fea14f233c98e841"
+    },
+    {
+      "path": "04_tecnico/CONTRATO_DADOS.json",
+      "size": 1923,
+      "sha256": "67b00e98f1e8162013b27f21dd8e8a74229ea3a3991c8a5df074023d5ac2fb60"
+    },
+    {
+      "path": "ABRA_AQUI.html",
+      "size": 4122,
+      "sha256": "f87a57a05e7474442a9d8cbcc66adf85d37a7df65f63d87d64f8a38250a62930"
+    },
+    {
+      "path": "PROMPT_INICIAL.md",
+      "size": 1677,
+      "sha256": "7397e2b06ff5c770ffdb02c1c7b7ccb87ef9013a89baeb8e3ed5944ff94af4b8"
+    },
+    {
+      "path": "README.md",
+      "size": 2864,
+      "sha256": "ee58f639302a92482eb55213d6d7610b3a766b1baa2da1d8c632bd99f4f5b335"
+    },
+    {
+      "path": "evidencias/LEIA_ME.md",
+      "size": 854,
+      "sha256": "45636c0c83486cf1fd71ef66ad2e061d08ce374674e1757c7bbb2815e0759160"
+    },
+    {
+      "path": "evidencias/VALIDACAO_DO_PACOTE.md",
+      "size": 971,
+      "sha256": "0f64dc7596e34f52c04c119e37c5b7fa2f57ed03c813e7bb967c0ce0f23a375c"
+    },
+    {
+      "path": "evidencias/scr_amostra_estrutura.json",
+      "size": 3580,
+      "sha256": "a6d9a5a403a5f3fd6266f952a07e363febb375b8cb227bd6ce627ca86841d940"
+    },
+    {
+      "path": "evidencias/scr_metadata.xml",
+      "size": 1910,
+      "sha256": "91fe4b446b8f27b1e1a6d1e37b0a6b084274ccc9cf6660631e37bae14235d8f7"
+    },
+    {
+      "path": "sdd/00_viabilidade/plan.md",
+      "size": 2050,
+      "sha256": "9551d9c806a2d02966502139904f843d452672f368a11436f6db8bf8aab22151"
+    },
+    {
+      "path": "sdd/00_viabilidade/spec.md",
+      "size": 1724,
+      "sha256": "c29f7569c35b5b4d03593902c09cd37c3c7d29c88d35bba8557cc989cf99bc72"
+    },
+    {
+      "path": "sdd/00_viabilidade/tasks.md",
+      "size": 2369,
+      "sha256": "8c9fe61fed0599ec533d4ecf76eb4cb83885c6823ed2313f916b215269f1211a"
+    },
+    {
+      "path": "sdd/01_ux/plan.md",
+      "size": 1933,
+      "sha256": "cb82c56153c36c76a3bd48a6c2749465f1f3fbea97bdb42dc14f67fcb6d1da25"
+    },
+    {
+      "path": "sdd/01_ux/spec.md",
+      "size": 1613,
+      "sha256": "26d2c55693d82acd475b3e67ba9f0768688a73cbc2913e354a72688edc0497dd"
+    },
+    {
+      "path": "sdd/01_ux/tasks.md",
+      "size": 2232,
+      "sha256": "fe98ff1778ab188298c1f4655bd2b6430c1c099aa712b4ac69c7603d98c16df3"
+    },
+    {
+      "path": "sdd/02_dados/plan.md",
+      "size": 1820,
+      "sha256": "c0ec4d187859a2532bb1b0fb186d3370bcccb1a9855ef9e1393100cc96121a0a"
+    },
+    {
+      "path": "sdd/02_dados/spec.md",
+      "size": 1463,
+      "sha256": "7d49bb5bf8f0b9b0245f5d567fd30d846f255fd8cfac2b3f8f90f82089e81543"
+    },
+    {
+      "path": "sdd/02_dados/tasks.md",
+      "size": 2195,
+      "sha256": "5ae7036b87e4061b8f2cf77da50a0a0cc54696ebdf63cc88fb5526120db94d34"
+    },
+    {
+      "path": "sdd/03_fundacao/plan.md",
+      "size": 1755,
+      "sha256": "f3f34b14f71fd4adcc97816af571246e7020850c53b415f752c9a55071e29818"
+    },
+    {
+      "path": "sdd/03_fundacao/spec.md",
+      "size": 1404,
+      "sha256": "0815cf05d1d877ba584cca8320d88597240773943e6ed64f3697c25f00b52bf5"
+    },
+    {
+      "path": "sdd/03_fundacao/tasks.md",
+      "size": 2093,
+      "sha256": "f90cf244eb03f69da59e4ae8b882f0574710e040d02bdd3c27c2dfcf624aabf4"
+    },
+    {
+      "path": "sdd/04_cidades/plan.md",
+      "size": 1829,
+      "sha256": "4e46e5149b25dce021280246bd6d9baf6dc10fbb2d154d6ca311972989fbff66"
+    },
+    {
+      "path": "sdd/04_cidades/spec.md",
+      "size": 1504,
+      "sha256": "56031cd8fe98fcb2425a2f0fe31fd6a7a1f9ee920cd5b429990cd4286dc22c9e"
+    },
+    {
+      "path": "sdd/04_cidades/tasks.md",
+      "size": 2166,
+      "sha256": "45e3051cfbd163c22d17aeff819e910a619d76099441af5beb54a548b5c36ea5"
+    },
+    {
+      "path": "sdd/05_investigacao/plan.md",
+      "size": 1870,
+      "sha256": "3ee1042471f0660cca20010af0042c6e188a8f0030b2f649f16d5bb9fa95c90e"
+    },
+    {
+      "path": "sdd/05_investigacao/spec.md",
+      "size": 1516,
+      "sha256": "37d97ee0f5dd6636c1fba8aa42046c62ab30ef918600c17c6afb81956151433d"
+    },
+    {
+      "path": "sdd/05_investigacao/tasks.md",
+      "size": 2208,
+      "sha256": "926b4931e201a311d534d15b77a963aecf7d6c8690cd5d82ce754030d1effa0a"
+    },
+    {
+      "path": "sdd/06_validacao/plan.md",
+      "size": 1839,
+      "sha256": "0520f89f8268562db737428874574ee61cb981c0f4c47f6d1197fbd084c6bdb6"
+    },
+    {
+      "path": "sdd/06_validacao/spec.md",
+      "size": 1509,
+      "sha256": "ae80b83849c3fb42f0ebaddfcbf5409169ac3b7b8d2f8ee304dd04243af8aafa"
+    },
+    {
+      "path": "sdd/06_validacao/tasks.md",
+      "size": 2199,
+      "sha256": "54984bf3559a1ff9b4c9f6b7106afa201d258cb867ad18bc8e30ba2c2c4d6ee8"
+    },
+    {
+      "path": "sdd/07_entrega/plan.md",
+      "size": 1761,
+      "sha256": "55eba18aba4d6b86299b24a4c3cd60d995e54e31fb43bc305ef372ba36b96f65"
+    },
+    {
+      "path": "sdd/07_entrega/spec.md",
+      "size": 1417,
+      "sha256": "003b30482658099f9da38551ff63bcbb81b74b5b7b88de9b142e1c0f4d075fca"
+    },
+    {
+      "path": "sdd/07_entrega/tasks.md",
+      "size": 2126,
+      "sha256": "a4a68588fdb24ced77f74adac3b8a641f8796ab3ad03486c46db107dbb72ead1"
+    },
+    {
+      "path": "sdd/DECISOES.md",
+      "size": 1175,
+      "sha256": "be2112468779ff234b8d27939da0e22cf1ee466e95fd128d7cbd818250f51592"
+    },
+    {
+      "path": "sdd/STATUS.md",
+      "size": 722,
+      "sha256": "a5fe300c40d245b350dc6afcb065677f512923d95101ee6577fe5359c7c8b21e"
+    }
+  ]
+}
