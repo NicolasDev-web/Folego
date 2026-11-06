@@ -51,13 +51,13 @@ export function CitiesPage() {
       ) : null}
 
       {municipalState.status === "ready" && selected ? (
-        <div className="city-workspace">
+        <section className="municipal-explorer" aria-label="Explorador dos municípios do Ceará">
           <MunicipalitySearch
             municipalities={municipalState.municipalities}
             selectedId={selected.id}
             onSelect={(municipality) => selectMunicipality(municipality.slug)}
           />
-          <div className="city-detail">
+          <div className="explorer-body">
             {geometryState.status === "ready" ? (
               <MunicipalityMap
                 collection={geometryState.collection}
@@ -88,7 +88,7 @@ export function CitiesPage() {
             )}
             <CoveragePanel municipality={selected} />
           </div>
-        </div>
+        </section>
       ) : null}
     </main>
   );

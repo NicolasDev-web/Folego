@@ -53,6 +53,12 @@ try {
         throw new Error(`${capture.name}: esperadas 184 geometrias; recebidas ${shapeCount}.`);
       }
     }
+    const hasHorizontalOverflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    );
+    if (hasHorizontalOverflow) {
+      throw new Error(`${capture.name}: a página possui rolagem horizontal.`);
+    }
     await page.screenshot({
       path: resolve(outputDirectory, capture.name),
       fullPage: true,
@@ -60,9 +66,19 @@ try {
     if (capture.name === "cidades-sobral-1440.png") {
       await page.locator(".map-shape").filter({ hasText: "Fortaleza" }).click();
       await page.waitForURL(/cidade=fortaleza/);
-      const selectedName = await page.locator(".map-selected-label strong").textContent();
+      await page.locator(".coverage-heading h2", { hasText: "Fortaleza" }).waitFor();
+      const selectedName = await page.locator(".coverage-heading h2").textContent();
       if (selectedName !== "Fortaleza") {
         throw new Error(`Seleção do mapa não sincronizou: ${selectedName ?? "sem nome"}.`);
+      }
+      const search = page.getByRole("combobox", { name: "Buscar município" });
+      await search.fill("Crato");
+      await search.press("Enter");
+      await page.waitForURL(/cidade=crato/);
+      await page.locator(".coverage-heading h2", { hasText: "Crato" }).waitFor();
+      const searchedName = await page.locator(".coverage-heading h2").textContent();
+      if (searchedName !== "Crato") {
+        throw new Error(`Busca não sincronizou: ${searchedName ?? "sem nome"}.`);
       }
     }
     await context.close();

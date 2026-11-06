@@ -14,5 +14,6 @@
 | D10 | Persistir a seleção municipal em query string | Link compartilhável, recarga reproduzível e ausência de dado pessoal | Quando novos filtros públicos forem adicionados |
 | D11 | Adotar a opção B no MVP municipal: contexto oficial, dívida local indisponível e análise de crédito na escala compatível | A fase 00 validou os 184 municípios e a população de 2022, mas não demonstrou fonte pública direta de dívida municipal nem correspondência oficial dos códigos SUB_REGIAO 60–63 | Quando uma fonte direta passar pelos seis critérios ou houver correspondência territorial oficial |
 | D12 | Usar a malha municipal do IBGE como mapa de contexto, sem escala temática de dívida | A geometria situa cada cidade e sincroniza a navegação, enquanto a ausência de indicador municipal impede uma codificação quantitativa honesta | Quando houver indicador municipal elegível e legenda correspondente |
+| D13 | Fazer do mapa a superfície principal, com busca compacta e ficha lateral única | A lista permanente e os cartões fragmentados escondiam o território, repetiam conteúdo e alongavam excessivamente a experiência móvel | Após testes de uso ou quando novos indicadores exigirem controles adicionais |
 
 Formato de nova decisão: data, contexto, alternativas consideradas, escolha, consequência, evidência e fase afetada.

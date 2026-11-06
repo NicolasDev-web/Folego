@@ -290,6 +290,7 @@ a {
 .content-section,
 .page-intro,
 .city-workspace,
+.municipal-explorer,
 .method-grid,
 .method-detail,
 .not-found {
@@ -927,6 +928,381 @@ a {
   line-height: 1.5;
 }
 
+/* Explorador municipal: mapa como superfície principal, fatos em uma única ficha. */
+.cities-page .page-intro {
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.cities-page .page-intro h1 {
+  max-width: 820px;
+  font-size: clamp(2.5rem, 4.8vw, 4.5rem);
+}
+
+.municipal-explorer {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.municipality-searchbar {
+  position: relative;
+  z-index: 10;
+  min-height: 96px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 2rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.municipality-searchbar > p {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.municipality-searchbar > p strong {
+  color: var(--ink);
+}
+
+.search-field {
+  position: relative;
+  width: min(100%, 560px);
+}
+
+.search-field label {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.search-input-wrap {
+  position: relative;
+}
+
+.search-input-wrap > span {
+  position: absolute;
+  top: 50%;
+  left: 0.9rem;
+  z-index: 1;
+  color: var(--brand);
+  font-size: 1.4rem;
+  line-height: 1;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.search-input-wrap input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.7rem 2.75rem;
+  color: var(--ink);
+  background: #ffffff;
+  border: 1px solid #8da09a;
+  border-radius: var(--radius-sm);
+}
+
+.search-suggestions {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  width: 100%;
+  max-height: 390px;
+  margin: 0;
+  padding: 0.4rem;
+  overflow-y: auto;
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 45px rgba(20, 45, 44, 0.16);
+}
+
+.search-suggestions button {
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.65rem 0.75rem;
+  color: var(--ink);
+  text-align: left;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.search-suggestions button:hover,
+.search-suggestions button.is-active,
+.search-suggestions button[aria-selected="true"] {
+  background: #e5efe9;
+}
+
+.search-suggestions small {
+  max-width: 46%;
+  color: var(--muted);
+  text-align: right;
+}
+
+.empty-suggestion {
+  padding: 1rem;
+  color: var(--muted);
+}
+
+.explorer-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(320px, 0.72fr);
+  min-height: 650px;
+}
+
+.municipal-explorer .municipality-map-panel {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  background: #edf2ed;
+  border: 0;
+  border-radius: 0;
+}
+
+.map-toolbar {
+  min-height: 68px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.25rem;
+  color: var(--muted);
+}
+
+.map-toolbar h2,
+.map-toolbar p {
+  margin: 0;
+}
+
+.map-toolbar h2 {
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 680;
+}
+
+.map-toolbar p {
+  font-size: 0.78rem;
+}
+
+.municipal-explorer .map-canvas {
+  margin: 0;
+  background: transparent;
+  border: 0;
+}
+
+.municipal-explorer .map-canvas svg {
+  width: 100%;
+  height: clamp(520px, 50vw, 690px);
+  padding: 1rem 2rem;
+}
+
+.municipal-explorer .map-shape {
+  fill: #dce8e1;
+  stroke: #829a92;
+  stroke-width: 0.8;
+}
+
+.municipal-explorer .map-shape:hover {
+  fill: #bfd4c9;
+}
+
+.municipal-explorer .map-shape.is-selected {
+  fill: var(--accent);
+  stroke: #6e2c1c;
+  stroke-width: 3;
+}
+
+.map-footer {
+  min-height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.9rem 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.municipal-explorer .map-legend {
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.map-footer figcaption {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.map-footer figcaption a {
+  color: var(--brand);
+  font-weight: 650;
+  text-underline-offset: 0.2rem;
+}
+
+.municipal-explorer .coverage-panel {
+  min-height: 0;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--surface);
+  border: 0;
+  border-left: 1px solid var(--line);
+  border-radius: 0;
+}
+
+.municipal-explorer .coverage-heading {
+  display: block;
+}
+
+.municipal-explorer .coverage-heading p {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.municipal-explorer .coverage-heading h2 {
+  margin: 0;
+  font-size: clamp(2.4rem, 4vw, 4.2rem);
+  font-weight: 480;
+  letter-spacing: -0.06em;
+  line-height: 0.98;
+}
+
+.municipal-explorer .coverage-heading > span {
+  display: block;
+  margin-top: 0.75rem;
+  color: var(--muted);
+}
+
+.primary-fact {
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  padding-bottom: 2.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.primary-fact .result-value {
+  min-width: 0;
+  font-size: clamp(3rem, 5vw, 5.2rem);
+}
+
+.primary-fact h3 {
+  margin: 0.35rem 0 0;
+  font-size: 1.15rem;
+  font-weight: 650;
+}
+
+.primary-fact > p:last-child {
+  margin: 0.55rem 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.availability-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 1rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.availability-row h3,
+.availability-row p {
+  margin: 0;
+}
+
+.availability-row h3 {
+  font-size: 1rem;
+}
+
+.availability-row p {
+  margin-top: 0.55rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.availability-row .status-chip {
+  color: #4e5b57;
+  background: #eceeea;
+  border: 1px solid #c7cbc5;
+}
+
+.coverage-details {
+  margin-top: 1.5rem;
+}
+
+.coverage-details summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--brand);
+  font-weight: 650;
+  cursor: pointer;
+  list-style: none;
+}
+
+.coverage-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.coverage-details summary::after {
+  content: "+";
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.coverage-details[open] summary::after {
+  content: "−";
+}
+
+.coverage-details > div {
+  padding-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.coverage-details dl {
+  margin: 1.25rem 0;
+}
+
+.coverage-details dl div {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 0.75rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.coverage-details dt {
+  color: var(--muted);
+}
+
+.coverage-details dd {
+  margin: 0;
+  color: var(--ink);
+}
+
+.coverage-details a {
+  display: block;
+  width: fit-content;
+  margin-top: 0.65rem;
+  color: var(--brand);
+  font-weight: 650;
+  text-underline-offset: 0.25rem;
+}
+
 .method-page > .button {
   margin-left: max(var(--gutter), calc((100vw - var(--content-max)) / 2 + var(--gutter)));
 }
@@ -1113,6 +1489,26 @@ a {
   .city-workspace {
     align-items: stretch;
   }
+
+  .explorer-body {
+    grid-template-columns: 1fr;
+  }
+
+  .municipal-explorer .coverage-panel {
+    order: 1;
+    border-left: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .municipal-explorer .municipality-map-panel,
+  .municipal-explorer .map-state {
+    order: 2;
+  }
+
+  .municipal-explorer .map-canvas svg {
+    height: auto;
+    min-height: 480px;
+  }
 }
 
 @media (max-width: 680px) {
@@ -1190,6 +1586,65 @@ a {
   }
 
   .footer-links {
+    text-align: left;
+  }
+
+  .cities-page .page-intro {
+    padding-top: 3.25rem;
+  }
+
+  .municipality-searchbar {
+    min-height: 0;
+    display: block;
+    padding: 1rem;
+  }
+
+  .municipality-searchbar > p {
+    margin: 0.75rem 0 0;
+    font-size: 0.8rem;
+  }
+
+  .search-suggestions {
+    max-height: 330px;
+  }
+
+  .municipal-explorer .coverage-panel {
+    padding: 1.5rem;
+  }
+
+  .municipal-explorer .coverage-heading {
+    display: block;
+  }
+
+  .municipal-explorer .coverage-heading h2 {
+    font-size: 2.8rem;
+  }
+
+  .primary-fact {
+    margin-top: 2rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .primary-fact .result-value {
+    font-size: 3.4rem;
+  }
+
+  .availability-row {
+    padding: 1.5rem 0;
+  }
+
+  .map-toolbar,
+  .map-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .municipal-explorer .map-canvas svg {
+    min-height: 0;
+    padding: 0.75rem;
+  }
+
+  .map-footer figcaption {
     text-align: left;
   }
 }
