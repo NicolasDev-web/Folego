@@ -1,0 +1,37 @@
+territory_id,territory_name,territory_level,indicator_id,period,status,source_id,note
+2303709,Caucaia,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2303709,Caucaia,municipio,renda_censo,2022,parcial,CENSO,Cobertura municipal publicada; tabela e precisão ainda em validação.
+2303709,Caucaia,municipio,emprego_saldo,2026-08,parcial,CAGED,Fonte municipal confirmada; extração ajustada ainda pendente.
+2303709,Caucaia,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+2304202,Crato,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2304202,Crato,municipio,renda_censo,2022,parcial,CENSO,Cobertura municipal publicada; tabela e precisão ainda em validação.
+2304202,Crato,municipio,emprego_saldo,2026-08,parcial,CAGED,Fonte municipal confirmada; extração ajustada ainda pendente.
+2304202,Crato,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+2304400,Fortaleza,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2304400,Fortaleza,municipio,renda_censo,2022,parcial,CENSO,Cobertura municipal publicada; tabela e precisão ainda em validação.
+2304400,Fortaleza,municipio,emprego_saldo,2026-08,parcial,CAGED,Fonte municipal confirmada; extração ajustada ainda pendente.
+2304400,Fortaleza,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+2305506,Iguatu,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2305506,Iguatu,municipio,renda_censo,2022,parcial,CENSO,Cobertura municipal publicada; tabela e precisão ainda em validação.
+2305506,Iguatu,municipio,emprego_saldo,2026-08,parcial,CAGED,Fonte municipal confirmada; extração ajustada ainda pendente.
+2305506,Iguatu,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+2307304,Juazeiro do Norte,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2307304,Juazeiro do Norte,municipio,renda_censo,2022,parcial,CENSO,Cobertura municipal publicada; tabela e precisão ainda em validação.
+2307304,Juazeiro do Norte,municipio,emprego_saldo,2026-08,parcial,CAGED,Fonte municipal confirmada; extração ajustada ainda pendente.
+2307304,Juazeiro do Norte,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+2307650,Maracanaú,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2307650,Maracanaú,municipio,renda_censo,2022,parcial,CENSO,Cobertura municipal publicada; tabela e precisão ainda em validação.
+2307650,Maracanaú,municipio,emprego_saldo,2026-08,parcial,CAGED,Fonte municipal confirmada; extração ajustada ainda pendente.
+2307650,Maracanaú,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+2311306,Quixadá,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2311306,Quixadá,municipio,renda_censo,2022,parcial,CENSO,Cobertura municipal publicada; tabela e precisão ainda em validação.
+2311306,Quixadá,municipio,emprego_saldo,2026-08,parcial,CAGED,Fonte municipal confirmada; extração ajustada ainda pendente.
+2311306,Quixadá,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+2312908,Sobral,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2312908,Sobral,municipio,renda_censo,2022,parcial,CENSO,Cobertura municipal publicada; tabela e precisão ainda em validação.
+2312908,Sobral,municipio,emprego_saldo,2026-08,parcial,CAGED,Fonte municipal confirmada; extração ajustada ainda pendente.
+2312908,Sobral,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+60,Código BCB 60,sub_regiao,vencido15_sub,2026-08,parcial,BCB-SUB,Dados presentes; nome e correspondência territorial oficial não publicados.
+61,Código BCB 61,sub_regiao,vencido15_sub,2026-08,parcial,BCB-SUB,Dados presentes; nome e correspondência territorial oficial não publicados.
+62,Código BCB 62,sub_regiao,vencido15_sub,2026-08,parcial,BCB-SUB,Dados presentes; nome e correspondência territorial oficial não publicados.
+63,Código BCB 63,sub_regiao,vencido15_sub,2026-08,parcial,BCB-SUB,Dados presentes; nome e correspondência territorial oficial não publicados.

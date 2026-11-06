@@ -8,7 +8,7 @@ Este pacote contém planejamento SDD, auditoria da referência visual, direção
 
 ## Aplicação inicial
 
-Em 06/11/2026 começou a implementação da base em `app/`. A primeira versão navegável inclui a abertura editorial, as rotas de panorama, cidades e método, um piloto de busca municipal, estados explícitos de cobertura e filtros públicos persistidos na URL. Ela ainda não publica resultados estatísticos: a ausência de uma fonte municipal direta é mostrada como ausência, nunca como zero.
+Em 06/11/2026 começou a implementação da base em `app/`. A primeira versão navegável inclui a abertura editorial, as rotas de panorama, cidades e método, um piloto de busca municipal, estados explícitos de cobertura e filtros públicos persistidos na URL. A população do Censo 2022 já é mostrada como dado observado; a ausência de uma fonte municipal direta de dívida é mostrada como indisponibilidade, nunca como zero.
 
 Para executar localmente:
 
@@ -28,12 +28,24 @@ npm run qa:screenshots
 
 O relatório da primeira rodada técnica está em `evidencias/QA_FRONTEND.md`.
 
+## Base de dados inicial
+
+A fase 00 de viabilidade está concluída. O pipeline reproduzível validou os 184 municípios do Ceará, a população do Censo 2022, o piloto de oito cidades e uma amostra do SCR por sub-região. A decisão documentada é usar contexto municipal oficial sem transformar códigos regionais ou valores estaduais em dívida municipal.
+
+Para refazer a coleta e as validações:
+
+```bash
+python pipeline/extract/phase00_collect.py
+```
+
+O relatório está em `02_fontes/RELATORIO_VIABILIDADE.md`, os metadados e hashes em `metadata/phase00_manifest.json` e a matriz do piloto em `data/processed/coverage_matrix.csv`.
+
 ## Comece aqui
 
 1. Leia `01_contexto/METODOLOGIA_DIDATICA.md` para entender os conceitos e limites.
 2. Leia `02_fontes/VIABILIDADE_MUNICIPAL.md`: a análise municipal é requisito do produto, mas a taxa de endividamento de cada cidade depende de fonte direta validada.
 3. Veja `03_design/ANALISE_REFERENCIA.md`, `03_design/UX_UI.md` e `03_design/direcao_visual.svg`.
-4. Execute `sdd/00_viabilidade/` e depois `sdd/01_ux/`. Cada fase tem spec, plano e microtarefas com aceite.
+4. Consulte a fase concluída em `sdd/00_viabilidade/` e siga por `sdd/02_dados/`. Cada fase tem spec, plano e microtarefas com aceite.
 5. Use `PROMPT_INICIAL.md` no agente do VS Code e atualize `sdd/STATUS.md` ao terminar cada tarefa.
 
 ## Escopo acordado

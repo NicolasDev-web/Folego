@@ -2,59 +2,59 @@
 
 ## 00-01 — Inventariar arquivos e tabelas das fontes centrais
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Catálogo com URL, licença/termos, unidade, grão, datas e versão por fonte.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Catálogo com URL, licença/termos, unidade, grão, datas e versão por fonte.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: entrada da fase.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `02_fontes/CATALOGO.md` e `metadata/phase00_manifest.json`. Status: concluída em 06/11/2026.
 
 
 ## 00-02 — Resolver oficialmente a geografia SUB_REGIAO
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Tabela oficial de correspondência ou decisão documentada de não usar na escala municipal; códigos não são convertidos por suposição.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Tabela oficial de correspondência ou decisão documentada de não usar na escala municipal; códigos não são convertidos por suposição.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 00-01.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `02_fontes/RELATORIO_VIABILIDADE.md`, seção “Decisão geográfica”. Status: concluída em 06/11/2026 com decisão de não usar na escala municipal.
 
 
 ## 00-03 — Verificar fonte direta de dívida municipal
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Aplicar os seis critérios de VIABILIDADE_MUNICIPAL; registrar cobertura ou indisponibilidade sem inventar taxa.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Aplicar os seis critérios de VIABILIDADE_MUNICIPAL; registrar cobertura ou indisponibilidade sem inventar taxa.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 00-02.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `02_fontes/RELATORIO_VIABILIDADE.md`, seção “Teste da fonte direta”. Status: concluída em 06/11/2026; fonte direta não demonstrada.
 
 
 ## 00-04 — Validar lista municipal e contexto IBGE/MTE
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Municípios CE, códigos, tabela de renda/população e fonte de emprego com competências reais.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Municípios CE, códigos, tabela de renda/população e fonte de emprego com competências reais.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 00-03.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `data/processed/municipal_context.json`, manifesto da coleta e relatório de viabilidade. Status: concluída em 06/11/2026; renda permanece parcial, como registrado na matriz.
 
 
 ## 00-05 — Montar matriz território × indicador × período
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Status observado/parcial/suprimido/indisponível; piloto com oito cidades e regra de expansão.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Status observado/parcial/suprimido/indisponível; piloto com oito cidades e regra de expansão.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 00-04.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `data/processed/coverage_matrix.csv`. Status: concluída em 06/11/2026; 36 registros para o piloto.
 
 
 ## 00-06 — Escolher escopo municipal A ou B e janela temporal
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Decisão em relatório de viabilidade com evidências e limitações; MVP permanece executável.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Decisão em relatório de viabilidade com evidências e limitações; MVP permanece executável.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 00-05.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `02_fontes/RELATORIO_VIABILIDADE.md`. Status: concluída em 06/11/2026; opção B e janelas temporais definidas.

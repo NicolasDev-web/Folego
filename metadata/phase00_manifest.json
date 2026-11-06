@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "collected_at": "2026-11-06T19:20:53+00:00",
+  "phase": "00_viabilidade",
+  "validations": {
+    "ce_municipalities": 184,
+    "pilot_municipalities": 8,
+    "population_rows": 184,
+    "bcb_subregion_rows_ce_202608": 62,
+    "bcb_subregion_codes": [
+      "60",
+      "61",
+      "62",
+      "63"
+    ]
+  },
+  "files": [
+    {
+      "source_id": "IBGE-LOCAL",
+      "url": "https://servicodados.ibge.gov.br/api/v1/localidades/estados/23/municipios?orderBy=nome",
+      "rows": 184,
+      "path": "data/raw/ibge/localidades_ce_2026-11-06.json",
+      "sha256": "80d346d0972d62618892bdb7c3dd1e764058d4c32793d9cef32607f2286566a7",
+      "bytes": 79632
+    },
+    {
+      "source_id": "IBGE-SIDRA-4714",
+      "url": "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93?localidades=N6[N3[23]]",
+      "rows": 184,
+      "path": "data/raw/ibge/populacao_censo_2022_ce_2026-11-06.json",
+      "sha256": "410c021fd291d03c1083257a887191b1804e31c4c85d5b8d2d2df0886a9a5bf3",
+      "bytes": 22430
+    },
+    {
+      "source_id": "BCB-SUB",
+      "url": "https://olinda.bcb.gov.br/olinda/servico/scr_sub_regiao/versao/v1/odata/scr_sub_regiao(DataBase=@DataBase)?@DataBase=202608&$filter=ESTADO%20eq%20%27CE%27&$top=1000&$format=json",
+      "rows": 62,
+      "path": "data/raw/bcb/scr_sub_regiao_ce_202608_2026-11-06.json",
+      "sha256": "e8f25d09dd2d2031e7968297bd2199bac2a6b1f1c6bf6d7bf5ff5d00c6c896bc",
+      "bytes": 26503
+    }
+  ]
+}

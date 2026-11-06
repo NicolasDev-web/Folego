@@ -1,8 +1,10 @@
 # Análise das cidades: requisito e condições
 
-## Decisão
+## Decisão — opção B
 
-Incluir o explorador dos municípios do Ceará desde o MVP. Indicadores de dívida e atraso municipais só entram quando houver fonte direta e documentação territorial. Contexto socioeconômico e disponibilidade dos dados já têm espaço definido na experiência.
+Em 06/11/2026 foi escolhida a opção B: incluir o explorador dos municípios do Ceará desde o MVP, com contexto oficial e cobertura transparente. Indicadores de dívida e atraso municipais só entram quando houver fonte direta e documentação territorial. Até lá, o produto mostra população observada, prepara renda e emprego formal, mantém dívida municipal indisponível e direciona a análise de crédito para a escala estadual compatível.
+
+Evidências, critérios e janela temporal: `RELATORIO_VIABILIDADE.md`. Arquivos e hashes: `../metadata/phase00_manifest.json`. Matriz do piloto: `../data/processed/coverage_matrix.csv`.
 
 ## O que está demonstrado
 
@@ -10,8 +12,9 @@ Incluir o explorador dos municípios do Ceará desde o MVP. Indicadores de dívi
 |---|---|---|
 | Carteira e inadimplência do SCR.data | Estado | Confirmada pela documentação |
 | Carteira e vencido >15 dias do serviço sub-regional | Código de sub-região + UF | Amostra e schema confirmados; correspondência territorial pendente |
-| Renda e população censitárias | Município | Tabelas e malha oficiais; escolher tabela e validar extração |
-| Emprego formal | Município | Fontes MTE disponíveis; definir série e ajustes |
+| População censitária | Município | Censo 2022 validado para os 184 códigos do Ceará |
+| Renda censitária | Município | Fonte demonstrada; tabela, universo e unidade ainda serão fixados |
+| Emprego formal | Município | Fonte MTE e competência 08/2026 confirmadas; definir série ajustada e revisões |
 | Reclamações | Município conforme registro | Schema e completude a validar; representa a plataforma |
 | Percentual de pessoas negativadas em todas as cidades CE | Não demonstrado | Procurar publicação ou acesso autorizado; sem promessa de disponibilidade |
 | PEIC/IPDC | Capitais/Fortaleza conforme pesquisa | Não extrapolar a todo o estado |
@@ -29,7 +32,7 @@ Uma métrica municipal de dívida só é liberada quando os seis itens forem ver
 
 ## Roteiro de validação
 
-Primeiro, resolver os códigos SUB_REGIAO no BC e verificar se representam grupos territoriais. Não converter esses códigos em código IBGE municipal. Segundo, procurar tabelas públicas municipais nos relatórios dos cadastros de crédito; acesso a painel não significa direito a extrair todos os dados. Terceiro, avaliar pedidos de informação ou parceria somente se necessários: preparar uma minuta local, sem enviar mensagem sem instrução do usuário.
+A busca documental não encontrou correspondência oficial pública que permita transformar os códigos SUB_REGIAO 60–63 em municípios ou regiões nomeadas. Eles permanecem separados e nunca são convertidos em código IBGE por suposição. A verificação de fontes diretas municipais não demonstrou uma série pública completa que passe pelos seis critérios. Futuras solicitações de informação ou parceria só serão preparadas com instrução do usuário.
 
 Piloto territorial: Fortaleza, Caucaia, Maracanaú, Sobral, Juazeiro do Norte, Crato, Iguatu e Quixadá. A seleção serve para testar cobertura e UX, não é amostra representativa do Ceará. A lista definitiva de municípios vem do IBGE.
 

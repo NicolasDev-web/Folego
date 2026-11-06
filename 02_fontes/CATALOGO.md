@@ -1,19 +1,19 @@
 # Catálogo de fontes e decisões
 
-Verificação documental em 05/11/2026. “Confirmado” refere-se à documentação ou à consulta indicada, não a uma ingestão histórica completa. Licenças, termos, denominadores e datas finais serão registrados na fase 00.
+Verificação documental e amostral concluída em 06/11/2026. “Confirmado” refere-se à documentação ou à consulta indicada, não a uma ingestão histórica completa. URLs, horários, tamanhos e hashes dos arquivos coletados estão em `metadata/phase00_manifest.json`.
 
 | ID | Fonte e acesso | Cobertura útil | Frequência | Uso e estado |
 |---|---|---|---|---|
-| BCB-SCR | https://dadosabertos.bcb.gov.br/dataset/scr_data | UF e Brasil; renda/ocupação/modalidade | Mensal | Núcleo; documentação consultada. Arquivos anuais ZIP/CSV; histórico a baixar |
-| BCB-SUB | https://dadosabertos.bcb.gov.br/dataset/scr-por-sub-regiao | UF + código de sub-região | Mensal | Metadados e amostra consultados; geografia, unidade monetária e continuidade a resolver |
+| BCB-SCR | https://dadosabertos.bcb.gov.br/dataset/scr_data | UF e Brasil; renda/ocupação/modalidade; desde 06/2012 | Mensal | Núcleo estadual; ODbL; arquivos anuais ZIP/CSV; janela do MVP a partir de 01/2019 |
+| BCB-SUB | https://dadosabertos.bcb.gov.br/dataset/scr-por-sub-regiao | UF + código de sub-região; desde 03/2005 | Mensal | ODbL; amostra CE 08/2026 coletada. Códigos 60–63 sem correspondência municipal oficial demonstrada; não municipalizar |
 | BCB-RENDA | https://dadosabertos.bcb.gov.br/dataset/29034-comprometimento-de-renda-das-familias-com-o-servico-da-divida-com-o-sistema-financeiro-nacion | Brasil | Mensal, conforme série | Contexto macro; não municipalizar |
 | PEIC | https://portaldocomercio.org.br/tab-publicacao/peic/ | Nacional; coleta nas capitais/DF | Mensal | Publicações e metodologia confirmadas; série local e download estruturado a verificar |
 | IPDC | https://www.fecomercio-ce.com.br/ | Fortaleza | Mensal | Pesquisa de endividamento; publicações confirmadas; acesso a tabelas/histórico a validar |
 | PNAD | https://www.ibge.gov.br/estatisticas/sociais/trabalho/9173-pnadcontinua.html | Brasil, UF e capitais conforme indicador | Trimestral/anual | Tabelas SIDRA no MVP; não todos os municípios |
-| CENSO | https://www.ibge.gov.br/estatisticas/sociais/populacao/22827-censo-demografico-2022.html?edicao=44663 | Municípios; renda e trabalho conforme tabela | Censitária | Contexto municipal; resultados preliminares da amostra têm notas específicas |
+| CENSO | https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93?localidades=N6[N3[23]] | 184 municípios do Ceará; população residente | Censo 2022 | Contexto municipal observado; códigos conferidos contra Localidades; renda ainda requer tabela específica |
 | GEO | https://www.ibge.gov.br/geociencias/todos-os-produtos-geociencias/15774-malhas.html | Municípios e demais territórios oficiais | Edição da malha | Base cartográfica; controlar versão e códigos |
-| LOCAL | https://servicodados.ibge.gov.br/api/v1/localidades/estados/23/municipios | Cadastro municipal CE | Cadastro | Consulta técnica para lista/códigos; não indicador de dívida |
-| CAGED | https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/estatisticas-trabalho | Municípios; emprego formal | Mensal/anual conforme base | Novo Caged e RAIS; validar séries ajustadas e mudanças de método |
+| LOCAL | https://servicodados.ibge.gov.br/api/v1/localidades/estados/23/municipios?orderBy=nome | Cadastro municipal CE | Cadastro | 184 municípios e códigos validados; lista territorial canônica; não é indicador de dívida |
+| CAGED | https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/estatisticas-trabalho/perfil-do-municipio | Municípios; emprego formal; metodologia Novo Caged desde 2020 | Mensal | Competência 08/2026 confirmada; série ajustada, revisões e leiaute ainda serão fixados antes da ingestão |
 | CONSUMIDOR | https://www.consumidor.gov.br/pages/conteudo/publico/62 | UF/município do consumidor conforme registro | Registros administrativos | Complementar; dados abertos e consultas confirmados, schema a baixar |
 | SERASA | https://www.serasa.com.br/limpa-nome-online/blog/mapa-da-inadimplencia-e-renogociacao-de-dividas-no-brasil/ | Brasil/UF e recortes publicados | Relatórios por edição | Complementar; série municipal aberta completa não confirmada |
 | POF | https://www.ibge.gov.br/estatisticas/sociais/populacao/9050-pesquisa-de-orcamentos-familiares.html | Brasil/UF conforme edição/tabela | Edições | Contexto histórico 2017–2018; não retrato mensal atual |
@@ -28,9 +28,9 @@ A metodologia v2 informa arquivos anuais em `https://www.bcb.gov.br/pda/desig/sc
 
 Metadados: `https://olinda.bcb.gov.br/olinda/servico/scr_sub_regiao/versao/v1/odata/$metadata`.
 
-Função: `scr_sub_regiao(DataBase=@DataBase)`; parâmetro inteiro no formato AAAAMM. Uma consulta pública sem filtro com `@DataBase=202508`, `$top=1000`, `$format=json` retornou 1000 linhas. É amostra parcial e não totaliza a base. Códigos de sub-região observados para CE: 60, 61, 62 e 63; isso não assegura lista completa.
+Função: `scr_sub_regiao(DataBase=@DataBase)`; parâmetro inteiro no formato AAAAMM. Uma consulta com `@DataBase=202608`, filtro `ESTADO eq 'CE'`, `$top=1000` e `$format=json` retornou 62 linhas. Os códigos de sub-região observados foram 60, 61, 62 e 63. O retorno é uma amostra de competência para validar schema e cobertura, não uma correspondência geográfica oficial.
 
-O filtro `ESTADO eq 'CE'` recebeu HTTP 400 com erro de tipos do serviço nesta sessão. O plano não depende desse filtro: testar sintaxe no construtor oficial ou paginar a consulta sem filtro, respeitando limites. Não insistir em supor que um retorno parcial é universo completo.
+A consulta filtrada funcionou com o valor textual corretamente codificado. A documentação consultada não forneceu tabela de correspondência entre os códigos observados e municípios; por isso a fase 00 decidiu não usar `SUB_REGIAO` na escala municipal.
 
 Campos observados: DATA_BASE, CLIENTE, ESTADO, SUB_REGIAO, MODALIDADE, RISCO, OPERACOES, CARTEIRA, faixas a vencer e VENCIDO_ACIMA_DE_15_DIAS. `RISCO` nulo em linhas da amostra. Não inventar classificações ausentes.
 
