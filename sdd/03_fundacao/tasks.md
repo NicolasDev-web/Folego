@@ -2,22 +2,22 @@
 
 ## 03-01 — Criar projeto React/TS/Vite e rotas
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Build limpo e navegação principal com títulos semânticos.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Build limpo e navegação principal com títulos semânticos.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: entrada da fase.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `app/`, `app/src/router.tsx` e `evidencias/QA_FRONTEND.md`. Status: concluída em 06/11/2026.
 
 
 ## 03-02 — Implementar tokens e layout responsivo
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Hero, navegação e SectionHeader consistentes sem overflow.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Hero, navegação e SectionHeader consistentes sem overflow.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 03-01.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `app/src/styles.css`, `app/src/components/SectionHeader.tsx`, `evidencias/QA_FRONTEND.md` e `evidencias/qa/`. Status: concluída em 06/11/2026.
 
 
 ## 03-03 — Construir componentes de filtro e fonte
@@ -27,7 +27,7 @@ Evidência: a preencher pelo executor. Status inicial: não iniciada.
 - [ ] Registrar caminho da evidência e atualizar status.
 
 Depende de: 03-02.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência parcial: `app/src/components/MunicipalitySearch.tsx` e `app/src/components/CoveragePanel.tsx`. Busca e ficha funcionam por teclado; controles segmentados e abstrações finais de MetricCard/SourceNote permanecem pendentes. Status: em andamento.
 
 
 ## 03-04 — Criar adaptador de dados/cobertura
@@ -37,7 +37,7 @@ Evidência: a preencher pelo executor. Status inicial: não iniciada.
 - [ ] Registrar caminho da evidência e atualizar status.
 
 Depende de: 03-03.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência parcial: `app/src/lib/observation.ts`, `app/src/lib/observation.test.ts` e `app/src/data/fixtures/coverage.ts`. Estados observado e indisponível têm contrato e teste; erro de carregamento e série parcial permanecem pendentes. Status: em andamento.
 
 
 ## 03-05 — Persistir filtros públicos na URL
@@ -47,7 +47,7 @@ Evidência: a preencher pelo executor. Status inicial: não iniciada.
 - [ ] Registrar caminho da evidência e atualizar status.
 
 Depende de: 03-04.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência adiantada: `app/src/pages/CitiesPage.tsx`; a seleção `?cidade=sobral` sobrevive a recarga e link compartilhado. A conclusão aguarda 03-04. Status: adiantada, não concluída.
 
 
 ## 03-06 — Verificar componentes nas três larguras
@@ -57,4 +57,4 @@ Evidência: a preencher pelo executor. Status inicial: não iniciada.
 - [ ] Registrar caminho da evidência e atualizar status.
 
 Depende de: 03-05.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência parcial: `evidencias/QA_FRONTEND.md` e `evidencias/qa/`; 390/768/1440 px sem overflow e movimento reduzido coberto. Auditoria completa de teclado/leitor de tela aguarda a conclusão dos componentes. Status: em andamento.

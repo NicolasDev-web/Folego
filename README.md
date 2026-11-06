@@ -6,6 +6,28 @@ Nome provisório: **Fôlego**. Pergunta central: como o crédito, os atrasos e a
 
 Este pacote contém planejamento SDD, auditoria da referência visual, direção de UX/UI, metodologia didática e contratos iniciais de dados. A aplicação e a investigação estatística completa serão desenvolvidas nas fases descritas. Os exemplos de desenho não apresentam resultados da pesquisa.
 
+## Aplicação inicial
+
+Em 06/11/2026 começou a implementação da base em `app/`. A primeira versão navegável inclui a abertura editorial, as rotas de panorama, cidades e método, um piloto de busca municipal, estados explícitos de cobertura e filtros públicos persistidos na URL. Ela ainda não publica resultados estatísticos: a ausência de uma fonte municipal direta é mostrada como ausência, nunca como zero.
+
+Para executar localmente:
+
+```bash
+cd app
+npm install
+npm run dev
+```
+
+Verificações disponíveis:
+
+```bash
+npm test
+npm run build
+npm run qa:screenshots
+```
+
+O relatório da primeira rodada técnica está em `evidencias/QA_FRONTEND.md`.
+
 ## Comece aqui
 
 1. Leia `01_contexto/METODOLOGIA_DIDATICA.md` para entender os conceitos e limites.

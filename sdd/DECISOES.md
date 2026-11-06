@@ -10,5 +10,7 @@
 | D06 | React/TS/Vite + pipeline Python propostos | Componentes, tipos e publicação estática | Restrições do ambiente de implementação |
 | D07 | Dados pré-agregados no frontend | Leveza, estabilidade e reprodutibilidade | Volume real |
 | D08 | UX antecede implementação completa dos gráficos | Prioridade expressa do usuário | Sem alteração prevista |
+| D09 | Iniciar o frontend com fixture apenas de cobertura indisponível | Permite validar jornada sem publicar números demonstrativos como achados | Quando a fase 02 entregar agregados validados |
+| D10 | Persistir a seleção municipal em query string | Link compartilhável, recarga reproduzível e ausência de dado pessoal | Quando novos filtros públicos forem adicionados |
 
 Formato de nova decisão: data, contexto, alternativas consideradas, escolha, consequência, evidência e fase afetada.
