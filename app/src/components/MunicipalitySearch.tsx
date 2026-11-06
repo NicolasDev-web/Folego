@@ -1,7 +1,8 @@
 import { useId, useMemo, useState } from "react";
-import { municipalities, type Municipality } from "../data/municipalities";
+import type { Municipality } from "../data/municipalities";
 
 type MunicipalitySearchProps = {
+  municipalities: Municipality[];
   selectedId?: string;
   onSelect: (municipality: Municipality) => void;
 };
@@ -13,7 +14,11 @@ function normalize(value: string) {
     .toLocaleLowerCase("pt-BR");
 }
 
-export function MunicipalitySearch({ selectedId, onSelect }: MunicipalitySearchProps) {
+export function MunicipalitySearch({
+  municipalities,
+  selectedId,
+  onSelect,
+}: MunicipalitySearchProps) {
   const [query, setQuery] = useState("");
   const inputId = useId();
 
@@ -23,7 +28,7 @@ export function MunicipalitySearch({ selectedId, onSelect }: MunicipalitySearchP
     return municipalities.filter((municipality) =>
       normalize(municipality.name).includes(normalizedQuery),
     );
-  }, [query]);
+  }, [municipalities, query]);
 
   return (
     <section className="search-panel" aria-labelledby={`${inputId}-title`}>
@@ -31,8 +36,8 @@ export function MunicipalitySearch({ selectedId, onSelect }: MunicipalitySearchP
         <p className="section-marker">Piloto de navegação</p>
         <h2 id={`${inputId}-title`}>Encontre uma cidade</h2>
         <p>
-          A lista testa busca, seleção e cobertura. Ela ainda não é a base completa dos 184
-          municípios.
+          O piloto usa oito cidades da lista oficial de 184 municípios e dados de contexto do
+          Censo 2022.
         </p>
       </div>
 

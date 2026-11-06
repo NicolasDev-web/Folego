@@ -659,6 +659,36 @@ a {
   border-bottom: 1px solid var(--line);
 }
 
+.coverage-results {
+  margin-top: 4rem;
+  border-top: 1px solid var(--line);
+}
+
+.coverage-results .coverage-result {
+  margin-top: 0;
+  border-top: 0;
+}
+
+.coverage-result-observed {
+  padding-inline: 1rem;
+  background: #edf4ef;
+}
+
+.result-value {
+  min-width: 7ch;
+  margin: 0;
+  color: var(--brand);
+  font-size: clamp(2.3rem, 5vw, 4.5rem);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.coverage-result .status-chip {
+  display: inline-block;
+  margin-bottom: 0.85rem;
+}
+
 .result-symbol {
   margin: 0;
   font-size: 5rem;
@@ -673,6 +703,35 @@ a {
 .coverage-result p:last-child {
   margin: 0;
   color: var(--muted);
+}
+
+.coverage-source {
+  margin: 2rem 0;
+  padding: 1rem;
+  background: #edf4ef;
+  border-left: 4px solid var(--brand);
+}
+
+.coverage-source p {
+  margin-top: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.data-state {
+  width: min(100%, var(--content-max));
+  margin: 0 auto 4rem;
+  padding: 2rem var(--gutter);
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.data-state h2 {
+  margin-top: 0;
+}
+
+.data-state-error {
+  border-left: 4px solid var(--accent);
 }
 
 .coverage-metadata {
