@@ -10,6 +10,7 @@ Data: 06/11/2026. Escopo: base navegável, população oficial e explorador cart
 - Navegação confirmada nas rotas `/`, `/cidades` e `/metodo`, todas com `h1` semântico.
 - Busca por “Crato” via teclado atualiza a ficha e a URL para `?cidade=crato`.
 - As 184 geometrias são renderizadas; clicar em Fortaleza no mapa sincroniza mapa, ficha e URL.
+- A seleção atualiza a etiqueta com o nome dentro do mapa e preserva a posição vertical da página.
 - A nova composição usa busca compacta, mapa dominante e uma única ficha lateral; no celular a ficha antecede o mapa.
 - Mudança de rota reinicia a rolagem no topo. Links internos continuam levando às seções da página inicial.
 - Nenhum erro ou aviso foi registrado no console durante a rodada no navegador.

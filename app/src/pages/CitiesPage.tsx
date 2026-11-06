@@ -22,7 +22,7 @@ export function CitiesPage() {
   function selectMunicipality(slug: string) {
     const next = new URLSearchParams(searchParams);
     next.set("cidade", slug);
-    setSearchParams(next);
+    setSearchParams(next, { preventScrollReset: true });
   }
 
   return (

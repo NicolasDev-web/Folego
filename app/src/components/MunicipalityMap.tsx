@@ -66,6 +66,10 @@ export function MunicipalityMap({
             );
           })}
         </svg>
+        <div className="map-click-label" aria-live="polite">
+          <span>Município selecionado</span>
+          <strong>{selected.name}</strong>
+        </div>
       </div>
 
       <div className="map-footer">

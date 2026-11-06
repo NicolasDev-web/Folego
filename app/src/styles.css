@@ -11,6 +11,7 @@
   --muted: #4c6260;
   --brand: #125c57;
   --hero: #103e3b;
+  --map-deep: #174440;
   --accent: #b94d32;
   --line: #d7dcd3;
   --missing: #c7cbc5;
@@ -1063,7 +1064,8 @@ a {
   min-width: 0;
   margin: 0;
   padding: 0;
-  background: #edf2ed;
+  color: #f8f5ed;
+  background: var(--map-deep);
   border: 0;
   border-radius: 0;
 }
@@ -1075,7 +1077,8 @@ a {
   align-items: center;
   gap: 1rem;
   padding: 0.9rem 1.25rem;
-  color: var(--muted);
+  color: #b9d1c8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .map-toolbar h2,
@@ -1084,7 +1087,7 @@ a {
 }
 
 .map-toolbar h2 {
-  color: var(--ink);
+  color: #ffffff;
   font-size: 1rem;
   font-weight: 680;
 }
@@ -1106,13 +1109,13 @@ a {
 }
 
 .municipal-explorer .map-shape {
-  fill: #dce8e1;
-  stroke: #829a92;
+  fill: #285b56;
+  stroke: #8eb0a7;
   stroke-width: 0.8;
 }
 
 .municipal-explorer .map-shape:hover {
-  fill: #bfd4c9;
+  fill: #3f746d;
 }
 
 .municipal-explorer .map-shape.is-selected {
@@ -1128,7 +1131,7 @@ a {
   align-items: center;
   gap: 1.5rem;
   padding: 0.9rem 1.25rem;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .municipal-explorer .map-legend {
@@ -1138,16 +1141,53 @@ a {
 
 .map-footer figcaption {
   margin: 0;
-  color: var(--muted);
+  color: #b9d1c8;
   font-size: 0.75rem;
   line-height: 1.4;
   text-align: right;
 }
 
 .map-footer figcaption a {
-  color: var(--brand);
+  color: #ffffff;
   font-weight: 650;
   text-underline-offset: 0.2rem;
+}
+
+.municipal-explorer .map-legend {
+  color: #d5e1dc;
+}
+
+.municipal-explorer .legend-boundary {
+  background: #285b56;
+  border-color: #8eb0a7;
+}
+
+.map-click-label {
+  position: absolute;
+  left: 1.25rem;
+  bottom: 1.25rem;
+  min-width: 190px;
+  max-width: calc(100% - 2.5rem);
+  padding: 0.8rem 1rem;
+  color: var(--ink);
+  background: rgba(255, 254, 249, 0.96);
+  border-left: 4px solid var(--accent);
+  box-shadow: 0 12px 32px rgba(5, 25, 23, 0.2);
+}
+
+.map-click-label span,
+.map-click-label strong {
+  display: block;
+}
+
+.map-click-label span {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.map-click-label strong {
+  margin-top: 0.2rem;
+  font-size: 1.05rem;
 }
 
 .municipal-explorer .coverage-panel {

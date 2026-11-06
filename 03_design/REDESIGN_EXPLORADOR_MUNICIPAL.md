@@ -44,5 +44,7 @@ No celular, a ordem passa a ser busca, resumo municipal, mapa e fonte. A busca f
 - Tratar indisponibilidade em uma linha neutra, sem usar a cor da seleção territorial.
 - Recolher metadados extensos em “Fontes e limites”.
 - Usar terracota somente para o município selecionado.
+- Usar `#174440` como campo cartográfico principal, com limites claros e contraste tonal.
+- Exibir o nome selecionado dentro do mapa e preservar a posição da página durante a troca de município.
 - Preservar equivalente textual, busca por teclado e atualização anunciada da ficha.
 
