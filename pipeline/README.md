@@ -18,3 +18,13 @@ O script usa somente a biblioteca padrão do Python, preserva as respostas bruta
 
 Nenhuma taxa municipal de dívida é calculada pelo script.
 
+## Geometrias municipais
+
+Depois da coleta inicial, gere a malha usada pelo explorador:
+
+```bash
+python pipeline/extract/municipal_geometries.py
+```
+
+O script baixa a visão de qualidade mínima da API de Malhas do IBGE, exige 184 geometrias e confere cada `codarea` contra o cadastro municipal. O snapshot bruto e seu hash são preservados; essa geometria serve para contexto visual em escala estadual, não para medições de precisão.
+

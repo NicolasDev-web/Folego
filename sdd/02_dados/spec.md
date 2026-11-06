@@ -1,6 +1,6 @@
 # Coleta e tratamento reprodutível — especificação
 
-Status: planejado. Dependências: 00.
+Status: em andamento. Dependências: 00 concluída.
 
 ## Objetivo
 

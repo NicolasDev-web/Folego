@@ -7,7 +7,7 @@
 - [ ] Registrar caminho da evidência e atualizar status.
 
 Depende de: entrada da fase.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência parcial: `pipeline/extract/phase00_collect.py` e `pipeline/extract/municipal_geometries.py` cobrem IBGE e a amostra SCR com timeout, validação e hashes. Status: em andamento; adaptador histórico SCR e ingestão MTE ainda pendentes.
 
 
 ## 02-02 — Normalizar campos e unidades por versão

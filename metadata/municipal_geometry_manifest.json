@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "collected_at": "2026-11-06T19:33:31+00:00",
+  "source_id": "IBGE-GEO-API-V3",
+  "url": "https://servicodados.ibge.gov.br/api/v3/malhas/estados/23?formato=application/vnd.geo+json&qualidade=minima&intrarregiao=municipio",
+  "quality": "minima",
+  "territory": "Ceará",
+  "intra_region": "municipio",
+  "features": 184,
+  "geocode_match": true,
+  "raw_path": "data/raw/ibge/malha_municipal_ce_minima_2026-11-06.geojson",
+  "processed_path": "data/processed/ce_municipalities_min.geojson",
+  "public_path": "app/public/data/ce_municipalities_min.geojson",
+  "sha256": "c7d893b8e7c4daca7f064485c56c3a1ad7a9fa532a0145cd402ea7765bd43ceb",
+  "bytes": 103543,
+  "note": "Snapshot da geometria servida pela API na data de coleta. A qualidade mínima é adequada à visão estadual, não a medições de precisão."
+}
