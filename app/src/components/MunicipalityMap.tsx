@@ -39,7 +39,7 @@ const HEIGHT = 620;
 const PADDING = 24;
 const FULL_VIEWBOX = `0 0 ${WIDTH} ${HEIGHT}`;
 const modes: Array<{ id: MapMode; label: string; description: string }> = [
-  { id: "territory", label: "Território", description: "limites e zoom regional" },
+  { id: "territory", label: "Território", description: "clique em um município para aproximar a região" },
   { id: "employment", label: "Emprego", description: "saldo em círculos proporcionais" },
   { id: "income", label: "Renda", description: "mediana por faixas de cor" },
   { id: "population", label: "População", description: "cartograma populacional" },
@@ -196,10 +196,15 @@ export function MunicipalityMap({ collection, municipalities, selected, onSelect
     if (activeRegion && selected.region !== activeRegion) setActiveRegion(selected.region);
   }, [activeRegion, selected.region]);
 
+  const selectFromMap = (municipality: Municipality) => {
+    if (mode === "territory") setActiveRegion(municipality.region);
+    onSelect(municipality);
+  };
+
   const handleKey = (event: KeyboardEvent<SVGPathElement>, municipality: Municipality) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      onSelect(municipality);
+      selectFromMap(municipality);
     }
   };
 
@@ -267,7 +272,7 @@ export function MunicipalityMap({ collection, municipalities, selected, onSelect
                 tabIndex={0}
                 aria-label={`Selecionar ${feature.municipality.name}`}
                 onKeyDown={(event) => handleKey(event, feature.municipality)}
-                onClick={() => onSelect(feature.municipality)}
+                onClick={() => selectFromMap(feature.municipality)}
               >
                 <title>{feature.municipality.name}</title>
               </path>

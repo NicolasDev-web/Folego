@@ -185,6 +185,20 @@ try {
       await fortalezaShape.click();
       await page.waitForURL(/cidade=fortaleza/);
       await page.locator(".coverage-heading h2", { hasText: "Fortaleza" }).waitFor();
+      const clickedRegion = await page.getByLabel("Zoom regional").inputValue();
+      const clickedViewBox = await page.locator(".municipality-map-panel svg").getAttribute("viewBox");
+      if (clickedRegion !== "Fortaleza" || clickedViewBox === "0 0 640 620") {
+        throw new Error(
+          `Clique territorial não ativou o zoom regional: ${clickedRegion || "sem região"}.`,
+        );
+      }
+      const clickedShapeStyle = await fortalezaShape.evaluate((element) => ({
+        outlineStyle: getComputedStyle(element).outlineStyle,
+        strokeWidth: Number.parseFloat(getComputedStyle(element).strokeWidth),
+      }));
+      if (clickedShapeStyle.outlineStyle !== "none" || clickedShapeStyle.strokeWidth > 1) {
+        throw new Error("Seleção pelo mouse manteve uma borda visível no município.");
+      }
       const scrollAfterSelection = await page.evaluate(() => window.scrollY);
       if (Math.abs(scrollAfterSelection - scrollBeforeSelection) > 2) {
         throw new Error(

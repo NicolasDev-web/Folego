@@ -1186,8 +1186,12 @@ a {
 
 .municipal-explorer .map-shape.is-selected {
   fill: var(--accent);
-  stroke: #6e2c1c;
-  stroke-width: 3;
+  stroke: var(--accent);
+  stroke-width: 0.8;
+}
+
+.municipal-explorer .map-shape:focus {
+  outline: none;
 }
 
 .municipal-explorer .map-shape:focus-visible {
@@ -1206,8 +1210,8 @@ a {
 }
 
 .map-mode-income .map-shape.is-selected {
-  stroke: #ffffff;
-  stroke-width: 3;
+  stroke: var(--accent);
+  stroke-width: 0.8;
 }
 
 .employment-symbol,
