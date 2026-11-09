@@ -1,0 +1,47 @@
+territory_id,territory_name,territory_level,indicator_id,period,status,source_id,note
+2303709,Caucaia,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2303709,Caucaia,municipio,renda_censo,2022,observado,IBGE-SIDRA-10295,Média e mediana nominais mensais domiciliares per capita validadas.
+2303709,Caucaia,municipio,emprego_saldo,2026-09,observado,MTE-CAGEDMOV-202609,Saldo mensal sem ajustes declarados após a competência.
+2303709,Caucaia,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+2304202,Crato,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2304202,Crato,municipio,renda_censo,2022,observado,IBGE-SIDRA-10295,Média e mediana nominais mensais domiciliares per capita validadas.
+2304202,Crato,municipio,emprego_saldo,2026-09,observado,MTE-CAGEDMOV-202609,Saldo mensal sem ajustes declarados após a competência.
+2304202,Crato,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+2304400,Fortaleza,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2304400,Fortaleza,municipio,renda_censo,2022,observado,IBGE-SIDRA-10295,Média e mediana nominais mensais domiciliares per capita validadas.
+2304400,Fortaleza,municipio,emprego_saldo,2026-09,observado,MTE-CAGEDMOV-202609,Saldo mensal sem ajustes declarados após a competência.
+2304400,Fortaleza,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+2305506,Iguatu,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2305506,Iguatu,municipio,renda_censo,2022,observado,IBGE-SIDRA-10295,Média e mediana nominais mensais domiciliares per capita validadas.
+2305506,Iguatu,municipio,emprego_saldo,2026-09,observado,MTE-CAGEDMOV-202609,Saldo mensal sem ajustes declarados após a competência.
+2305506,Iguatu,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+2307304,Juazeiro do Norte,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2307304,Juazeiro do Norte,municipio,renda_censo,2022,observado,IBGE-SIDRA-10295,Média e mediana nominais mensais domiciliares per capita validadas.
+2307304,Juazeiro do Norte,municipio,emprego_saldo,2026-09,observado,MTE-CAGEDMOV-202609,Saldo mensal sem ajustes declarados após a competência.
+2307304,Juazeiro do Norte,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+2307650,Maracanaú,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2307650,Maracanaú,municipio,renda_censo,2022,observado,IBGE-SIDRA-10295,Média e mediana nominais mensais domiciliares per capita validadas.
+2307650,Maracanaú,municipio,emprego_saldo,2026-09,observado,MTE-CAGEDMOV-202609,Saldo mensal sem ajustes declarados após a competência.
+2307650,Maracanaú,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+2311306,Quixadá,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2311306,Quixadá,municipio,renda_censo,2022,observado,IBGE-SIDRA-10295,Média e mediana nominais mensais domiciliares per capita validadas.
+2311306,Quixadá,municipio,emprego_saldo,2026-09,observado,MTE-CAGEDMOV-202609,Saldo mensal sem ajustes declarados após a competência.
+2311306,Quixadá,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+2312908,Sobral,municipio,populacao_censo,2022,observado,IBGE-SIDRA-4714,População residente; valor disponível no contexto público.
+2312908,Sobral,municipio,renda_censo,2022,observado,IBGE-SIDRA-10295,Média e mediana nominais mensais domiciliares per capita validadas.
+2312908,Sobral,municipio,emprego_saldo,2026-09,observado,MTE-CAGEDMOV-202609,Saldo mensal sem ajustes declarados após a competência.
+2312908,Sobral,municipio,divida_municipal_direta,,indisponivel,,Nenhuma fonte pública direta passou pelos seis critérios.
+60,Código BCB 60,sub_regiao,vencido15_sub,2026-08,parcial,BCB-SUB,Dados presentes; nome e correspondência territorial oficial não publicados.
+61,Código BCB 61,sub_regiao,vencido15_sub,2026-08,parcial,BCB-SUB,Dados presentes; nome e correspondência territorial oficial não publicados.
+62,Código BCB 62,sub_regiao,vencido15_sub,2026-08,parcial,BCB-SUB,Dados presentes; nome e correspondência territorial oficial não publicados.
+63,Código BCB 63,sub_regiao,vencido15_sub,2026-08,parcial,BCB-SUB,Dados presentes; nome e correspondência territorial oficial não publicados.
+CE,Ceará,uf,carteira_pf,2019-08..2026-09,observado,BCB-SCR,Saldo da carteira ativa PF em Reais (nominal e deflacionado por IPCA).
+CE,Ceará,uf,inad90_carteira,2019-08..2026-09,observado,BCB-SCR,Inadimplência > 90 dias ponderada pela carteira ativa.
+CE,Ceará,uf,saldo_operacao,2019-08..2026-09,observado,BCB-SCR,R$/operação calculado sobre linhas com numero_de_operacoes > 15.
+CE,Ceará,uf,participacao_modalidade,2019-12..2026-09,observado,BCB-SCR,Participação percentual de cada modalidade no total da carteira.
+NE,Nordeste,regiao,inad90_carteira,2019-08..2026-09,observado,BCB-SCR,Agregado regional dos 9 estados do Nordeste ponderado pela carteira.
+BR,Brasil,br,inad90_carteira,2019-08..2026-09,observado,BCB-SCR,Agregado nacional ponderado pela carteira.
+BR,Brasil,br,comprometimento_br,2019-01..2026-08,observado,BCB-RENDA,Série SGS 29034 de comprometimento de renda das famílias no SFN.
+BR,Brasil,br,familias_endividadas,2025-08..2026-10,observado,CNC-PEIC,Proporção de famílias endividadas na PEIC Nacional.
+2304400,Fortaleza,capital_pesquisa,familias_endividadas,2025-04..2026-10,observado,FECOMERCIO-CE-IPDC,Pesquisa local de Fortaleza (capital_pesquisa); 2025-11 indisponível (null).
+2304400,Fortaleza,capital_pesquisa,familias_endividadas,2025-11,indisponivel,FECOMERCIO-CE-IPDC,Ausência de boletim mensal publicado pela Fecomércio-CE para novembro/2025.

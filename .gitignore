@@ -4,6 +4,8 @@ dist/
 coverage/
 __pycache__/
 *.pyc
+.pytest_cache/
+.vercel/
+data/raw/cache/
 *.log
 .DS_Store
-

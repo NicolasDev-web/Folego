@@ -54,3 +54,22 @@ O valor mensal usa o `CAGEDMOV` da própria competência. Ajustes declarados em 
 
 Saídas específicas: `municipal_employment_2026-09.csv` contém o total municipal; `municipal_employment_occupations_2026-09.csv` preserva o fato por ocupação. O contexto público recebe somente os cinco maiores saldos ocupacionais, os três maiores recuos e os três setores com mais movimentações por município.
 
+## Coleta e tratamento completo da Fase 02 (`02_dados`)
+
+```bash
+python pipeline/run_phase02.py
+```
+
+Executa os adaptadores de extração (`bcb_adapter.py`, `ibge_adapter.py`, `mte_caged_adapter.py`, `surveys_adapter.py`), a normalização por versão metodológica (`normalize.py`), a separação de fatos e dimensões em Parquet (`facts.py`), o cálculo dos indicadores prioritários (`indicators.py`) e a validação e exportação pública conforme `04_tecnico/CONTRATO_DADOS.json` (`export_public.py`):
+
+- `data/processed/dim_territory.parquet` e `dim_indicator.parquet`: dimensões canônicas sem duplicação;
+- `data/processed/fact_scr_macro.parquet`, `fact_scr_profiles.parquet`, `fact_scr_subregion.parquet`, `fact_caged_adjusted.parquet`, `fact_surveys.parquet`: fatos separados por nível territorial (`BR`, `NE`, `CE`, `sub_regiao`, `capital_pesquisa`, `municipio`);
+- `app/public/data/state_macro_series.json`, `credit_profiles.json` e `labor_and_surveys.json`: agregados públicos validados contra `CONTRATO_DADOS.json`;
+- `metadata/phase02_manifest.json` e `metadata/scr_data_monthly_hashes.json`: manifesto completo e hashes SHA-256;
+- `02_fontes/RELATORIO_QUALIDADE_DADOS.md`: relatório de reconciliação e qualidade.
+
+Para executar a suíte de testes automatizados da Fase 02:
+
+```bash
+python -m pytest pipeline/tests/test_phase02.py -v
+```

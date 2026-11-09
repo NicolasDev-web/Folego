@@ -1,0 +1,378 @@
+{
+  "phase": "02_dados",
+  "generated_at": "2026-11-09T14:19:07+00:00",
+  "collected_date": "2026-11-09",
+  "contract_validated_observations_count": 872,
+  "raw_files": [
+    {
+      "source_id": "IBGE-SIDRA-10295",
+      "competence": "2022",
+      "rows": 187,
+      "unit": "R$ (média e mediana nominal mensal domiciliar per capita)",
+      "geography": "BR, NE, CE e 184 municípios do Ceará",
+      "license": "Domínio público / Dados Abertos IBGE",
+      "version": "Censo Demográfico 2022 - Universo",
+      "path": "data/raw/ibge/renda_censo_2022_ce_2026-11-09.json",
+      "url": "https://servicodados.ibge.gov.br/api/v3/agregados/10295/periodos/2022/variaveis/13604|13431|13534?localidades=N1[1]|N2[2]|N3[23]|N6[N3[23]]&classificacao=2[6794]|86[95251]|58[95253]",
+      "sha256": "1462a7cbe9ee934ec6a054d7a2217cb82113f37f3149e1e94be01e37aa56413d",
+      "bytes": 69915
+    },
+    {
+      "source_id": "IBGE-SIDRA-1737",
+      "competence": "2018-01..2026-09",
+      "rows": 105,
+      "unit": "Número-índice (dez/1993 = 100)",
+      "geography": "BR",
+      "license": "Domínio público / Dados Abertos IBGE",
+      "version": "IPCA - Série histórica",
+      "path": "data/raw/ibge/ipca_indice_1737_2026-11-09.json",
+      "url": "https://servicodados.ibge.gov.br/api/v3/agregados/1737/periodos/201801-202609/variaveis/2266?localidades=N1[1]",
+      "sha256": "27ecda80d6f068955cb619564e68c13f1da749b3963dfc0ad25e5fb610390faf",
+      "bytes": 3396
+    },
+    {
+      "source_id": "IBGE-SIDRA-4099",
+      "competence": "2019-T1..2026-T2",
+      "rows": 120,
+      "unit": "% (taxa de desocupação e CV)",
+      "geography": "BR, NE, CE e Fortaleza",
+      "license": "Domínio público / Dados Abertos IBGE",
+      "version": "PNAD Contínua Trimestral",
+      "path": "data/raw/ibge/pnad_desocupacao_4099_2026-11-09.json",
+      "url": "https://servicodados.ibge.gov.br/api/v3/agregados/4099/periodos/201901-202603/variaveis/4099|4103?localidades=N1[1]|N2[2]|N3[23]|N6[2304400]",
+      "sha256": "a670cba326c26a2b6bf4cfc876faa8422643df2359b38382b374aea354e797b3",
+      "bytes": 4840
+    },
+    {
+      "source_id": "IBGE-SIDRA-6472",
+      "competence": "2019-T1..2026-T2",
+      "rows": 120,
+      "unit": "R$ (rendimento médio habitual real e nominal + CV)",
+      "geography": "BR, NE, CE e Fortaleza",
+      "license": "Domínio público / Dados Abertos IBGE",
+      "version": "PNAD Contínua Trimestral",
+      "path": "data/raw/ibge/pnad_rendimento_6472_2026-11-09.json",
+      "url": "https://servicodados.ibge.gov.br/api/v3/agregados/6472/periodos/201901-202603/variaveis/5933|5941|5929|5937?localidades=N1[1]|N2[2]|N3[23]|N6[2304400]",
+      "sha256": "590cdf03a01d5387ab4a9d83adef00e83757e2db9b21edbba74ef3530f5d90d7",
+      "bytes": 10147
+    },
+    {
+      "source_id": "MTE-NOVO-CAGED",
+      "url": "https://drive.usercontent.google.com/download?id=1LFiRd5cYqCLbBv7udPWtus6h4cF3GaA0&export=download&confirm=t",
+      "portal_url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/novo-caged/2026/agosto",
+      "competence": "2020-01..2026-08",
+      "rows": 187,
+      "unit": "Vínculos formais (estoque, admissões, desligamentos e saldos)",
+      "geography": "BR, NE, CE e 184 municípios do Ceará",
+      "license": "Dados Abertos MTE / PDA",
+      "version": "Novo Caged - Série com ajustes até agosto/2026",
+      "path": "data/raw/mte/novo_caged_ce_202608_2026-11-09.json",
+      "sha256": "9106261ab62f334b2756c99c612d5d39c5ab9347e9f1e8f840b4df3dfe31af52",
+      "bytes": 2923991,
+      "upstream_xlsx_sha256": "d36c8ebe54e3e10ea877f5ea4dd6798a0a276c4fcff262c73102f4b9c8459e7d",
+      "upstream_xlsx_bytes": 44543000
+    },
+    {
+      "source_id": "CNC-PEIC",
+      "url": "https://portal-bucket.azureedge.net/wp-content/2026/10/SERIES_PEIC_ENVIO-2.xls",
+      "portal_url": "https://portaldocomercio.org.br/economia/peic-pesquisa-de-endividamento-e-inadimplencia-do-consumidor/",
+      "competence": "2025-08..2026-09",
+      "rows": 14,
+      "unit": "Proporção (0..1 convertida para %) e dias/meses",
+      "geography": "BR (Pesquisa Nacional PEIC - CNC)",
+      "license": "Divulgação pública CNC / Portal do Comércio",
+      "version": "PEIC CNC - Outubro/2026 (SERIES_PEIC_ENVIO-2.xls)",
+      "path": "data/raw/surveys/peic_cnc_202610_2026-11-09.xls",
+      "sha256": "07b1a5ab6c92b2fa487ba73a826fba157284b736478fb075cf09ecff3ee2b8b6",
+      "bytes": 50176
+    },
+    {
+      "source_id": "CNC-PEIC",
+      "url": "https://portal-bucket.azureedge.net/wp-content/2026/11/SERIES_PEIC_ENVIO-3.xls",
+      "portal_url": "https://portaldocomercio.org.br/economia/peic-pesquisa-de-endividamento-e-inadimplencia-do-consumidor/",
+      "competence": "2025-10..2026-10",
+      "rows": 13,
+      "unit": "Proporção (0..1 convertida para %) e dias/meses",
+      "geography": "BR (Pesquisa Nacional PEIC - CNC)",
+      "license": "Divulgação pública CNC / Portal do Comércio",
+      "version": "PEIC CNC - Novembro/2026 (SERIES_PEIC_ENVIO-3.xls)",
+      "path": "data/raw/surveys/peic_cnc_202611_2026-11-09.xls",
+      "sha256": "f601354f971da185482148f67cc370ee258b5e84645030657e4f1b4256c1a0aa",
+      "bytes": 50176
+    },
+    {
+      "source_id": "FECOMERCIO-CE-IPDC",
+      "url": "https://www.fecomercio-ce.com.br/wp-json/wp/v2/posts?search=endividamento&per_page=20",
+      "portal_url": "https://www.fecomercio-ce.com.br/pesquisas-e-estudos/",
+      "competence": "2025-04..2026-10 (2025-11 indisponível)",
+      "rows": 20,
+      "unit": "% do total de famílias, % dos endividados, R$ e dias",
+      "geography": "Fortaleza (capital_pesquisa - 2304400)",
+      "license": "Divulgação pública Sistema Fecomércio-CE / IPDC",
+      "version": "Boletins Mensais Pesquisa do Endividamento do Consumidor em Fortaleza",
+      "path": "data/raw/surveys/ipdc_fecomercio_posts_2026-11-09.json",
+      "sha256": "3648a9dc624bf684ebdc3ca1dbe582d909f7c3e8ce03d256f73641ece5b99a38",
+      "bytes": 429199,
+      "consolidated_path": "data/raw/surveys/surveys_peic_ipdc_2026-11-09.json",
+      "consolidated_sha256": "4259c7a67facf455d2838b36f63c9a196ca858dd5dc82c1ab4c636729afc8d9f"
+    },
+    {
+      "source_id": "BCB-RENDA",
+      "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.29034/dados?formato=json",
+      "competence": "2018-01..2026-08",
+      "rows": 258,
+      "unit": "%",
+      "geography": "BR",
+      "license": "Dados Abertos BCB",
+      "version": "SGS 29034 (Comprometimento de renda das famílias com o serviço da dívida (SFN) - Com ajuste sazonal)",
+      "path": "data/raw/bcb/sgs_29034_comprometimento_renda_pf_br_2026-11-09.json",
+      "sha256": "63bf6e2f01f0a22e3fa2c42a49f707d87262a0cfaa0c87dfa25a4f6075a2de4a",
+      "bytes": 9805
+    },
+    {
+      "source_id": "BCB-SGS-20541",
+      "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.20541/dados?formato=json",
+      "competence": "2018-01..2026-09",
+      "rows": 235,
+      "unit": "R$ milhões",
+      "geography": "BR",
+      "license": "Dados Abertos BCB",
+      "version": "SGS 20541 (Saldo da carteira de crédito com recursos livres e direcionados - Pessoas físicas (BR))",
+      "path": "data/raw/bcb/sgs_20541_saldo_carteira_pf_br_milhoes_2026-11-09.json",
+      "sha256": "b9401de78e011e7294b505412d05d630689f4c066445689a7457cac2c0423b34",
+      "bytes": 9337
+    },
+    {
+      "source_id": "BCB-SGS-21084",
+      "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.21084/dados?formato=json",
+      "competence": "2018-01..2026-09",
+      "rows": 187,
+      "unit": "%",
+      "geography": "BR",
+      "license": "Dados Abertos BCB",
+      "version": "SGS 21084 (Taxa de inadimplência da carteira de crédito - Pessoas físicas (BR))",
+      "path": "data/raw/bcb/sgs_21084_inadimplencia_pf_br_pct_2026-11-09.json",
+      "sha256": "0269a0c3d646a043b68f0af3a9fd5e1a467a86c5b4feed5f00df70f56fd1125a",
+      "bytes": 6920
+    },
+    {
+      "source_id": "BCB-SUB",
+      "url": "https://olinda.bcb.gov.br/olinda/servico/scr_sub_regiao/versao/v1/odata/scr_sub_regiao(DataBase=@DataBase)?$filter=ESTADO%20eq%20%27CE%27",
+      "competence": "2019-08..2026-08",
+      "rows": 923,
+      "unit": "Edm.Decimal (escala não declarada no $metadata Olinda; razão de ~1:1000 frente ao R$ do SCR.data; percentual vencido >15d invariante)",
+      "geography": "CE por sub-região postal (2 primeiros dígitos do CEP: 60, 61, 62, 63)",
+      "license": "Dados Abertos BCB",
+      "version": "Olinda scr_sub_regiao v1",
+      "path": "data/raw/bcb/scr_sub_regiao_ce_series_2026-11-09.json",
+      "sha256": "bb849ff5c8acd12bdb2a1d6b737924284854dc19efeaa966af39e598bcfbf74e",
+      "bytes": 523805
+    },
+    {
+      "source_id": "BCB-SCR",
+      "url": "https://www.bcb.gov.br/pda/desig/scrdata_{2019..2026}.zip",
+      "competence": "2019-08..2026-09",
+      "rows": 33,
+      "unit": "R$ (Reais para saldos de carteira, validado contra SGS 20541) e quantidade de contratos (numero_de_operacoes; <=15 mascarado como -1)",
+      "geography": "BR, NE e CE",
+      "license": "Dados Abertos BCB / SCR.data",
+      "version": "SCR.data Metodologia v2 (pré e pós-jan/2025)",
+      "path": "data/raw/bcb/scr_data_ce_ne_br_2026-11-09.json",
+      "sha256": "c86457e3676f149be0dc3e2244823686e9f106db68b783798ca6f72a43c90cda",
+      "bytes": 2305113,
+      "hashes_manifest": "metadata/scr_data_monthly_hashes.json"
+    }
+  ],
+  "processed_tables": {
+    "dim_territory": {
+      "path": "data/processed/dim_territory.parquet",
+      "rows": 192,
+      "columns": [
+        "territory_id",
+        "territory_name",
+        "territory_level",
+        "parent_territory_id",
+        "region_name",
+        "can_attribute_to_municipality"
+      ]
+    },
+    "dim_indicator": {
+      "path": "data/processed/dim_indicator.parquet",
+      "rows": 14,
+      "columns": [
+        "indicator_id",
+        "name",
+        "unit",
+        "allowed_levels",
+        "aggregation_rule",
+        "primary_source_id",
+        "restrictions"
+      ]
+    },
+    "fact_scr_macro": {
+      "path": "data/processed/fact_scr_macro.parquet",
+      "rows": 198,
+      "columns": [
+        "period",
+        "territory_id",
+        "territory_name",
+        "territory_level",
+        "cliente",
+        "methodology_version",
+        "carteira_ativa_brl",
+        "carteira_ativa_real_brl",
+        "carteira_inadimplida_brl",
+        "carteira_vencida15_brl",
+        "vencido_15_90_brl",
+        "ativo_problematico_brl",
+        "inad90_pct",
+        "inad90_status",
+        "vencido15_pct",
+        "ativo_problematico_pct",
+        "operacoes_visiveis",
+        "linhas_op_suprimidas",
+        "saldo_operacao_brl",
+        "saldo_operacao_real_brl",
+        "saldo_operacao_status",
+        "participacao_pct"
+      ]
+    },
+    "fact_scr_profiles": {
+      "path": "data/processed/fact_scr_profiles.parquet",
+      "rows": 4005,
+      "columns": [
+        "period",
+        "territory_id",
+        "territory_name",
+        "territory_level",
+        "cliente",
+        "dimension_type",
+        "dimension_value",
+        "methodology_version",
+        "carteira_ativa_brl",
+        "carteira_ativa_real_brl",
+        "carteira_inadimplida_brl",
+        "carteira_vencida15_brl",
+        "vencido_15_90_brl",
+        "ativo_problematico_brl",
+        "inad90_pct",
+        "inad90_status",
+        "vencido15_pct",
+        "ativo_problematico_pct",
+        "operacoes_visiveis",
+        "linhas_op_suprimidas",
+        "saldo_operacao_brl",
+        "saldo_operacao_real_brl",
+        "saldo_operacao_status",
+        "participacao_pct"
+      ]
+    },
+    "fact_scr_subregion": {
+      "path": "data/processed/fact_scr_subregion.parquet",
+      "rows": 80,
+      "columns": [
+        "period",
+        "territory_id",
+        "territory_name",
+        "territory_level",
+        "cliente",
+        "carteira_valor_fonte",
+        "vencido15_valor_fonte",
+        "vencido15_pct",
+        "operacoes_visiveis",
+        "status"
+      ]
+    },
+    "fact_caged_adjusted": {
+      "path": "data/processed/fact_caged_adjusted.parquet",
+      "rows": 14960,
+      "columns": [
+        "period",
+        "territory_id",
+        "territory_name",
+        "territory_level",
+        "estoque",
+        "admissoes",
+        "desligamentos",
+        "saldo",
+        "variacao_relativa_pct"
+      ]
+    },
+    "fact_surveys": {
+      "path": "data/processed/fact_surveys.parquet",
+      "rows": 34,
+      "columns": [
+        "period",
+        "territory_id",
+        "territory_name",
+        "territory_level",
+        "source_id",
+        "familias_endividadas_pct",
+        "familias_atraso_pct",
+        "nao_terao_condicao_pagar_pct",
+        "parcela_renda_comprometida_pct",
+        "tipo_cartao_credito_pct_endividados",
+        "status"
+      ]
+    }
+  },
+  "coverage_matrix_full": {
+    "path": "data/processed/coverage_matrix_full.csv",
+    "rows": 46,
+    "sha256": "834fe84d92ff6adbb7afe3a69ddfd76ad52d58a888e81cfb631420a61e4831d0"
+  },
+  "exported_public_files": {
+    "data/processed/state_macro_series.json": {
+      "path": "data/processed/state_macro_series.json",
+      "bytes": 615089,
+      "sha256": "bbf2391d310b3a5fc7886b3e06222b72992743b70e4f32c0572d84f61e09be60"
+    },
+    "app/public/data/state_macro_series.json": {
+      "path": "app/public/data/state_macro_series.json",
+      "bytes": 615089,
+      "sha256": "bbf2391d310b3a5fc7886b3e06222b72992743b70e4f32c0572d84f61e09be60"
+    },
+    "data/processed/credit_profiles.json": {
+      "path": "data/processed/credit_profiles.json",
+      "bytes": 2080604,
+      "sha256": "eb4ebd8e147bf7f933bd553ca0efdf23d123e36e187bcb09d43583441fb058b8"
+    },
+    "app/public/data/credit_profiles.json": {
+      "path": "app/public/data/credit_profiles.json",
+      "bytes": 2080604,
+      "sha256": "eb4ebd8e147bf7f933bd553ca0efdf23d123e36e187bcb09d43583441fb058b8"
+    },
+    "data/processed/labor_and_surveys.json": {
+      "path": "data/processed/labor_and_surveys.json",
+      "bytes": 579291,
+      "sha256": "9605c9b39c1b1c20c2dd085cb94334d6e1b471908a9c4563b41a35fd6470cf81"
+    },
+    "app/public/data/labor_and_surveys.json": {
+      "path": "app/public/data/labor_and_surveys.json",
+      "bytes": 579291,
+      "sha256": "9605c9b39c1b1c20c2dd085cb94334d6e1b471908a9c4563b41a35fd6470cf81"
+    }
+  },
+  "reconciliations": {
+    "bcb_sub_vs_scr_ce_latest": {
+      "PF": {
+        "sub_carteira_raw": 114530804.25,
+        "scr_carteira_ativa_brl": 119431132603.42,
+        "ratio_scr_brl_to_sub_raw": 1042.79,
+        "sub_vencido15_pct": 4.9375,
+        "scr_vencido15_pct": 4.8478,
+        "diff_vencido15_pp": 0.0897
+      },
+      "PJ": {
+        "sub_carteira_raw": 56809235.4,
+        "scr_carteira_ativa_brl": 59394239447.59,
+        "ratio_scr_brl_to_sub_raw": 1045.5,
+        "sub_vencido15_pct": 2.3734,
+        "scr_vencido15_pct": 2.4841,
+        "diff_vencido15_pp": -0.1107
+      }
+    },
+    "caged_adjusted_flows_exact_match_all_80_months": true,
+    "caged_adjusted_stocks_exact_match_from_2022_09": true
+  }
+}
