@@ -10,7 +10,7 @@
 | familias_endividadas | Famílias com dívidas declaradas | Definição da pesquisa | % | Pesquisa nacional/capital | Denominador e ponderação da edição |
 | familias_atraso | Famílias com atraso declarado | Definição da pesquisa | % | Pesquisa nacional/capital | Critério difere do SCR |
 | renda_censo | Rendimento nominal mensal domiciliar per capita | Média e mediana da tabela SIDRA 10295, totais de sexo, cor ou raça e idade | R$ nominais de 2022 | Município | Foto censitária; universo exclui pensionistas, empregados domésticos e seus parentes; não é renda mensal atual |
-| emprego_saldo | Saldo de vínculos formais | Admissões - desligamentos | Vínculos | Município | Trabalho formal e local do estabelecimento |
+| emprego_saldo | Saldo mensal de vínculos formais | Contagem de `saldomovimentação = 1` menos contagem de `saldomovimentação = -1` | Vínculos | Município do estabelecimento | Novo Caged desde 2020; a competência publicada não inclui ajustes declarados posteriormente |
 | reclamacoes_fin | Reclamações financeiras registradas | Contagem após regras de categoria/deduplicação | Registros | Município/UF | Não prevalência de endividamento |
 | comprometimento_br | Serviço da dívida / renda | Definição da série BC selecionada | % | Brasil | Manter ajuste sazonal e média móvel documentados |
 

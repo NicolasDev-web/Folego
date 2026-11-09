@@ -36,3 +36,19 @@ python pipeline/extract/municipal_income.py
 
 A etapa consulta a tabela SIDRA 10295 somente nos totais de sexo, cor ou raça e idade. Ela valida média e mediana do rendimento nominal mensal domiciliar per capita para os 184 municípios, preserva a resposta bruta e enriquece o contexto público. O universo exclui pensionistas, empregados domésticos e parentes de empregados domésticos, conforme a própria tabela.
 
+## Emprego formal municipal
+
+```bash
+python pipeline/extract/municipal_employment.py
+```
+
+A etapa baixa o `CAGEDMOV` mais recente configurado, lê o arquivo nacional em fluxo e agrega admissões, desligamentos e saldo para os 184 municípios do Ceará. O arquivo nacional não é versionado por causa do volume; URL, tamanho e SHA-256 ficam no manifesto, enquanto o agregado municipal reproduzível é preservado. A competência de setembro de 2026 é conferida contra o saldo estadual e os cinco destaques municipais publicados pelo Governo Federal.
+
+Para reutilizar um arquivo já baixado:
+
+```bash
+python pipeline/extract/municipal_employment.py --archive /caminho/CAGEDMOV202609.7z
+```
+
+O valor mensal usa o `CAGEDMOV` da própria competência. Ajustes declarados em publicações posteriores ainda não integram esse retrato e são identificados explicitamente na interface e no manifesto.
+

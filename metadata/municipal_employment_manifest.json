@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "collected_at": "2026-11-09T12:42:23+00:00",
+  "source_id": "MTE-CAGEDMOV-202609",
+  "source_url": "ftp://ftp.mtps.gov.br/pdet/microdados/NOVO%20CAGED/2026/202609/CAGEDMOV202609.7z",
+  "release_page": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/novo-caged/2026/setembro/pagina-inicial",
+  "period": "2026-09",
+  "unit": "vínculos",
+  "archive": {
+    "name": "CAGEDMOV202609.7z",
+    "sha256": "967a29800166b32ba4f9d786e95b53122eed6dbd78ca94da783290d67cd5d50d",
+    "bytes": 49478375,
+    "stored_in_repository": false,
+    "reason": "Arquivo nacional volumoso; o agregado municipal e o hash são versionados."
+  },
+  "aggregation": {
+    "filters": {
+      "competênciamov": "202609",
+      "uf": "23"
+    },
+    "municipality_key": "seis primeiros dígitos do código IBGE de sete dígitos",
+    "admissions": "contagem de saldomovimentação = 1",
+    "dismissals": "contagem de saldomovimentação = -1",
+    "balance": "admissions - dismissals",
+    "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+  },
+  "validation": {
+    "municipalities": 184,
+    "ce_rows": 112188,
+    "state_admissions": 58672,
+    "state_dismissals": 53516,
+    "state_balance": 5156,
+    "identity_holds": true,
+    "official_cross_check": {
+      "available": true,
+      "state_balance": {
+        "expected": 5156,
+        "observed": 5156
+      },
+      "municipal_balances": {
+        "Fortaleza": {
+          "expected": 1876,
+          "observed": 1876
+        },
+        "Morada Nova": {
+          "expected": 731,
+          "observed": 731
+        },
+        "Sobral": {
+          "expected": 562,
+          "observed": 562
+        },
+        "Caucaia": {
+          "expected": 271,
+          "observed": 271
+        },
+        "Tianguá": {
+          "expected": 179,
+          "observed": 179
+        }
+      },
+      "source_url": "https://www.gov.br/secom/pt-br/assuntos/noticias-regionalizadas/numeros-do-novo-caged-em-2026/09/ceara-gera-5-1-mil-empregos-com-carteira-assinada-em-setembro"
+    },
+    "coverage_matrix_updates": 8
+  }
+}

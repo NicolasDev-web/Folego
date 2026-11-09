@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.1.0",
-  "generated_at": "2026-11-09T12:31:30+00:00",
+  "schema_version": "1.2.0",
+  "generated_at": "2026-11-09T12:42:23+00:00",
   "sources": [
     {
       "source_id": "IBGE-LOCAL",
@@ -22,6 +22,15 @@
       "period": "2022",
       "metric": "Rendimento nominal mensal domiciliar per capita, médio e mediano",
       "unit": "reais"
+    },
+    {
+      "source_id": "MTE-CAGEDMOV-202609",
+      "label": "MTE — Novo Caged, 2026-09",
+      "url": "ftp://ftp.mtps.gov.br/pdet/microdados/NOVO%20CAGED/2026/202609/CAGEDMOV202609.7z",
+      "period": "2026-09",
+      "metric": "Admissões, desligamentos e saldo de vínculos formais",
+      "unit": "vínculos",
+      "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
     }
   ],
   "municipalities": [
@@ -33,7 +42,14 @@
       "population_2022": 10038,
       "pilot": false,
       "income_pc_mean_2022": 677.33,
-      "income_pc_median_2022": 525.0
+      "income_pc_median_2022": 525.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 1,
+        "dismissals": 5,
+        "balance": -4,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2300150",
@@ -43,7 +59,14 @@
       "population_2022": 14027,
       "pilot": false,
       "income_pc_mean_2022": 674.46,
-      "income_pc_median_2022": 500.0
+      "income_pc_median_2022": 500.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 39,
+        "dismissals": 48,
+        "balance": -9,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2300200",
@@ -53,7 +76,14 @@
       "population_2022": 65264,
       "pilot": false,
       "income_pc_mean_2022": 694.7,
-      "income_pc_median_2022": 500.0
+      "income_pc_median_2022": 500.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 103,
+        "dismissals": 107,
+        "balance": -4,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2300309",
@@ -63,7 +93,14 @@
       "population_2022": 44962,
       "pilot": false,
       "income_pc_mean_2022": 758.47,
-      "income_pc_median_2022": 600.0
+      "income_pc_median_2022": 600.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 43,
+        "dismissals": 30,
+        "balance": 13,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2300408",
@@ -73,7 +110,14 @@
       "population_2022": 14076,
       "pilot": false,
       "income_pc_mean_2022": 659.88,
-      "income_pc_median_2022": 458.4
+      "income_pc_median_2022": 458.4,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 4,
+        "dismissals": 3,
+        "balance": 1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2300507",
@@ -83,7 +127,14 @@
       "population_2022": 11369,
       "pilot": false,
       "income_pc_mean_2022": 753.79,
-      "income_pc_median_2022": 600.0
+      "income_pc_median_2022": 600.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 6,
+        "dismissals": 2,
+        "balance": 4,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2300606",
@@ -93,7 +144,14 @@
       "population_2022": 6782,
       "pilot": false,
       "income_pc_mean_2022": 699.36,
-      "income_pc_median_2022": 519.43
+      "income_pc_median_2022": 519.43,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 1,
+        "dismissals": 1,
+        "balance": 0,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2300705",
@@ -103,7 +161,14 @@
       "population_2022": 14155,
       "pilot": false,
       "income_pc_mean_2022": 803.58,
-      "income_pc_median_2022": 666.67
+      "income_pc_median_2022": 666.67,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 26,
+        "dismissals": 34,
+        "balance": -8,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2300754",
@@ -113,7 +178,14 @@
       "population_2022": 42156,
       "pilot": false,
       "income_pc_mean_2022": 582.24,
-      "income_pc_median_2022": 403.0
+      "income_pc_median_2022": 403.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 148,
+        "dismissals": 104,
+        "balance": 44,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2300804",
@@ -123,7 +195,14 @@
       "population_2022": 7245,
       "pilot": false,
       "income_pc_mean_2022": 793.02,
-      "income_pc_median_2022": 633.33
+      "income_pc_median_2022": 633.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 4,
+        "dismissals": 1,
+        "balance": 3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2300903",
@@ -133,7 +212,14 @@
       "population_2022": 12928,
       "pilot": false,
       "income_pc_mean_2022": 627.92,
-      "income_pc_median_2022": 432.0
+      "income_pc_median_2022": 432.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 7,
+        "dismissals": 14,
+        "balance": -7,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2301000",
@@ -143,7 +229,14 @@
       "population_2022": 80645,
       "pilot": false,
       "income_pc_mean_2022": 930.64,
-      "income_pc_median_2022": 666.67
+      "income_pc_median_2022": 666.67,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 776,
+        "dismissals": 836,
+        "balance": -60,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2301109",
@@ -153,7 +246,14 @@
       "population_2022": 75113,
       "pilot": false,
       "income_pc_mean_2022": 904.09,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 260,
+        "dismissals": 283,
+        "balance": -23,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2301208",
@@ -163,7 +263,14 @@
       "population_2022": 25553,
       "pilot": false,
       "income_pc_mean_2022": 718.73,
-      "income_pc_median_2022": 603.0
+      "income_pc_median_2022": 603.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 32,
+        "dismissals": 38,
+        "balance": -6,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2301257",
@@ -173,7 +280,14 @@
       "population_2022": 11096,
       "pilot": false,
       "income_pc_mean_2022": 623.37,
-      "income_pc_median_2022": 460.57
+      "income_pc_median_2022": 460.57,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 1,
+        "dismissals": 7,
+        "balance": -6,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2301307",
@@ -183,7 +297,14 @@
       "population_2022": 19783,
       "pilot": false,
       "income_pc_mean_2022": 545.54,
-      "income_pc_median_2022": 337.5
+      "income_pc_median_2022": 337.5,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 13,
+        "dismissals": 10,
+        "balance": 3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2301406",
@@ -193,7 +314,14 @@
       "population_2022": 11224,
       "pilot": false,
       "income_pc_mean_2022": 732.99,
-      "income_pc_median_2022": 560.33
+      "income_pc_median_2022": 560.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 5,
+        "dismissals": 11,
+        "balance": -6,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2301505",
@@ -203,7 +331,14 @@
       "population_2022": 7429,
       "pilot": false,
       "income_pc_mean_2022": 732.65,
-      "income_pc_median_2022": 587.33
+      "income_pc_median_2022": 587.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 1,
+        "dismissals": 0,
+        "balance": 1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2301604",
@@ -213,7 +348,14 @@
       "population_2022": 21697,
       "pilot": false,
       "income_pc_mean_2022": 720.44,
-      "income_pc_median_2022": 528.0
+      "income_pc_median_2022": 528.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 27,
+        "dismissals": 16,
+        "balance": 11,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2301703",
@@ -223,7 +365,14 @@
       "population_2022": 23714,
       "pilot": false,
       "income_pc_mean_2022": 714.57,
-      "income_pc_median_2022": 525.0
+      "income_pc_median_2022": 525.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 12,
+        "dismissals": 13,
+        "balance": -1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2301802",
@@ -233,7 +382,14 @@
       "population_2022": 5704,
       "pilot": false,
       "income_pc_mean_2022": 660.22,
-      "income_pc_median_2022": 470.67
+      "income_pc_median_2022": 470.67,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 0,
+        "dismissals": 1,
+        "balance": -1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2301851",
@@ -243,7 +399,14 @@
       "population_2022": 17195,
       "pilot": false,
       "income_pc_mean_2022": 740.46,
-      "income_pc_median_2022": 570.67
+      "income_pc_median_2022": 570.67,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 13,
+        "dismissals": 41,
+        "balance": -28,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2301901",
@@ -253,7 +416,14 @@
       "population_2022": 75033,
       "pilot": false,
       "income_pc_mean_2022": 1005.61,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 374,
+        "dismissals": 314,
+        "balance": 60,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2301950",
@@ -263,7 +433,14 @@
       "population_2022": 22392,
       "pilot": false,
       "income_pc_mean_2022": 713.88,
-      "income_pc_median_2022": 533.33
+      "income_pc_median_2022": 533.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 21,
+        "dismissals": 19,
+        "balance": 2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2302008",
@@ -273,7 +450,14 @@
       "population_2022": 19381,
       "pilot": false,
       "income_pc_mean_2022": 729.66,
-      "income_pc_median_2022": 566.67
+      "income_pc_median_2022": 566.67,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 17,
+        "dismissals": 11,
+        "balance": 6,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2302057",
@@ -283,7 +467,14 @@
       "population_2022": 14567,
       "pilot": false,
       "income_pc_mean_2022": 509.21,
-      "income_pc_median_2022": 333.33
+      "income_pc_median_2022": 333.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 4,
+        "dismissals": 6,
+        "balance": -2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2302107",
@@ -293,7 +484,14 @@
       "population_2022": 35218,
       "pilot": false,
       "income_pc_mean_2022": 773.07,
-      "income_pc_median_2022": 600.0
+      "income_pc_median_2022": 600.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 91,
+        "dismissals": 89,
+        "balance": 2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2302206",
@@ -303,7 +501,14 @@
       "population_2022": 53114,
       "pilot": false,
       "income_pc_mean_2022": 759.16,
-      "income_pc_median_2022": 578.0
+      "income_pc_median_2022": 578.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 194,
+        "dismissals": 157,
+        "balance": 37,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2302305",
@@ -313,7 +518,14 @@
       "population_2022": 32775,
       "pilot": false,
       "income_pc_mean_2022": 621.73,
-      "income_pc_median_2022": 400.0
+      "income_pc_median_2022": 400.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 15,
+        "dismissals": 21,
+        "balance": -6,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2302404",
@@ -323,7 +535,14 @@
       "population_2022": 50411,
       "pilot": false,
       "income_pc_mean_2022": 714.71,
-      "income_pc_median_2022": 564.8
+      "income_pc_median_2022": 564.8,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 42,
+        "dismissals": 39,
+        "balance": 3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2302503",
@@ -333,7 +552,14 @@
       "population_2022": 51090,
       "pilot": false,
       "income_pc_mean_2022": 873.09,
-      "income_pc_median_2022": 641.4
+      "income_pc_median_2022": 641.4,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 255,
+        "dismissals": 252,
+        "balance": 3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2302602",
@@ -343,7 +569,14 @@
       "population_2022": 62326,
       "pilot": false,
       "income_pc_mean_2022": 731.25,
-      "income_pc_median_2022": 550.0
+      "income_pc_median_2022": 550.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 108,
+        "dismissals": 96,
+        "balance": 12,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2302701",
@@ -353,7 +586,14 @@
       "population_2022": 25135,
       "pilot": false,
       "income_pc_mean_2022": 748.63,
-      "income_pc_median_2022": 503.0
+      "income_pc_median_2022": 503.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 29,
+        "dismissals": 18,
+        "balance": 11,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2302800",
@@ -363,7 +603,14 @@
       "population_2022": 74174,
       "pilot": false,
       "income_pc_mean_2022": 816.43,
-      "income_pc_median_2022": 575.0
+      "income_pc_median_2022": 575.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 196,
+        "dismissals": 182,
+        "balance": 14,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2302909",
@@ -373,7 +620,14 @@
       "population_2022": 17254,
       "pilot": false,
       "income_pc_mean_2022": 612.32,
-      "income_pc_median_2022": 421.2
+      "income_pc_median_2022": 421.2,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 11,
+        "dismissals": 15,
+        "balance": -4,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2303006",
@@ -383,7 +637,14 @@
       "population_2022": 16377,
       "pilot": false,
       "income_pc_mean_2022": 655.3,
-      "income_pc_median_2022": 533.33
+      "income_pc_median_2022": 533.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 38,
+        "dismissals": 33,
+        "balance": 5,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2303105",
@@ -393,7 +654,14 @@
       "population_2022": 17632,
       "pilot": false,
       "income_pc_mean_2022": 608.07,
-      "income_pc_median_2022": 438.0
+      "income_pc_median_2022": 438.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 16,
+        "dismissals": 9,
+        "balance": 7,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2303204",
@@ -403,7 +671,14 @@
       "population_2022": 26320,
       "pilot": false,
       "income_pc_mean_2022": 627.49,
-      "income_pc_median_2022": 453.0
+      "income_pc_median_2022": 453.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 36,
+        "dismissals": 10,
+        "balance": 26,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2303303",
@@ -413,7 +688,14 @@
       "population_2022": 17015,
       "pilot": false,
       "income_pc_mean_2022": 681.18,
-      "income_pc_median_2022": 533.33
+      "income_pc_median_2022": 533.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 14,
+        "dismissals": 10,
+        "balance": 4,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2303402",
@@ -423,7 +705,14 @@
       "population_2022": 17210,
       "pilot": false,
       "income_pc_mean_2022": 654.73,
-      "income_pc_median_2022": 454.5
+      "income_pc_median_2022": 454.5,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 3,
+        "dismissals": 10,
+        "balance": -7,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2303501",
@@ -433,7 +722,14 @@
       "population_2022": 72720,
       "pilot": false,
       "income_pc_mean_2022": 873.81,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 270,
+        "dismissals": 268,
+        "balance": 2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2303600",
@@ -443,7 +739,14 @@
       "population_2022": 10243,
       "pilot": false,
       "income_pc_mean_2022": 715.33,
-      "income_pc_median_2022": 466.67
+      "income_pc_median_2022": 466.67,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 1,
+        "dismissals": 0,
+        "balance": 1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2303659",
@@ -453,7 +756,14 @@
       "population_2022": 10444,
       "pilot": false,
       "income_pc_mean_2022": 659.33,
-      "income_pc_median_2022": 475.0
+      "income_pc_median_2022": 475.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 1,
+        "dismissals": 5,
+        "balance": -4,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2303709",
@@ -463,7 +773,14 @@
       "population_2022": 355679,
       "pilot": true,
       "income_pc_mean_2022": 947.97,
-      "income_pc_median_2022": 666.67
+      "income_pc_median_2022": 666.67,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 2068,
+        "dismissals": 1797,
+        "balance": 271,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2303808",
@@ -473,7 +790,14 @@
       "population_2022": 22344,
       "pilot": false,
       "income_pc_mean_2022": 857.12,
-      "income_pc_median_2022": 564.8
+      "income_pc_median_2022": 564.8,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 18,
+        "dismissals": 15,
+        "balance": 3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2303907",
@@ -483,7 +807,14 @@
       "population_2022": 12462,
       "pilot": false,
       "income_pc_mean_2022": 672.47,
-      "income_pc_median_2022": 462.5
+      "income_pc_median_2022": 462.5,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 1,
+        "dismissals": 0,
+        "balance": 1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2303931",
@@ -493,7 +824,14 @@
       "population_2022": 12113,
       "pilot": false,
       "income_pc_mean_2022": 549.53,
-      "income_pc_median_2022": 404.0
+      "income_pc_median_2022": 404.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 0,
+        "dismissals": 3,
+        "balance": -3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2303956",
@@ -503,7 +841,14 @@
       "population_2022": 20163,
       "pilot": false,
       "income_pc_mean_2022": 723.23,
-      "income_pc_median_2022": 600.0
+      "income_pc_median_2022": 600.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 36,
+        "dismissals": 43,
+        "balance": -7,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304004",
@@ -513,7 +858,14 @@
       "population_2022": 20953,
       "pilot": false,
       "income_pc_mean_2022": 656.99,
-      "income_pc_median_2022": 484.8
+      "income_pc_median_2022": 484.8,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 26,
+        "dismissals": 13,
+        "balance": 13,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304103",
@@ -523,7 +875,14 @@
       "population_2022": 76390,
       "pilot": false,
       "income_pc_mean_2022": 920.1,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 217,
+        "dismissals": 181,
+        "balance": 36,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304202",
@@ -533,7 +892,14 @@
       "population_2022": 131050,
       "pilot": true,
       "income_pc_mean_2022": 1060.11,
-      "income_pc_median_2022": 656.67
+      "income_pc_median_2022": 656.67,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 530,
+        "dismissals": 549,
+        "balance": -19,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304236",
@@ -543,7 +909,14 @@
       "population_2022": 17481,
       "pilot": false,
       "income_pc_mean_2022": 576.04,
-      "income_pc_median_2022": 404.0
+      "income_pc_median_2022": 404.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 3,
+        "dismissals": 3,
+        "balance": 0,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304251",
@@ -553,7 +926,14 @@
       "population_2022": 29761,
       "pilot": false,
       "income_pc_mean_2022": 834.25,
-      "income_pc_median_2022": 600.0
+      "income_pc_median_2022": 600.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 235,
+        "dismissals": 141,
+        "balance": 94,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304269",
@@ -563,7 +943,14 @@
       "population_2022": 8932,
       "pilot": false,
       "income_pc_mean_2022": 606.51,
-      "income_pc_median_2022": 500.0
+      "income_pc_median_2022": 500.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 6,
+        "dismissals": 7,
+        "balance": -1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304277",
@@ -573,7 +960,14 @@
       "population_2022": 6474,
       "pilot": false,
       "income_pc_mean_2022": 705.28,
-      "income_pc_median_2022": 603.0
+      "income_pc_median_2022": 603.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 2,
+        "dismissals": 2,
+        "balance": 0,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304285",
@@ -583,7 +977,14 @@
       "population_2022": 74170,
       "pilot": false,
       "income_pc_mean_2022": 2512.7,
-      "income_pc_median_2022": 1212.0
+      "income_pc_median_2022": 1212.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 2077,
+        "dismissals": 1907,
+        "balance": 170,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304301",
@@ -593,7 +994,14 @@
       "population_2022": 18217,
       "pilot": false,
       "income_pc_mean_2022": 691.36,
-      "income_pc_median_2022": 533.33
+      "income_pc_median_2022": 533.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 3,
+        "dismissals": 10,
+        "balance": -7,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304350",
@@ -603,7 +1011,14 @@
       "population_2022": 24173,
       "pilot": false,
       "income_pc_mean_2022": 727.41,
-      "income_pc_median_2022": 600.0
+      "income_pc_median_2022": 600.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 36,
+        "dismissals": 40,
+        "balance": -4,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304400",
@@ -613,7 +1028,14 @@
       "population_2022": 2428708,
       "pilot": true,
       "income_pc_mean_2022": 1668.98,
-      "income_pc_median_2022": 900.0
+      "income_pc_median_2022": 900.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 31565,
+        "dismissals": 29689,
+        "balance": 1876,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304459",
@@ -623,7 +1045,14 @@
       "population_2022": 17294,
       "pilot": false,
       "income_pc_mean_2022": 900.17,
-      "income_pc_median_2022": 700.0
+      "income_pc_median_2022": 700.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 240,
+        "dismissals": 91,
+        "balance": 149,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304509",
@@ -633,7 +1062,14 @@
       "population_2022": 15657,
       "pilot": false,
       "income_pc_mean_2022": 822.31,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 59,
+        "dismissals": 59,
+        "balance": 0,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304608",
@@ -643,7 +1079,14 @@
       "population_2022": 6734,
       "pilot": false,
       "income_pc_mean_2022": 634.44,
-      "income_pc_median_2022": 440.0
+      "income_pc_median_2022": 440.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 1,
+        "dismissals": 2,
+        "balance": -1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304657",
@@ -653,7 +1096,14 @@
       "population_2022": 13801,
       "pilot": false,
       "income_pc_mean_2022": 574.75,
-      "income_pc_median_2022": 416.67
+      "income_pc_median_2022": 416.67,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 30,
+        "dismissals": 11,
+        "balance": 19,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304707",
@@ -663,7 +1113,14 @@
       "population_2022": 53344,
       "pilot": false,
       "income_pc_mean_2022": 564.83,
-      "income_pc_median_2022": 382.4
+      "income_pc_median_2022": 382.4,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 82,
+        "dismissals": 39,
+        "balance": 43,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304806",
@@ -673,7 +1130,14 @@
       "population_2022": 4841,
       "pilot": false,
       "income_pc_mean_2022": 693.39,
-      "income_pc_median_2022": 564.8
+      "income_pc_median_2022": 564.8,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 10,
+        "dismissals": 1,
+        "balance": 9,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304905",
@@ -683,7 +1147,14 @@
       "population_2022": 10910,
       "pilot": false,
       "income_pc_mean_2022": 753.78,
-      "income_pc_median_2022": 582.4
+      "income_pc_median_2022": 582.4,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 10,
+        "dismissals": 15,
+        "balance": -5,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2304954",
@@ -693,7 +1164,14 @@
       "population_2022": 24325,
       "pilot": false,
       "income_pc_mean_2022": 601.44,
-      "income_pc_median_2022": 480.0
+      "income_pc_median_2022": 480.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 97,
+        "dismissals": 50,
+        "balance": 47,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2305001",
@@ -703,7 +1181,14 @@
       "population_2022": 42053,
       "pilot": false,
       "income_pc_mean_2022": 716.54,
-      "income_pc_median_2022": 486.4
+      "income_pc_median_2022": 486.4,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 41,
+        "dismissals": 44,
+        "balance": -3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2305100",
@@ -713,7 +1198,14 @@
       "population_2022": 5654,
       "pilot": false,
       "income_pc_mean_2022": 748.44,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 7,
+        "dismissals": 8,
+        "balance": -1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2305209",
@@ -723,7 +1215,14 @@
       "population_2022": 17855,
       "pilot": false,
       "income_pc_mean_2022": 659.36,
-      "income_pc_median_2022": 484.8
+      "income_pc_median_2022": 484.8,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 6,
+        "dismissals": 3,
+        "balance": 3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2305233",
@@ -733,7 +1232,14 @@
       "population_2022": 74755,
       "pilot": false,
       "income_pc_mean_2022": 762.19,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 836,
+        "dismissals": 884,
+        "balance": -48,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2305266",
@@ -743,7 +1249,14 @@
       "population_2022": 11956,
       "pilot": false,
       "income_pc_mean_2022": 624.16,
-      "income_pc_median_2022": 450.0
+      "income_pc_median_2022": 450.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 10,
+        "dismissals": 13,
+        "balance": -3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2305308",
@@ -753,7 +1266,14 @@
       "population_2022": 23965,
       "pilot": false,
       "income_pc_mean_2022": 692.97,
-      "income_pc_median_2022": 466.67
+      "income_pc_median_2022": 466.67,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 32,
+        "dismissals": 18,
+        "balance": 14,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2305332",
@@ -763,7 +1283,14 @@
       "population_2022": 11611,
       "pilot": false,
       "income_pc_mean_2022": 627.47,
-      "income_pc_median_2022": 504.0
+      "income_pc_median_2022": 504.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 0,
+        "dismissals": 1,
+        "balance": -1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2305357",
@@ -773,7 +1300,14 @@
       "population_2022": 21433,
       "pilot": false,
       "income_pc_mean_2022": 824.14,
-      "income_pc_median_2022": 625.0
+      "income_pc_median_2022": 625.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 283,
+        "dismissals": 206,
+        "balance": 77,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2305407",
@@ -783,7 +1317,14 @@
       "population_2022": 62642,
       "pilot": false,
       "income_pc_mean_2022": 706.4,
-      "income_pc_median_2022": 535.33
+      "income_pc_median_2022": 535.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 150,
+        "dismissals": 87,
+        "balance": 63,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2305506",
@@ -793,7 +1334,14 @@
       "population_2022": 98064,
       "pilot": true,
       "income_pc_mean_2022": 1009.72,
-      "income_pc_median_2022": 742.4
+      "income_pc_median_2022": 742.4,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 507,
+        "dismissals": 461,
+        "balance": 46,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2305605",
@@ -803,7 +1351,14 @@
       "population_2022": 24024,
       "pilot": false,
       "income_pc_mean_2022": 705.5,
-      "income_pc_median_2022": 533.33
+      "income_pc_median_2022": 533.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 26,
+        "dismissals": 17,
+        "balance": 9,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2305654",
@@ -813,7 +1368,14 @@
       "population_2022": 11575,
       "pilot": false,
       "income_pc_mean_2022": 648.09,
-      "income_pc_median_2022": 453.0
+      "income_pc_median_2022": 453.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 3,
+        "dismissals": 0,
+        "balance": 3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2305704",
@@ -823,7 +1385,14 @@
       "population_2022": 12083,
       "pilot": false,
       "income_pc_mean_2022": 744.84,
-      "income_pc_median_2022": 566.67
+      "income_pc_median_2022": 566.67,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 52,
+        "dismissals": 78,
+        "balance": -26,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2305803",
@@ -833,7 +1402,14 @@
       "population_2022": 41081,
       "pilot": false,
       "income_pc_mean_2022": 735.8,
-      "income_pc_median_2022": 553.0
+      "income_pc_median_2022": 553.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 77,
+        "dismissals": 43,
+        "balance": 34,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2305902",
@@ -843,7 +1419,14 @@
       "population_2022": 36798,
       "pilot": false,
       "income_pc_mean_2022": 625.83,
-      "income_pc_median_2022": 428.57
+      "income_pc_median_2022": 428.57,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 22,
+        "dismissals": 11,
+        "balance": 11,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2306009",
@@ -853,7 +1436,14 @@
       "population_2022": 14001,
       "pilot": false,
       "income_pc_mean_2022": 850.77,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 11,
+        "dismissals": 3,
+        "balance": 8,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2306108",
@@ -863,7 +1453,14 @@
       "population_2022": 23915,
       "pilot": false,
       "income_pc_mean_2022": 584.86,
-      "income_pc_median_2022": 404.0
+      "income_pc_median_2022": 404.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 21,
+        "dismissals": 28,
+        "balance": -7,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2306207",
@@ -873,7 +1470,14 @@
       "population_2022": 7536,
       "pilot": false,
       "income_pc_mean_2022": 772.01,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 5,
+        "dismissals": 3,
+        "balance": 2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2306256",
@@ -883,7 +1487,14 @@
       "population_2022": 64650,
       "pilot": false,
       "income_pc_mean_2022": 1008.7,
-      "income_pc_median_2022": 800.0
+      "income_pc_median_2022": 800.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 656,
+        "dismissals": 615,
+        "balance": 41,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2306306",
@@ -893,7 +1504,14 @@
       "population_2022": 46426,
       "pilot": false,
       "income_pc_mean_2022": 687.35,
-      "income_pc_median_2022": 500.0
+      "income_pc_median_2022": 500.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 115,
+        "dismissals": 111,
+        "balance": 4,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2306405",
@@ -903,7 +1521,14 @@
       "population_2022": 131123,
       "pilot": false,
       "income_pc_mean_2022": 720.4,
-      "income_pc_median_2022": 512.4
+      "income_pc_median_2022": 512.4,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 342,
+        "dismissals": 385,
+        "balance": -43,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2306504",
@@ -913,7 +1538,14 @@
       "population_2022": 17841,
       "pilot": false,
       "income_pc_mean_2022": 597.58,
-      "income_pc_median_2022": 425.0
+      "income_pc_median_2022": 425.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 4,
+        "dismissals": 2,
+        "balance": 2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2306553",
@@ -923,7 +1555,14 @@
       "population_2022": 42957,
       "pilot": false,
       "income_pc_mean_2022": 642.63,
-      "income_pc_median_2022": 450.0
+      "income_pc_median_2022": 450.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 53,
+        "dismissals": 54,
+        "balance": -1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2306603",
@@ -933,7 +1572,14 @@
       "population_2022": 20424,
       "pilot": false,
       "income_pc_mean_2022": 602.54,
-      "income_pc_median_2022": 407.0
+      "income_pc_median_2022": 407.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 22,
+        "dismissals": 2,
+        "balance": 20,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2306702",
@@ -943,7 +1589,14 @@
       "population_2022": 17232,
       "pilot": false,
       "income_pc_mean_2022": 744.65,
-      "income_pc_median_2022": 550.0
+      "income_pc_median_2022": 550.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 6,
+        "dismissals": 8,
+        "balance": -2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2306801",
@@ -953,7 +1606,14 @@
       "population_2022": 10356,
       "pilot": false,
       "income_pc_mean_2022": 892.83,
-      "income_pc_median_2022": 724.8
+      "income_pc_median_2022": 724.8,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 8,
+        "dismissals": 12,
+        "balance": -4,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2306900",
@@ -963,7 +1623,14 @@
       "population_2022": 33726,
       "pilot": false,
       "income_pc_mean_2022": 882.89,
-      "income_pc_median_2022": 620.0
+      "income_pc_median_2022": 620.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 115,
+        "dismissals": 70,
+        "balance": 45,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2307007",
@@ -973,7 +1640,14 @@
       "population_2022": 31701,
       "pilot": false,
       "income_pc_mean_2022": 789.66,
-      "income_pc_median_2022": 587.33
+      "income_pc_median_2022": 587.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 71,
+        "dismissals": 109,
+        "balance": -38,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2307106",
@@ -983,7 +1657,14 @@
       "population_2022": 27411,
       "pilot": false,
       "income_pc_mean_2022": 726.42,
-      "income_pc_median_2022": 537.33
+      "income_pc_median_2022": 537.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 11,
+        "dismissals": 6,
+        "balance": 5,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2307205",
@@ -993,7 +1674,14 @@
       "population_2022": 7861,
       "pilot": false,
       "income_pc_mean_2022": 727.11,
-      "income_pc_median_2022": 584.8
+      "income_pc_median_2022": 584.8,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 5,
+        "dismissals": 2,
+        "balance": 3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2307254",
@@ -1003,7 +1691,14 @@
       "population_2022": 25555,
       "pilot": false,
       "income_pc_mean_2022": 968.32,
-      "income_pc_median_2022": 678.0
+      "income_pc_median_2022": 678.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 220,
+        "dismissals": 195,
+        "balance": 25,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2307304",
@@ -1013,7 +1708,14 @@
       "population_2022": 286120,
       "pilot": true,
       "income_pc_mean_2022": 1021.94,
-      "income_pc_median_2022": 666.67
+      "income_pc_median_2022": 666.67,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 2135,
+        "dismissals": 2185,
+        "balance": -50,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2307403",
@@ -1023,7 +1725,14 @@
       "population_2022": 23922,
       "pilot": false,
       "income_pc_mean_2022": 694.23,
-      "income_pc_median_2022": 550.0
+      "income_pc_median_2022": 550.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 39,
+        "dismissals": 28,
+        "balance": 11,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2307502",
@@ -1033,7 +1742,14 @@
       "population_2022": 30802,
       "pilot": false,
       "income_pc_mean_2022": 677.99,
-      "income_pc_median_2022": 533.33
+      "income_pc_median_2022": 533.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 63,
+        "dismissals": 51,
+        "balance": 12,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2307601",
@@ -1043,7 +1759,14 @@
       "population_2022": 59560,
       "pilot": false,
       "income_pc_mean_2022": 1128.21,
-      "income_pc_median_2022": 808.0
+      "income_pc_median_2022": 808.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 431,
+        "dismissals": 362,
+        "balance": 69,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2307635",
@@ -1053,7 +1776,14 @@
       "population_2022": 16896,
       "pilot": false,
       "income_pc_mean_2022": 656.35,
-      "income_pc_median_2022": 482.4
+      "income_pc_median_2022": 482.4,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 42,
+        "dismissals": 33,
+        "balance": 9,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2307650",
@@ -1063,7 +1793,14 @@
       "population_2022": 234509,
       "pilot": true,
       "income_pc_mean_2022": 910.74,
-      "income_pc_median_2022": 670.67
+      "income_pc_median_2022": 670.67,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 2541,
+        "dismissals": 2514,
+        "balance": 27,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2307700",
@@ -1073,7 +1810,14 @@
       "population_2022": 105093,
       "pilot": false,
       "income_pc_mean_2022": 833.02,
-      "income_pc_median_2022": 607.14
+      "income_pc_median_2022": 607.14,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 449,
+        "dismissals": 414,
+        "balance": 35,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2307809",
@@ -1083,7 +1827,14 @@
       "population_2022": 25799,
       "pilot": false,
       "income_pc_mean_2022": 584.74,
-      "income_pc_median_2022": 433.33
+      "income_pc_median_2022": 433.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 93,
+        "dismissals": 95,
+        "balance": -2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2307908",
@@ -1093,7 +1844,14 @@
       "population_2022": 10846,
       "pilot": false,
       "income_pc_mean_2022": 622.75,
-      "income_pc_median_2022": 404.0
+      "income_pc_median_2022": 404.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 13,
+        "dismissals": 3,
+        "balance": 10,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2308005",
@@ -1103,7 +1861,14 @@
       "population_2022": 37697,
       "pilot": false,
       "income_pc_mean_2022": 652.16,
-      "income_pc_median_2022": 470.0
+      "income_pc_median_2022": 470.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 148,
+        "dismissals": 32,
+        "balance": 116,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2308104",
@@ -1113,7 +1878,14 @@
       "population_2022": 45561,
       "pilot": false,
       "income_pc_mean_2022": 667.97,
-      "income_pc_median_2022": 500.0
+      "income_pc_median_2022": 500.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 58,
+        "dismissals": 51,
+        "balance": 7,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2308203",
@@ -1123,7 +1895,14 @@
       "population_2022": 15157,
       "pilot": false,
       "income_pc_mean_2022": 752.71,
-      "income_pc_median_2022": 562.4
+      "income_pc_median_2022": 562.4,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 12,
+        "dismissals": 10,
+        "balance": 2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2308302",
@@ -1133,7 +1912,14 @@
       "population_2022": 25900,
       "pilot": false,
       "income_pc_mean_2022": 740.97,
-      "income_pc_median_2022": 560.0
+      "income_pc_median_2022": 560.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 29,
+        "dismissals": 48,
+        "balance": -19,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2308351",
@@ -1143,7 +1929,14 @@
       "population_2022": 14123,
       "pilot": false,
       "income_pc_mean_2022": 827.51,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 5,
+        "dismissals": 4,
+        "balance": 1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2308377",
@@ -1153,7 +1946,14 @@
       "population_2022": 14196,
       "pilot": false,
       "income_pc_mean_2022": 453.17,
-      "income_pc_median_2022": 303.0
+      "income_pc_median_2022": 303.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 5,
+        "dismissals": 2,
+        "balance": 3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2308401",
@@ -1163,7 +1963,14 @@
       "population_2022": 36822,
       "pilot": false,
       "income_pc_mean_2022": 629.9,
-      "income_pc_median_2022": 453.0
+      "income_pc_median_2022": 453.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 46,
+        "dismissals": 48,
+        "balance": -2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2308500",
@@ -1173,7 +1980,14 @@
       "population_2022": 37735,
       "pilot": false,
       "income_pc_mean_2022": 765.22,
-      "income_pc_median_2022": 580.0
+      "income_pc_median_2022": 580.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 48,
+        "dismissals": 46,
+        "balance": 2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2308609",
@@ -1183,7 +1997,14 @@
       "population_2022": 17149,
       "pilot": false,
       "income_pc_mean_2022": 705.32,
-      "income_pc_median_2022": 600.0
+      "income_pc_median_2022": 600.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 19,
+        "dismissals": 17,
+        "balance": 2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2308708",
@@ -1193,7 +2014,14 @@
       "population_2022": 61443,
       "pilot": false,
       "income_pc_mean_2022": 842.15,
-      "income_pc_median_2022": 662.4
+      "income_pc_median_2022": 662.4,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 1149,
+        "dismissals": 418,
+        "balance": 731,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2308807",
@@ -1203,7 +2031,14 @@
       "population_2022": 8254,
       "pilot": false,
       "income_pc_mean_2022": 763.44,
-      "income_pc_median_2022": 537.33
+      "income_pc_median_2022": 537.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 18,
+        "dismissals": 7,
+        "balance": 11,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2308906",
@@ -1213,7 +2048,14 @@
       "population_2022": 22753,
       "pilot": false,
       "income_pc_mean_2022": 667.16,
-      "income_pc_median_2022": 433.33
+      "income_pc_median_2022": 433.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 19,
+        "dismissals": 8,
+        "balance": 11,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2309003",
@@ -1223,7 +2065,14 @@
       "population_2022": 13666,
       "pilot": false,
       "income_pc_mean_2022": 730.44,
-      "income_pc_median_2022": 565.0
+      "income_pc_median_2022": 565.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 6,
+        "dismissals": 4,
+        "balance": 2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2309102",
@@ -1233,7 +2082,14 @@
       "population_2022": 10569,
       "pilot": false,
       "income_pc_mean_2022": 768.51,
-      "income_pc_median_2022": 600.0
+      "income_pc_median_2022": 600.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 3,
+        "dismissals": 11,
+        "balance": -8,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2309201",
@@ -1243,7 +2099,14 @@
       "population_2022": 15399,
       "pilot": false,
       "income_pc_mean_2022": 674.97,
-      "income_pc_median_2022": 484.8
+      "income_pc_median_2022": 484.8,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 29,
+        "dismissals": 21,
+        "balance": 8,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2309300",
@@ -1253,7 +2116,14 @@
       "population_2022": 30699,
       "pilot": false,
       "income_pc_mean_2022": 744.82,
-      "income_pc_median_2022": 553.0
+      "income_pc_median_2022": 553.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 40,
+        "dismissals": 24,
+        "balance": 16,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2309409",
@@ -1263,7 +2133,14 @@
       "population_2022": 27545,
       "pilot": false,
       "income_pc_mean_2022": 771.68,
-      "income_pc_median_2022": 600.0
+      "income_pc_median_2022": 600.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 27,
+        "dismissals": 48,
+        "balance": -21,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2309458",
@@ -1273,7 +2150,14 @@
       "population_2022": 24493,
       "pilot": false,
       "income_pc_mean_2022": 714.07,
-      "income_pc_median_2022": 500.0
+      "income_pc_median_2022": 500.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 12,
+        "dismissals": 31,
+        "balance": -19,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2309508",
@@ -1283,7 +2167,14 @@
       "population_2022": 19675,
       "pilot": false,
       "income_pc_mean_2022": 673.92,
-      "income_pc_median_2022": 537.33
+      "income_pc_median_2022": 537.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 12,
+        "dismissals": 60,
+        "balance": -48,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2309607",
@@ -1293,7 +2184,14 @@
       "population_2022": 70983,
       "pilot": false,
       "income_pc_mean_2022": 835.89,
-      "income_pc_median_2022": 625.0
+      "income_pc_median_2022": 625.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 245,
+        "dismissals": 243,
+        "balance": 2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2309706",
@@ -1303,7 +2201,14 @@
       "population_2022": 81524,
       "pilot": false,
       "income_pc_mean_2022": 862.29,
-      "income_pc_median_2022": 610.0
+      "income_pc_median_2022": 610.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 419,
+        "dismissals": 408,
+        "balance": 11,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2309805",
@@ -1313,7 +2218,14 @@
       "population_2022": 11186,
       "pilot": false,
       "income_pc_mean_2022": 720.8,
-      "income_pc_median_2022": 537.33
+      "income_pc_median_2022": 537.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 7,
+        "dismissals": 4,
+        "balance": 3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2309904",
@@ -1323,7 +2235,14 @@
       "population_2022": 6175,
       "pilot": false,
       "income_pc_mean_2022": 723.25,
-      "income_pc_median_2022": 546.4
+      "income_pc_median_2022": 546.4,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 1,
+        "dismissals": 2,
+        "balance": -1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2310001",
@@ -1333,7 +2252,14 @@
       "population_2022": 9346,
       "pilot": false,
       "income_pc_mean_2022": 838.31,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 7,
+        "dismissals": 4,
+        "balance": 3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2310100",
@@ -1343,7 +2269,14 @@
       "population_2022": 10242,
       "pilot": false,
       "income_pc_mean_2022": 689.96,
-      "income_pc_median_2022": 533.33
+      "income_pc_median_2022": 533.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 6,
+        "dismissals": 7,
+        "balance": -1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2310209",
@@ -1353,7 +2286,14 @@
       "population_2022": 38980,
       "pilot": false,
       "income_pc_mean_2022": 871.22,
-      "income_pc_median_2022": 604.0
+      "income_pc_median_2022": 604.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 127,
+        "dismissals": 117,
+        "balance": 10,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2310258",
@@ -1363,7 +2303,14 @@
       "population_2022": 32216,
       "pilot": false,
       "income_pc_mean_2022": 813.25,
-      "income_pc_median_2022": 600.0
+      "income_pc_median_2022": 600.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 83,
+        "dismissals": 131,
+        "balance": -48,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2310308",
@@ -1373,7 +2320,14 @@
       "population_2022": 31445,
       "pilot": false,
       "income_pc_mean_2022": 643.03,
-      "income_pc_median_2022": 433.33
+      "income_pc_median_2022": 433.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 7,
+        "dismissals": 7,
+        "balance": 0,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2310407",
@@ -1383,7 +2337,14 @@
       "population_2022": 10384,
       "pilot": false,
       "income_pc_mean_2022": 569.94,
-      "income_pc_median_2022": 403.0
+      "income_pc_median_2022": 403.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 10,
+        "dismissals": 4,
+        "balance": 6,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2310506",
@@ -1393,7 +2354,14 @@
       "population_2022": 40187,
       "pilot": false,
       "income_pc_mean_2022": 667.71,
-      "income_pc_median_2022": 520.67
+      "income_pc_median_2022": 520.67,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 28,
+        "dismissals": 34,
+        "balance": -6,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2310605",
@@ -1403,7 +2371,14 @@
       "population_2022": 8972,
       "pilot": false,
       "income_pc_mean_2022": 712.89,
-      "income_pc_median_2022": 537.33
+      "income_pc_median_2022": 537.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 5,
+        "dismissals": 1,
+        "balance": 4,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2310704",
@@ -1413,7 +2388,14 @@
       "population_2022": 37813,
       "pilot": false,
       "income_pc_mean_2022": 733.42,
-      "income_pc_median_2022": 537.33
+      "income_pc_median_2022": 537.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 57,
+        "dismissals": 54,
+        "balance": 3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2310803",
@@ -1423,7 +2405,14 @@
       "population_2022": 15274,
       "pilot": false,
       "income_pc_mean_2022": 719.3,
-      "income_pc_median_2022": 558.86
+      "income_pc_median_2022": 558.86,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 119,
+        "dismissals": 127,
+        "balance": -8,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2310852",
@@ -1433,7 +2422,14 @@
       "population_2022": 23391,
       "pilot": false,
       "income_pc_mean_2022": 794.0,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 75,
+        "dismissals": 34,
+        "balance": 41,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2310902",
@@ -1443,7 +2439,14 @@
       "population_2022": 16616,
       "pilot": false,
       "income_pc_mean_2022": 704.36,
-      "income_pc_median_2022": 484.8
+      "income_pc_median_2022": 484.8,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 7,
+        "dismissals": 4,
+        "balance": 3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2310951",
@@ -1453,7 +2456,14 @@
       "population_2022": 10606,
       "pilot": false,
       "income_pc_mean_2022": 651.65,
-      "income_pc_median_2022": 455.0
+      "income_pc_median_2022": 455.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 1,
+        "dismissals": 0,
+        "balance": 1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2311009",
@@ -1463,7 +2473,14 @@
       "population_2022": 12065,
       "pilot": false,
       "income_pc_mean_2022": 654.04,
-      "income_pc_median_2022": 404.0
+      "income_pc_median_2022": 404.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 2,
+        "dismissals": 5,
+        "balance": -3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2311108",
@@ -1473,7 +2490,14 @@
       "population_2022": 17050,
       "pilot": false,
       "income_pc_mean_2022": 829.82,
-      "income_pc_median_2022": 603.0
+      "income_pc_median_2022": 603.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 9,
+        "dismissals": 25,
+        "balance": -16,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2311207",
@@ -1483,7 +2507,14 @@
       "population_2022": 8833,
       "pilot": false,
       "income_pc_mean_2022": 604.42,
-      "income_pc_median_2022": 400.0
+      "income_pc_median_2022": 400.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 3,
+        "dismissals": 4,
+        "balance": -1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2311231",
@@ -1493,7 +2524,14 @@
       "population_2022": 5974,
       "pilot": false,
       "income_pc_mean_2022": 756.94,
-      "income_pc_median_2022": 587.33
+      "income_pc_median_2022": 587.33,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 0,
+        "dismissals": 0,
+        "balance": 0,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2311264",
@@ -1503,7 +2541,14 @@
       "population_2022": 20213,
       "pilot": false,
       "income_pc_mean_2022": 677.69,
-      "income_pc_median_2022": 520.0
+      "income_pc_median_2022": 520.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 16,
+        "dismissals": 6,
+        "balance": 10,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2311306",
@@ -1513,7 +2558,14 @@
       "population_2022": 84168,
       "pilot": true,
       "income_pc_mean_2022": 888.08,
-      "income_pc_median_2022": 604.0
+      "income_pc_median_2022": 604.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 258,
+        "dismissals": 202,
+        "balance": 56,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2311355",
@@ -1523,7 +2575,14 @@
       "population_2022": 15910,
       "pilot": false,
       "income_pc_mean_2022": 693.31,
-      "income_pc_median_2022": 550.0
+      "income_pc_median_2022": 550.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 14,
+        "dismissals": 9,
+        "balance": 5,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2311405",
@@ -1533,7 +2592,14 @@
       "population_2022": 82177,
       "pilot": false,
       "income_pc_mean_2022": 853.65,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 401,
+        "dismissals": 418,
+        "balance": -17,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2311504",
@@ -1543,7 +2609,14 @@
       "population_2022": 20874,
       "pilot": false,
       "income_pc_mean_2022": 900.07,
-      "income_pc_median_2022": 666.67
+      "income_pc_median_2022": 666.67,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 122,
+        "dismissals": 145,
+        "balance": -23,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2311603",
@@ -1553,7 +2626,14 @@
       "population_2022": 27214,
       "pilot": false,
       "income_pc_mean_2022": 670.02,
-      "income_pc_median_2022": 530.0
+      "income_pc_median_2022": 530.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 120,
+        "dismissals": 34,
+        "balance": 86,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2311702",
@@ -1563,7 +2643,14 @@
       "population_2022": 18606,
       "pilot": false,
       "income_pc_mean_2022": 724.54,
-      "income_pc_median_2022": 500.0
+      "income_pc_median_2022": 500.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 7,
+        "dismissals": 9,
+        "balance": -2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2311801",
@@ -1573,7 +2660,14 @@
       "population_2022": 72928,
       "pilot": false,
       "income_pc_mean_2022": 867.47,
-      "income_pc_median_2022": 640.0
+      "income_pc_median_2022": 640.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 405,
+        "dismissals": 389,
+        "balance": 16,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2311900",
@@ -1583,7 +2677,14 @@
       "population_2022": 13854,
       "pilot": false,
       "income_pc_mean_2022": 665.49,
-      "income_pc_median_2022": 500.0
+      "income_pc_median_2022": 500.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 4,
+        "dismissals": 3,
+        "balance": 1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2311959",
@@ -1593,7 +2694,14 @@
       "population_2022": 16633,
       "pilot": false,
       "income_pc_mean_2022": 544.51,
-      "income_pc_median_2022": 400.0
+      "income_pc_median_2022": 400.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 0,
+        "dismissals": 1,
+        "balance": -1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2312205",
@@ -1603,7 +2711,14 @@
       "population_2022": 40183,
       "pilot": false,
       "income_pc_mean_2022": 770.52,
-      "income_pc_median_2022": 604.0
+      "income_pc_median_2022": 604.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 238,
+        "dismissals": 131,
+        "balance": 107,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2312007",
@@ -1613,7 +2728,14 @@
       "population_2022": 30628,
       "pilot": false,
       "income_pc_mean_2022": 587.81,
-      "income_pc_median_2022": 400.0
+      "income_pc_median_2022": 400.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 22,
+        "dismissals": 12,
+        "balance": 10,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2312106",
@@ -1623,7 +2745,14 @@
       "population_2022": 16954,
       "pilot": false,
       "income_pc_mean_2022": 597.15,
-      "income_pc_median_2022": 412.4
+      "income_pc_median_2022": 412.4,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 6,
+        "dismissals": 3,
+        "balance": 3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2312304",
@@ -1633,7 +2762,14 @@
       "population_2022": 47640,
       "pilot": false,
       "income_pc_mean_2022": 718.45,
-      "income_pc_median_2022": 500.0
+      "income_pc_median_2022": 500.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 74,
+        "dismissals": 55,
+        "balance": 19,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2312403",
@@ -1643,7 +2779,14 @@
       "population_2022": 54143,
       "pilot": false,
       "income_pc_mean_2022": 834.41,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 563,
+        "dismissals": 487,
+        "balance": 76,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2312502",
@@ -1653,7 +2796,14 @@
       "population_2022": 5855,
       "pilot": false,
       "income_pc_mean_2022": 939.84,
-      "income_pc_median_2022": 800.0
+      "income_pc_median_2022": 800.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 11,
+        "dismissals": 3,
+        "balance": 8,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2312601",
@@ -1663,7 +2813,14 @@
       "population_2022": 10822,
       "pilot": false,
       "income_pc_mean_2022": 622.89,
-      "income_pc_median_2022": 404.0
+      "income_pc_median_2022": 404.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 10,
+        "dismissals": 15,
+        "balance": -5,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2312700",
@@ -1673,7 +2830,14 @@
       "population_2022": 24266,
       "pilot": false,
       "income_pc_mean_2022": 781.3,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 52,
+        "dismissals": 65,
+        "balance": -13,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2312809",
@@ -1683,7 +2847,14 @@
       "population_2022": 7262,
       "pilot": false,
       "income_pc_mean_2022": 623.36,
-      "income_pc_median_2022": 404.0
+      "income_pc_median_2022": 404.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 14,
+        "dismissals": 10,
+        "balance": 4,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2312908",
@@ -1693,7 +2864,14 @@
       "population_2022": 203023,
       "pilot": true,
       "income_pc_mean_2022": 1013.74,
-      "income_pc_median_2022": 621.0
+      "income_pc_median_2022": 621.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 1974,
+        "dismissals": 1412,
+        "balance": 562,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2313005",
@@ -1703,7 +2881,14 @@
       "population_2022": 18179,
       "pilot": false,
       "income_pc_mean_2022": 788.81,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 74,
+        "dismissals": 44,
+        "balance": 30,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2313104",
@@ -1713,7 +2898,14 @@
       "population_2022": 30652,
       "pilot": false,
       "income_pc_mean_2022": 895.75,
-      "income_pc_median_2022": 682.4
+      "income_pc_median_2022": 682.4,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 115,
+        "dismissals": 61,
+        "balance": 54,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2313203",
@@ -1723,7 +2915,14 @@
       "population_2022": 24815,
       "pilot": false,
       "income_pc_mean_2022": 688.17,
-      "income_pc_median_2022": 490.5
+      "income_pc_median_2022": 490.5,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 5,
+        "dismissals": 3,
+        "balance": 2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2313252",
@@ -1733,7 +2932,14 @@
       "population_2022": 7529,
       "pilot": false,
       "income_pc_mean_2022": 767.47,
-      "income_pc_median_2022": 606.0
+      "income_pc_median_2022": 606.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 0,
+        "dismissals": 2,
+        "balance": -2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2313302",
@@ -1743,7 +2949,14 @@
       "population_2022": 61227,
       "pilot": false,
       "income_pc_mean_2022": 831.53,
-      "income_pc_median_2022": 602.0
+      "income_pc_median_2022": 602.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 172,
+        "dismissals": 193,
+        "balance": -21,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2313351",
@@ -1753,7 +2966,14 @@
       "population_2022": 17154,
       "pilot": false,
       "income_pc_mean_2022": 554.86,
-      "income_pc_median_2022": 400.0
+      "income_pc_median_2022": 400.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 14,
+        "dismissals": 12,
+        "balance": 2,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2313401",
@@ -1763,7 +2983,14 @@
       "population_2022": 81506,
       "pilot": false,
       "income_pc_mean_2022": 844.1,
-      "income_pc_median_2022": 600.0
+      "income_pc_median_2022": 600.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 500,
+        "dismissals": 321,
+        "balance": 179,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2313500",
@@ -1773,7 +3000,14 @@
       "population_2022": 58415,
       "pilot": false,
       "income_pc_mean_2022": 662.17,
-      "income_pc_median_2022": 475.0
+      "income_pc_median_2022": 475.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 122,
+        "dismissals": 97,
+        "balance": 25,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2313559",
@@ -1783,7 +3017,14 @@
       "population_2022": 15412,
       "pilot": false,
       "income_pc_mean_2022": 565.11,
-      "income_pc_median_2022": 404.0
+      "income_pc_median_2022": 404.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 6,
+        "dismissals": 5,
+        "balance": 1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2313609",
@@ -1793,7 +3034,14 @@
       "population_2022": 32767,
       "pilot": false,
       "income_pc_mean_2022": 785.04,
-      "income_pc_median_2022": 584.8
+      "income_pc_median_2022": 584.8,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 51,
+        "dismissals": 78,
+        "balance": -27,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2313708",
@@ -1803,7 +3051,14 @@
       "population_2022": 6871,
       "pilot": false,
       "income_pc_mean_2022": 629.05,
-      "income_pc_median_2022": 460.0
+      "income_pc_median_2022": 460.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 0,
+        "dismissals": 1,
+        "balance": -1,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2313757",
@@ -1813,7 +3068,14 @@
       "population_2022": 17470,
       "pilot": false,
       "income_pc_mean_2022": 558.68,
-      "income_pc_median_2022": 404.0
+      "income_pc_median_2022": 404.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 14,
+        "dismissals": 11,
+        "balance": 3,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2313807",
@@ -1823,7 +3085,14 @@
       "population_2022": 20189,
       "pilot": false,
       "income_pc_mean_2022": 661.25,
-      "income_pc_median_2022": 524.0
+      "income_pc_median_2022": 524.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 53,
+        "dismissals": 28,
+        "balance": 25,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2313906",
@@ -1833,7 +3102,14 @@
       "population_2022": 13746,
       "pilot": false,
       "income_pc_mean_2022": 611.47,
-      "income_pc_median_2022": 408.5
+      "income_pc_median_2022": 408.5,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 73,
+        "dismissals": 33,
+        "balance": 40,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2313955",
@@ -1843,7 +3119,14 @@
       "population_2022": 18105,
       "pilot": false,
       "income_pc_mean_2022": 702.29,
-      "income_pc_median_2022": 501.0
+      "income_pc_median_2022": 501.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 52,
+        "dismissals": 39,
+        "balance": 13,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2314003",
@@ -1853,7 +3136,14 @@
       "population_2022": 38984,
       "pilot": false,
       "income_pc_mean_2022": 768.75,
-      "income_pc_median_2022": 600.0
+      "income_pc_median_2022": 600.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 29,
+        "dismissals": 37,
+        "balance": -8,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     },
     {
       "id": "2314102",
@@ -1863,7 +3153,14 @@
       "population_2022": 59712,
       "pilot": false,
       "income_pc_mean_2022": 548.18,
-      "income_pc_median_2022": 400.0
+      "income_pc_median_2022": 400.0,
+      "formal_employment": {
+        "period": "2026-09",
+        "admissions": 45,
+        "dismissals": 36,
+        "balance": 9,
+        "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
+      }
     }
   ]
 }

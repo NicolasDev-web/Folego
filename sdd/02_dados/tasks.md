@@ -7,7 +7,7 @@
 - [ ] Registrar caminho da evidência e atualizar status.
 
 Depende de: entrada da fase.
-Evidência parcial: `pipeline/extract/phase00_collect.py` e `pipeline/extract/municipal_geometries.py` cobrem IBGE e a amostra SCR com timeout, validação e hashes. Status: em andamento; adaptador histórico SCR e ingestão MTE ainda pendentes.
+Evidência parcial: `pipeline/extract/phase00_collect.py`, `municipal_geometries.py`, `municipal_income.py` e `municipal_employment.py` cobrem IBGE e MTE com timeout, validação e hashes. Status: em andamento; adaptador histórico SCR ainda pendente.
 
 
 ## 02-02 — Normalizar campos e unidades por versão
@@ -17,7 +17,7 @@ Evidência parcial: `pipeline/extract/phase00_collect.py` e `pipeline/extract/mu
 - [ ] Registrar caminho da evidência e atualizar status.
 
 Depende de: 02-01.
-Evidência parcial: `pipeline/extract/municipal_income.py` normaliza valores monetários, período, códigos e classificações, falhando em schema ou unidade inesperados. Status: em andamento; normalização SCR e MTE pendente.
+Evidência parcial: `municipal_income.py` e `municipal_employment.py` normalizam valores, períodos e códigos e falham em leiaute inesperado. Status: em andamento; normalização SCR pendente.
 
 
 ## 02-03 — Separar fatos e construir dimensões
@@ -27,7 +27,7 @@ Evidência parcial: `pipeline/extract/municipal_income.py` normaliza valores mon
 - [ ] Registrar caminho da evidência e atualizar status.
 
 Depende de: 02-02.
-Evidência parcial: `data/processed/municipal_context.json` mantém dimensão municipal por código IBGE e `data/processed/municipal_income_2022.csv` contém o fato de renda sem totais duplicados. Status: em andamento.
+Evidência parcial: `data/processed/municipal_context.json` mantém a dimensão municipal por código IBGE; os arquivos `municipal_income_2022.csv` e `municipal_employment_2026-09.csv` contêm fatos separados, sem totais duplicados. Status: em andamento.
 
 
 ## 02-04 — Ingerir pesquisas e registrar extrações
@@ -37,7 +37,7 @@ Evidência parcial: `data/processed/municipal_context.json` mantém dimensão mu
 - [ ] Registrar caminho da evidência e atualizar status.
 
 Depende de: 02-03.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência parcial: o microdado `CAGEDMOV202609` foi agregado para 184 municípios e conferido contra a divulgação oficial; URL, hash, regra e revisão estão em `metadata/municipal_employment_manifest.json`. Status: em andamento; pesquisas de crédito permanecem pendentes.
 
 
 ## 02-05 — Implementar indicadores prioritários

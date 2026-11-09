@@ -1,12 +1,12 @@
 # Estado do projeto
 
-O planejamento inicial, a inspeção da referência e o portão de viabilidade municipal estão concluídos. A aplicação já oferece busca, mapa e ficha para os 184 municípios, com população e renda domiciliar oficiais e ausência de dívida local tratada explicitamente. A investigação estatística estadual e o emprego municipal seguem como próximas entregas.
+O planejamento inicial, a inspeção da referência e o portão de viabilidade municipal estão concluídos. A aplicação já oferece busca, mapa e ficha para os 184 municípios, com população, renda domiciliar e emprego formal oficiais e ausência de dívida local tratada explicitamente. A investigação estatística estadual segue como próxima entrega.
 
 | Fase | Estado | Dependência |
 |---|---|---|
 | 00_viabilidade | Concluída | Opção B; relatório, catálogo, amostras, hashes e matriz de cobertura registrados |
 | 01_ux | Em andamento | Composição visual responsiva e jornadas iniciais implementadas; comparação e teste com pessoas pendentes |
-| 02_dados | Em andamento | População, geometria e renda municipal validadas; Caged municipal e SCR histórico pendentes |
+| 02_dados | Em andamento | População, geometria, renda e Caged municipal validados; SCR histórico e ajustes do Caged pendentes |
 | 03_fundacao | Em andamento | 03-01 e 03-02 concluídas; componentes e adaptador em evolução |
 | 04_cidades | Em andamento | 04-01 a 04-03 concluídas; 184 municípios com mapa, busca e ficha; comparação e ranking pendentes |
 | 05_investigacao | Planejada | 02 + 03; integrar 04 |
