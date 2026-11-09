@@ -222,10 +222,49 @@ try {
       if (searchedName !== "Crato") {
         throw new Error(`Busca não sincronizou: ${searchedName ?? "sem nome"}.`);
       }
+
+      // Phase 04 (04-04 & 04-05): Verify 3-city comparison and eligible-only ranking
+      const comparisonCounter = await page.locator(".comparison-counter strong").textContent();
+      if (comparisonCounter?.trim() !== "3 de 3") {
+        throw new Error(`Comparação municipal esperada em 3 de 3; recebido: ${comparisonCounter}`);
+      }
+      const pilotChipCount = await page.locator(".pilot-chip-button").count();
+      if (pilotChipCount !== 8) {
+        throw new Error(`Esperados 8 botões de cidades-piloto; recebidos: ${pilotChipCount}`);
+      }
+      const debtRowCells = await page
+        .locator(".row-incompatible .comparison-cell-value")
+        .allTextContents();
+      if (
+        debtRowCells.length !== 3 ||
+        debtRowCells.some((text) => text !== "Indisponível na escala municipal")
+      ) {
+        throw new Error(`Linha de dívida municipal na comparação inválida: ${debtRowCells.join(", ")}`);
+      }
+
+      const rankingSection = page.locator(".municipal-ranking-section");
+      await rankingSection
+        .getByRole("button", { name: /Salário de admissão/i })
+        .click();
+      await rankingSection.getByText("177 municípios", { exact: true }).waitFor();
+      await rankingSection.getByText("7 municípios", { exact: true }).waitFor();
+      const excludedButtonsCount = await rankingSection
+        .locator(".excluded-city-list button")
+        .count();
+      if (excludedButtonsCount !== 7) {
+        throw new Error(
+          `Esperados 7 municípios excluídos por null no ranking salarial; recebidos: ${excludedButtonsCount}`,
+        );
+      }
+
+      await rankingSection
+        .getByRole("button", { name: /Dívida municipal \(inelegível\)/i })
+        .click();
+      await rankingSection.locator(".ranking-ineligible-banner").waitFor();
+      await rankingSection.getByText("0 de 184 municípios", { exact: true }).waitFor();
     }
     await context.close();
   }
 } finally {
   await browser.close();
 }
-

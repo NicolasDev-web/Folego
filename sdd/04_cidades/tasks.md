@@ -32,29 +32,29 @@ Evidência: `app/src/components/CoveragePanel.tsx`, população municipal observ
 
 ## 04-04 — Construir comparação de até três cidades
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Indicador/período/universo compatíveis; filtro impossível explicado.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Indicador/período/universo compatíveis; filtro impossível explicado.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 04-03.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `app/src/components/MunicipalComparisonSection.tsx`, `app/src/lib/municipalComparisonAndRanking.ts` e `app/src/lib/municipalComparisonAndRanking.test.ts`. Limite estrito de até 3 municípios sincronizado via URL (`?comparar=`), botões rápidos para as 8 cidades-piloto, preservação de `null` sem coerção para zero e linha explícita de indisponibilidade metodológica para `Dívida e inadimplência municipal direta`. Status: concluída em 09/11/2026.
 
 
 ## 04-05 — Implementar ranking apenas para medidas elegíveis
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Ordenação trata empate/null; número de municípios excluídos visível.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Ordenação trata empate/null; número de municípios excluídos visível.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 04-04.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `app/src/components/MunicipalRankingSection.tsx`, `app/src/lib/municipalComparisonAndRanking.ts` e `app/src/lib/municipalComparisonAndRanking.test.ts`. Ordenação habilitada exclusivamente para as 5 medidas municipais observadas, com posição competitiva idêntica em empates (`=º`), separação explícita dos municípios com valor `null` (como os 7 municípios sem admissões com salário positivo em `2026-09`) e bloqueio fundamentado para `Dívida municipal direta`. Status: concluída em 09/11/2026.
 
 
 ## 04-06 — Testar piloto e expandir cobertura
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Oito cidades do piloto, todas as disponíveis e estados de ausência testados por teclado/toque.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Oito cidades do piloto, todas as disponíveis e estados de ausência testados por teclado/toque.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 04-05.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `app/src/lib/municipalComparisonAndRanking.test.ts` (11 testes aprovados no Vitest), `app/scripts/capture-qa.mjs`, capturas em `evidencias/qa/` (`390px`, `768px`, `1440px` sem rolagem horizontal) e `evidencias/QA_FRONTEND.md`. Status: concluída em 09/11/2026.

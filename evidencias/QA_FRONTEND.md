@@ -1,11 +1,11 @@
 # QA da base do frontend
 
-Data: 09/11/2026. Escopo: base navegável, população, renda e emprego formal oficiais e explorador cartográfico municipal.
+Data: 09/11/2026. Escopo: base navegável, população, renda e emprego formal oficiais, explorador cartográfico municipal, comparação controlada de até três municípios (`04-04`), ranking de medidas elegíveis (`04-05`) e verificação do piloto e das 184 cidades (`04-06`).
 
 ## Resultado
 
-- `npm test`: 2 arquivos e 5 testes aprovados. O adaptador preserva `null` para ausência, rejeita valor numérico marcado como indisponível e a projeção cartográfica fecha os polígonos e compartilha a mesma transformação com os centroides.
-- `npm run build`: TypeScript e build de produção concluídos com Vite 8.3.6.
+- `npm test`: 3 arquivos e 11 testes aprovados (`src/data/geo.test.ts`, `src/lib/observation.test.ts`, `src/lib/municipalComparisonAndRanking.test.ts`). O adaptador preserva `null` para ausência, rejeita valor numérico marcado como indisponível, valida as 8 cidades-piloto e os 184 municípios, garante o teto de 3 cidades na comparação, atribui posição competitiva idêntica em empates, exclui municípios `null` do ranking numérico (como os 7 municípios sem salário de admissão em `09/2026`) e bloqueia `divida_municipal_direta` de qualquer ordenação.
+- `npm run build`: TypeScript (`tsc --noEmit`) e build de produção concluídos com Vite 8.3.6 sem erros.
 - Auditoria de dependências após instalação: 0 vulnerabilidades reportadas pelo npm.
 - Navegação confirmada nas rotas `/`, `/cidades` e `/metodo`, todas com `h1` semântico.
 - Busca por “Crato” via teclado atualiza a ficha e a URL para `?cidade=crato`.
@@ -15,14 +15,14 @@ Data: 09/11/2026. Escopo: base navegável, população, renda e emprego formal o
 - Os arquivos brutos da renda conferem com os hashes SHA-256 registrados no manifesto de coleta.
 - O emprego formal cobre os 184 municípios; admissões menos desligamentos fecha em 5.156 postos no Ceará em setembro de 2026.
 - O saldo estadual e os saldos de Fortaleza, Morada Nova, Sobral, Caucaia e Tianguá coincidem com a divulgação oficial usada como conferência independente.
-- “Ver quais empregos” abre uma leitura focada com ocupações, setores, recuos e salário médio das admissões; a ficha e o mapa permanecem intactos ao fechar.
+- “Ver profissões e setores” abre uma leitura focada com ocupações, setores, recuos e salário médio das admissões; a ficha e o mapa permanecem intactos ao fechar.
 - Em Sobral, a primeira ocupação exibida é “Trabalhador polivalente da confecção de calçados”, com saldo de +374; o valor confere com o agregado por CBO.
 - O mapa abre no modo territorial; o zoom Sobral enquadra os 23 municípios da região sem deformar a malha.
 - Emprego renderiza 178 círculos para saldos não nulos; renda mantém 184 polígonos em cinco faixas; população renderiza 184 círculos proporcionais sem sobreposição.
 - A troca entre território, emprego, renda e população preserva Sobral na ficha, na URL e na etiqueta do mapa.
-- A nova composição usa busca compacta, mapa dominante e uma única ficha lateral; no celular a ficha antecede o mapa.
-- Mudança de rota reinicia a rolagem no topo. Links internos continuam levando às seções da página inicial.
-- Nenhum erro ou aviso foi registrado no console durante a rodada no navegador.
+- A comparação municipal (`MunicipalComparisonSection`) permite comparar até 3 municípios lado a lado (`?comparar=`), oferece atalhos para as 8 cidades-piloto (`Fortaleza`, `Caucaia`, `Maracanaú`, `Sobral`, `Juazeiro do Norte`, `Crato`, `Iguatu`, `Quixadá`) e explica por que `Dívida e inadimplência municipal direta` é indisponível na escala municipal.
+- O ranking municipal (`MunicipalRankingSection`) ordena apenas as 5 medidas observadas na escala municipal, destaca a posição do município em foco no mapa, exibe o número exato de municípios incluídos e excluídos por `null` (`177 municípios incluídos` e `7 municípios excluídos por ausência (null)` em `Salário de admissão set/2026`), trata empates com posição competitiva (`=º`) e bloqueia `Dívida municipal (inelegível)` com justificativa metodológica.
+- Nenhum erro ou aviso foi registrado no console durante a rodada no navegador (`capture-qa.mjs`).
 
 ## Larguras verificadas
 
@@ -61,7 +61,5 @@ Os pares verificados atendem 4,5:1 para texto normal. A checagem não substitui 
 ## Limites desta rodada
 
 - Não houve teste com participantes; a tarefa 01-05 permanece aberta.
-- Comparação entre cidades e séries de crédito ainda não foram implementadas. A renda é um retrato nominal do Censo 2022; o emprego é a competência 09/2026 sem ajustes declarados posteriormente.
-- Os estados de carregamento e erro existem, mas a simulação de falha de rede permanece para a fase de validação.
-- A inspeção de acessibilidade cobriu semântica, nomes acessíveis, foco visível, alvos principais e movimento reduzido; leitor de tela e ordem completa de tabulação permanecem para a fase de validação.
-
+- A integração das séries estaduais/regionais de crédito e trabalho (`state_macro_series.json`, `credit_profiles.json`, `labor_and_surveys.json`) na narrativa investigativa pertence à fase `05_investigacao`.
+- Os estados de carregamento e erro existem, mas a simulação de falha de rede permanece para a fase de validação (`06_validacao`).
