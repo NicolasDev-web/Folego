@@ -15,6 +15,8 @@ Data: 09/11/2026. Escopo: base navegável, população, renda e emprego formal o
 - Os arquivos brutos da renda conferem com os hashes SHA-256 registrados no manifesto de coleta.
 - O emprego formal cobre os 184 municípios; admissões menos desligamentos fecha em 5.156 postos no Ceará em setembro de 2026.
 - O saldo estadual e os saldos de Fortaleza, Morada Nova, Sobral, Caucaia e Tianguá coincidem com a divulgação oficial usada como conferência independente.
+- “Ver quais empregos” abre uma leitura focada com ocupações, setores, recuos e salário médio das admissões; a ficha e o mapa permanecem intactos ao fechar.
+- Em Sobral, a primeira ocupação exibida é “Trabalhador polivalente da confecção de calçados”, com saldo de +374; o valor confere com o agregado por CBO.
 - A nova composição usa busca compacta, mapa dominante e uma única ficha lateral; no celular a ficha antecede o mapa.
 - Mudança de rota reinicia a rolagem no topo. Links internos continuam levando às seções da página inicial.
 - Nenhum erro ou aviso foi registrado no console durante a rodada no navegador.
@@ -34,6 +36,8 @@ Screenshots reproduzíveis com `npm run qa:screenshots`:
 - `evidencias/qa/home-1440.png`
 - `evidencias/qa/cidades-sobral-390.png`
 - `evidencias/qa/cidades-sobral-1440.png`
+- `evidencias/qa/cidades-sobral-empregos-390.png`
+- `evidencias/qa/cidades-sobral-empregos-1440.png`
 
 ## Contraste dos pares principais
 

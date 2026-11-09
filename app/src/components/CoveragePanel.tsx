@@ -1,6 +1,7 @@
 import type { Municipality } from "../data/municipalities";
 import { municipalDebtCoverage } from "../data/fixtures/coverage";
 import { describeObservation } from "../lib/observation";
+import { EmploymentDetailsDialog } from "./EmploymentDetailsDialog";
 
 type CoveragePanelProps = {
   municipality: Municipality;
@@ -63,6 +64,7 @@ export function CoveragePanel({ municipality }: CoveragePanelProps) {
           {new Intl.NumberFormat("pt-BR").format(employment.admissions)} admissões ·{" "}
           {new Intl.NumberFormat("pt-BR").format(employment.dismissals)} desligamentos
         </small>
+        <EmploymentDetailsDialog municipality={municipality} periodLabel={employmentPeriod} />
       </section>
 
       <section className="availability-row">

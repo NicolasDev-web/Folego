@@ -11,10 +11,25 @@ export type Municipality = {
     admissions: number;
     dismissals: number;
     balance: number;
+    top_occupations: EmploymentOccupation[];
+    declining_occupations: EmploymentOccupation[];
+    busiest_sectors: EmploymentSector[];
+    average_admission_salary: number | null;
+    salary_observations: number;
     revision: string;
   };
   pilot: boolean;
 };
+
+export type EmploymentOccupation = {
+  code: string;
+  title: string;
+  admissions: number;
+  dismissals: number;
+  balance: number;
+};
+
+export type EmploymentSector = EmploymentOccupation;
 
 export type MunicipalContextFile = {
   schema_version: string;

@@ -1334,6 +1334,323 @@ a {
   font-size: 0.8rem;
 }
 
+.employment-details-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1.35rem;
+  padding: 0.9rem 0 0;
+  gap: 1rem;
+  color: var(--brand);
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.employment-details-trigger::after {
+  content: "+";
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.employment-details-trigger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 0.35rem;
+}
+
+.employment-dialog {
+  width: min(960px, calc(100vw - 3rem));
+  max-width: none;
+  max-height: min(88vh, 820px);
+  padding: 0;
+  color: var(--text);
+  background: var(--surface);
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 28px 80px rgb(7 36 34 / 32%);
+}
+
+.employment-dialog::backdrop {
+  background: rgb(11 48 45 / 72%);
+  backdrop-filter: blur(3px);
+}
+
+.employment-dialog-frame {
+  max-height: min(88vh, 820px);
+  overflow: auto;
+}
+
+.employment-dialog-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 2rem;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  color: var(--surface);
+  background: var(--hero);
+}
+
+.employment-dialog-header p,
+.employment-dialog-header h2,
+.employment-dialog-header span {
+  margin: 0;
+}
+
+.employment-dialog-header p {
+  color: #b9d2ce;
+  font-size: 0.78rem;
+}
+
+.employment-dialog-header h2 {
+  max-width: 18ch;
+  margin-top: 0.45rem;
+  color: var(--surface);
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  font-weight: 450;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.employment-dialog-header span {
+  display: block;
+  margin-top: 1rem;
+  color: #d2e2df;
+  font-size: 0.9rem;
+}
+
+.employment-dialog-header > button {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  place-items: center;
+  color: var(--surface);
+  background: transparent;
+  border: 1px solid rgb(255 255 255 / 42%);
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.employment-dialog-header > button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 0.25rem;
+}
+
+.employment-dialog-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.8fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  padding: clamp(1.75rem, 4vw, 3rem);
+}
+
+.employment-dialog-body.is-empty {
+  grid-template-columns: 1fr;
+}
+
+.employment-dialog-empty-state {
+  max-width: 58ch;
+  padding: 1rem 0 2rem;
+}
+
+.employment-dialog-empty-state h3,
+.employment-dialog-empty-state p {
+  margin: 0;
+}
+
+.employment-dialog-empty-state h3 {
+  font-size: 1.2rem;
+}
+
+.employment-dialog-empty-state p {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.employment-dialog-primary {
+  padding-right: clamp(2rem, 4vw, 3.5rem);
+  border-right: 1px solid var(--line);
+}
+
+.employment-dialog-body header h3,
+.employment-dialog-body header p {
+  margin: 0;
+}
+
+.employment-dialog-body header h3 {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.employment-dialog-body header p {
+  margin-top: 0.3rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.employment-dialog-secondary {
+  display: grid;
+  align-content: start;
+  gap: 1.6rem;
+}
+
+.employment-dialog-secondary > section + section {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.occupation-ranking,
+.declining-occupations {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.occupation-ranking {
+  display: grid;
+  gap: 1rem;
+}
+
+.occupation-ranking li > div,
+.declining-occupations li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.8rem;
+}
+
+.occupation-ranking li > div span,
+.declining-occupations li span {
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.occupation-ranking strong {
+  color: var(--brand);
+  font-size: 0.86rem;
+}
+
+.occupation-ranking li > small {
+  margin-top: 0.35rem;
+  font-size: 0.7rem;
+}
+
+.occupation-bar {
+  position: relative;
+  display: block;
+  height: 3px;
+  margin-top: 0.45rem;
+  overflow: hidden;
+  background: #d9dfda;
+}
+
+.occupation-bar::after {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--occupation-share);
+  background: var(--accent);
+  content: "";
+}
+
+.declining-occupations {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.declining-occupations strong {
+  color: var(--accent);
+  font-size: 0.82rem;
+}
+
+.employment-sectors {
+  display: grid;
+  gap: 0.8rem;
+  margin: 1rem 0 0;
+}
+
+.employment-sectors > div {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.employment-sectors dt {
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.employment-sectors dd {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.employment-sectors dd strong {
+  color: var(--text);
+}
+
+.admission-salary {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.admission-salary > span {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.admission-salary > strong {
+  color: var(--brand);
+  font-size: 1.45rem;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.admission-salary > small {
+  margin-top: 0;
+  font-size: 0.7rem;
+}
+
+.employment-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.73rem;
+  line-height: 1.5;
+}
+
+.employment-dialog-footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.25rem clamp(1.75rem, 4vw, 3rem);
+  background: #edf0ea;
+  border-top: 1px solid var(--line);
+}
+
+.employment-dialog-footer p {
+  max-width: 68ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.5;
+}
+
+.employment-dialog-footer a {
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+}
+
 .availability-row {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -1755,6 +2072,43 @@ a {
 
   .primary-fact .result-value {
     font-size: 3.4rem;
+  }
+
+  .employment-dialog {
+    width: calc(100vw - 1rem);
+    max-height: calc(100dvh - 1rem);
+  }
+
+  .employment-dialog-frame {
+    max-height: calc(100dvh - 1rem);
+  }
+
+  .employment-dialog-header {
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .employment-dialog-header h2 {
+    font-size: 2rem;
+  }
+
+  .employment-dialog-body {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    padding: 1.5rem;
+  }
+
+  .employment-dialog-primary {
+    padding: 0 0 1.75rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .employment-dialog-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem 1.5rem;
   }
 
   .availability-row {

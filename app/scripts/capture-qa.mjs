@@ -24,6 +24,20 @@ const captures = [
     width: 1440,
     height: 900,
   },
+  {
+    name: "cidades-sobral-empregos-390.png",
+    path: "/cidades?cidade=sobral",
+    width: 390,
+    height: 844,
+    openEmployment: true,
+  },
+  {
+    name: "cidades-sobral-empregos-1440.png",
+    path: "/cidades?cidade=sobral",
+    width: 1440,
+    height: 900,
+    openEmployment: true,
+  },
 ];
 
 await mkdir(outputDirectory, { recursive: true });
@@ -53,6 +67,21 @@ try {
         throw new Error(`${capture.name}: esperadas 184 geometrias; recebidas ${shapeCount}.`);
       }
     }
+    if (capture.openEmployment) {
+      await page.locator(".employment-details-trigger").click();
+      const dialog = page.locator(".employment-dialog");
+      await dialog.waitFor();
+      const firstOccupation = await dialog
+        .locator(".occupation-ranking li > div > span")
+        .first()
+        .textContent();
+      if (firstOccupation !== "Trabalhador polivalente da confecção de calçados") {
+        throw new Error(
+          `${capture.name}: detalhamento ocupacional inesperado: ${firstOccupation ?? "vazio"}.`,
+        );
+      }
+      await dialog.getByText("R$ 2.440,17", { exact: true }).waitFor();
+    }
     const hasHorizontalOverflow = await page.evaluate(
       () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
     );
@@ -61,8 +90,12 @@ try {
     }
     await page.screenshot({
       path: resolve(outputDirectory, capture.name),
-      fullPage: true,
+      fullPage: !capture.openEmployment,
     });
+    if (capture.openEmployment) {
+      await page.keyboard.press("Escape");
+      await page.locator(".employment-dialog").waitFor({ state: "hidden" });
+    }
     if (capture.name === "cidades-sobral-1440.png") {
       const fortalezaShape = page.locator(".map-shape").filter({ hasText: "Fortaleza" });
       await fortalezaShape.scrollIntoViewIfNeeded();
