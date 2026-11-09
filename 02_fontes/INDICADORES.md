@@ -9,11 +9,11 @@
 | vencido15_sub | Saldo vencido acima de 15 dias | Campo próprio do serviço | Unidade fonte a confirmar | Sub-região | Não habilitar como inad90 |
 | familias_endividadas | Famílias com dívidas declaradas | Definição da pesquisa | % | Pesquisa nacional/capital | Denominador e ponderação da edição |
 | familias_atraso | Famílias com atraso declarado | Definição da pesquisa | % | Pesquisa nacional/capital | Critério difere do SCR |
-| renda_censo | Rendimento definido pela tabela IBGE | Média/mediana publicada | R$ e ano-base | Município | Foto censitária; não renda mensal atual |
+| renda_censo | Rendimento nominal mensal domiciliar per capita | Média e mediana da tabela SIDRA 10295, totais de sexo, cor ou raça e idade | R$ nominais de 2022 | Município | Foto censitária; universo exclui pensionistas, empregados domésticos e seus parentes; não é renda mensal atual |
 | emprego_saldo | Saldo de vínculos formais | Admissões - desligamentos | Vínculos | Município | Trabalho formal e local do estabelecimento |
 | reclamacoes_fin | Reclamações financeiras registradas | Contagem após regras de categoria/deduplicação | Registros | Município/UF | Não prevalência de endividamento |
 | comprometimento_br | Serviço da dívida / renda | Definição da série BC selecionada | % | Brasil | Manter ajuste sazonal e média móvel documentados |
 
-Na fase 00, preencher tabela de origem real dos campos, unidades e chaves. Os identificadores acima são internos propostos; não são nomes de campos garantidos de todas as APIs.
+Origem validada de `renda_censo`: variáveis 13431 (média) e 13534 (mediana), período 2022 e nível N6. Os demais identificadores continuam internos e devem ser ligados aos campos reais antes da publicação.
 
 Toda série precisa de: descrição, fonte, geografia, universo, data, unidade, regra de agregação, versão metodológica e restrição de comparabilidade. Não calcular métrica se algum requisito essencial estiver pendente.

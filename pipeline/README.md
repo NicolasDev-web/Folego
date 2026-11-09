@@ -28,3 +28,11 @@ python pipeline/extract/municipal_geometries.py
 
 O script baixa a visão de qualidade mínima da API de Malhas do IBGE, exige 184 geometrias e confere cada `codarea` contra o cadastro municipal. O snapshot bruto e seu hash são preservados; essa geometria serve para contexto visual em escala estadual, não para medições de precisão.
 
+## Rendimento municipal do Censo 2022
+
+```bash
+python pipeline/extract/municipal_income.py
+```
+
+A etapa consulta a tabela SIDRA 10295 somente nos totais de sexo, cor ou raça e idade. Ela valida média e mediana do rendimento nominal mensal domiciliar per capita para os 184 municípios, preserva a resposta bruta e enriquece o contexto público. O universo exclui pensionistas, empregados domésticos e parentes de empregados domésticos, conforme a própria tabela.
+

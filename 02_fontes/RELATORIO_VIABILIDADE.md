@@ -64,8 +64,9 @@ O explorador municipal permanece útil e honesto: mostra população e, nas pró
 
 ## Próximos passos
 
-1. Fixar a tabela municipal de renda do Censo 2022, com universo, unidade e notas metodológicas.
-2. Incorporar a série ajustada do Novo Caged e registrar revisões por competência.
-3. Ingerir e validar o SCR.data estadual de 2019 em diante.
-4. Manter a busca por correspondência oficial de `SUB_REGIAO`, sem bloquear o MVP municipal de contexto.
+1. Incorporar a série ajustada do Novo Caged e registrar revisões por competência.
+2. Ingerir e validar o SCR.data estadual de 2019 em diante.
+3. Manter a busca por correspondência oficial de `SUB_REGIAO`, sem bloquear o MVP municipal de contexto.
+
+A tabela municipal de renda foi fixada em 09/11/2026: SIDRA 10295, variáveis 13431 e 13534, período 2022 e classificações totais. O manifesto está em `metadata/municipal_income_manifest.json`.
 

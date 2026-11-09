@@ -17,7 +17,7 @@ Evidência parcial: `pipeline/extract/phase00_collect.py` e `pipeline/extract/mu
 - [ ] Registrar caminho da evidência e atualizar status.
 
 Depende de: 02-01.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência parcial: `pipeline/extract/municipal_income.py` normaliza valores monetários, período, códigos e classificações, falhando em schema ou unidade inesperados. Status: em andamento; normalização SCR e MTE pendente.
 
 
 ## 02-03 — Separar fatos e construir dimensões
@@ -27,7 +27,7 @@ Evidência: a preencher pelo executor. Status inicial: não iniciada.
 - [ ] Registrar caminho da evidência e atualizar status.
 
 Depende de: 02-02.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência parcial: `data/processed/municipal_context.json` mantém dimensão municipal por código IBGE e `data/processed/municipal_income_2022.csv` contém o fato de renda sem totais duplicados. Status: em andamento.
 
 
 ## 02-04 — Ingerir pesquisas e registrar extrações

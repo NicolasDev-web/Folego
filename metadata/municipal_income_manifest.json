@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "collected_at": "2026-11-09T12:31:30+00:00",
+  "source_id": "IBGE-SIDRA-10295",
+  "metadata_url": "https://servicodados.ibge.gov.br/api/v3/agregados/10295/metadados",
+  "data_url": "https://servicodados.ibge.gov.br/api/v3/agregados/10295/periodos/2022/variaveis/13431%7C13534?localidades=N6%5BN3%5B23%5D%5D&classificacao=2%5B6794%5D%7C86%5B95251%5D%7C58%5B95253%5D",
+  "period": "2022",
+  "unit": "Reais nominais mensais",
+  "classifications": {
+    "2": {
+      "6794": "Total"
+    },
+    "86": {
+      "95251": "Total"
+    },
+    "58": {
+      "95253": "Total"
+    }
+  },
+  "municipalities": 184,
+  "variables": {
+    "13431": "média domiciliar per capita",
+    "13534": "mediana domiciliar per capita"
+  },
+  "files": [
+    {
+      "path": "data/raw/ibge/sidra_10295_metadata_2026-11-09.json",
+      "sha256": "f2b5c37b22c1be08f968979a5663d76e2bc19c2ad4aece49f93ab72b64a9d746",
+      "bytes": 3885
+    },
+    {
+      "path": "data/raw/ibge/renda_domiciliar_pc_ce_2022_2026-11-09.json",
+      "sha256": "1f584639427917d198e8e5b4d39a5fdc1367fc3e72def64f24463449e56a8c7a",
+      "bytes": 46104
+    }
+  ],
+  "validation": {
+    "coverage_exact": true,
+    "missing_values": 0,
+    "classification_totals_only": true,
+    "coverage_matrix_updates": 8
+  },
+  "restriction": "Moradores em domicílios particulares permanentes ocupados, exclusive pensionistas, empregados domésticos e parentes de empregados domésticos. Valores nominais de 2022."
+}
