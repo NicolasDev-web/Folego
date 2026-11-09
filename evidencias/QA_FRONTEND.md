@@ -4,7 +4,7 @@ Data: 09/11/2026. Escopo: base navegável, população, renda e emprego formal o
 
 ## Resultado
 
-- `npm test`: 2 arquivos e 4 testes aprovados. O adaptador preserva `null` para ausência, rejeita valor numérico marcado como indisponível e a projeção cartográfica fecha os polígonos nos limites compartilhados.
+- `npm test`: 2 arquivos e 5 testes aprovados. O adaptador preserva `null` para ausência, rejeita valor numérico marcado como indisponível e a projeção cartográfica fecha os polígonos e compartilha a mesma transformação com os centroides.
 - `npm run build`: TypeScript e build de produção concluídos com Vite 8.3.6.
 - Auditoria de dependências após instalação: 0 vulnerabilidades reportadas pelo npm.
 - Navegação confirmada nas rotas `/`, `/cidades` e `/metodo`, todas com `h1` semântico.
@@ -17,6 +17,9 @@ Data: 09/11/2026. Escopo: base navegável, população, renda e emprego formal o
 - O saldo estadual e os saldos de Fortaleza, Morada Nova, Sobral, Caucaia e Tianguá coincidem com a divulgação oficial usada como conferência independente.
 - “Ver quais empregos” abre uma leitura focada com ocupações, setores, recuos e salário médio das admissões; a ficha e o mapa permanecem intactos ao fechar.
 - Em Sobral, a primeira ocupação exibida é “Trabalhador polivalente da confecção de calçados”, com saldo de +374; o valor confere com o agregado por CBO.
+- O mapa abre no modo territorial; o zoom Sobral enquadra os 23 municípios da região sem deformar a malha.
+- Emprego renderiza 178 círculos para saldos não nulos; renda mantém 184 polígonos em cinco faixas; população renderiza 184 círculos proporcionais sem sobreposição.
+- A troca entre território, emprego, renda e população preserva Sobral na ficha, na URL e na etiqueta do mapa.
 - A nova composição usa busca compacta, mapa dominante e uma única ficha lateral; no celular a ficha antecede o mapa.
 - Mudança de rota reinicia a rolagem no topo. Links internos continuam levando às seções da página inicial.
 - Nenhum erro ou aviso foi registrado no console durante a rodada no navegador.
@@ -38,6 +41,10 @@ Screenshots reproduzíveis com `npm run qa:screenshots`:
 - `evidencias/qa/cidades-sobral-1440.png`
 - `evidencias/qa/cidades-sobral-empregos-390.png`
 - `evidencias/qa/cidades-sobral-empregos-1440.png`
+- `evidencias/qa/cidades-mapa-zoom-sobral-1440.png`
+- `evidencias/qa/cidades-mapa-emprego-1440.png`
+- `evidencias/qa/cidades-mapa-renda-1440.png`
+- `evidencias/qa/cidades-mapa-populacao-1440.png`
 
 ## Contraste dos pares principais
 

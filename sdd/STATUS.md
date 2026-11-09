@@ -8,7 +8,7 @@ O planejamento inicial, a inspeção da referência e o portão de viabilidade m
 | 01_ux | Em andamento | Composição visual responsiva e jornadas iniciais implementadas; comparação e teste com pessoas pendentes |
 | 02_dados | Em andamento | População, geometria, renda e Caged municipal validados; SCR histórico e ajustes do Caged pendentes |
 | 03_fundacao | Em andamento | 03-01 e 03-02 concluídas; componentes e adaptador em evolução |
-| 04_cidades | Em andamento | 04-01 a 04-03 concluídas; 184 municípios com mapa, busca e ficha; comparação e ranking pendentes |
+| 04_cidades | Em andamento | 04-01 a 04-03 concluídas; mapa territorial com zoom e modos opcionais de emprego, renda e população; comparação e ranking pendentes |
 | 05_investigacao | Planejada | 02 + 03; integrar 04 |
 | 06_validacao | Planejada | 04 + 05 |
 | 07_entrega | Planejada | 06 |

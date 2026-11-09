@@ -17,7 +17,7 @@ Evidência: `metadata/municipal_geometry_manifest.json`, 184 geometrias e corres
 - [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 04-01.
-Evidência: `app/src/components/MunicipalityMap.tsx`, testes de projeção e capturas em `evidencias/qa/`. Mapa contextual sem escala de dívida; lista oferece a alternativa por teclado. Status: concluída em 06/11/2026.
+Evidência: `app/src/components/MunicipalityMap.tsx`, testes de projeção e capturas em `evidencias/qa/`. O modo territorial permanece padrão e oferece zoom por 18 regiões; emprego, renda e população são modos opcionais com legendas e limites próprios. Status: ampliada e verificada em 09/11/2026.
 
 
 ## 04-03 — Construir ficha municipal

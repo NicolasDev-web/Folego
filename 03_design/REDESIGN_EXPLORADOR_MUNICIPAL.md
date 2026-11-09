@@ -48,3 +48,26 @@ No celular, a ordem passa a ser busca, resumo municipal, mapa e fonte. A busca f
 - Exibir o nome selecionado dentro do mapa e preservar a posição da página durante a troca de município.
 - Preservar equivalente textual, busca por teclado e atualização anunciada da ficha.
 
+## Modos cartográficos
+
+Decisão aplicada em 09/11/2026: “Território” continua sendo a única visualização padrão. O mapa abre com a malha reconhecível do Ceará e oferece zoom para 18 regiões de referência. Emprego, renda e população aparecem como escolhas secundárias no mesmo espaço, sem trocar a cidade selecionada.
+
+```text
+┌───────────────────────────────────────────────────────────┐
+│ Território   Emprego   Renda   População  [Zoom regional] │
+├───────────────────────────────────────────────────────────┤
+│                                                           │
+│             UMA VISUALIZAÇÃO POR VEZ                      │
+│                                                           │
+├───────────────────────────────────────────────────────────┤
+│ legenda específica                         fonte e limite │
+└───────────────────────────────────────────────────────────┘
+```
+
+- **Território:** limites municipais e zoom regional; modo inicial.
+- **Emprego:** círculos proporcionais à magnitude do saldo, distinguindo crescimento e retração.
+- **Renda:** cor por quintis da mediana domiciliar per capita; valores mínimo e máximo na legenda.
+- **População:** cartograma de círculos sem sobreposição; área proporcional à população e posição geográfica aproximada.
+- Busca, URL, etiqueta do mapa e ficha permanecem sincronizadas durante a troca de modo.
+- O cartograma declara a distorção e não substitui a referência territorial.
+

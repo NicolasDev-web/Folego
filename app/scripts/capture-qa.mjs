@@ -38,6 +38,34 @@ const captures = [
     height: 900,
     openEmployment: true,
   },
+  {
+    name: "cidades-mapa-zoom-sobral-1440.png",
+    path: "/cidades?cidade=sobral",
+    width: 1440,
+    height: 900,
+    region: "Sobral",
+  },
+  {
+    name: "cidades-mapa-emprego-1440.png",
+    path: "/cidades?cidade=sobral",
+    width: 1440,
+    height: 900,
+    mapMode: "Emprego",
+  },
+  {
+    name: "cidades-mapa-renda-1440.png",
+    path: "/cidades?cidade=sobral",
+    width: 1440,
+    height: 900,
+    mapMode: "Renda",
+  },
+  {
+    name: "cidades-mapa-populacao-1440.png",
+    path: "/cidades?cidade=sobral",
+    width: 1440,
+    height: 900,
+    mapMode: "População",
+  },
 ];
 
 await mkdir(outputDirectory, { recursive: true });
@@ -62,9 +90,17 @@ try {
       throw new Error(`${capture.name}: ${pageErrors.join(" | ")}`);
     }
     if (capture.path.startsWith("/cidades")) {
+      await page.locator(".map-shape").first().waitFor();
       const shapeCount = await page.locator(".map-shape").count();
       if (shapeCount !== 184) {
         throw new Error(`${capture.name}: esperadas 184 geometrias; recebidas ${shapeCount}.`);
+      }
+      const territoryPressed = await page
+        .getByRole("button", { name: "Território", exact: true })
+        .getAttribute("aria-pressed");
+      const initialRegion = await page.getByLabel("Zoom regional").inputValue();
+      if (territoryPressed !== "true" || initialRegion !== "") {
+        throw new Error(`${capture.name}: território com Ceará inteiro não abriu como padrão.`);
       }
     }
     if (capture.openEmployment) {
@@ -81,6 +117,51 @@ try {
         );
       }
       await dialog.getByText("R$ 2.440,17", { exact: true }).waitFor();
+    }
+    if (capture.region) {
+      const map = page.locator(".municipality-map-panel");
+      await map.getByLabel("Zoom regional").selectOption(capture.region);
+      const viewBox = await map.locator("svg").getAttribute("viewBox");
+      if (viewBox === "0 0 640 620") {
+        throw new Error(`${capture.name}: o zoom regional não alterou a área visível.`);
+      }
+      await map.getByText(`${capture.region} · 23 municípios`, { exact: true }).waitFor();
+    }
+    if (capture.mapMode) {
+      const map = page.locator(".municipality-map-panel");
+      await map.getByRole("button", { name: capture.mapMode, exact: true }).click();
+      if (capture.mapMode === "Emprego" && (await map.locator(".employment-symbol").count()) !== 178) {
+        throw new Error(`${capture.name}: esperados 178 símbolos de emprego com saldo não nulo.`);
+      }
+      if (capture.mapMode === "Renda" && (await map.locator(".income-map-legend").count()) !== 1) {
+        throw new Error(`${capture.name}: legenda de renda ausente.`);
+      }
+      if (capture.mapMode === "População" && (await map.locator(".population-symbol").count()) !== 184) {
+        throw new Error(`${capture.name}: cartograma não contém 184 municípios.`);
+      }
+      if (capture.mapMode === "População") {
+        const overlaps = await map.locator(".population-symbol").evaluateAll((circles) => {
+          const nodes = circles.map((circle) => ({
+            x: Number(circle.getAttribute("cx")),
+            y: Number(circle.getAttribute("cy")),
+            radius: Number(circle.getAttribute("r")),
+          }));
+          let count = 0;
+          for (let left = 0; left < nodes.length; left += 1) {
+            for (let right = left + 1; right < nodes.length; right += 1) {
+              const dx = nodes[right].x - nodes[left].x;
+              const dy = nodes[right].y - nodes[left].y;
+              if (Math.hypot(dx, dy) < nodes[left].radius + nodes[right].radius - 0.5) count += 1;
+            }
+          }
+          return count;
+        });
+        if (overlaps > 0) throw new Error(`${capture.name}: ${overlaps} sobreposições no cartograma.`);
+      }
+      const selectedName = await page.locator(".coverage-heading h2").textContent();
+      if (selectedName !== "Sobral" || !page.url().includes("cidade=sobral")) {
+        throw new Error(`${capture.name}: trocar a visualização alterou o município selecionado.`);
+      }
     }
     const hasHorizontalOverflow = await page.evaluate(
       () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
