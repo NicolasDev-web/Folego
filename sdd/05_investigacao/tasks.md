@@ -2,59 +2,59 @@
 
 ## 05-01 — Analisar Ceará/Brasil/Nordeste em recortes comuns
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Saldos, participação e inadimplência com datas e universos alinhados.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Saldos, participação e inadimplência com datas e universos alinhados.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: entrada da fase.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `app/src/lib/investigationAnalysis.ts`, `app/src/components/InvestigationChapters.tsx` (`#panorama`), `01_contexto/SINTESE_INVESTIGATIVA_FASE05.md` e `evidencias/qa/home-capitulo1-panorama-1440.png`. Status: concluída em 09/11/2026.
 
 
 ## 05-02 — Analisar composição por modalidade/renda
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Fatos distinguidos de mudanças de composição e de equivalência em salários mínimos.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Fatos distinguidos de mudanças de composição e de equivalência em salários mínimos.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 05-01.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `app/src/components/InvestigationChapters.tsx` (`#dividas`), separando modalidades PF, faixas de porte em salários mínimos, ocupações PF e sub-regiões postais `BCB-SUB 60–63` (`status: parcial`), e `evidencias/qa/home-capitulo3-perfis-1440.png`. Status: concluída em 09/11/2026.
 
 
 ## 05-03 — Construir evolução e quebras metodológicas
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Lacunas e mudança de 2025 visíveis; sem suavização ou comparações incompatíveis.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Lacunas e mudança de 2025 visíveis; sem suavização ou comparações incompatíveis.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 05-02.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `app/src/components/InvestigationChapters.tsx` (`#evolucao`), `splitSeriesAround2025Break` em `app/src/lib/investigationAnalysis.ts` e `evidencias/qa/home-capitulo2-evolucao-quebra2025-1440.png`. Status: concluída em 09/11/2026.
 
 
 ## 05-04 — Analisar renda/trabalho e pesquisa local
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Periodicidades distintas identificadas; associações não viram causas.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Periodicidades distintas identificadas; associações não viram causas.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 05-03.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `app/src/components/InvestigationChapters.tsx` (`#trabalho-e-percepcao`), preservando `2025-11` como `null` no IPDC Fortaleza (`capital_pesquisa`) e contrastando PNAD trimestral e Novo Caged mensal, e `evidencias/qa/home-capitulo4-trabalho-percepcao-1440.png`. Status: concluída em 09/11/2026.
 
 
 ## 05-05 — Redigir títulos e explicações com lastro
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Cada achado liga a tabela/fórmula; perguntas permanecem quando evidência não resolve.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Cada achado liga a tabela/fórmula; perguntas permanecem quando evidência não resolve.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 05-04.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `01_contexto/SINTESE_INVESTIGATIVA_FASE05.md` e quadros "O que a evidência comprova vs. O que permanece em aberto" em `app/src/components/InvestigationChapters.tsx`. Status: concluída em 09/11/2026.
 
 
 ## 05-06 — Integrar método e exportação
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: CSV filtrado com definições; notas simples e documentação completa acessíveis.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: CSV filtrado com definições; notas simples e documentação completa acessíveis.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 05-05.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `observationsToCsv` em `app/src/lib/investigationAnalysis.ts`, `app/src/pages/MethodPage.tsx` e capturas `evidencias/qa/metodo-1440.png`, `metodo-768.png` e `metodo-390.png`. Status: concluída em 09/11/2026.

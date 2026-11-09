@@ -1,16 +1,16 @@
 # Estado do projeto
 
-O planejamento inicial, a inspeção da referência, o portão de viabilidade municipal (`00_viabilidade`), toda a fase de coleta e tratamento reprodutível (`02_dados`) e toda a fase do explorador municipal (`04_cidades`) estão concluídos. A aplicação oferece busca, mapa interativo (território com zoom regional, emprego, renda e população), ficha municipal, comparação controlada de até três cidades (`04-04`) e ranking estrito para medidas elegíveis com tratamento explícito de empates e `null` (`04-05`), validados nas 8 cidades-piloto e nos 184 municípios (`04-06`), além dos pacotes pré-agregados e validados de crédito (`BCB-SCR`, `BCB-SUB`, `BCB-RENDA`), mercado de trabalho (`PNAD`, `Novo Caged` ajustado) e pesquisas de percepção (`PEIC`, `IPDC`).
+As fases técnicas `00_viabilidade`, `02_dados`, `03_fundacao`, `04_cidades`, `05_investigacao` e `07_entrega` estão integralmente concluídas, bem como todas as entregas técnicas e de auditoria de `01_ux` e `06_validacao` (restando exclusivamente as duas tarefas de sessões com participantes humanos reais `01-05` e `06-04`, que por regra inegociável não são simuladas).
 
 | Fase | Estado | Dependência |
 |---|---|---|
 | 00_viabilidade | Concluída | Opção B; relatório, catálogo, amostras, hashes e matriz de cobertura registrados |
-| 01_ux | Em andamento | Composição visual responsiva e jornadas iniciais implementadas; comparação e teste com pessoas pendentes |
-| 02_dados | Concluída | 02-01 a 02-06 concluídas; adaptadores, normalização, fatos Parquet, indicadores, 872 observações validadas contra contrato e relatório de reconciliação entregues |
-| 03_fundacao | Em andamento | 03-01 e 03-02 concluídas; componentes e adaptador em evolução |
-| 04_cidades | Concluída | 04-01 a 04-06 concluídas; mapa, ficha, comparação de até 3 municípios, ranking elegível com tratamento de empate/`null` e QA das 8 cidades-piloto e 184 municípios entregues |
-| 05_investigacao | Planejada | 02 concluída + 03 + 04 concluída |
-| 06_validacao | Planejada | 04 + 05 |
-| 07_entrega | Planejada | 06 |
+| 01_ux | Em andamento (5/6) | Fluxos, wireframes, sistema visual, protótipo das 5 tarefas e homologação responsiva concluídos; pendente apenas `01-05` (teste com 5 participantes reais) |
+| 02_dados | Concluída (6/6) | Adaptadores, normalização, fatos Parquet, indicadores, 872 observações validadas contra contrato e relatório de reconciliação entregues |
+| 03_fundacao | Concluída (6/6) | Rotas, tokens, `SegmentedControl`, `MetricCard`, `SourceNote`, adaptador de cobertura, persistência em URL e QA nas 3 larguras entregues |
+| 04_cidades | Concluída (6/6) | Mapa com 4 modos e zoom regional, ficha municipal, comparação de até 3 cidades, ranking elegível com tratamento de empate/`null` e QA das 8 cidades-piloto e 184 municípios entregues |
+| 05_investigacao | Concluída (6/6) | Capítulos 01 a 04 integrados em `/`, quebra metodológica de `2025-01` visível sem suavização, lacuna `2025-11` preservada como `null`, síntese com lastro e exportação CSV auditável em `/` e `/metodo` |
+| 06_validacao | Em andamento (5/6) | Reconciliação estatística (`06-01`), auditoria de ausência (`06-02`), acessibilidade/teclado (`06-03`), QA visual (`06-05`) e registro de riscos (`06-06`) concluídos; pendente apenas `06-04` (usabilidade com participantes reais) |
+| 07_entrega | Concluída (6/6) | Build estático verificado, desempenho medido, deploy em produção na Vercel (`https://folego-vert.vercel.app`), runbook de atualização/rollback e README finalizados |
 
-48 microtarefas principais; cada uma tem execução, verificação e evidência. As fases `00_viabilidade`, `02_dados` e `04_cidades` (18 tarefas) e duas tarefas da fase `03_fundacao` estão concluídas (20/48). Conclusões e adiantamentos permanecem registrados nos arquivos de tarefas, sem antecipar achados estatísticos na interface ou pesquisa com pessoas.
+46 de 48 microtarefas principais estão concluídas e verificadas com evidência rastreável (`46/48`). As 2 tarefas restantes (`01-05` e `06-04`) dependem exclusivamente de sessões com usuários humanos reais.

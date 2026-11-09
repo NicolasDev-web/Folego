@@ -2,59 +2,59 @@
 
 ## 07-01 — Preparar build e revisão de conteúdo público
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Agregados, licenças e fontes incluídos; ausência de dados pessoais/chaves.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Agregados, licenças e fontes incluídos; ausência de dados pessoais/chaves.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: entrada da fase.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `app/dist/`, `app/public/data/` e `04_tecnico/RUNBOOK_OPERACAO_E_ROLLBACK.md`. Status: concluída em 09/11/2026.
 
 
 ## 07-02 — Medir desempenho em ambiente definido
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Registrar LCP/INP/CLS medidos e corrigir problemas materiais.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Registrar LCP/INP/CLS medidos e corrigir problemas materiais.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 07-01.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `evidencias/QA_FRONTEND.md` (bundle JS gzip de 125 kB, CSS gzip de 9,6 kB, CLS = 0,00 e renderização estática sub-segundo). Status: concluída em 09/11/2026.
 
 
 ## 07-03 — Publicar no destino do projeto
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Somente conforme autorização e destino definidos no projeto de implementação; URL revisada.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Somente conforme autorização e destino definidos no projeto de implementação; URL revisada.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 07-02.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: Produção publicada em `https://folego-vert.vercel.app` e repositório GitHub `https://github.com/NicolasDev-web/Folego`. Status: concluída em 09/11/2026.
 
 
 ## 07-04 — Verificar versão publicada
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Build, assets, links, mapa, fontes, downloads e navegação funcionam.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Build, assets, links, mapa, fontes, downloads e navegação funcionam.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 07-03.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `https://folego-vert.vercel.app`, `https://folego-vert.vercel.app/cidades` e `https://folego-vert.vercel.app/metodo` verificados via HTTP e Playwright. Status: concluída em 09/11/2026.
 
 
 ## 07-05 — Documentar atualização e rollback
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Manifesto, comandos, versões, falhas de fonte e restauração documentados.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Manifesto, comandos, versões, falhas de fonte e restauração documentados.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 07-04.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `04_tecnico/RUNBOOK_OPERACAO_E_ROLLBACK.md` e `metadata/phase02_manifest.json`. Status: concluída em 09/11/2026.
 
 
 ## 07-06 — Entregar README e histórico de release
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Limites municipais e última competência por fonte transparentes.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Limites municipais e última competência por fonte transparentes.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 07-05.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `README.md`, `sdd/STATUS.md` e `sdd/DECISOES.md`. Status: concluída em 09/11/2026.

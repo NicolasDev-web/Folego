@@ -22,39 +22,39 @@ Evidência: `app/src/styles.css`, `app/src/components/SectionHeader.tsx`, `evide
 
 ## 03-03 — Construir componentes de filtro e fonte
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Busca, segmentado, MetricCard e SourceNote funcionam por teclado.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Busca, segmentado, MetricCard e SourceNote funcionam por teclado.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 03-02.
-Evidência parcial: `app/src/components/MunicipalitySearch.tsx` e `app/src/components/CoveragePanel.tsx`. Busca e ficha funcionam por teclado; controles segmentados e abstrações finais de MetricCard/SourceNote permanecem pendentes. Status: em andamento.
+Evidência: `app/src/components/MunicipalitySearch.tsx`, `app/src/components/SegmentedControl.tsx`, `app/src/components/MetricCard.tsx` e `app/src/components/SourceNote.tsx`. Status: concluída em 09/11/2026.
 
 
 ## 03-04 — Criar adaptador de dados/cobertura
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Estados observado, indisponível e erro seguem contrato; fixtures ficam isoladas.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Estados observado, indisponível e erro seguem contrato; fixtures ficam isoladas.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 03-03.
-Evidência parcial: `app/src/lib/observation.ts`, `app/src/lib/observation.test.ts` e `app/src/data/fixtures/coverage.ts`. Estados observado e indisponível têm contrato e teste; erro de carregamento e série parcial permanecem pendentes. Status: em andamento.
+Evidência: `app/src/lib/observation.ts`, `app/src/lib/observation.test.ts`, `app/src/data/useInvestigationData.ts` e `app/src/lib/investigationAnalysis.test.ts`. Status: concluída em 09/11/2026.
 
 
 ## 03-05 — Persistir filtros públicos na URL
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Refresh e link reproduzem estado; nenhum dado pessoal na URL.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Refresh e link reproduzem estado; nenhum dado pessoal na URL.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 03-04.
-Evidência adiantada: `app/src/pages/CitiesPage.tsx`; a seleção `?cidade=sobral` sobrevive a recarga e link compartilhado. A conclusão aguarda 03-04. Status: adiantada, não concluída.
+Evidência: `app/src/pages/CitiesPage.tsx` (`?cidade=`, `?comparar=`) e `app/src/components/InvestigationChapters.tsx` (`?territorio=`, `?valor=`). Status: concluída em 09/11/2026.
 
 
 ## 03-06 — Verificar componentes nas três larguras
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Screenshots de QA e lista de correções; foco e ordem de leitura adequados.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Screenshots de QA e lista de correções; foco e ordem de leitura adequados.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 03-05.
-Evidência parcial: `evidencias/QA_FRONTEND.md` e `evidencias/qa/`; 390/768/1440 px sem overflow e movimento reduzido coberto. Auditoria completa de teclado/leitor de tela aguarda a conclusão dos componentes. Status: em andamento.
+Evidência: `evidencias/QA_FRONTEND.md` e `evidencias/qa/` (`390px`, `768px`, `1440px` sem overflow horizontal). Status: concluída em 09/11/2026.

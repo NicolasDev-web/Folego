@@ -12,6 +12,9 @@ const captures = [
   { name: "home-390.png", path: "/", width: 390, height: 844 },
   { name: "home-768.png", path: "/", width: 768, height: 900 },
   { name: "home-1440.png", path: "/", width: 1440, height: 900 },
+  { name: "metodo-390.png", path: "/metodo", width: 390, height: 844 },
+  { name: "metodo-768.png", path: "/metodo", width: 768, height: 900 },
+  { name: "metodo-1440.png", path: "/metodo", width: 1440, height: 900 },
   {
     name: "cidades-sobral-390.png",
     path: "/cidades?cidade=sobral",
@@ -88,6 +91,13 @@ try {
     await page.goto(`${baseUrl}${capture.path}`, { waitUntil: "networkidle" });
     if (pageErrors.length > 0) {
       throw new Error(`${capture.name}: ${pageErrors.join(" | ")}`);
+    }
+    if (capture.path === "/") {
+      await page.locator(".investigation-chapters").waitFor();
+      await page.getByText("R$ 120,15 bi", { exact: true }).first().waitFor();
+    }
+    if (capture.path === "/metodo") {
+      await page.locator(".method-catalog-section").waitFor();
     }
     if (capture.path.startsWith("/cidades")) {
       await page.locator(".map-shape").first().waitFor();
@@ -176,6 +186,35 @@ try {
     if (capture.openEmployment) {
       await page.keyboard.press("Escape");
       await page.locator(".employment-dialog").waitFor({ state: "hidden" });
+    }
+    if (capture.name === "home-1440.png") {
+      const cap1 = page.locator("#panorama");
+      await cap1.scrollIntoViewIfNeeded();
+      await cap1.screenshot({
+        path: resolve(outputDirectory, "home-capitulo1-panorama-1440.png"),
+      });
+
+      const cap2 = page.locator("#evolucao");
+      await cap2.scrollIntoViewIfNeeded();
+      await cap2
+        .getByRole("button", { name: /Ativo problemático/i })
+        .click();
+      await cap2.screenshot({
+        path: resolve(outputDirectory, "home-capitulo2-evolucao-quebra2025-1440.png"),
+      });
+
+      const cap3 = page.locator("#dividas");
+      await cap3.scrollIntoViewIfNeeded();
+      await cap3.screenshot({
+        path: resolve(outputDirectory, "home-capitulo3-perfis-1440.png"),
+      });
+
+      const cap4 = page.locator("#trabalho-e-percepcao");
+      await cap4.scrollIntoViewIfNeeded();
+      await cap4.getByText("Indisponível (null — sem boletim 2025-11)").waitFor();
+      await cap4.screenshot({
+        path: resolve(outputDirectory, "home-capitulo4-trabalho-percepcao-1440.png"),
+      });
     }
     if (capture.name === "cidades-sobral-1440.png") {
       const fortalezaShape = page.locator(".map-shape").filter({ hasText: "Fortaleza" });

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { BreathingGraphic } from "../components/BreathingGraphic";
+import { InvestigationChapters } from "../components/InvestigationChapters";
 import { SectionHeader } from "../components/SectionHeader";
+import { useInvestigationData } from "../data/useInvestigationData";
 
 const concepts = [
   {
@@ -21,11 +23,13 @@ const concepts = [
 ];
 
 export function HomePage() {
+  const investigationState = useInvestigationData();
+
   return (
     <main id="conteudo">
       <section className="hero">
         <div className="hero-copy">
-          <p className="hero-context">Ceará e Brasil · investigação em construção</p>
+          <p className="hero-context">Ceará, Nordeste e Brasil · investigação com dados oficiais</p>
           <h1>Quanto espaço sobra no orçamento?</h1>
           <p className="hero-lead">
             Uma experiência para entender o que dívida, atraso e renda dizem — e o que não
@@ -40,7 +44,7 @@ export function HomePage() {
             </Link>
           </div>
           <p className="prototype-label">
-            Primeira versão funcional · ainda sem resultados estatísticos publicados
+            Séries oficiais reconciliadas (2019–2026) · 872 observações auditadas e 184 municípios
           </p>
         </div>
         <div className="hero-visual">
@@ -49,7 +53,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="content-section concept-section" id="panorama">
+      <section className="content-section concept-section">
         <SectionHeader
           marker="Antes dos números"
           title="Três formas de olhar a dívida."
@@ -66,45 +70,58 @@ export function HomePage() {
         </div>
       </section>
 
+      {investigationState.status === "loading" ? (
+        <section className="content-section" id="panorama" aria-live="polite">
+          <div className="data-state">
+            <h2>Carregando séries estaduais, regionais e nacionais</h2>
+            <p>Conferindo pacotes validados do BCB, IBGE, MTE, CNC e Fecomércio-CE.</p>
+          </div>
+        </section>
+      ) : null}
+
+      {investigationState.status === "error" ? (
+        <section className="content-section" id="panorama" role="alert">
+          <div className="data-state data-state-error">
+            <h2>Não foi possível carregar os capítulos investigativos</h2>
+            <p>{investigationState.error}</p>
+          </div>
+        </section>
+      ) : null}
+
+      {investigationState.status === "ready" ? (
+        <InvestigationChapters
+          macro={investigationState.macro}
+          profiles={investigationState.profiles}
+          labor={investigationState.labor}
+        />
+      ) : null}
+
       <section className="content-section city-invitation" id="cidades">
         <div>
           <SectionHeader
-            marker="Território"
+            marker="Território · 184 municípios"
             title="Cada cidade tem uma história — e uma cobertura."
-            description="A ausência de uma taxa municipal validada também é informação. A ficha mostra a escala, a fonte e o limite antes de qualquer comparação."
+            description="População, renda domiciliar (mediana e média) e emprego formal por ocupação estão disponíveis para os 184 municípios. A ausência de dívida municipal direta permanece transparente antes de qualquer comparação."
           />
           <Link className="button button-dark" to="/cidades?cidade=sobral">
-            Abrir o piloto municipal
+            Abrir o explorador municipal
           </Link>
         </div>
-        <div className="coverage-preview" aria-label="Exemplo de ficha sem dado">
-          <p>Ficha municipal</p>
-          <strong>Sobral</strong>
-          <span>—</span>
-          <small>Taxa de dívida municipal direta ainda não disponível</small>
+        <div className="coverage-preview" aria-label="Resumo da ficha de Sobral">
+          <p>Ficha municipal · Sobral</p>
+          <strong>R$ 650</strong>
+          <span>Renda per capita mediana (Censo 2022) · +454 empregos formais (set/2026)</span>
+          <small>Dívida municipal direta: indisponível (escala restrita à UF no SCR)</small>
         </div>
       </section>
 
-      <section className="content-section evidence-section" id="evolucao">
-        <SectionHeader
-          marker="Evolução"
-          title="A série virá depois da evidência."
-          description="Gráficos só entram quando fonte, unidade, período, universo e geografia estiverem validados. Até lá, a interface explica o que está pendente."
-        />
-        <div className="evidence-frame">
-          <div className="evidence-line" />
-          <p>Área reservada para séries observadas e quebras metodológicas documentadas.</p>
-        </div>
-      </section>
-
-      <section className="content-section method-callout" id="dividas">
+      <section className="content-section method-callout">
         <p>Dívida não é sinônimo de dificuldade financeira.</p>
-        <h2>O produto não vai transformar operações em pessoas, nem ausência em zero.</h2>
+        <h2>O produto não transforma operações em pessoas, nem ausência em zero.</h2>
         <Link className="text-link text-link-light" to="/metodo">
-          Ler os compromissos metodológicos
+          Ler os compromissos metodológicos e baixar dados
         </Link>
       </section>
     </main>
   );
 }
-

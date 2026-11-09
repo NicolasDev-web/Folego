@@ -1,70 +1,56 @@
 # Fôlego — dívidas, renda e território
 
-Plano de produto e investigação • Ceará, municípios e Brasil • versão 1.0 • 05/11/2026
+Produto editorial e investigação de dados públicos • Ceará, 184 municípios, Nordeste e Brasil • Release 1.0 • 09/11/2026
 
-Nome provisório: **Fôlego**. Pergunta central: como o crédito, os atrasos e a pressão sobre a renda evoluem no Ceará e que diferenças territoriais conseguimos demonstrar com dados públicos?
+- **Produção (Vercel):** https://folego-vert.vercel.app
+- **Repositório:** https://github.com/NicolasDev-web/Folego
 
-Este pacote contém planejamento SDD, auditoria da referência visual, direção de UX/UI, metodologia didática e contratos iniciais de dados. A aplicação e a investigação estatística completa serão desenvolvidas nas fases descritas. Os exemplos de desenho não apresentam resultados da pesquisa.
+Pergunta central: *como o crédito, os atrasos, o trabalho formal e a pressão sobre a renda evoluem no Ceará e que diferenças territoriais conseguimos demonstrar com dados públicos auditáveis?*
 
-## Aplicação inicial
+---
 
-Em 06/11/2026 começou a implementação da base em `app/`. A versão navegável inclui a abertura editorial, as rotas de panorama, cidades e método, busca nos 184 municípios, mapa oficial sincronizado, estados explícitos de cobertura e filtros públicos persistidos na URL. A população do Censo 2022 já é mostrada como dado observado; a ausência de uma fonte municipal direta de dívida é mostrada como indisponibilidade, nunca como zero.
+## 1. Visão geral e cobertura por fonte (Release 1.0)
 
-Para executar localmente:
+| Fonte oficial | Indicadores publicados | Escala territorial | Última competência validada | Estado de cobertura |
+|---|---|---|---|---|
+| **BCB · SCR.data** | Carteira ativa PF/PJ, inadimplência `> 90d`, atraso `15–90d`, ativo problemático e saldo por operação visível | `UF` (Ceará), `Região` (Nordeste) e `BR` | `2026-09` (33 datas-base desde `2019-08`) | `observado` (quebra documentada em `2025-01` para ativo problemático; linhas $\le 15$ preservadas como suprimidas) |
+| **BCB · Olinda `scr_sub_regiao`** | Proporção vencida `> 15 dias` (`vencido15_sub`) | `sub_regiao` (códigos postais `60`, `61`, `62`, `63` no Ceará) | `2026-08` (10 datas-base desde `2019-08`) | `parcial` (sem correspondência municipal oficial) |
+| **BCB · SGS `29034`** | Comprometimento de renda das famílias com o serviço da dívida | Exclusivo `BR` | `2026-08` | `observado` |
+| **IBGE · Censo 2022 (`SIDRA 4714 / 10295`)** | População residente e rendimento domiciliar per capita (mediana e média) | **184 municípios** do Ceará | `2022` | `observado` (184/184 municípios) |
+| **IBGE · PNAD Contínua (`SIDRA 4099 / 6472`)** | Taxa de desocupação e rendimento médio habitual real (com CV%) | `BR`, `NE`, `CE` e `Fortaleza` (`capital_pesquisa`) | `2026-T2` (`2019-T1..2026-T2`) | `observado` |
+| **MTE · Novo Caged** | Admissões, desligamentos, saldo formal, ocupações CBO, setores CNAE e salário médio de admissão | **184 municípios** do Ceará, `CE`, `NE` e `BR` | `2026-09` (municipal) e `2020-01..2026-08` (série ajustada) | `observado` (7 municípios com `null` em salário de admissão em `2026-09` preservados sem conversão para zero) |
+| **CNC · PEIC Nacional** | Proporção de famílias endividadas e com contas em atraso | `BR` | `2026-10` | `observado` |
+| **Fecomércio-CE · IPDC** | Proporção de famílias endividadas e em atraso na capital | `Fortaleza` (`capital_pesquisa` · `2304400`) | `2026-10` (`2025-04..2026-10`) | `observado` (`2025-11` preservado como `null` / `indisponivel`) |
 
-```bash
-cd app
-npm install
-npm run dev
+---
+
+## 2. Limites metodológicos inegociáveis
+
+1. **Dívida municipal direta permanece indisponível:** Nenhuma fonte pública direta passou pelos seis critérios do portão de viabilidade (`02_fontes/RELATORIO_VIABILIDADE.md`). A aplicação bloqueia qualquer atribuição de média estadual ou sub-regional às cidades e impede ranking por dívida municipal.
+2. **Operações $\neq$ Pessoas $\neq$ Famílias:** Contratos no SCR não são CPFs desduplicados, e pesquisas amostrais de percepção (`PEIC`/`IPDC`) não equivalem a inadimplência bancária acima de 90 dias.
+3. **Ausência nunca vira zero:** Valores suprimidos (`<= 15`) ou não publicados (`2025-11` no IPDC; 7 municípios sem admissões com salário positivo em `2026-09`) são mantidos como `null` e explicitados na interface e no CSV exportado.
+
+---
+
+## 3. Como executar e validar localmente
+
+### Pipeline de dados (`pipeline/`)
+```powershell
+python -m pipeline.run_phase02
+python -m pytest pipeline/tests/test_phase02.py -v
 ```
 
-Verificações disponíveis:
-
-```bash
-npm test
+### Aplicação web e QA (`app/`)
+```powershell
+cd app
+npm install
+npm test -- --run
 npm run build
 npm run qa:screenshots
 ```
 
-O relatório da primeira rodada técnica está em `evidencias/QA_FRONTEND.md`.
+---
 
-## Base de dados inicial
+## 4. Histórico de releases
 
-A fase 00 de viabilidade está concluída. O pipeline reproduzível validou os 184 municípios do Ceará, a população do Censo 2022, o piloto de oito cidades e uma amostra do SCR por sub-região. A decisão documentada é usar contexto municipal oficial sem transformar códigos regionais ou valores estaduais em dívida municipal.
-
-Para refazer a coleta e as validações:
-
-```bash
-python pipeline/extract/phase00_collect.py
-python pipeline/extract/municipal_geometries.py
-```
-
-O relatório está em `02_fontes/RELATORIO_VIABILIDADE.md`, os metadados e hashes em `metadata/`, a matriz do piloto em `data/processed/coverage_matrix.csv` e o GeoJSON cartográfico em `data/processed/ce_municipalities_min.geojson`.
-
-## Comece aqui
-
-1. Leia `01_contexto/METODOLOGIA_DIDATICA.md` para entender os conceitos e limites.
-2. Leia `02_fontes/VIABILIDADE_MUNICIPAL.md`: a análise municipal é requisito do produto, mas a taxa de endividamento de cada cidade depende de fonte direta validada.
-3. Veja `03_design/ANALISE_REFERENCIA.md`, `03_design/UX_UI.md` e `03_design/direcao_visual.svg`.
-4. Consulte a fase concluída em `sdd/00_viabilidade/` e siga por `sdd/02_dados/`. Cada fase tem spec, plano e microtarefas com aceite.
-5. Use `PROMPT_INICIAL.md` no agente do VS Code e atualize `sdd/STATUS.md` ao terminar cada tarefa.
-
-## Escopo acordado
-
-- Investigação de pessoas físicas e famílias; PJ aparece somente em contexto explicitamente separado.
-- Três escalas: Brasil, Ceará e cidades cearenses. Fortaleza tem uma camada própria de pesquisa local.
-- Prioridade de produto: experiência editorial bonita, contemporânea, legível e acessível, com exploração geográfica.
-- Referência analisada: https://dashboardfortaleza.vercel.app/index.html e páginas Trânsito, Segurança e Onde morar; repositório correspondente confirmado por homepage no GitHub.
-- Sem copiar conclusões, indicadores compostos ou regras de recomendação imobiliária para o novo domínio.
-
-## Entregas deste pacote
-
-Contexto, metodologia, catálogo de fontes, viabilidade municipal, desenho de indicadores, auditoria de todas as seções principais da referência, inventário de componentes do GitHub, especificação de UX, tokens CSS, prancha visual, arquitetura, contratos de dados e oito fases SDD.
-
-`evidencias/` guarda metadados e uma pequena amostra de resposta pública do SCR para validar a estrutura. Não é uma base analítica pronta. O mês de amostra não é declarado como o último disponível.
-
-## Decisões centrais
-
-Não estimar dados municipais replicando uma média estadual. Não confundir operações com pessoas. Não tratar crédito como sinônimo de dificuldade financeira. Não publicar ranking de superendividamento com variáveis indiretas. Exibir cobertura, fonte e competência em cada indicador.
-
-Documentos Markdown abrem no VS Code. A prancha SVG abre em navegador ou editor de imagens. Nenhuma instalação é necessária para ler o pacote.
+- **v1.0.0 (09/11/2026):** Entrega das fases `00_viabilidade`, `02_dados`, `03_fundacao`, `04_cidades`, `05_investigacao`, validação técnica/estatística de `06_validacao` e publicação em produção de `07_entrega` (`https://folego-vert.vercel.app`), com 872 observações contratadas, 4 capítulos investigativos interativos, explorador cartográfico em 4 modos para os 184 municípios, comparação controlada de até 3 cidades, ranking elegível e exportação CSV auditável.

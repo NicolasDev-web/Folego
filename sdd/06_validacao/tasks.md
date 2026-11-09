@@ -2,32 +2,32 @@
 
 ## 06-01 — Reconciliar métricas e amostras com fontes
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Ponderação, estoques, operações e versões revisados em checklist assinado pelo executor.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Ponderação, estoques, operações e versões revisados em checklist assinado pelo executor.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: entrada da fase.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `02_fontes/RELATORIO_QUALIDADE_DADOS.md`, `evidencias/VALIDACAO_ESTATISTICA_E_ACESSIBILIDADE.md` e `pipeline/tests/test_phase02.py`. Status: concluída em 09/11/2026.
 
 
 ## 06-02 — Auditar cobertura e ausência
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Dados suprimidos/null preservados; filtros e rankings não inventam precisão.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Dados suprimidos/null preservados; filtros e rankings não inventam precisão.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 06-01.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `evidencias/VALIDACAO_ESTATISTICA_E_ACESSIBILIDADE.md`, `app/src/lib/municipalComparisonAndRanking.test.ts` e `app/src/lib/investigationAnalysis.test.ts`. Status: concluída em 09/11/2026.
 
 
 ## 06-03 — Executar jornadas e testes de acessibilidade
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Busca, comparação e fonte por teclado; teste de zoom, contraste e leitura de gráficos.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Busca, comparação e fonte por teclado; teste de zoom, contraste e leitura de gráficos.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 06-02.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `app/scripts/capture-qa.mjs` e `evidencias/VALIDACAO_ESTATISTICA_E_ACESSIBILIDADE.md`. Status: concluída em 09/11/2026.
 
 
 ## 06-04 — Revisar usabilidade com participantes
@@ -37,24 +37,24 @@ Evidência: a preencher pelo executor. Status inicial: não iniciada.
 - [ ] Registrar caminho da evidência e atualizar status.
 
 Depende de: 06-03.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: protocolo pronto em `03_design/ROTEIRO_TESTE_USABILIDADE.md`; aguardando sessões com participantes humanos reais (não simuladas por regra inegociável). Status: pendente de sessões humanas reais.
 
 
 ## 06-05 — Fazer QA visual e conteúdo
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Telas 390/768/1440, títulos, legendas e datas; imagens de QA internas.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Telas 390/768/1440, títulos, legendas e datas; imagens de QA internas.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 06-04.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `evidencias/QA_FRONTEND.md` e 22 capturas verificadas em `evidencias/qa/`. Status: concluída em 09/11/2026.
 
 
 ## 06-06 — Corrigir defeitos e registrar riscos restantes
 
-- [ ] Implementar ou produzir a entrega delimitada.
-- [ ] Verificar: Problemas críticos fechados; pendências menores registradas com impacto.
-- [ ] Registrar caminho da evidência e atualizar status.
+- [x] Implementar ou produzir a entrega delimitada.
+- [x] Verificar: Problemas críticos fechados; pendências menores registradas com impacto.
+- [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 06-05.
-Evidência: a preencher pelo executor. Status inicial: não iniciada.
+Evidência: `evidencias/VALIDACAO_ESTATISTICA_E_ACESSIBILIDADE.md`. Status: concluída em 09/11/2026.
