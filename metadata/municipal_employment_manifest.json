@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.0.0",
-  "collected_at": "2026-11-09T12:42:23+00:00",
+  "schema_version": "1.1.0",
+  "collected_at": "2026-11-09T12:59:56+00:00",
   "source_id": "MTE-CAGEDMOV-202609",
   "source_url": "ftp://ftp.mtps.gov.br/pdet/microdados/NOVO%20CAGED/2026/202609/CAGEDMOV202609.7z",
   "release_page": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/novo-caged/2026/setembro/pagina-inicial",
@@ -13,6 +13,14 @@
     "stored_in_repository": false,
     "reason": "Arquivo nacional volumoso; o agregado municipal e o hash são versionados."
   },
+  "occupation_dictionary": {
+    "source_url": "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/cbo/servicos/downloads/cbo2002-ocupacao.csv",
+    "path": "data/raw/mte/cbo2002_ocupacao_2026-11-09.csv",
+    "sha256": "ad6d51d5d139125b15ea746464b2a39fa832ae295cdb6aa63dc7eddf2d2bed00",
+    "bytes": 108256,
+    "titles": 2694,
+    "encoding": "latin-1"
+  },
   "aggregation": {
     "filters": {
       "competênciamov": "202609",
@@ -22,6 +30,9 @@
     "admissions": "contagem de saldomovimentação = 1",
     "dismissals": "contagem de saldomovimentação = -1",
     "balance": "admissions - dismissals",
+    "occupation": "CBO 2002 de seis dígitos",
+    "sector": "seção da CNAE 2.0",
+    "average_admission_salary": "média nominal de salário positivo nas admissões",
     "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
   },
   "validation": {
@@ -31,6 +42,13 @@
     "state_dismissals": 53516,
     "state_balance": 5156,
     "identity_holds": true,
+    "occupation_rows": 10066,
+    "missing_occupation_titles": 9,
+    "occupation_fact_path": "data/processed/municipal_employment_occupations_2026-09.csv",
+    "municipalities_with_movements": 183,
+    "municipalities_without_movements": [
+      "Potiretama"
+    ],
     "official_cross_check": {
       "available": true,
       "state_balance": {

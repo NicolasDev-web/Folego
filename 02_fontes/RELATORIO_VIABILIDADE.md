@@ -72,3 +72,5 @@ A tabela municipal de renda foi fixada em 09/11/2026: SIDRA 10295, variáveis 13
 
 O retrato municipal do emprego formal foi fixado em 09/11/2026: `CAGEDMOV202609`, município do estabelecimento e saldo igual a admissões menos desligamentos. O agregado fecha com os 5.156 postos divulgados para o Ceará e com os cinco destaques municipais publicados. O manifesto está em `metadata/municipal_employment_manifest.json`.
 
+O mesmo microdado sustenta o detalhamento por CBO 2002 e seção CNAE. A interface mostra os cinco maiores saldos ocupacionais, três maiores recuos, setores com mais movimentações e salário médio nominal das admissões. Esses valores descrevem fluxos registrados no mês, não o estoque de trabalhadores ou vagas abertas no presente.
+

@@ -42,13 +42,15 @@ A etapa consulta a tabela SIDRA 10295 somente nos totais de sexo, cor ou raça e
 python pipeline/extract/municipal_employment.py
 ```
 
-A etapa baixa o `CAGEDMOV` mais recente configurado, lê o arquivo nacional em fluxo e agrega admissões, desligamentos e saldo para os 184 municípios do Ceará. O arquivo nacional não é versionado por causa do volume; URL, tamanho e SHA-256 ficam no manifesto, enquanto o agregado municipal reproduzível é preservado. A competência de setembro de 2026 é conferida contra o saldo estadual e os cinco destaques municipais publicados pelo Governo Federal.
+A etapa baixa o `CAGEDMOV` mais recente configurado, lê o arquivo nacional em fluxo e agrega admissões, desligamentos e saldo para os 184 municípios do Ceará. Ela também cruza ocupações com o dicionário oficial da CBO 2002, resume setores pela seção CNAE e calcula o salário médio nominal das admissões com valor positivo. O arquivo nacional não é versionado por causa do volume; URL, tamanho e SHA-256 ficam no manifesto, enquanto os agregados municipais e o pequeno dicionário CBO são preservados. A competência de setembro de 2026 é conferida contra o saldo estadual e os cinco destaques municipais publicados pelo Governo Federal.
 
 Para reutilizar um arquivo já baixado:
 
 ```bash
-python pipeline/extract/municipal_employment.py --archive /caminho/CAGEDMOV202609.7z
+python pipeline/extract/municipal_employment.py --archive /caminho/CAGEDMOV202609.7z --cbo /caminho/cbo2002-ocupacao.csv
 ```
 
 O valor mensal usa o `CAGEDMOV` da própria competência. Ajustes declarados em publicações posteriores ainda não integram esse retrato e são identificados explicitamente na interface e no manifesto.
+
+Saídas específicas: `municipal_employment_2026-09.csv` contém o total municipal; `municipal_employment_occupations_2026-09.csv` preserva o fato por ocupação. O contexto público recebe somente os cinco maiores saldos ocupacionais, os três maiores recuos e os três setores com mais movimentações por município.
 

@@ -27,7 +27,7 @@ Evidência parcial: `municipal_income.py` e `municipal_employment.py` normalizam
 - [ ] Registrar caminho da evidência e atualizar status.
 
 Depende de: 02-02.
-Evidência parcial: `data/processed/municipal_context.json` mantém a dimensão municipal por código IBGE; os arquivos `municipal_income_2022.csv` e `municipal_employment_2026-09.csv` contêm fatos separados, sem totais duplicados. Status: em andamento.
+Evidência parcial: `data/processed/municipal_context.json` mantém a dimensão municipal por código IBGE; os arquivos `municipal_income_2022.csv`, `municipal_employment_2026-09.csv` e `municipal_employment_occupations_2026-09.csv` contêm fatos separados, sem totais duplicados. Status: em andamento.
 
 
 ## 02-04 — Ingerir pesquisas e registrar extrações
@@ -38,6 +38,8 @@ Evidência parcial: `data/processed/municipal_context.json` mantém a dimensão 
 
 Depende de: 02-03.
 Evidência parcial: o microdado `CAGEDMOV202609` foi agregado para 184 municípios e conferido contra a divulgação oficial; URL, hash, regra e revisão estão em `metadata/municipal_employment_manifest.json`. Status: em andamento; pesquisas de crédito permanecem pendentes.
+
+O detalhamento MTE inclui ocupações CBO, setores CNAE e salário nominal das admissões. Os códigos residuais sem título oficial são contabilizados no manifesto e não aparecem entre os destaques publicados na interface.
 
 
 ## 02-05 — Implementar indicadores prioritários
