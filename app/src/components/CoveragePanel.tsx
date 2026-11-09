@@ -18,6 +18,13 @@ export function CoveragePanel({ municipality }: CoveragePanelProps) {
   });
   const medianIncome = currency.format(municipality.income_pc_median_2022);
   const meanIncome = currency.format(municipality.income_pc_mean_2022);
+  const employment = municipality.formal_employment;
+  const balance = `${employment.balance >= 0 ? "+" : ""}${new Intl.NumberFormat("pt-BR").format(employment.balance)}`;
+  const employmentPeriod = new Intl.DateTimeFormat("pt-BR", {
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${employment.period}-01T00:00:00Z`));
 
   return (
     <aside className="coverage-panel" aria-live="polite">
@@ -43,6 +50,21 @@ export function CoveragePanel({ municipality }: CoveragePanelProps) {
         <small>Média municipal: {meanIncome}</small>
       </section>
 
+      <section className="employment-fact" aria-label="Movimentação do emprego formal">
+        <div>
+          <h3>Emprego formal</h3>
+          <span>{employmentPeriod}</span>
+        </div>
+        <p className={`employment-value ${employment.balance < 0 ? "is-negative" : ""}`}>
+          {balance}
+        </p>
+        <p>postos no mês</p>
+        <small>
+          {new Intl.NumberFormat("pt-BR").format(employment.admissions)} admissões ·{" "}
+          {new Intl.NumberFormat("pt-BR").format(employment.dismissals)} desligamentos
+        </small>
+      </section>
+
       <section className="availability-row">
         <div>
           <h3>Dívida municipal direta</h3>
@@ -55,8 +77,8 @@ export function CoveragePanel({ municipality }: CoveragePanelProps) {
         <summary>Fontes e limites</summary>
         <div>
           <p>
-            População e renda são observadas no município. A dívida não recebe valor estadual,
-            regional ou demonstrativo.
+            População, renda e emprego formal são observados no município. A dívida não recebe
+            valor estadual, regional ou demonstrativo.
           </p>
           <dl>
             <div><dt>Escala</dt><dd>Município</dd></div>
@@ -69,6 +91,9 @@ export function CoveragePanel({ municipality }: CoveragePanelProps) {
             Fonte da população
           </a>
           <a href="https://sidra.ibge.gov.br/tabela/10295">Fonte da renda</a>
+          <a href="https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/novo-caged/2026/setembro/pagina-inicial">
+            Fonte do emprego
+          </a>
           <a href={observation.source_url}>Entender a cobertura</a>
         </div>
       </details>

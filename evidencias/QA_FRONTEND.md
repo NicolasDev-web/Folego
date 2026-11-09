@@ -1,6 +1,6 @@
 # QA da base do frontend
 
-Data: 09/11/2026. Escopo: base navegável, população e renda oficiais e explorador cartográfico municipal.
+Data: 09/11/2026. Escopo: base navegável, população, renda e emprego formal oficiais e explorador cartográfico municipal.
 
 ## Resultado
 
@@ -13,6 +13,8 @@ Data: 09/11/2026. Escopo: base navegável, população e renda oficiais e explor
 - A seleção atualiza a etiqueta com o nome dentro do mapa e preserva a posição vertical da página.
 - População, renda domiciliar per capita média e renda mediana cobrem exatamente os 184 códigos municipais, sem valores ausentes.
 - Os arquivos brutos da renda conferem com os hashes SHA-256 registrados no manifesto de coleta.
+- O emprego formal cobre os 184 municípios; admissões menos desligamentos fecha em 5.156 postos no Ceará em setembro de 2026.
+- O saldo estadual e os saldos de Fortaleza, Morada Nova, Sobral, Caucaia e Tianguá coincidem com a divulgação oficial usada como conferência independente.
 - A nova composição usa busca compacta, mapa dominante e uma única ficha lateral; no celular a ficha antecede o mapa.
 - Mudança de rota reinicia a rolagem no topo. Links internos continuam levando às seções da página inicial.
 - Nenhum erro ou aviso foi registrado no console durante a rodada no navegador.
@@ -48,7 +50,7 @@ Os pares verificados atendem 4,5:1 para texto normal. A checagem não substitui 
 ## Limites desta rodada
 
 - Não houve teste com participantes; a tarefa 01-05 permanece aberta.
-- Comparação entre cidades, emprego formal e séries de crédito ainda não foram implementados. A renda disponível é um retrato nominal do Censo 2022, não uma série mensal corrente.
+- Comparação entre cidades e séries de crédito ainda não foram implementadas. A renda é um retrato nominal do Censo 2022; o emprego é a competência 09/2026 sem ajustes declarados posteriormente.
 - Os estados de carregamento e erro existem, mas a simulação de falha de rede permanece para a fase de validação.
 - A inspeção de acessibilidade cobriu semântica, nomes acessíveis, foco visível, alvos principais e movimento reduzido; leitor de tela e ordem completa de tabulação permanecem para a fase de validação.
 

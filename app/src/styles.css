@@ -1288,6 +1288,52 @@ a {
   font-size: 0.8rem;
 }
 
+.employment-fact {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.employment-fact > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.employment-fact h3,
+.employment-fact p {
+  margin: 0;
+}
+
+.employment-fact h3 {
+  font-size: 1rem;
+}
+
+.employment-fact > div span {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.employment-fact .employment-value {
+  margin-top: 1rem;
+  color: var(--brand);
+  font-size: clamp(2rem, 3vw, 3rem);
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.employment-fact .employment-value.is-negative {
+  color: var(--accent);
+}
+
+.employment-fact > p:not(.employment-value),
+.employment-fact small {
+  display: block;
+  margin-top: 0.55rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
 .availability-row {
   display: grid;
   grid-template-columns: 1fr auto;

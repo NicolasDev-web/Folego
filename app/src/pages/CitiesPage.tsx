@@ -31,7 +31,7 @@ export function CitiesPage() {
         <p className="section-marker">Explorador municipal · 184 municípios</p>
         <h1>O que já podemos dizer sobre sua cidade?</h1>
         <p>
-          População e renda domiciliar do Censo 2022 já estão validadas por código IBGE. A dívida
+          População, renda domiciliar e emprego formal já estão validados por código IBGE. A dívida
           local continua indisponível até existir uma fonte direta que passe pelo portão metodológico.
         </p>
       </header>

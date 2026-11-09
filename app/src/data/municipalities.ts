@@ -6,6 +6,13 @@ export type Municipality = {
   population_2022: number;
   income_pc_mean_2022: number;
   income_pc_median_2022: number;
+  formal_employment: {
+    period: string;
+    admissions: number;
+    dismissals: number;
+    balance: number;
+    revision: string;
+  };
   pilot: boolean;
 };
 
@@ -19,6 +26,7 @@ export type MunicipalContextFile = {
     period?: string;
     metric?: string;
     unit?: string;
+    revision?: string;
   }>;
   municipalities: Municipality[];
 };
