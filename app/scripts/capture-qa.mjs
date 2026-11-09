@@ -242,7 +242,18 @@ try {
         throw new Error(`Linha de dívida municipal na comparação inválida: ${debtRowCells.join(", ")}`);
       }
 
+      const comparisonSection = page.locator(".municipal-comparison-section");
+      await comparisonSection.scrollIntoViewIfNeeded();
+      await comparisonSection.screenshot({
+        path: resolve(outputDirectory, "cidades-comparacao-1440.png"),
+      });
+
       const rankingSection = page.locator(".municipal-ranking-section");
+      await rankingSection.scrollIntoViewIfNeeded();
+      await rankingSection.screenshot({
+        path: resolve(outputDirectory, "cidades-ranking-mediana-1440.png"),
+      });
+
       await rankingSection
         .getByRole("button", { name: /Salário de admissão/i })
         .click();
@@ -257,11 +268,19 @@ try {
         );
       }
 
+      await rankingSection.screenshot({
+        path: resolve(outputDirectory, "cidades-ranking-salario-1440.png"),
+      });
+
       await rankingSection
         .getByRole("button", { name: /Dívida municipal \(inelegível\)/i })
         .click();
       await rankingSection.locator(".ranking-ineligible-banner").waitFor();
       await rankingSection.getByText("0 de 184 municípios", { exact: true }).waitFor();
+
+      await rankingSection.screenshot({
+        path: resolve(outputDirectory, "cidades-ranking-divida-1440.png"),
+      });
     }
     await context.close();
   }
