@@ -1,6 +1,6 @@
 # QA da base do frontend
 
-Data: 06/11/2026. Escopo: base navegável, população oficial e explorador cartográfico municipal.
+Data: 09/11/2026. Escopo: base navegável, população e renda oficiais e explorador cartográfico municipal.
 
 ## Resultado
 
@@ -11,6 +11,8 @@ Data: 06/11/2026. Escopo: base navegável, população oficial e explorador cart
 - Busca por “Crato” via teclado atualiza a ficha e a URL para `?cidade=crato`.
 - As 184 geometrias são renderizadas; clicar em Fortaleza no mapa sincroniza mapa, ficha e URL.
 - A seleção atualiza a etiqueta com o nome dentro do mapa e preserva a posição vertical da página.
+- População, renda domiciliar per capita média e renda mediana cobrem exatamente os 184 códigos municipais, sem valores ausentes.
+- Os arquivos brutos da renda conferem com os hashes SHA-256 registrados no manifesto de coleta.
 - A nova composição usa busca compacta, mapa dominante e uma única ficha lateral; no celular a ficha antecede o mapa.
 - Mudança de rota reinicia a rolagem no topo. Links internos continuam levando às seções da página inicial.
 - Nenhum erro ou aviso foi registrado no console durante a rodada no navegador.
@@ -46,7 +48,7 @@ Os pares verificados atendem 4,5:1 para texto normal. A checagem não substitui 
 ## Limites desta rodada
 
 - Não houve teste com participantes; a tarefa 01-05 permanece aberta.
-- Comparação entre cidades, renda, emprego formal e séries de crédito ainda não foram implementados.
+- Comparação entre cidades, emprego formal e séries de crédito ainda não foram implementados. A renda disponível é um retrato nominal do Censo 2022, não uma série mensal corrente.
 - Os estados de carregamento e erro existem, mas a simulação de falha de rede permanece para a fase de validação.
 - A inspeção de acessibilidade cobriu semântica, nomes acessíveis, foco visível, alvos principais e movimento reduzido; leitor de tela e ordem completa de tabulação permanecem para a fase de validação.
 

@@ -4,6 +4,8 @@ export type Municipality = {
   name: string;
   region: string;
   population_2022: number;
+  income_pc_mean_2022: number;
+  income_pc_median_2022: number;
   pilot: boolean;
 };
 

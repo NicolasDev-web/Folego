@@ -10,6 +10,14 @@ export function CoveragePanel({ municipality }: CoveragePanelProps) {
   const observation = municipalDebtCoverage(municipality.slug);
   const state = describeObservation(observation);
   const population = new Intl.NumberFormat("pt-BR").format(municipality.population_2022);
+  const currency = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  });
+  const medianIncome = currency.format(municipality.income_pc_median_2022);
+  const meanIncome = currency.format(municipality.income_pc_mean_2022);
 
   return (
     <aside className="coverage-panel" aria-live="polite">
@@ -25,6 +33,16 @@ export function CoveragePanel({ municipality }: CoveragePanelProps) {
         <p>Censo 2022 · IBGE</p>
       </section>
 
+      <section className="income-fact" aria-label="Rendimento domiciliar per capita">
+        <div>
+          <h3>Renda domiciliar per capita</h3>
+          <span>Mediana</span>
+        </div>
+        <p className="income-value">{medianIncome}</p>
+        <p>mensal nominal · Censo 2022</p>
+        <small>Média municipal: {meanIncome}</small>
+      </section>
+
       <section className="availability-row">
         <div>
           <h3>Dívida municipal direta</h3>
@@ -37,8 +55,8 @@ export function CoveragePanel({ municipality }: CoveragePanelProps) {
         <summary>Fontes e limites</summary>
         <div>
           <p>
-            A população é observada no município. A dívida não recebe valor estadual, regional
-            ou demonstrativo.
+            População e renda são observadas no município. A dívida não recebe valor estadual,
+            regional ou demonstrativo.
           </p>
           <dl>
             <div><dt>Escala</dt><dd>Município</dd></div>
@@ -50,6 +68,7 @@ export function CoveragePanel({ municipality }: CoveragePanelProps) {
           >
             Fonte da população
           </a>
+          <a href="https://sidra.ibge.gov.br/tabela/10295">Fonte da renda</a>
           <a href={observation.source_url}>Entender a cobertura</a>
         </div>
       </details>
