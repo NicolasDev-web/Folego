@@ -11,6 +11,11 @@ import pandas as pd
 import pytest
 from jsonschema import Draft202012Validator
 
+from pipeline.audit_source_freshness import (
+    build_freshness_report,
+    latest_period_from_competence,
+    normalized_period,
+)
 from pipeline.extract.http_client import ROOT, sha256_bytes
 from pipeline.run_phase02 import validate_collected_date
 from pipeline.transform.indicators import (
@@ -37,6 +42,42 @@ def test_collection_date_argument() -> None:
 
     with pytest.raises(argparse.ArgumentTypeError):
         validate_collected_date("10/11/2026")
+
+
+def test_freshness_period_normalization() -> None:
+    assert normalized_period("202609") == "2026-09"
+    assert normalized_period("202603", quarterly=True) == "2026-T3"
+    assert normalized_period("2026-T2") == "2026-T2"
+    assert latest_period_from_competence("2019-T1..2026-T2") == "2026-T2"
+    assert latest_period_from_competence("2020-01..2026-08") == "2026-08"
+
+
+def test_freshness_report_is_alert_only() -> None:
+    manifest = {
+        "raw_files": [
+            {"source_id": "MTE-NOVO-CAGED", "competence": "2020-01..2026-08"},
+            {"source_id": "IBGE-SIDRA-1737", "competence": "2018-01..2026-09"},
+        ]
+    }
+    report = build_freshness_report(
+        manifest,
+        year=2026,
+        discoverers={
+            "MTE-NOVO-CAGED": lambda: "2026-09",
+            "IBGE-SIDRA-1737": lambda: "2026-09",
+        },
+    )
+    statuses = {item["source_id"]: item["status"] for item in report["checks"]}
+    assert statuses == {
+        "MTE-NOVO-CAGED": "new_available",
+        "IBGE-SIDRA-1737": "current",
+    }
+    assert report["summary"] == {
+        "sources_checked": 2,
+        "new_available": 1,
+        "check_failed": 0,
+    }
+    assert "nenhuma competência é publicada automaticamente" in report["publication_policy"]
 
 
 def test_normalize_period_and_schema_errors() -> None:

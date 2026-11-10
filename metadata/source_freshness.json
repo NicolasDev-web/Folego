@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "checked_at": "2026-11-10T16:36:30+00:00",
+  "publication_policy": "Somente alerta; nenhuma competência é publicada automaticamente.",
+  "summary": {
+    "sources_checked": 8,
+    "new_available": 1,
+    "check_failed": 0
+  },
+  "checks": [
+    {
+      "source_id": "IBGE-SIDRA-1737",
+      "label": "IPCA",
+      "published_period": "2026-09",
+      "available_period": "2026-09",
+      "status": "current"
+    },
+    {
+      "source_id": "IBGE-SIDRA-4099",
+      "label": "PNAD Contínua — desocupação",
+      "published_period": "2026-T2",
+      "available_period": "2026-T2",
+      "status": "current"
+    },
+    {
+      "source_id": "IBGE-SIDRA-6472",
+      "label": "PNAD Contínua — rendimento",
+      "published_period": "2026-T2",
+      "available_period": "2026-T2",
+      "status": "current"
+    },
+    {
+      "source_id": "MTE-NOVO-CAGED",
+      "label": "Novo Caged — competência municipal",
+      "published_period": "2026-08",
+      "availability_note": "A disponibilidade vem do diretório oficial de microdados. A série ajustada só avança após validação da planilha de tabelas da mesma competência.",
+      "available_period": "2026-09",
+      "status": "new_available"
+    },
+    {
+      "source_id": "BCB-SCR",
+      "label": "SCR.data",
+      "published_period": "2026-09",
+      "available_period": "2026-09",
+      "status": "current"
+    },
+    {
+      "source_id": "BCB-RENDA",
+      "label": "Comprometimento de renda (SGS 29034)",
+      "published_period": "2026-08",
+      "available_period": "2026-08",
+      "status": "current"
+    },
+    {
+      "source_id": "BCB-SGS-20541",
+      "label": "Saldo de crédito PF (SGS 20541)",
+      "published_period": "2026-09",
+      "available_period": "2026-09",
+      "status": "current"
+    },
+    {
+      "source_id": "BCB-SGS-21084",
+      "label": "Inadimplência PF (SGS 21084)",
+      "published_period": "2026-09",
+      "available_period": "2026-09",
+      "status": "current"
+    }
+  ]
+}

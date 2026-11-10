@@ -86,3 +86,13 @@ python -m pytest pipeline/tests/test_phase02.py -v
 - `.github/workflows/data-refresh.yml` é acionado manualmente, executa a coleta completa e cria uma branch exclusiva com link para revisão. Ele não publica dados nem altera `main` ou a produção automaticamente.
 
 O fluxo de atualização permanece manual até que todos os adaptadores de fontes com competências explícitas sejam parametrizados. Isso evita que uma mudança de URL, planilha ou metodologia entre silenciosamente em produção.
+
+## Monitoramento de novas competências
+
+Uma verificação semanal, somente de leitura, compara a última competência publicada com o catálogo oficial do IBGE, MTE e BCB:
+
+```bash
+python -m pipeline.audit_source_freshness
+```
+
+O resultado fica em `metadata/source_freshness.json`. O monitor não altera os pacotes públicos: uma competência nova gera apenas um alerta para revisão humana. A publicação continua dependendo da coleta completa, das reconciliações, dos testes e da aprovação da proposta de atualização.

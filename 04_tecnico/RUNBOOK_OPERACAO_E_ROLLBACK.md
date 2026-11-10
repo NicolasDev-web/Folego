@@ -41,6 +41,8 @@ Data: 09/11/2026. Destino de produção: **https://folego-vert.vercel.app** (`ni
 
 Em cada pull request e envio para `main`, `.github/workflows/ci.yml` executa automaticamente os testes do pipeline, os testes do frontend e o build. A aprovação da proposta de dados continua sendo humana porque algumas fontes divulgam novas competências por URLs e planilhas específicas.
 
+Toda segunda-feira, `.github/workflows/source-freshness.yml` consulta os catálogos oficiais do IBGE, MTE e BCB e guarda um relatório de disponibilidade. Esse fluxo é somente de leitura: ele sinaliza competências novas, mas não altera dados públicos, não cria publicação e não dispara deploy.
+
 ---
 
 ## 3. Procedimento de Rollback Imediato

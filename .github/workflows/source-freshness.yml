@@ -1,0 +1,40 @@
+name: Verificar novas competencias oficiais
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 11 * * 1"
+
+concurrency:
+  group: source-freshness
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositorio
+        uses: actions/checkout@v5
+
+      - name: Preparar Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: python -m pip install -r requirements.txt
+
+      - name: Comparar competencias
+        run: python -m pipeline.audit_source_freshness --output artifacts/source_freshness.json --summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Guardar relatorio
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-freshness
+          path: artifacts/source_freshness.json
+          if-no-files-found: error
