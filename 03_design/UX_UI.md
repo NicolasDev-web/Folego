@@ -32,7 +32,7 @@ Explorador: desktop 2/3 mapa + 1/3 ficha. Barra: indicador, competência, busca 
 
 Ficha municipal: nome, município/UF, cobertura, indicador selecionado e origem. Blocos separados para observação municipal e contexto regional. Botão “Comparar”. Não ocultar a escala territorial na ficha.
 
-Comparador: até três cidades. Tabela com períodos lado a lado. Quando não houver período comum, oferecer selecionar outro indicador e explicar; não preencher com ano próximo silenciosamente. Séries e comparação ficam disponíveis por link compartilhável de filtros públicos.
+Comparador: até três cidades, cada uma identificada por uma cor constante. A seleção fica em uma faixa compacta; valores lado a lado recebem barras proporcionais para leitura relativa, mantendo o número exato. Período e fonte permanecem visíveis, enquanto unidade e universo entram em detalhe progressivo. No celular, cada indicador vira um bloco vertical sem rolagem lateral. Quando não houver dado comparável, apresentar uma única explicação para o conjunto; não preencher com ano próximo silenciosamente. Séries e comparação ficam disponíveis por link compartilhável de filtros públicos.
 
 Evolução: gráficos de linha sem suavização que invente forma, anotação de quebra e opção nominal/real quando válida. Faixas de renda em pequenos múltiplos, evitando quinze séries sobrepostas. Composição: barras horizontais; distribuição: só se dados permitirem. Sem gráficos de pizza em excesso ou mapas como decoração repetida.
 

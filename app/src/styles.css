@@ -3391,3 +3391,484 @@ a {
   display: grid;
   gap: 1rem;
 }
+
+/* Municipal comparison: territorial reading board */
+
+.municipal-comparison-section {
+  --comparison-ink: #103e3b;
+  --comparison-paper: #fbfaf6;
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+  padding-top: clamp(2.4rem, 5vw, 4rem);
+}
+
+.comparison-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.comparison-intro h2 {
+  max-width: 18ch;
+  margin: 0.35rem 0 0.75rem;
+  font-size: clamp(2.15rem, 4vw, 3.65rem);
+  font-weight: 520;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+
+.municipal-comparison-section .comparison-counter {
+  min-width: 0;
+  margin: 0 0 0.25rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: baseline;
+  gap: 0.45rem;
+  color: var(--comparison-ink);
+  background: transparent;
+  border: 0;
+}
+
+.municipal-comparison-section .comparison-counter strong {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 520;
+  letter-spacing: -0.06em;
+  line-height: 0.8;
+}
+
+.municipal-comparison-section .comparison-counter span {
+  max-width: 8ch;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 650;
+  line-height: 1.15;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.comparison-workbench {
+  margin-top: 2rem;
+  padding: clamp(1rem, 2.5vw, 1.6rem);
+  color: #f8f5ed;
+  background: var(--comparison-ink);
+  border-radius: 14px 14px 0 0;
+}
+
+.comparison-city-rail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.comparison-city-card {
+  position: relative;
+  min-width: 0;
+  min-height: 104px;
+  padding: 1rem 3.8rem 1rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  color: var(--comparison-ink);
+  background: #fffdf8;
+  border: 0;
+  border-top: 5px solid var(--comparison-city);
+  border-radius: 6px;
+}
+
+.comparison-city-card.is-primary {
+  background: #eef5f1;
+}
+
+.comparison-city-number {
+  flex: 0 0 auto;
+  width: 1.65rem;
+  height: 1.65rem;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: var(--comparison-city);
+  border-radius: 50%;
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.comparison-city-card small,
+.comparison-city-card strong,
+.comparison-city-card span:not(.comparison-city-number) {
+  display: block;
+}
+
+.comparison-city-card small {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.comparison-city-card strong {
+  margin-top: 0.2rem;
+  overflow: hidden;
+  font-size: 1.13rem;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+}
+
+.comparison-city-card span:not(.comparison-city-number) {
+  margin-top: 0.25rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.comparison-city-card .pill-remove-button {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.75rem;
+  min-height: 30px;
+  padding: 0.25rem 0.45rem;
+  color: #704030;
+  background: transparent;
+  border: 0;
+  text-decoration: underline;
+  text-underline-offset: 0.18rem;
+}
+
+.comparison-actions {
+  margin-top: 1rem;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.comparison-workbench .comparison-select-field {
+  max-width: 520px;
+}
+
+.comparison-workbench .comparison-select-field label {
+  color: #d6e5df;
+  font-weight: 570;
+}
+
+.comparison-workbench .comparison-select-field select {
+  min-height: 46px;
+  color: var(--comparison-ink);
+  background: #ffffff;
+  border: 0;
+  border-radius: 5px;
+}
+
+.comparison-workbench .comparison-select-field select:focus-visible {
+  outline: 3px solid #f0a88f;
+  outline-offset: 3px;
+}
+
+.comparison-workbench .comparison-clear-button {
+  min-height: 42px;
+  color: #ffffff;
+  background: transparent;
+  border-color: rgb(255 255 255 / 42%);
+}
+
+.comparison-workbench .comparison-clear-button:hover {
+  color: var(--comparison-ink);
+  background: #ffffff;
+}
+
+.comparison-suggestions {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgb(255 255 255 / 18%);
+}
+
+.comparison-suggestions summary {
+  width: fit-content;
+  color: #d6e5df;
+  font-size: 0.82rem;
+  font-weight: 620;
+  cursor: pointer;
+}
+
+.comparison-suggestions .pilot-buttons-wrap {
+  margin-top: 0.8rem;
+}
+
+.comparison-suggestions .pilot-chip-button {
+  color: #f8f5ed;
+  background: transparent;
+  border-color: rgb(255 255 255 / 32%);
+  border-radius: 999px;
+}
+
+.comparison-suggestions .pilot-chip-button.is-active {
+  color: var(--comparison-ink);
+  background: #ffffff;
+  border-color: #ffffff;
+}
+
+.municipal-comparison-section .comparison-table-container {
+  margin-top: 0;
+  overflow-x: auto;
+  background: var(--comparison-paper);
+  border: 1px solid #cfd9d4;
+  border-top: 0;
+  border-radius: 0 0 14px 14px;
+}
+
+.municipal-comparison-section .comparison-table {
+  min-width: 950px;
+  table-layout: fixed;
+}
+
+.municipal-comparison-section .comparison-table caption {
+  padding: 1rem 1.25rem;
+  color: #55706b;
+  background: #e8f0ec;
+  border-color: #cfd9d4;
+}
+
+.municipal-comparison-section .comparison-table th,
+.municipal-comparison-section .comparison-table td {
+  padding: 1.2rem 1.25rem;
+  border-color: #dce3df;
+}
+
+.municipal-comparison-section .comparison-table thead th {
+  position: relative;
+  color: var(--comparison-ink);
+  background: #f4f3ed;
+}
+
+.municipal-comparison-section .comparison-table thead th:first-child {
+  width: 31%;
+}
+
+.municipal-comparison-section .comparison-table thead th:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--comparison-city);
+}
+
+.municipal-comparison-section .th-city-header {
+  position: relative;
+  padding-left: 1.15rem;
+}
+
+.municipal-comparison-section .th-city-header i {
+  position: absolute;
+  top: 0.15rem;
+  left: 0;
+  width: 0.55rem;
+  height: 0.55rem;
+  background: var(--comparison-city);
+  border-radius: 50%;
+}
+
+.municipal-comparison-section .th-city-header > span {
+  margin-top: 0.35rem;
+  color: var(--comparison-city);
+  font-size: 0.74rem;
+  font-weight: 680;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.municipal-comparison-section .th-focus-link {
+  padding: 0;
+  min-height: 30px;
+  color: var(--comparison-city);
+  background: transparent;
+  border: 0;
+  text-decoration: underline;
+  text-underline-offset: 0.18rem;
+}
+
+.municipal-comparison-section .metric-meta-cell {
+  max-width: 33ch;
+}
+
+.municipal-comparison-section .metric-title-line {
+  align-items: flex-start;
+}
+
+.municipal-comparison-section .metric-title-line > strong {
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.municipal-comparison-section .metric-meta-cell > a {
+  display: inline-block;
+  margin-top: 0.45rem;
+  color: #47665f;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  text-underline-offset: 0.18rem;
+}
+
+.municipal-comparison-section .metric-meta-cell details {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.municipal-comparison-section .metric-meta-cell summary {
+  width: fit-content;
+  cursor: pointer;
+}
+
+.municipal-comparison-section .metric-meta-cell details small {
+  margin-top: 0.35rem;
+}
+
+.municipal-comparison-section .comparison-cell-value {
+  color: var(--comparison-city);
+  font-size: clamp(1.05rem, 1.6vw, 1.28rem);
+  line-height: 1.2;
+}
+
+.comparison-value-bar {
+  width: 100%;
+  height: 6px;
+  margin-top: 0.65rem;
+  display: block;
+  overflow: hidden;
+  background: #e5ebe8;
+  border-radius: 999px;
+}
+
+.comparison-value-bar i {
+  width: var(--comparison-bar-size);
+  height: 100%;
+  display: block;
+  background: var(--comparison-city);
+  border-radius: inherit;
+}
+
+.comparison-value-bar.is-negative i {
+  margin-left: auto;
+  background: #b94d32;
+}
+
+.municipal-comparison-section .comparison-cell-note {
+  margin-top: 0.55rem;
+  line-height: 1.35;
+}
+
+.municipal-comparison-section .row-incompatible {
+  background: #f7efe9;
+}
+
+.comparison-unavailable-cell strong {
+  display: block;
+  color: #7c3e2d;
+  font-size: 1rem;
+}
+
+.comparison-unavailable-cell p {
+  max-width: 70ch;
+  margin: 0.4rem 0 0;
+  color: #705c54;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  .comparison-city-rail {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-city-card {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .comparison-intro {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .comparison-intro h2 {
+    max-width: 12ch;
+  }
+
+  .municipal-comparison-section .comparison-counter {
+    justify-self: start;
+  }
+
+  .comparison-workbench {
+    border-radius: 0;
+  }
+
+  .comparison-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .comparison-workbench .comparison-select-field {
+    flex: none;
+    width: 100%;
+    max-width: none;
+  }
+
+  .municipal-comparison-section .comparison-table-container {
+    overflow: visible;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .municipal-comparison-section .comparison-table {
+    min-width: 0;
+  }
+
+  .municipal-comparison-section .comparison-table caption {
+    background: #e8f0ec;
+    border-bottom: 1px solid #cfd9d4;
+  }
+
+  .municipal-comparison-section .comparison-table tbody {
+    padding: 0.8rem;
+    display: grid;
+    gap: 0.8rem;
+    background: #e8f0ec;
+  }
+
+  .municipal-comparison-section .comparison-table tr {
+    padding: 0;
+    overflow: hidden;
+    background: #fffdf8;
+    border: 1px solid #cfd9d4;
+    border-radius: 8px;
+  }
+
+  .municipal-comparison-section .comparison-table th,
+  .municipal-comparison-section .comparison-table td {
+    padding: 0.9rem 1rem;
+  }
+
+  .municipal-comparison-section .comparison-table th {
+    background: #f4f3ed;
+  }
+
+  .municipal-comparison-section .comparison-table td {
+    border-left: 4px solid var(--comparison-city);
+  }
+
+  .municipal-comparison-section .comparison-table td::before {
+    margin-bottom: 0.3rem;
+    color: var(--comparison-city);
+    font-size: 0.76rem;
+    font-weight: 720;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .municipal-comparison-section .comparison-unavailable-cell {
+    border-left-color: #b94d32;
+  }
+
+  .municipal-comparison-section .comparison-unavailable-cell::before {
+    content: none;
+  }
+}

@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useId, type CSSProperties } from "react";
 import type { Municipality } from "../data/municipalities";
 import {
   buildMunicipalComparison,
@@ -14,6 +14,20 @@ type MunicipalComparisonSectionProps = {
   onSelectPrimary: (slug: string) => void;
 };
 
+const comparisonColors = ["#174440", "#b94d32", "#4f796f"];
+
+function cityStyle(index: number) {
+  return { "--comparison-city": comparisonColors[index] } as CSSProperties;
+}
+
+function valueBarStyle(value: number | null, maxAbsoluteValue: number, index: number) {
+  const size = value === null ? 0 : Math.max(3, (Math.abs(value) / maxAbsoluteValue) * 100);
+  return {
+    "--comparison-city": comparisonColors[index],
+    "--comparison-bar-size": `${size}%`,
+  } as CSSProperties;
+}
+
 export function MunicipalComparisonSection({
   municipalities,
   selected,
@@ -22,68 +36,53 @@ export function MunicipalComparisonSection({
   onSelectPrimary,
 }: MunicipalComparisonSectionProps) {
   const selectId = useId();
-  const model = buildMunicipalComparison(municipalities, [
-    selected.slug,
-    ...comparisonSlugs,
-  ]);
-  const activeSlugs = new Set(model.selectedMunicipalities.map((m) => m.slug));
+  const model = buildMunicipalComparison(municipalities, [selected.slug, ...comparisonSlugs]);
+  const activeSlugs = new Set(model.selectedMunicipalities.map((municipality) => municipality.slug));
   const extraMunicipalities = model.selectedMunicipalities.slice(1);
-
   const pilotMunicipalities = PILOT_CITY_SLUGS.map((slug) =>
-    municipalities.find((m) => m.slug === slug),
-  ).filter((m): m is Municipality => Boolean(m));
+    municipalities.find((municipality) => municipality.slug === slug),
+  ).filter((municipality): municipality is Municipality => Boolean(municipality));
 
   function handleAddSlug(slug: string) {
-    if (!slug || activeSlugs.has(slug) || !model.canAddMore) {
-      return;
-    }
-    const currentExtras = extraMunicipalities.map((m) => m.slug);
-    onUpdateComparison([...currentExtras, slug]);
+    if (!slug || activeSlugs.has(slug) || !model.canAddMore) return;
+    onUpdateComparison([...extraMunicipalities.map((municipality) => municipality.slug), slug]);
   }
 
   function handleRemoveSlug(slug: string) {
-    const currentExtras = extraMunicipalities
-      .map((m) => m.slug)
-      .filter((item) => item !== slug);
-    onUpdateComparison(currentExtras);
-  }
-
-  function handleClearExtras() {
-    onUpdateComparison([]);
+    onUpdateComparison(
+      extraMunicipalities
+        .map((municipality) => municipality.slug)
+        .filter((item) => item !== slug),
+    );
   }
 
   return (
-    <section
-      className="municipal-comparison-section"
-      aria-labelledby="comparison-heading"
-    >
-      <header className="section-header-block">
+    <section className="municipal-comparison-section" aria-labelledby="comparison-heading">
+      <header className="comparison-intro">
         <div>
-          <p className="section-marker">Comparação controlada · Até 3 municípios</p>
-          <h2 id="comparison-heading">Comparar municípios lado a lado</h2>
+          <p className="section-marker">Comparação municipal · mesma régua</p>
+          <h2 id="comparison-heading">Cidades na mesma régua</h2>
           <p className="section-lead">
-            Compare até três municípios apenas quando período, unidade e universo forem
-            estritamente compatíveis. A dívida municipal direta permanece bloqueada até
-            existir fonte pública validada por código IBGE.
+            Escolha até três cidades. Cada linha usa o mesmo período, unidade e universo.
           </p>
         </div>
-        <div className="comparison-counter" aria-live="polite">
-          <span>Cidades na comparação</span>
-          <strong>
-            {model.selectedMunicipalities.length} de {MAX_COMPARISON_CITIES}
-          </strong>
-        </div>
+        <p className="comparison-counter" aria-live="polite">
+          <strong>{model.selectedMunicipalities.length}</strong>
+          <span>de {MAX_COMPARISON_CITIES} cidades</span>
+        </p>
       </header>
 
-      <div className="comparison-controls-bar">
-        <div className="comparison-selected-chips" aria-label="Municípios selecionados para comparação">
+      <div className="comparison-workbench">
+        <div className="comparison-city-rail" aria-label="Municípios selecionados para comparação">
           {model.selectedMunicipalities.map((city, index) => (
-            <div
+            <article
               key={city.id}
-              className={`comparison-city-pill ${index === 0 ? "is-primary" : ""}`}
+              className={`comparison-city-card ${index === 0 ? "is-primary" : ""}`}
+              style={cityStyle(index)}
             >
+              <span className="comparison-city-number" aria-hidden="true">{index + 1}</span>
               <div>
-                <small>{index === 0 ? "Foco no mapa" : `Comparação ${index + 1}`}</small>
+                <small>{index === 0 ? "Cidade no mapa" : "Cidade comparada"}</small>
                 <strong>{city.name}</strong>
                 <span>{city.region}</span>
               </div>
@@ -97,16 +96,14 @@ export function MunicipalComparisonSection({
                   Remover
                 </button>
               ) : null}
-            </div>
+            </article>
           ))}
         </div>
 
-        <div className="comparison-picker-group">
+        <div className="comparison-actions">
           <div className="comparison-select-field">
             <label htmlFor={selectId}>
-              {model.canAddMore
-                ? "Adicionar município (184 disponíveis)"
-                : "Limite de 3 municípios atingido"}
+              {model.canAddMore ? "Adicionar outra cidade" : "As três cidades estão selecionadas"}
             </label>
             <select
               id={selectId}
@@ -115,17 +112,11 @@ export function MunicipalComparisonSection({
               onChange={(event) => handleAddSlug(event.target.value)}
             >
               <option value="">
-                {model.canAddMore
-                  ? "Selecione uma cidade para comparar..."
-                  : "Remova uma cidade para adicionar outra"}
+                {model.canAddMore ? "Busque entre os 184 municípios" : "Remova uma cidade para trocar"}
               </option>
               {municipalities.map((city) => (
-                <option
-                  key={city.id}
-                  value={city.slug}
-                  disabled={activeSlugs.has(city.slug)}
-                >
-                  {city.name} ({city.region})
+                <option key={city.id} value={city.slug} disabled={activeSlugs.has(city.slug)}>
+                  {city.name} · {city.region}
                 </option>
               ))}
             </select>
@@ -135,16 +126,16 @@ export function MunicipalComparisonSection({
             <button
               type="button"
               className="comparison-clear-button"
-              onClick={handleClearExtras}
+              onClick={() => onUpdateComparison([])}
             >
-              Limpar comparação
+              Manter só {selected.name}
             </button>
           ) : null}
         </div>
 
-        <div className="pilot-quick-bar" aria-label="Cidades-piloto do Ceará">
-          <span className="pilot-bar-label">Recorte piloto (8 polos regionais):</span>
-          <div className="pilot-buttons-wrap">
+        <details className="comparison-suggestions">
+          <summary>Sugestões rápidas de cidades</summary>
+          <div className="pilot-buttons-wrap" aria-label="Cidades-polo do Ceará">
             {pilotMunicipalities.map((pilotCity) => {
               const isSelectedPrimary = pilotCity.slug === selected.slug;
               const isInComparison = activeSlugs.has(pilotCity.slug);
@@ -155,101 +146,101 @@ export function MunicipalComparisonSection({
                   className={`pilot-chip-button ${isInComparison ? "is-active" : ""}`}
                   disabled={!isInComparison && !model.canAddMore}
                   onClick={() => {
-                    if (isSelectedPrimary) {
-                      return;
-                    }
-                    if (isInComparison) {
-                      handleRemoveSlug(pilotCity.slug);
-                    } else if (model.canAddMore) {
-                      handleAddSlug(pilotCity.slug);
-                    }
+                    if (isSelectedPrimary) return;
+                    if (isInComparison) handleRemoveSlug(pilotCity.slug);
+                    else if (model.canAddMore) handleAddSlug(pilotCity.slug);
                   }}
-                  title={
-                    isSelectedPrimary
-                      ? `${pilotCity.name} já é o município principal selecionado`
-                      : isInComparison
-                        ? `Remover ${pilotCity.name} da comparação`
-                        : `Adicionar ${pilotCity.name} à comparação`
-                  }
                 >
-                  {pilotCity.name}
-                  {isSelectedPrimary
-                    ? " (foco)"
-                    : isInComparison
-                      ? " ✓"
-                      : " +"}
+                  {pilotCity.name}{isSelectedPrimary ? " · mapa" : isInComparison ? " ✓" : " +"}
                 </button>
               );
             })}
           </div>
-        </div>
+        </details>
       </div>
 
       <div className="comparison-table-container">
         <table className="comparison-table">
-          <caption>
-            Comparação de indicadores municipais com verificação de período, unidade e
-            universo
-          </caption>
+          <caption>Valores municipais comparáveis, com fonte e período visíveis</caption>
           <thead>
             <tr>
-              <th scope="col">Indicador, período e fonte</th>
-              {model.selectedMunicipalities.map((city, idx) => (
-                <th key={city.id} scope="col">
+              <th scope="col">Indicador</th>
+              {model.selectedMunicipalities.map((city, index) => (
+                <th key={city.id} scope="col" style={cityStyle(index)}>
                   <div className="th-city-header">
-                    <span>{idx === 0 ? "Município em foco" : `Município ${idx + 1}`}</span>
+                    <i aria-hidden="true" />
                     <strong>{city.name}</strong>
                     <small>{city.region}</small>
-                    {idx > 0 ? (
+                    {index > 0 ? (
                       <button
                         type="button"
                         className="th-focus-link"
                         onClick={() => onSelectPrimary(city.slug)}
                       >
-                        Destacar no mapa
+                        Mostrar no mapa
                       </button>
-                    ) : null}
+                    ) : (
+                      <span>Em foco no mapa</span>
+                    )}
                   </div>
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {model.rows.map((row) => (
-              <tr
-                key={row.metric.id}
-                className={row.compatible ? "row-compatible" : "row-incompatible"}
-              >
-                <th scope="row">
-                  <div className="metric-meta-cell">
-                    <div className="metric-title-line">
-                      <strong>{row.metric.label}</strong>
-                      <span
-                        className={`status-chip ${
-                          row.compatible ? "status-available" : "status-missing"
-                        }`}
-                      >
-                        {row.compatible ? `Período ${row.metric.period}` : "Indisponível"}
-                      </span>
+            {model.rows.map((row) => {
+              const maxAbsoluteValue = Math.max(
+                ...row.cells.map((cell) => Math.abs(cell.value ?? 0)),
+                1,
+              );
+              return (
+                <tr key={row.metric.id} className={row.compatible ? "row-compatible" : "row-incompatible"}>
+                  <th scope="row">
+                    <div className="metric-meta-cell">
+                      <div className="metric-title-line">
+                        <strong>{row.metric.label}</strong>
+                        <span className={`status-chip ${row.compatible ? "status-available" : "status-missing"}`}>
+                          {row.compatible ? row.metric.period : "Sem dado municipal"}
+                        </span>
+                      </div>
+                      <a href={row.metric.sourceUrl} target="_blank" rel="noreferrer">
+                        {row.metric.sourceLabel}
+                      </a>
+                      {row.compatible ? (
+                        <details>
+                          <summary>Escopo comparável</summary>
+                          <small>{row.compatibilityNote}</small>
+                        </details>
+                      ) : null}
                     </div>
-                    <p>{row.metric.sourceLabel}</p>
-                    <small>{row.compatibilityNote}</small>
-                  </div>
-                </th>
-                {row.cells.map((cell) => (
-                  <td
-                    key={`${row.metric.id}-${cell.municipalitySlug}`}
-                    data-city={cell.municipalityName}
-                    className={`cell-status-${cell.status}`}
-                  >
-                    <strong className="comparison-cell-value">{cell.formatted}</strong>
-                    {cell.detailNote ? (
-                      <span className="comparison-cell-note">{cell.detailNote}</span>
-                    ) : null}
-                  </td>
-                ))}
-              </tr>
-            ))}
+                  </th>
+
+                  {row.compatible ? row.cells.map((cell, index) => (
+                    <td
+                      key={`${row.metric.id}-${cell.municipalitySlug}`}
+                      data-city={cell.municipalityName}
+                      className={`cell-status-${cell.status}`}
+                      style={cityStyle(index)}
+                    >
+                      <strong className="comparison-cell-value">{cell.formatted}</strong>
+                      {cell.value !== null ? (
+                        <span
+                          className={`comparison-value-bar ${cell.value < 0 ? "is-negative" : ""}`}
+                          style={valueBarStyle(cell.value, maxAbsoluteValue, index)}
+                          aria-hidden="true"
+                        ><i /></span>
+                      ) : null}
+                      {cell.detailNote ? <span className="comparison-cell-note">{cell.detailNote}</span> : null}
+                    </td>
+                  )) : (
+                    <td colSpan={model.selectedMunicipalities.length} className="comparison-unavailable-cell">
+                      <strong>Ainda não existe uma fonte municipal validada.</strong>
+                      <p>{row.compatibilityNote}</p>
+                    </td>
+                  )}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

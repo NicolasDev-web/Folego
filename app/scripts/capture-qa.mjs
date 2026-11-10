@@ -264,27 +264,28 @@ try {
 
       // Phase 04 (04-04 & 04-05): Verify 3-city comparison and eligible-only ranking
       const comparisonCounter = await page.locator(".comparison-counter strong").textContent();
-      if (comparisonCounter?.trim() !== "3 de 3") {
-        throw new Error(`Comparação municipal esperada em 3 de 3; recebido: ${comparisonCounter}`);
+      if (comparisonCounter?.trim() !== "3") {
+        throw new Error(`Comparação municipal esperada com 3 cidades; recebido: ${comparisonCounter}`);
       }
       const pilotChipCount = await page.locator(".pilot-chip-button").count();
       if (pilotChipCount !== 8) {
         throw new Error(`Esperados 8 botões de cidades-piloto; recebidos: ${pilotChipCount}`);
       }
-      const debtRowCells = await page
-        .locator(".row-incompatible .comparison-cell-value")
-        .allTextContents();
-      if (
-        debtRowCells.length !== 3 ||
-        debtRowCells.some((text) => text !== "Indisponível na escala municipal")
-      ) {
-        throw new Error(`Linha de dívida municipal na comparação inválida: ${debtRowCells.join(", ")}`);
+      const debtMessage = await page.locator(".comparison-unavailable-cell").textContent();
+      if (!debtMessage?.includes("Ainda não existe uma fonte municipal validada")) {
+        throw new Error("Linha de dívida municipal perdeu a indisponibilidade explícita.");
       }
 
       const comparisonSection = page.locator(".municipal-comparison-section");
       await comparisonSection.scrollIntoViewIfNeeded();
+      await page.locator(".site-header, .skip-link").evaluateAll((elements) => {
+        for (const element of elements) element.style.visibility = "hidden";
+      });
       await comparisonSection.screenshot({
         path: resolve(outputDirectory, "cidades-comparacao-1440.png"),
+      });
+      await page.locator(".site-header, .skip-link").evaluateAll((elements) => {
+        for (const element of elements) element.style.visibility = "";
       });
 
       const rankingSection = page.locator(".municipal-ranking-section");
@@ -319,6 +320,16 @@ try {
 
       await rankingSection.screenshot({
         path: resolve(outputDirectory, "cidades-ranking-divida-1440.png"),
+      });
+    }
+    if (capture.name === "cidades-sobral-390.png") {
+      const comparisonSection = page.locator(".municipal-comparison-section");
+      await comparisonSection.scrollIntoViewIfNeeded();
+      await page.locator(".site-header, .skip-link").evaluateAll((elements) => {
+        for (const element of elements) element.style.visibility = "hidden";
+      });
+      await comparisonSection.screenshot({
+        path: resolve(outputDirectory, "cidades-comparacao-390.png"),
       });
     }
     await context.close();
