@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "checked_at": "2026-11-10T16:36:30+00:00",
+  "checked_at": "2026-11-10T16:42:46+00:00",
   "publication_policy": "Somente alerta; nenhuma competência é publicada automaticamente.",
   "summary": {
     "sources_checked": 8,
@@ -33,7 +33,7 @@
       "source_id": "MTE-NOVO-CAGED",
       "label": "Novo Caged — competência municipal",
       "published_period": "2026-08",
-      "availability_note": "A disponibilidade vem do diretório oficial de microdados. A série ajustada só avança após validação da planilha de tabelas da mesma competência.",
+      "availability_note": "A disponibilidade vem da página mensal oficial. A série ajustada só avança após validação da planilha de tabelas da mesma competência.",
       "available_period": "2026-09",
       "status": "new_available"
     },

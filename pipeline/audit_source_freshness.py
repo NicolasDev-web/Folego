@@ -13,8 +13,27 @@ from pipeline.extract.http_client import ROOT, fetch_bytes, write_json
 
 MANIFEST_PATH = ROOT / "metadata/phase02_manifest.json"
 DEFAULT_REPORT_PATH = "metadata/source_freshness.json"
-MTE_FTP_YEAR = "ftp://ftp.mtps.gov.br/pdet/microdados/NOVO%20CAGED/{year}/"
+MTE_RELEASE_PAGE = (
+    "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/"
+    "programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/novo-caged/"
+    "{year}/{month}/pagina-inicial"
+)
 SIDRA_PERIODS_URL = "https://servicodados.ibge.gov.br/api/v3/agregados/{table}/periodos"
+
+PT_MONTHS = (
+    "janeiro",
+    "fevereiro",
+    "marco",
+    "abril",
+    "maio",
+    "junho",
+    "julho",
+    "agosto",
+    "setembro",
+    "outubro",
+    "novembro",
+    "dezembro",
+)
 
 SOURCE_LABELS = {
     "IBGE-SIDRA-1737": "IPCA",
@@ -92,20 +111,25 @@ def latest_sidra_period(table: str, *, quarterly: bool = False) -> str:
 
 
 def latest_mte_period(year: int) -> str:
-    periods: list[str] = []
+    now = datetime.now(UTC)
     errors: list[str] = []
     for candidate_year in (year, year - 1):
-        try:
-            listing = fetch_bytes(MTE_FTP_YEAR.format(year=candidate_year), timeout=45).decode("latin-1")
-            periods.extend(re.findall(rf"\b({candidate_year}(?:0[1-9]|1[0-2]))\b", listing))
-        except Exception as error:
-            errors.append(f"{candidate_year}: {error}")
-    if not periods:
-        raise ValueError(
-            f"Nenhuma competência do Novo Caged encontrada para {year} ou {year - 1}. "
-            + " | ".join(errors)
-        )
-    return normalized_period(max(periods)) or ""
+        max_month = now.month if candidate_year == now.year else 12
+        for month_number in range(max_month, 0, -1):
+            url = MTE_RELEASE_PAGE.format(
+                year=candidate_year,
+                month=PT_MONTHS[month_number - 1],
+            )
+            try:
+                page = fetch_bytes(url, timeout=25, retries=1).decode("utf-8", errors="ignore")
+                if "Novo Caged" in page or "NOVO CAGED" in page:
+                    return f"{candidate_year}-{month_number:02d}"
+            except Exception as error:
+                errors.append(f"{candidate_year}-{month_number:02d}: {error}")
+    raise ValueError(
+        f"Nenhuma página mensal do Novo Caged encontrada para {year} ou {year - 1}. "
+        + " | ".join(errors[-3:])
+    )
 
 
 def latest_scr_period(year: int) -> str:
@@ -125,7 +149,8 @@ def latest_scr_period(year: int) -> str:
 
 
 def latest_sgs_period(code: str) -> str:
-    payload = fetch_bytes(str(SGS_SERIES[code]["url"]), timeout=45)
+    base_url = str(SGS_SERIES[code]["url"]).split("?", 1)[0].rstrip("/")
+    payload = fetch_bytes(f"{base_url}/ultimos/1?formato=json", timeout=45)
     rows = json.loads(payload.decode("utf-8"))
     periods: list[str] = []
     for row in rows:
@@ -166,8 +191,8 @@ def build_freshness_report(
         }
         if source_id == "MTE-NOVO-CAGED":
             item["availability_note"] = (
-                "A disponibilidade vem do diretório oficial de microdados. A série ajustada "
-                "só avança após validação da planilha de tabelas da mesma competência."
+                "A disponibilidade vem da página mensal oficial. A série ajustada só avança "
+                "após validação da planilha de tabelas da mesma competência."
             )
         try:
             available = discover()
