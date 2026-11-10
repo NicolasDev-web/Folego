@@ -18,6 +18,8 @@ Data: 09/11/2026. Destino de produção: **https://folego-vert.vercel.app** (`ni
    python -m pipeline.run_phase02
    python -m pytest pipeline/tests/test_phase02.py -v
    ```
+
+   A coleta também pode ser iniciada em **GitHub Actions → Preparar atualização oficial dos dados → Run workflow**. O fluxo executa as mesmas validações, cria uma branch exclusiva e entrega um link para abrir a revisão; não publica diretamente em produção.
 2. **Executar os testes unitários e o build da aplicação:**
    ```powershell
    Set-Location app
@@ -36,6 +38,8 @@ Data: 09/11/2026. Destino de produção: **https://folego-vert.vercel.app** (`ni
    Set-Location app
    vercel --prod --yes
    ```
+
+Em cada pull request e envio para `main`, `.github/workflows/ci.yml` executa automaticamente os testes do pipeline, os testes do frontend e o build. A aprovação da proposta de dados continua sendo humana porque algumas fontes divulgam novas competências por URLs e planilhas específicas.
 
 ---
 

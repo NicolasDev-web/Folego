@@ -1,0 +1,48 @@
+name: Validar aplicação e dados
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  dados:
+    name: Contratos e transformações de dados
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Instalar dependências do pipeline
+        run: python -m pip install --requirement requirements.txt
+      - name: Validar pipeline e contrato dos dados
+        run: python -m pytest pipeline/tests/test_phase02.py -v
+
+  aplicacao:
+    name: Testes e build do site
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - name: Instalar dependências do site
+        run: npm ci
+      - name: Executar testes
+        run: npm test
+      - name: Gerar build de produção
+        run: npm run build

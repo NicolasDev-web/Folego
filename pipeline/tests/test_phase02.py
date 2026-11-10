@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -11,6 +12,7 @@ import pytest
 from jsonschema import Draft202012Validator
 
 from pipeline.extract.http_client import ROOT, sha256_bytes
+from pipeline.run_phase02 import validate_collected_date
 from pipeline.transform.indicators import (
     build_observation,
     compute_inad90_pct,
@@ -28,6 +30,13 @@ from pipeline.transform.normalize import (
     resolve_scr_methodology_version,
     validate_required_columns,
 )
+
+
+def test_collection_date_argument() -> None:
+    assert validate_collected_date("2026-11-10") == "2026-11-10"
+
+    with pytest.raises(argparse.ArgumentTypeError):
+        validate_collected_date("10/11/2026")
 
 
 def test_normalize_period_and_schema_errors() -> None:

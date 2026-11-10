@@ -60,6 +60,12 @@ Saídas específicas: `municipal_employment_2026-09.csv` contém o total municip
 python pipeline/run_phase02.py
 ```
 
+Por padrão, a data UTC atual identifica a coleta. Para reproduzir uma coleta com data explícita:
+
+```bash
+python -m pipeline.run_phase02 --collected-date 2026-11-10
+```
+
 Executa os adaptadores de extração (`bcb_adapter.py`, `ibge_adapter.py`, `mte_caged_adapter.py`, `surveys_adapter.py`), a normalização por versão metodológica (`normalize.py`), a separação de fatos e dimensões em Parquet (`facts.py`), o cálculo dos indicadores prioritários (`indicators.py`) e a validação e exportação pública conforme `04_tecnico/CONTRATO_DADOS.json` (`export_public.py`):
 
 - `data/processed/dim_territory.parquet` e `dim_indicator.parquet`: dimensões canônicas sem duplicação;
@@ -73,3 +79,10 @@ Para executar a suíte de testes automatizados da Fase 02:
 ```bash
 python -m pytest pipeline/tests/test_phase02.py -v
 ```
+
+## Automação segura
+
+- `.github/workflows/ci.yml` valida o pipeline, os contratos, os testes do site e o build em cada pull request e envio para `main`.
+- `.github/workflows/data-refresh.yml` é acionado manualmente, executa a coleta completa e cria uma branch exclusiva com link para revisão. Ele não publica dados nem altera `main` ou a produção automaticamente.
+
+O fluxo de atualização permanece manual até que todos os adaptadores de fontes com competências explícitas sejam parametrizados. Isso evita que uma mudança de URL, planilha ou metodologia entre silenciosamente em produção.

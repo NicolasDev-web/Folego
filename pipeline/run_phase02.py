@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+import argparse
 import json
 import sys
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
 
@@ -23,7 +24,16 @@ from pipeline.validate.export_public import (
 )
 
 
-def run_phase02(collected_date: str = "2026-11-09") -> dict[str, Any]:
+def validate_collected_date(value: str) -> str:
+    try:
+        parsed = date.fromisoformat(value)
+    except ValueError as error:
+        raise argparse.ArgumentTypeError("Use a data no formato AAAA-MM-DD.") from error
+    return parsed.isoformat()
+
+
+def run_phase02(collected_date: str | None = None) -> dict[str, Any]:
+    collected_date = collected_date or datetime.now(UTC).date().isoformat()
     generated_at = datetime.now(UTC).replace(microsecond=0).isoformat()
     context_path = ROOT / "data/processed/municipal_context.json"
     if not context_path.exists():
@@ -124,4 +134,13 @@ def run_phase02(collected_date: str = "2026-11-09") -> dict[str, Any]:
 
 if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8")
-    run_phase02()
+    parser = argparse.ArgumentParser(
+        description="Coleta, valida e exporta os pacotes públicos da Fase 02.",
+    )
+    parser.add_argument(
+        "--collected-date",
+        type=validate_collected_date,
+        help="Data da coleta no formato AAAA-MM-DD. O padrão é a data UTC atual.",
+    )
+    arguments = parser.parse_args()
+    run_phase02(arguments.collected_date)
