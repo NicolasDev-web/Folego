@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import subprocess
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Callable
@@ -13,27 +14,8 @@ from pipeline.extract.http_client import ROOT, fetch_bytes, write_json
 
 MANIFEST_PATH = ROOT / "metadata/phase02_manifest.json"
 DEFAULT_REPORT_PATH = "metadata/source_freshness.json"
-MTE_RELEASE_PAGE = (
-    "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/"
-    "programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/novo-caged/"
-    "{year}/{month}/pagina-inicial"
-)
+MTE_FTP_YEAR = "ftp://ftp.mtps.gov.br/pdet/microdados/NOVO%20CAGED/{year}/"
 SIDRA_PERIODS_URL = "https://servicodados.ibge.gov.br/api/v3/agregados/{table}/periodos"
-
-PT_MONTHS = (
-    "janeiro",
-    "fevereiro",
-    "marco",
-    "abril",
-    "maio",
-    "junho",
-    "julho",
-    "agosto",
-    "setembro",
-    "outubro",
-    "novembro",
-    "dezembro",
-)
 
 SOURCE_LABELS = {
     "IBGE-SIDRA-1737": "IPCA",
@@ -111,41 +93,48 @@ def latest_sidra_period(table: str, *, quarterly: bool = False) -> str:
 
 
 def latest_mte_period(year: int) -> str:
-    now = datetime.now(UTC)
     errors: list[str] = []
     for candidate_year in (year, year - 1):
-        max_month = now.month if candidate_year == now.year else 12
-        for month_number in range(max_month, 0, -1):
-            url = MTE_RELEASE_PAGE.format(
-                year=candidate_year,
-                month=PT_MONTHS[month_number - 1],
+        try:
+            completed = subprocess.run(
+                [
+                    "curl",
+                    "--silent",
+                    "--show-error",
+                    "--fail",
+                    "--max-time",
+                    "20",
+                    MTE_FTP_YEAR.format(year=candidate_year),
+                ],
+                check=True,
+                capture_output=True,
+                text=True,
+                timeout=25,
             )
-            try:
-                page = fetch_bytes(url, timeout=25, retries=1).decode("utf-8", errors="ignore")
-                if "Novo Caged" in page or "NOVO CAGED" in page:
-                    return f"{candidate_year}-{month_number:02d}"
-            except Exception as error:
-                errors.append(f"{candidate_year}-{month_number:02d}: {error}")
+            periods = re.findall(rf"\b({candidate_year}(?:0[1-9]|1[0-2]))\b", completed.stdout)
+            if periods:
+                return normalized_period(max(periods)) or ""
+        except Exception as error:
+            errors.append(f"{candidate_year}: {error}")
     raise ValueError(
-        f"Nenhuma página mensal do Novo Caged encontrada para {year} ou {year - 1}. "
-        + " | ".join(errors[-3:])
+        f"Nenhuma competência do Novo Caged encontrada para {year} ou {year - 1}. "
+        + " | ".join(errors)
     )
 
 
 def latest_scr_period(year: int) -> str:
-    entries: dict[str, dict[str, Any]] = {}
     errors: list[str] = []
     for candidate_year in (year, year - 1):
         try:
-            entries.update(list_scr_zip_entries(candidate_year))
+            entries = list_scr_zip_entries(candidate_year)
+            if entries:
+                return normalized_period(max(entries)) or ""
         except Exception as error:
             errors.append(f"{candidate_year}: {error}")
-    if not entries:
-        raise ValueError(
-            f"SCR.data não retornou arquivos mensais para {year} ou {year - 1}. "
-            + " | ".join(errors)
-        )
-    return normalized_period(max(entries)) or ""
+    raise ValueError(
+        f"SCR.data não retornou arquivos mensais para {year} ou {year - 1}. "
+        + " | ".join(errors)
+    )
 
 
 def latest_sgs_period(code: str) -> str:
@@ -191,7 +180,7 @@ def build_freshness_report(
         }
         if source_id == "MTE-NOVO-CAGED":
             item["availability_note"] = (
-                "A disponibilidade vem da página mensal oficial. A série ajustada só avança "
+                "A disponibilidade vem do diretório oficial de microdados. A série ajustada só avança "
                 "após validação da planilha de tabelas da mesma competência."
             )
         try:
