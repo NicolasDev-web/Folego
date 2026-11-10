@@ -38,6 +38,8 @@ Screenshots reproduzíveis com `npm run qa:screenshots`:
 - `evidencias/qa/cidades-sobral-390.png`, `cidades-sobral-1440.png`
 - `evidencias/qa/cidades-sobral-empregos-390.png`, `cidades-sobral-empregos-1440.png`
 - `evidencias/qa/cidades-mapa-zoom-sobral-1440.png`, `cidades-mapa-emprego-1440.png`, `cidades-mapa-renda-1440.png`, `cidades-mapa-populacao-1440.png`
-- `evidencias/qa/cidades-comparacao-390.png`, `cidades-comparacao-1440.png`, `cidades-ranking-mediana-1440.png`, `cidades-ranking-salario-1440.png`, `cidades-ranking-divida-1440.png`
+- `evidencias/qa/cidades-comparacao-390.png`, `cidades-comparacao-1440.png`, `cidades-ranking-mediana-390.png`, `cidades-ranking-mediana-1440.png`, `cidades-ranking-salario-1440.png`, `cidades-ranking-divida-1440.png`
 
 O comparador municipal foi revisto em 10/11/2026: seleção compacta em fundo verde profundo, cor consistente por cidade, barras proporcionais para leitura relativa, nota metodológica progressiva e indisponibilidade de dívida consolidada em uma única mensagem. A validação cobre 390 px e 1440 px sem rolagem horizontal.
+
+O ranking municipal foi reimaginado em 10/11/2026 como placar territorial: indicador em seletor único, alternância entre maiores e menores valores, busca nominal, posição da cidade ativa, três destaques, lista com barras proporcionais e ausências em seção recolhível. A dívida municipal continua bloqueada e a validação cobre 390 px e 1440 px sem rolagem horizontal.

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState, type CSSProperties } from "react";
 import type { Municipality } from "../data/municipalities";
 import {
   MUNICIPAL_METRIC_LIST,
@@ -13,14 +13,26 @@ type MunicipalRankingSectionProps = {
   onSelectMunicipality: (slug: string) => void;
 };
 
+function normalizeText(value: string) {
+  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("pt-BR");
+}
+
+function barStyle(value: number, minimum: number, maximum: number) {
+  const range = maximum - minimum;
+  const size = range === 0 ? 100 : 6 + ((value - minimum) / range) * 94;
+  return { "--ranking-bar-size": `${size}%` } as CSSProperties;
+}
+
 export function MunicipalRankingSection({
   municipalities,
   selected,
   onSelectMunicipality,
 }: MunicipalRankingSectionProps) {
+  const metricSelectId = useId();
+  const searchId = useId();
   const [metricId, setMetricId] = useState<MunicipalMetricId>("income_pc_median_2022");
   const [direction, setDirection] = useState<RankingDirection>("desc");
-  const [onlyPilot, setOnlyPilot] = useState(false);
+  const [query, setQuery] = useState("");
   const [showAll, setShowAll] = useState(false);
 
   const ranking = useMemo(
@@ -30,134 +42,135 @@ export function MunicipalRankingSection({
 
   const selectedEntry = useMemo(() => {
     if (!ranking.eligible) return null;
-    return (
-      ranking.entries.find((entry) => entry.municipality.id === selected.id) ?? null
-    );
+    return ranking.entries.find((entry) => entry.municipality.id === selected.id) ?? null;
   }, [ranking, selected.id]);
 
-  const selectedExclusion = useMemo(() => {
-    return (
-      ranking.excludedMunicipalities.find(
-        (item) => item.municipality.id === selected.id,
-      ) ?? null
+  const selectedExclusion = useMemo(
+    () => ranking.excludedMunicipalities.find((item) => item.municipality.id === selected.id) ?? null,
+    [ranking.excludedMunicipalities, selected.id],
+  );
+
+  const matchingEntries = useMemo(() => {
+    if (!ranking.eligible) return [];
+    const normalizedQuery = normalizeText(query.trim());
+    if (!normalizedQuery) return ranking.entries;
+    return ranking.entries.filter((entry) =>
+      normalizeText(entry.municipality.name).includes(normalizedQuery),
     );
-  }, [ranking.excludedMunicipalities, selected.id]);
+  }, [query, ranking]);
 
   const visibleEntries = useMemo(() => {
-    if (!ranking.eligible) return [];
-    const filtered = onlyPilot
-      ? ranking.entries.filter((entry) => entry.municipality.pilot)
-      : ranking.entries;
-    if (showAll || onlyPilot) {
-      return filtered;
-    }
-    return filtered.slice(0, 15);
-  }, [ranking, onlyPilot, showAll]);
+    if (query.trim() || showAll) return matchingEntries;
+    return matchingEntries.slice(0, 15);
+  }, [matchingEntries, query, showAll]);
+
+  const podium = ranking.eligible ? ranking.entries.slice(0, 3) : [];
+  const values = ranking.eligible ? ranking.entries.map((entry) => entry.value) : [];
+  const minimum = values.length > 0 ? Math.min(...values) : 0;
+  const maximum = values.length > 0 ? Math.max(...values) : 1;
+
+  function selectMetric(nextMetric: MunicipalMetricId) {
+    setMetricId(nextMetric);
+    setQuery("");
+    setShowAll(false);
+  }
 
   return (
-    <section
-      className="municipal-ranking-section"
-      aria-labelledby="ranking-heading"
-    >
-      <header className="section-header-block">
+    <section className="municipal-ranking-section" aria-labelledby="ranking-heading">
+      <header className="ranking-intro">
         <div>
-          <p className="section-marker">Ranking municipal · Apenas medidas elegíveis</p>
-          <h2 id="ranking-heading">Ordenação dos municípios por indicador observado</h2>
+          <p className="section-marker">Ranking municipal · valores observados</p>
+          <h2 id="ranking-heading">Onde cada município se posiciona</h2>
           <p className="section-lead">
-            A ordenação só é habilitada para indicadores observados diretamente na escala
-            municipal. Valores ausentes (<code>null</code>) são separados do ranking numérico e
-            empates recebem a mesma posição competitiva.
+            Escolha um indicador, encontre sua cidade e compare a distância entre os valores.
           </p>
         </div>
 
         <div className="ranking-summary-counts" aria-live="polite">
           <div>
-            <span>Incluídos no ranking</span>
-            <strong>{ranking.includedCount} municípios</strong>
+            <strong>{ranking.includedCount}</strong>
+            <span>municípios no ranking</span>
           </div>
           <div>
-            <span>Excluídos por ausência (null)</span>
-            <strong>{ranking.excludedCount} municípios</strong>
+            <strong>{ranking.excludedCount}</strong>
+            <span>sem dado no período</span>
           </div>
-          {ranking.eligible ? (
-            <div>
-              <span>Posições empatadas</span>
-              <strong>{ranking.tiedMunicipalitiesCount} municípios</strong>
-            </div>
-          ) : null}
         </div>
       </header>
 
-      <div className="ranking-controls-bar">
-        <div
-          className="ranking-metric-tabs"
-          role="group"
-          aria-label="Selecionar indicador do ranking"
-        >
-          {MUNICIPAL_METRIC_LIST.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              aria-pressed={metricId === item.id}
-              className={`ranking-tab-button ${
-                !item.eligibleForRanking ? "is-ineligible-tab" : ""
-              }`}
-              onClick={() => setMetricId(item.id)}
-            >
-              <span>{item.shortLabel}</span>
-              <small>
-                {item.eligibleForRanking ? `Elegível · ${item.period}` : "Bloqueado"}
-              </small>
-            </button>
-          ))}
+      <div className="ranking-control-deck">
+        <div className="ranking-control-field">
+          <label htmlFor={metricSelectId}>Indicador do ranking</label>
+          <select
+            id={metricSelectId}
+            value={metricId}
+            onChange={(event) => selectMetric(event.target.value as MunicipalMetricId)}
+          >
+            {MUNICIPAL_METRIC_LIST.map((metric) => (
+              <option key={metric.id} value={metric.id}>
+                {metric.shortLabel}{metric.eligibleForRanking ? "" : " · indisponível"}
+              </option>
+            ))}
+          </select>
         </div>
 
         {ranking.eligible ? (
-          <div className="ranking-secondary-controls">
-            <div className="ranking-direction-group" role="group" aria-label="Direção da ordenação">
-              <button
-                type="button"
-                aria-pressed={direction === "desc"}
-                onClick={() => setDirection("desc")}
-              >
-                Maior para menor
-              </button>
-              <button
-                type="button"
-                aria-pressed={direction === "asc"}
-                onClick={() => setDirection("asc")}
-              >
-                Menor para maior
-              </button>
+          <>
+            <div className="ranking-direction-control">
+              <span>Ordenar por</span>
+              <div className="ranking-direction-group" role="group" aria-label="Direção da ordenação">
+                <button
+                  type="button"
+                  aria-pressed={direction === "desc"}
+                  onClick={() => setDirection("desc")}
+                >
+                  Maiores valores
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={direction === "asc"}
+                  onClick={() => setDirection("asc")}
+                >
+                  Menores valores
+                </button>
+              </div>
             </div>
 
-            <label className="ranking-pilot-toggle">
+            <div className="ranking-control-field ranking-search-field">
+              <label htmlFor={searchId}>Encontrar município</label>
               <input
-                type="checkbox"
-                checked={onlyPilot}
-                onChange={(event) => setOnlyPilot(event.target.checked)}
+                id={searchId}
+                type="search"
+                value={query}
+                placeholder="Ex.: Sobral"
+                onChange={(event) => setQuery(event.target.value)}
               />
-              <span>Apenas as 8 cidades-piloto</span>
-            </label>
-          </div>
+            </div>
+          </>
         ) : null}
+
+        <details className="ranking-method-note">
+          <summary>Como o ranking funciona</summary>
+          <p>
+            Apenas dados observados diretamente na escala municipal recebem posição. Empates usam
+            a mesma colocação e valores ausentes nunca são convertidos em zero.
+          </p>
+        </details>
       </div>
 
       {!ranking.eligible ? (
         <article className="ranking-ineligible-banner" role="status">
-          <div className="ineligible-header">
-            <span className="status-chip status-missing">Inelegível para ranking</span>
-            <h3>{ranking.metric.label}</h3>
-          </div>
+          <span className="status-chip status-missing">Ranking indisponível</span>
+          <h3>{ranking.metric.label}</h3>
           <p>{ranking.reason}</p>
           <dl className="ineligible-meta-grid">
             <div>
-              <dt>Escala de divulgação oficial</dt>
-              <dd>Unidade da Federação (Ceará) e sub-regiões BCB sem vínculo municipal</dd>
+              <dt>Escala oficial</dt>
+              <dd>Ceará e sub-regiões BCB, sem vínculo municipal</dd>
             </div>
             <div>
-              <dt>Regra editorial aplicada</dt>
-              <dd>Proibido atribuir ou ranquear municípios por proxy estadual ou regional</dd>
+              <dt>Regra aplicada</dt>
+              <dd>Nenhuma média estadual ou regional é atribuída aos municípios</dd>
             </div>
             <div>
               <dt>Municípios ranqueados</dt>
@@ -169,144 +182,138 @@ export function MunicipalRankingSection({
         <>
           <div className="ranking-selected-callout" aria-live="polite">
             <div>
-              <span className="callout-eyebrow">Posição do município selecionado no mapa</span>
+              <span>Sua cidade no ranking</span>
               <h3>{selected.name}</h3>
-              <p>
-                {ranking.metric.label} · {ranking.metric.sourceLabel}
-              </p>
+              <p>{ranking.metric.label} · {ranking.metric.period}</p>
             </div>
             {selectedEntry ? (
               <div className="callout-rank-box">
                 <strong className="callout-rank-number">
                   {selectedEntry.tied ? `=${selectedEntry.rank}º` : `${selectedEntry.rank}º`}
                 </strong>
-                <span>
-                  de {ranking.includedCount} municípios com dado válido ·{" "}
-                  <strong>{selectedEntry.formattedValue}</strong>
-                  {selectedEntry.tied ? " (empate de valor)" : ""}
-                </span>
+                <span>{selectedEntry.formattedValue}</span>
+                <small>entre {ranking.includedCount} municípios</small>
               </div>
             ) : (
               <div className="callout-rank-box is-excluded">
-                <strong>Fora do ranking numérico (null)</strong>
-                <span>
-                  {selectedExclusion?.reason ??
-                    "Sem observação válida neste período."}
-                </span>
+                <strong>Sem posição neste período</strong>
+                <span>{selectedExclusion?.reason ?? "Sem observação válida."}</span>
               </div>
             )}
           </div>
 
-          <div className="ranking-table-container">
-            <table className="ranking-table">
-              <caption>
-                Ranking municipal de {ranking.metric.label} ({ranking.metric.period}) —{" "}
-                {ranking.includedCount} municípios incluídos e {ranking.excludedCount} sem
-                observação no período
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col">Posição</th>
-                  <th scope="col">Município</th>
-                  <th scope="col">Região de planejamento</th>
-                  <th scope="col">{ranking.metric.label}</th>
-                  <th scope="col">Ação</th>
-                </tr>
-              </thead>
-              <tbody>
+          <section className="ranking-podium" aria-labelledby="ranking-podium-title">
+            <div className="ranking-list-heading">
+              <div>
+                <p>{direction === "desc" ? "Maiores valores" : "Menores valores"}</p>
+                <h3 id="ranking-podium-title">Três destaques</h3>
+              </div>
+              <a href={ranking.metric.sourceUrl} target="_blank" rel="noreferrer">
+                Fonte: {ranking.metric.sourceLabel}
+              </a>
+            </div>
+            <ol>
+              {podium.map((entry, index) => (
+                <li
+                  key={entry.municipality.id}
+                  className={entry.municipality.id === selected.id ? "is-current" : undefined}
+                >
+                  <span className="podium-rank">{entry.tied ? `=${entry.rank}` : entry.rank}</span>
+                  <div>
+                    <strong>{entry.municipality.name}</strong>
+                    <small>{entry.municipality.region}</small>
+                  </div>
+                  <b>{entry.formattedValue}</b>
+                  <button type="button" onClick={() => onSelectMunicipality(entry.municipality.slug)}>
+                    Ver no mapa
+                  </button>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <section className="ranking-visual-board" aria-labelledby="ranking-list-title">
+            <div className="ranking-list-heading">
+              <div>
+                <p>{query.trim() ? "Resultado da busca" : "Lista municipal"}</p>
+                <h3 id="ranking-list-title">
+                  {query.trim() ? `${matchingEntries.length} resultado(s)` : "Posições e distâncias"}
+                </h3>
+              </div>
+              <span>{ranking.metric.unitLabel} · {ranking.metric.period}</span>
+            </div>
+
+            {visibleEntries.length > 0 ? (
+              <ol className="ranking-visual-list">
                 {visibleEntries.map((entry) => {
                   const isCurrent = entry.municipality.id === selected.id;
                   return (
-                    <tr
-                      key={entry.municipality.id}
-                      className={isCurrent ? "is-selected-row" : undefined}
-                    >
-                      <td className="rank-position-cell">
-                        <strong>
-                          {entry.tied ? `=${entry.rank}º` : `${entry.rank}º`}
-                        </strong>
-                        {entry.tied ? (
-                          <span className="tie-badge" title="Valor idêntico a outro município">
-                            Empate
-                          </span>
-                        ) : null}
-                      </td>
-                      <td>
-                        <div className="rank-city-name">
-                          <strong>{entry.municipality.name}</strong>
-                          {entry.municipality.pilot ? (
-                            <span className="pilot-tag">Piloto</span>
-                          ) : null}
-                        </div>
-                      </td>
-                      <td>{entry.municipality.region}</td>
-                      <td className="rank-value-cell">{entry.formattedValue}</td>
-                      <td>
-                        <button
-                          type="button"
-                          className="rank-select-button"
-                          aria-pressed={isCurrent}
-                          onClick={() => onSelectMunicipality(entry.municipality.slug)}
-                        >
-                          {isCurrent ? "Selecionado" : "Ver no mapa"}
-                        </button>
-                      </td>
-                    </tr>
+                    <li key={entry.municipality.id} className={isCurrent ? "is-current" : undefined}>
+                      <div className="rank-position-cell">
+                        <strong>{entry.tied ? `=${entry.rank}º` : `${entry.rank}º`}</strong>
+                        {entry.tied ? <span>Empate</span> : null}
+                      </div>
+                      <div className="rank-city-name">
+                        <strong>{entry.municipality.name}</strong>
+                        <small>{entry.municipality.region}</small>
+                      </div>
+                      <div className={`rank-bar-cell ${entry.value < 0 ? "is-negative" : ""}`}>
+                        <span aria-hidden="true"><i style={barStyle(entry.value, minimum, maximum)} /></span>
+                        <strong>{entry.formattedValue}</strong>
+                      </div>
+                      <button
+                        type="button"
+                        className="rank-select-button"
+                        aria-pressed={isCurrent}
+                        onClick={() => onSelectMunicipality(entry.municipality.slug)}
+                      >
+                        {isCurrent ? "No mapa" : "Ver no mapa"}
+                      </button>
+                    </li>
                   );
                 })}
-              </tbody>
-            </table>
-          </div>
+              </ol>
+            ) : (
+              <div className="ranking-empty-state">
+                <strong>Nenhum município encontrado.</strong>
+                <p>Tente outro nome de município.</p>
+              </div>
+            )}
 
-          {!onlyPilot && ranking.entries.length > 15 ? (
-            <div className="ranking-pagination-bar">
-              <p>
-                Exibindo <strong>{visibleEntries.length}</strong> de{" "}
-                <strong>{ranking.includedCount}</strong> municípios com observação válida.
-              </p>
-              <button
-                type="button"
-                className="ranking-expand-button"
-                onClick={() => setShowAll((prev) => !prev)}
-              >
-                {showAll
-                  ? "Mostrar apenas os 15 primeiros"
-                  : `Mostrar todos os ${ranking.includedCount} municípios`}
-              </button>
-            </div>
-          ) : null}
+            {!query.trim() && ranking.entries.length > 15 ? (
+              <div className="ranking-pagination-bar">
+                <p>Exibindo <strong>{visibleEntries.length}</strong> de <strong>{ranking.includedCount}</strong>.</p>
+                <button
+                  type="button"
+                  className="ranking-expand-button"
+                  onClick={() => setShowAll((current) => !current)}
+                >
+                  {showAll ? "Mostrar somente os 15 primeiros" : "Ver todos os municípios"}
+                </button>
+              </div>
+            ) : null}
+          </section>
 
           {ranking.excludedCount > 0 ? (
-            <aside
-              className="ranking-excluded-panel"
-              aria-label="Municípios excluídos do ranking por ausência de dado"
-            >
-              <div className="excluded-panel-header">
-                <h3>
-                  Municípios sem observação no período ({ranking.excludedCount} de{" "}
-                  {ranking.totalMunicipalities})
-                </h3>
-                <span className="status-chip status-missing">Valor nulo (null)</span>
-              </div>
+            <details className="ranking-excluded-panel">
+              <summary>
+                <span>Municípios sem dado no período</span>
+                <strong>{ranking.excludedCount} municípios</strong>
+              </summary>
               <p>
-                Estes municípios não tiveram observação positiva para{" "}
-                <strong>{ranking.metric.label}</strong> no período ({ranking.metric.period}) e
-                por regra metodológica não recebem valor zero nem posição numérica artificial:
+                Eles permanecem fora do ranking numérico: ausência não é zero e não recebe posição artificial.
               </p>
               <ul className="excluded-city-list">
                 {ranking.excludedMunicipalities.map((item) => (
                   <li key={item.municipality.id}>
-                    <button
-                      type="button"
-                      onClick={() => onSelectMunicipality(item.municipality.slug)}
-                    >
+                    <button type="button" onClick={() => onSelectMunicipality(item.municipality.slug)}>
                       <strong>{item.municipality.name}</strong>
-                      <span>{item.municipality.region} · Sem observação (null)</span>
+                      <span>{item.municipality.region} · Sem observação</span>
                     </button>
                   </li>
                 ))}
               </ul>
-            </aside>
+            </details>
           ) : null}
         </>
       )}

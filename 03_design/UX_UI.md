@@ -34,6 +34,8 @@ Ficha municipal: nome, município/UF, cobertura, indicador selecionado e origem.
 
 Comparador: até três cidades, cada uma identificada por uma cor constante. A seleção fica em uma faixa compacta; valores lado a lado recebem barras proporcionais para leitura relativa, mantendo o número exato. Período e fonte permanecem visíveis, enquanto unidade e universo entram em detalhe progressivo. No celular, cada indicador vira um bloco vertical sem rolagem lateral. Quando não houver dado comparável, apresentar uma única explicação para o conjunto; não preencher com ano próximo silenciosamente. Séries e comparação ficam disponíveis por link compartilhável de filtros públicos.
 
+Ranking municipal: tratar como placar territorial, não como tabela administrativa. O município ativo mostra posição e valor antes da lista; os três destaques abrem a leitura; barras horizontais revelam distância entre valores; busca localiza qualquer cidade; maiores e menores valores são alternáveis. Empates preservam a mesma colocação. Ausências ficam em seção recolhível e nunca recebem zero ou posição artificial. No celular, cada posição ocupa uma linha vertical sem rolagem lateral.
+
 Evolução: gráficos de linha sem suavização que invente forma, anotação de quebra e opção nominal/real quando válida. Faixas de renda em pequenos múltiplos, evitando quinze séries sobrepostas. Composição: barras horizontais; distribuição: só se dados permitirem. Sem gráficos de pizza em excesso ou mapas como decoração repetida.
 
 Método: camada curta “Como ler este número”, seguida de detalhes, fonte, arquivo/tabela, competência e regra de cálculo. Exportar CSV filtrado com metadados junto do arquivo.

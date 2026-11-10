@@ -47,7 +47,7 @@ Evidência: `app/src/components/MunicipalComparisonSection.tsx`, `app/src/lib/mu
 - [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 04-04.
-Evidência: `app/src/components/MunicipalRankingSection.tsx`, `app/src/lib/municipalComparisonAndRanking.ts` e `app/src/lib/municipalComparisonAndRanking.test.ts`. Ordenação habilitada exclusivamente para as 5 medidas municipais observadas, com posição competitiva idêntica em empates (`=º`), separação explícita dos municípios com valor `null` (como os 7 municípios sem admissões com salário positivo em `2026-09`) e bloqueio fundamentado para `Dívida municipal direta`. Status: concluída em 09/11/2026.
+Evidência: `app/src/components/MunicipalRankingSection.tsx`, `app/src/lib/municipalComparisonAndRanking.ts` e `app/src/lib/municipalComparisonAndRanking.test.ts`. Ordenação habilitada exclusivamente para as 5 medidas municipais observadas, com posição competitiva idêntica em empates (`=º`), separação explícita dos municípios com valor `null` (como os 7 municípios sem admissões com salário positivo em `2026-09`) e bloqueio fundamentado para `Dívida municipal direta`. A revisão visual de 10/11/2026 adicionou busca nominal, alternância de direção, posição da cidade ativa, três destaques e barras proporcionais. Status: concluída.
 
 
 ## 04-06 — Testar piloto e expandir cobertura

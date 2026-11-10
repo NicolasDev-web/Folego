@@ -290,14 +290,29 @@ try {
 
       const rankingSection = page.locator(".municipal-ranking-section");
       await rankingSection.scrollIntoViewIfNeeded();
+      await page.locator(".site-header, .skip-link").evaluateAll((elements) => {
+        for (const element of elements) element.style.visibility = "hidden";
+      });
       await rankingSection.screenshot({
         path: resolve(outputDirectory, "cidades-ranking-mediana-1440.png"),
       });
+      await page.locator(".site-header, .skip-link").evaluateAll((elements) => {
+        for (const element of elements) element.style.visibility = "";
+      });
 
-      await rankingSection
-        .getByRole("button", { name: /Salário de admissão/i })
-        .click();
-      await rankingSection.getByText("177 municípios", { exact: true }).waitFor();
+      const rankingSearch = rankingSection.getByLabel("Encontrar município");
+      await rankingSearch.fill("Sobral");
+      await page.waitForFunction(
+        () => document.querySelectorAll(".ranking-visual-list > li").length === 1,
+      );
+      const filteredRankingCount = await rankingSection.locator(".ranking-visual-list > li").count();
+      if (filteredRankingCount !== 1) {
+        throw new Error(`Busca do ranking deveria retornar Sobral; recebidos: ${filteredRankingCount}.`);
+      }
+      await rankingSearch.fill("");
+
+      await rankingSection.getByLabel("Indicador do ranking").selectOption("admission_salary_202609");
+      await rankingSection.locator(".ranking-summary-counts strong", { hasText: "177" }).waitFor();
       await rankingSection.getByText("7 municípios", { exact: true }).waitFor();
       const excludedButtonsCount = await rankingSection
         .locator(".excluded-city-list button")
@@ -312,9 +327,7 @@ try {
         path: resolve(outputDirectory, "cidades-ranking-salario-1440.png"),
       });
 
-      await rankingSection
-        .getByRole("button", { name: /Dívida municipal \(inelegível\)/i })
-        .click();
+      await rankingSection.getByLabel("Indicador do ranking").selectOption("divida_municipal_direta");
       await rankingSection.locator(".ranking-ineligible-banner").waitFor();
       await rankingSection.getByText("0 de 184 municípios", { exact: true }).waitFor();
 
@@ -330,6 +343,11 @@ try {
       });
       await comparisonSection.screenshot({
         path: resolve(outputDirectory, "cidades-comparacao-390.png"),
+      });
+      const rankingSection = page.locator(".municipal-ranking-section");
+      await rankingSection.scrollIntoViewIfNeeded();
+      await rankingSection.screenshot({
+        path: resolve(outputDirectory, "cidades-ranking-mediana-390.png"),
       });
     }
     await context.close();
