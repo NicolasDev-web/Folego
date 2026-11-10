@@ -114,18 +114,18 @@ def format_ym(ym: str) -> str:
     return f"{ym[:4]}-{ym[4:6]}"
 
 
-def list_scr_zip_entries(year: int) -> dict[str, dict[str, Any]]:
+def list_scr_zip_entries(year: int, *, timeout: int = 45) -> dict[str, dict[str, Any]]:
     url = f"https://www.bcb.gov.br/pda/desig/scrdata_{year}.zip"
     from urllib.request import Request, urlopen
 
     req_head = Request(url, method="HEAD", headers={"User-Agent": "Folego/0.2 phase02-pipeline"})
-    with urlopen(req_head, timeout=45) as resp:
+    with urlopen(req_head, timeout=timeout) as resp:
         total_size = int(resp.headers["Content-Length"])
 
     tail_size = min(65536, total_size)
     tail = fetch_bytes(
         url,
-        timeout=45,
+        timeout=timeout,
         headers={"Range": f"bytes={total_size - tail_size}-{total_size - 1}"},
         decompress_gzip=False,
     )

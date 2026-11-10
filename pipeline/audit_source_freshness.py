@@ -4,6 +4,8 @@ import argparse
 import json
 import re
 import subprocess
+from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Callable
@@ -79,7 +81,7 @@ def published_periods(manifest: dict[str, Any]) -> dict[str, str]:
 
 
 def latest_sidra_period(table: str, *, quarterly: bool = False) -> str:
-    payload = fetch_bytes(SIDRA_PERIODS_URL.format(table=table), timeout=45)
+    payload = fetch_bytes(SIDRA_PERIODS_URL.format(table=table), timeout=20, retries=1)
     rows = json.loads(payload.decode("utf-8"))
     periods = [
         normalized_period(str(row.get("id", "")), quarterly=quarterly)
@@ -93,8 +95,10 @@ def latest_sidra_period(table: str, *, quarterly: bool = False) -> str:
 
 
 def latest_mte_period(year: int) -> str:
+    now = datetime.now(UTC)
+    candidate_years = (year, year - 1) if year == now.year and now.month <= 2 else (year,)
     errors: list[str] = []
-    for candidate_year in (year, year - 1):
+    for candidate_year in candidate_years:
         try:
             completed = subprocess.run(
                 [
@@ -103,13 +107,13 @@ def latest_mte_period(year: int) -> str:
                     "--show-error",
                     "--fail",
                     "--max-time",
-                    "20",
+                    "12",
                     MTE_FTP_YEAR.format(year=candidate_year),
                 ],
                 check=True,
                 capture_output=True,
                 text=True,
-                timeout=25,
+                timeout=15,
             )
             periods = re.findall(rf"\b({candidate_year}(?:0[1-9]|1[0-2]))\b", completed.stdout)
             if periods:
@@ -123,10 +127,12 @@ def latest_mte_period(year: int) -> str:
 
 
 def latest_scr_period(year: int) -> str:
+    now = datetime.now(UTC)
+    candidate_years = (year, year - 1) if year == now.year and now.month <= 2 else (year,)
     errors: list[str] = []
-    for candidate_year in (year, year - 1):
+    for candidate_year in candidate_years:
         try:
-            entries = list_scr_zip_entries(candidate_year)
+            entries = list_scr_zip_entries(candidate_year, timeout=20)
             if entries:
                 return normalized_period(max(entries)) or ""
         except Exception as error:
@@ -139,7 +145,7 @@ def latest_scr_period(year: int) -> str:
 
 def latest_sgs_period(code: str) -> str:
     base_url = str(SGS_SERIES[code]["url"]).split("?", 1)[0].rstrip("/")
-    payload = fetch_bytes(f"{base_url}/ultimos/1?formato=json", timeout=45)
+    payload = fetch_bytes(f"{base_url}/ultimos/1?formato=json", timeout=20, retries=1)
     rows = json.loads(payload.decode("utf-8"))
     periods: list[str] = []
     for row in rows:
@@ -171,8 +177,9 @@ def build_freshness_report(
     discoverers: dict[str, Callable[[], str]] | None = None,
 ) -> dict[str, Any]:
     published = published_periods(manifest)
-    checks: list[dict[str, Any]] = []
-    for source_id, discover in (discoverers or discovery_functions(year)).items():
+    source_discoverers = discoverers or discovery_functions(year)
+
+    def check_source(source_id: str, discover: Callable[[], str]) -> dict[str, Any]:
         item: dict[str, Any] = {
             "source_id": source_id,
             "label": SOURCE_LABELS[source_id],
@@ -196,7 +203,14 @@ def build_freshness_report(
             item["available_period"] = None
             item["status"] = "check_failed"
             item["error"] = f"{type(error).__name__}: {error}"
-        checks.append(item)
+        return item
+
+    with ThreadPoolExecutor(max_workers=len(source_discoverers)) as pool:
+        futures = {
+            source_id: pool.submit(check_source, source_id, discover)
+            for source_id, discover in source_discoverers.items()
+        }
+        checks = [futures[source_id].result() for source_id in source_discoverers]
 
     return {
         "schema_version": "1.0.0",
