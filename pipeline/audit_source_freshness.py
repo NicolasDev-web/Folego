@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import subprocess
 from concurrent.futures import ThreadPoolExecutor
@@ -17,7 +18,12 @@ from pipeline.extract.http_client import ROOT, fetch_bytes, write_json
 MANIFEST_PATH = ROOT / "metadata/phase02_manifest.json"
 DEFAULT_REPORT_PATH = "metadata/source_freshness.json"
 MTE_FTP_YEAR = "ftp://ftp.mtps.gov.br/pdet/microdados/NOVO%20CAGED/{year}/"
-SIDRA_PERIODS_URL = "https://servicodados.ibge.gov.br/api/v3/agregados/{table}/periodos"
+SIDRA_VALUES_URL = "https://apisidra.ibge.gov.br/values/t/{table}/p/all/v/{variable}/n1/1?formato=json"
+SIDRA_LATEST_VARIABLE = {
+    "1737": "2266",
+    "4099": "4099",
+    "6472": "5933",
+}
 
 SOURCE_LABELS = {
     "IBGE-SIDRA-1737": "IPCA",
@@ -81,10 +87,14 @@ def published_periods(manifest: dict[str, Any]) -> dict[str, str]:
 
 
 def latest_sidra_period(table: str, *, quarterly: bool = False) -> str:
-    payload = fetch_bytes(SIDRA_PERIODS_URL.format(table=table), timeout=20, retries=1)
+    payload = fetch_bytes(
+        SIDRA_VALUES_URL.format(table=table, variable=SIDRA_LATEST_VARIABLE[table]),
+        timeout=20,
+        retries=1,
+    )
     rows = json.loads(payload.decode("utf-8"))
     periods = [
-        normalized_period(str(row.get("id", "")), quarterly=quarterly)
+        normalized_period(str(row.get("D1C", "")), quarterly=quarterly)
         for row in rows
         if isinstance(row, dict)
     ]
@@ -243,6 +253,11 @@ def main() -> int:
     parser.add_argument("--manifest", type=Path, default=MANIFEST_PATH)
     parser.add_argument("--output", default=DEFAULT_REPORT_PATH)
     parser.add_argument("--summary", type=Path, help="Arquivo Markdown opcional para o resumo da execução.")
+    parser.add_argument(
+        "--fail-on-check-error",
+        action="store_true",
+        help="Retorna erro se alguma fonte não puder ser consultada. Por padrão, a falha fica registrada no relatório.",
+    )
     parser.add_argument("--year", type=int, default=datetime.now(UTC).year)
     args = parser.parse_args()
 
@@ -258,8 +273,17 @@ def main() -> int:
             f"[{item['status']}] {item['label']}: "
             f"publicado={item['published_period'] or '-'} | disponível={item['available_period'] or '-'}"
         )
+        if os.environ.get("GITHUB_ACTIONS") == "true" and item["status"] in {
+            "new_available",
+            "check_failed",
+        }:
+            print(
+                f"::warning title={item['label']}::{item['status']}: "
+                f"publicado {item['published_period'] or '-'}, "
+                f"disponível {item['available_period'] or '-'}"
+            )
     print(f"Relatório salvo em {report_path.relative_to(ROOT).as_posix()}.")
-    return 1 if report["summary"]["check_failed"] else 0
+    return 1 if args.fail_on_check_error and report["summary"]["check_failed"] else 0
 
 
 if __name__ == "__main__":

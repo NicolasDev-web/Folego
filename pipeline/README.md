@@ -95,4 +95,4 @@ Uma verificação semanal, somente de leitura, compara a última competência pu
 python -m pipeline.audit_source_freshness
 ```
 
-O resultado fica em `metadata/source_freshness.json`. O monitor não altera os pacotes públicos: uma competência nova gera apenas um alerta para revisão humana. A publicação continua dependendo da coleta completa, das reconciliações, dos testes e da aprovação da proposta de atualização.
+O resultado fica em `metadata/source_freshness.json`. O monitor não altera os pacotes públicos: uma competência nova gera apenas um alerta para revisão humana. Falhas temporárias de consulta também ficam explícitas no relatório sem apagar os resultados das demais fontes. A publicação continua dependendo da coleta completa, das reconciliações, dos testes e da aprovação da proposta de atualização.
