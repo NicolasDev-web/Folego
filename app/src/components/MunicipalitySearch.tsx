@@ -81,7 +81,7 @@ export function MunicipalitySearch({
   return (
     <div className="municipality-searchbar" ref={rootRef}>
       <div className="search-field">
-        <label htmlFor={inputId}>Buscar município</label>
+        <label htmlFor={inputId}>Buscar cidade</label>
         <div className="search-input-wrap">
           <span aria-hidden="true">⌕</span>
           <input
@@ -133,7 +133,7 @@ export function MunicipalitySearch({
               </li>
             ))}
             {suggestions.length === 0 ? (
-              <li className="empty-suggestion">Nenhum município encontrado.</li>
+              <li className="empty-suggestion">Nenhuma cidade encontrada. Tente outro nome.</li>
             ) : null}
           </ul>
         ) : null}

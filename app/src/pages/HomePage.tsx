@@ -3,9 +3,22 @@ import { BreathingGraphic } from "../components/BreathingGraphic";
 import { InvestigationChapters } from "../components/InvestigationChapters";
 import { SectionHeader } from "../components/SectionHeader";
 import { useInvestigationData } from "../data/useInvestigationData";
+import { useMunicipalities } from "../data/useMunicipalities";
+
+const currency = new Intl.NumberFormat("pt-BR", {
+  style: "currency",
+  currency: "BRL",
+  maximumFractionDigits: 2,
+  minimumFractionDigits: 0,
+});
+const integer = new Intl.NumberFormat("pt-BR");
+const month = new Intl.DateTimeFormat("pt-BR", { month: "long", year: "numeric", timeZone: "UTC" });
 
 export function HomePage() {
   const investigationState = useInvestigationData();
+  const { municipalities } = useMunicipalities();
+  const sobral = municipalities.find((city) => city.slug === "sobral");
+  const employment = sobral?.formal_employment;
 
   return (
     <main id="conteudo">
@@ -58,18 +71,25 @@ export function HomePage() {
           <SectionHeader
             marker="Território · 184 municípios"
             title="O que sabemos sobre sua cidade?"
-            description="Veja quantas pessoas moram lá, quanto ganham e quais ocupações mais ganharam ou perderam empregos formais."
+            description="Veja quantas pessoas moram lá, a renda por pessoa e quais ocupações ganharam ou perderam postos com carteira assinada."
           />
           <Link className="button button-dark" to="/cidades?cidade=sobral">
             Abrir o explorador municipal
           </Link>
         </div>
-        <div className="coverage-preview" aria-label="Resumo da ficha de Sobral">
-          <p>Ficha municipal · Sobral</p>
-          <strong>R$ 650</strong>
-          <span>Renda por pessoa no meio da distribuição (Censo 2022) · +454 empregos formais (set/2026)</span>
-          <small>Endividamento dos moradores: dado municipal indisponível</small>
-        </div>
+        {sobral && employment && (
+          <div className="coverage-preview" aria-label="Resumo de Sobral">
+            <p>Exemplo · Sobral</p>
+            <strong>{currency.format(sobral.income_pc_median_2022)}</strong>
+            <span>Metade dos moradores tinha renda por pessoa de até esse valor por mês em 2022.</span>
+            <small>
+              {employment.balance === 0
+                ? "Contratações e desligamentos ficaram empatados"
+                : `${integer.format(Math.abs(employment.balance))} postos com carteira assinada ${employment.balance > 0 ? "a mais" : "a menos"}`}
+              {" em "}{month.format(new Date(`${employment.period}-01T00:00:00Z`))}.
+            </small>
+          </div>
+        )}
       </section>
 
       <section className="content-section method-callout">

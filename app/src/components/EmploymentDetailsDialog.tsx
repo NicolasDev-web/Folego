@@ -37,7 +37,7 @@ export function EmploymentDetailsDialog({
         type="button"
         onClick={() => dialogRef.current?.showModal()}
       >
-        Ver quais empregos
+        Ver quais empregos mudaram
       </button>
 
       <dialog
@@ -54,9 +54,9 @@ export function EmploymentDetailsDialog({
           <header className="employment-dialog-header">
             <div>
               <p>Emprego formal em {periodLabel}</p>
-              <h2 id="employment-dialog-title">O trabalho que movimentou {municipality.name}</h2>
+              <h2 id="employment-dialog-title">Empregos em {municipality.name}</h2>
               <span>
-                O município fechou o mês com saldo de {signedNumber(employment.balance)} postos.
+                {number.format(employment.admissions)} contratações e {number.format(employment.dismissals)} desligamentos no mês.
               </span>
             </div>
             <button
@@ -73,8 +73,8 @@ export function EmploymentDetailsDialog({
               <>
                 <section className="employment-dialog-primary" aria-labelledby="growing-occupations-title">
               <header>
-                <h3 id="growing-occupations-title">Ocupações que mais abriram postos</h3>
-                <p>Saldo entre admissões e desligamentos</p>
+                <h3 id="growing-occupations-title">Ocupações que mais ganharam postos</h3>
+                <p>Contratações menos desligamentos</p>
               </header>
               {employment.top_occupations.length > 0 ? (
                 <ol className="occupation-ranking">
@@ -94,14 +94,14 @@ export function EmploymentDetailsDialog({
                         } as CSSProperties}
                       />
                       <small>
-                        {number.format(occupation.admissions)} admissões ·{" "}
+                        {number.format(occupation.admissions)} contratações ·{" "}
                         {number.format(occupation.dismissals)} desligamentos
                       </small>
                     </li>
                   ))}
                 </ol>
               ) : (
-                <p className="employment-empty">Nenhuma ocupação teve saldo positivo no mês.</p>
+                <p className="employment-empty">As contratações ficaram iguais ou abaixo dos desligamentos em cada ocupação.</p>
               )}
                 </section>
 
@@ -109,14 +109,14 @@ export function EmploymentDetailsDialog({
                   <section aria-labelledby="employment-sectors-title">
                 <header>
                   <h3 id="employment-sectors-title">Setores mais movimentados</h3>
-                  <p>Admissões e desligamentos somados</p>
+                  <p>Onde houve mais contratações e desligamentos</p>
                 </header>
                 <dl className="employment-sectors">
                   {employment.busiest_sectors.map((sector) => (
                     <div key={sector.code}>
                       <dt>{sector.title}</dt>
                       <dd>
-                        <span>{number.format(sector.admissions + sector.dismissals)} movimentos</span>
+                        <span>{number.format(sector.admissions + sector.dismissals)} entradas e saídas</span>
                         <strong>{signedNumber(sector.balance)}</strong>
                       </dd>
                     </div>
@@ -124,25 +124,28 @@ export function EmploymentDetailsDialog({
                 </dl>
                   </section>
 
-                  {employment.average_admission_salary !== null && (
-                    <section className="admission-salary" aria-label="Salário médio das admissões">
-                  <span>Salário médio das admissões</span>
-                  <strong>{currency.format(employment.average_admission_salary)}</strong>
-                  <small>
-                    valor nominal · {number.format(employment.salary_observations)} admissões elegíveis
-                  </small>
-                  <small>
-                    Entre 0,3 e 150 salários mínimos, sem vínculos intermitentes.
-                    {employment.salary_observations < 5 && " Poucas admissões: a média pode variar muito."}
-                  </small>
+                  {employment.average_admission_salary !== null ? (
+                    <section className="admission-salary" aria-label="Salário médio de quem entrou">
+                      <span>Salário médio de quem entrou</span>
+                      <strong>{currency.format(employment.average_admission_salary)}</strong>
+                      <small>{number.format(employment.salary_observations)} salários usados no cálculo</small>
+                      {employment.salary_observations < 5 && (
+                        <small>Com poucos salários, a média pode variar muito.</small>
+                      )}
+                      <details>
+                        <summary>Como o salário médio é calculado?</summary>
+                        <p>O Ministério do Trabalho usa salários mensais de 0,3 a 150 salários mínimos e exclui contratos de trabalho intermitente.</p>
+                      </details>
                     </section>
+                  ) : (
+                    <p className="employment-empty">Sem salários disponíveis para calcular a média do mês.</p>
                   )}
 
                   {employment.declining_occupations.length > 0 && (
                     <section aria-labelledby="declining-occupations-title">
                   <header>
-                    <h3 id="declining-occupations-title">Maiores recuos</h3>
-                    <p>Ocupações com mais desligamentos líquidos</p>
+                    <h3 id="declining-occupations-title">Ocupações que mais perderam postos</h3>
+                    <p>Onde as saídas mais superaram as contratações</p>
                   </header>
                   <ul className="declining-occupations">
                     {employment.declining_occupations.map((occupation) => (
@@ -158,10 +161,9 @@ export function EmploymentDetailsDialog({
               </>
             ) : (
               <section className="employment-dialog-empty-state">
-                <h3>Nenhuma movimentação registrada no mês</h3>
+                <h3>Sem contratações ou desligamentos registrados</h3>
                 <p>
-                  O Novo Caged não registrou admissões nem desligamentos em {municipality.name} nesta
-                  competência. Saldo zero não significa ausência de empregos existentes.
+                  O Novo Caged acompanha as entradas e saídas do mês em {municipality.name}. O total de pessoas empregadas é outra medida.
                 </p>
               </section>
             )}
@@ -169,11 +171,10 @@ export function EmploymentDetailsDialog({
 
           <footer className="employment-dialog-footer">
             <p>
-              São movimentações do mês no município do estabelecimento, não o total de pessoas
-              empregadas. Ocupações seguem a CBO 2002; setores seguem a CNAE 2.0.
+              Os números mostram contratações e desligamentos em estabelecimentos da cidade durante o mês.
             </p>
             <a href="https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/cbo/servicos/downloads/downloads">
-              Consultar classificação oficial
+              Consultar nomes oficiais das ocupações
             </a>
           </footer>
         </div>

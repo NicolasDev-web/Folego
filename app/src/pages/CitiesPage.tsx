@@ -61,25 +61,23 @@ export function CitiesPage() {
   return (
     <main id="conteudo" className="cities-page">
       <header className="page-intro">
-        <p className="section-marker">Explorador municipal · 184 municípios</p>
-        <h1>O que já podemos dizer sobre sua cidade?</h1>
+        <p className="section-marker">184 cidades do Ceará</p>
+        <h1>Conheça sua cidade</h1>
         <p>
-          População, renda domiciliar e emprego formal já estão validados por código IBGE. A dívida
-          local continua indisponível até existir uma fonte direta que passe pelo portão metodológico.
+          Busque uma cidade ou escolha no mapa para ver quantas pessoas moram lá, a renda por pessoa e como mudou o emprego com carteira assinada.
         </p>
       </header>
 
       {municipalState.status === "loading" ? (
         <section className="data-state" aria-live="polite">
-          <h2>Carregando a base municipal</h2>
-          <p>Conferindo códigos e contexto do IBGE.</p>
+          <h2>Carregando as cidades</h2>
         </section>
       ) : null}
 
       {municipalState.status === "error" ? (
         <section className="data-state data-state-error" role="alert">
-          <h2>A base municipal não carregou</h2>
-          <p>{municipalState.error}</p>
+          <h2>Os dados das cidades não carregaram</h2>
+          <p>Atualize a página para tentar de novo.</p>
         </section>
       ) : null}
 
@@ -110,13 +108,13 @@ export function CitiesPage() {
                 >
                   <h2>
                     {geometryState.status === "error"
-                      ? "A malha municipal não carregou"
+                      ? "O mapa não carregou"
                       : "Carregando o mapa do Ceará"}
                   </h2>
                   <p>
                     {geometryState.status === "error"
-                      ? geometryState.error
-                      : "Conferindo as 184 geometrias oficiais do IBGE."}
+                      ? "Você pode escolher uma cidade pela busca."
+                      : "Em instantes, você poderá escolher uma cidade no mapa."}
                   </p>
                 </section>
               )}

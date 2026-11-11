@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "playwright-core";
 
 const scriptDirectory = dirname(fileURLToPath(import.meta.url));
-const outputDirectory = resolve(scriptDirectory, "../../evidencias/qa");
+const outputDirectory = process.env.FOLEGO_QA_OUTPUT_DIR ?? resolve(scriptDirectory, "../../evidencias/qa");
 const chromePath = "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const baseUrl = process.env.FOLEGO_BASE_URL ?? "http://127.0.0.1:5173";
 
@@ -98,6 +98,9 @@ try {
     }
     if (capture.path === "/metodo") {
       await page.locator(".method-catalog-section").waitFor();
+      const definition = page.locator(".method-indicators details").filter({ hasText: "Quanto falta pagar em crédito" });
+      await definition.locator("summary").click();
+      await definition.getByText("Soma do saldo a pagar", { exact: false }).waitFor();
     }
     if (capture.path.startsWith("/cidades")) {
       await page.locator(".map-shape").first().waitFor();
@@ -108,7 +111,7 @@ try {
       const territoryPressed = await page
         .getByRole("button", { name: "Território", exact: true })
         .getAttribute("aria-pressed");
-      const initialRegion = await page.getByLabel("Zoom regional").inputValue();
+      const initialRegion = await page.getByLabel("Ampliar região").inputValue();
       if (territoryPressed !== "true" || initialRegion !== "") {
         throw new Error(`${capture.name}: território com Ceará inteiro não abriu como padrão.`);
       }
@@ -130,7 +133,7 @@ try {
     }
     if (capture.region) {
       const map = page.locator(".municipality-map-panel");
-      await map.getByLabel("Zoom regional").selectOption(capture.region);
+      await map.getByLabel("Ampliar região").selectOption(capture.region);
       const viewBox = await map.locator("svg").getAttribute("viewBox");
       if (viewBox === "0 0 640 620") {
         throw new Error(`${capture.name}: o zoom regional não alterou a área visível.`);
@@ -197,7 +200,7 @@ try {
       const cap2 = page.locator("#evolucao");
       await cap2.scrollIntoViewIfNeeded();
       await cap2
-        .getByRole("button", { name: /Ativo problemático/i })
+        .getByRole("button", { name: "Crédito com risco de não ser pago" })
         .click();
       await cap2.screenshot({
         path: resolve(outputDirectory, "home-capitulo2-evolucao-quebra2025-1440.png"),
@@ -224,7 +227,7 @@ try {
       await fortalezaShape.click();
       await page.waitForURL(/cidade=fortaleza/);
       await page.locator(".coverage-heading h2", { hasText: "Fortaleza" }).waitFor();
-      const clickedRegion = await page.getByLabel("Zoom regional").inputValue();
+      const clickedRegion = await page.getByLabel("Ampliar região").inputValue();
       const clickedViewBox = await page.locator(".municipality-map-panel svg").getAttribute("viewBox");
       if (clickedRegion !== "Fortaleza" || clickedViewBox === "0 0 640 620") {
         throw new Error(
@@ -252,7 +255,7 @@ try {
       if (mapLabel !== "Fortaleza") {
         throw new Error(`Nome no mapa não sincronizou: ${mapLabel ?? "sem nome"}.`);
       }
-      const search = page.getByRole("combobox", { name: "Buscar município" });
+      const search = page.getByRole("combobox", { name: "Buscar cidade" });
       await search.fill("Crato");
       await search.press("Enter");
       await page.waitForURL(/cidade=crato/);
@@ -272,7 +275,7 @@ try {
         throw new Error(`Esperados 8 botões de cidades-piloto; recebidos: ${pilotChipCount}`);
       }
       const debtMessage = await page.locator(".comparison-unavailable-cell").textContent();
-      if (!debtMessage?.includes("Ainda não existe uma fonte municipal validada")) {
+      if (!debtMessage?.includes("Sem dados de endividamento por cidade")) {
         throw new Error("Linha de dívida municipal perdeu a indisponibilidade explícita.");
       }
 
@@ -300,7 +303,7 @@ try {
         for (const element of elements) element.style.visibility = "";
       });
 
-      const rankingSearch = rankingSection.getByLabel("Encontrar município");
+      const rankingSearch = rankingSection.getByLabel("Buscar cidade na lista");
       await rankingSearch.fill("Sobral");
       await page.waitForFunction(
         () => document.querySelectorAll(".ranking-visual-list > li").length === 1,
@@ -311,7 +314,7 @@ try {
       }
       await rankingSearch.fill("");
 
-      await rankingSection.getByLabel("Indicador do ranking").selectOption("admission_salary_202609");
+      await rankingSection.getByLabel("O que você quer comparar?").selectOption("admission_salary_202609");
       await rankingSection.locator(".ranking-summary-counts strong", { hasText: "177" }).waitFor();
       await rankingSection.getByText("7 municípios", { exact: true }).waitFor();
       const excludedButtonsCount = await rankingSection
@@ -327,7 +330,7 @@ try {
         path: resolve(outputDirectory, "cidades-ranking-salario-1440.png"),
       });
 
-      await rankingSection.getByLabel("Indicador do ranking").selectOption("divida_municipal_direta");
+      await rankingSection.getByLabel("O que você quer comparar?").selectOption("divida_municipal_direta");
       await rankingSection.locator(".ranking-ineligible-banner").waitFor();
       await rankingSection.getByText("0 de 184 municípios", { exact: true }).waitFor();
 

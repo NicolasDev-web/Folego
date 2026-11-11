@@ -5,10 +5,10 @@ export function Footer() {
     <footer className="site-footer">
       <div>
         <strong>fôlego.</strong>
-        <p>Uma investigação em construção sobre dívidas, renda e território.</p>
+        <p>Dados sobre crédito, renda e emprego no Ceará.</p>
       </div>
       <div className="footer-links">
-        <Link to="/metodo">Como ler os dados</Link>
+        <Link to="/metodo">Fontes e cálculos</Link>
         <a href="https://github.com/NicolasDev-web/Folego">Código e documentação</a>
       </div>
     </footer>

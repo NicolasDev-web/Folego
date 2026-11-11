@@ -18,10 +18,9 @@ export function SourceNote({
   limitNote,
 }: SourceNoteProps) {
   return (
-    <aside className="source-note" aria-label={`Nota metodológica: ${sourceLabel}`}>
+    <aside className="source-note" aria-label={sourceLabel}>
       <div className="source-note-main">
         <div>
-          <span className="source-note-kicker">Rastreabilidade da fonte</span>
           <strong>{sourceLabel}</strong>
           <p>{limitNote}</p>
         </div>
@@ -31,31 +30,32 @@ export function SourceNote({
           target="_blank"
           rel="noreferrer"
         >
-          Abrir fonte oficial ↗
+          Consultar fonte ↗
         </a>
       </div>
-      <dl className="source-note-meta">
-        <div>
-          <dt>Competência</dt>
-          <dd>{period}</dd>
-        </div>
-        <div>
-          <dt>Escala territorial</dt>
-          <dd>{territoryScope}</dd>
-        </div>
-        <div>
-          <dt>Universo</dt>
-          <dd>{universe}</dd>
-        </div>
-        {formula ? (
+      <details>
+        <summary>Ver detalhes da fonte</summary>
+        <dl className="source-note-meta">
           <div>
-            <dt>Regra / Fórmula</dt>
-            <dd>
-              <code>{formula}</code>
-            </dd>
+            <dt>Quando</dt>
+            <dd>{period}</dd>
           </div>
-        ) : null}
-      </dl>
+          <div>
+            <dt>Onde</dt>
+            <dd>{territoryScope}</dd>
+          </div>
+          <div>
+            <dt>O que foi medido</dt>
+            <dd>{universe}</dd>
+          </div>
+          {formula && (
+            <div>
+              <dt>Cálculo ou regra</dt>
+              <dd>{formula}</dd>
+            </div>
+          )}
+        </dl>
+      </details>
     </aside>
   );
 }

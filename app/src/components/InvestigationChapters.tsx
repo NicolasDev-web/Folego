@@ -304,7 +304,7 @@ export function InvestigationChapters({
             title="Como o Ceará se compara ao Nordeste e ao Brasil?"
             description="Veja quanto as pessoas ainda têm a pagar em crédito e qual parte está em contratos com parcelas atrasadas há mais de 90 dias."
           />
-          <div className="chapter-filter-bar" aria-label="Filtros públicos sincronizados na URL">
+          <div className="chapter-filter-bar" aria-label="Filtros do crédito">
             <div className="filter-group">
               <span className="filter-group-label">Local em destaque</span>
               <SegmentedControl
@@ -312,9 +312,9 @@ export function InvestigationChapters({
                 value={activeTerritory}
                 onChange={(next) => updateUrlFilter("territorio", next)}
                 options={[
-                  { value: "CE", label: "Ceará", badge: "UF" },
-                  { value: "NE", label: "Nordeste", badge: "Região" },
-                  { value: "BR", label: "Brasil", badge: "Nacional" },
+                  { value: "CE", label: "Ceará" },
+                  { value: "NE", label: "Nordeste" },
+                  { value: "BR", label: "Brasil" },
                 ]}
               />
             </div>
@@ -340,12 +340,12 @@ export function InvestigationChapters({
             formattedValue={formatBillions(selectedTerritorySnapshot.carteiraAtivaBrl)}
             unitLabel={
               valueMode === "real"
-                ? "Reais a preços de set/2026 (IPCA)"
-                : "Reais nominais correntes"
+                ? "Reais ajustados pela inflação até setembro de 2026"
+                : "Reais da época"
             }
             periodLabel="set/2026"
             sourceLabel="BCB · SCR.data"
-            universeLabel="Operações de crédito PF no SFN"
+            universeLabel="Contratos de crédito de pessoas físicas"
             highlight
             comparisonNote={`Ceará representa ${pctFormatter.format(panorama.ceShareOfNePct)}% da carteira PF do Nordeste e ${pctFormatter.format(panorama.ceShareOfBrPct)}% da nacional.`}
           />
@@ -356,45 +356,44 @@ export function InvestigationChapters({
             unitLabel="Parcela da carteira em operações com prestação vencida há mais de 90 dias"
             periodLabel="set/2026"
             sourceLabel="BCB · SCR.data"
-            universeLabel="Saldo inadimplido / Carteira ativa PF"
+            universeLabel="Contratos com pelo menos uma parcela atrasada há mais de 90 dias"
             comparisonNote={panorama.territories.map((row) => `${row.territoryName} · ${formatPercent(row.inad90Pct)}`).join(" | ")}
           />
           <MetricCard
             eyebrow={selectedTerritorySnapshot.territoryName}
             title="Quanto falta pagar por contrato, em média"
             formattedValue={formatCurrency(selectedTerritorySnapshot.saldoOperacaoBrl)}
-            unitLabel="R$ por contrato em grupos com > 15 operações"
+            unitLabel="Reais por contrato nos grupos com contagem publicada"
             periodLabel="set/2026"
             sourceLabel="BCB · SCR.data"
-            universeLabel={`${integerFormatter.format(selectedTerritorySnapshot.operacoesVisiveis)} contratos visíveis (${integerFormatter.format(selectedTerritorySnapshot.linhasSuprimidas)} linhas <= 15 suprimidas)`}
+            universeLabel={`${integerFormatter.format(selectedTerritorySnapshot.operacoesVisiveis)} contratos com contagem publicada`}
             comparisonNote="Uma pessoa pode ter mais de um contrato."
           />
           <MetricCard
-            eyebrow="Brasil (exclusivo escala nacional)"
+            eyebrow="Brasil"
             title="Parte da renda usada para pagar dívidas"
             formattedValue={formatPercent(panorama.nationalIncomeCommitment.valuePct)}
-            unitLabel="Serviço da dívida / Renda disponível (série ajustada)"
+            unitLabel="Parte da renda disponível destinada a juros e parcelas"
             periodLabel={panorama.nationalIncomeCommitment.period}
             sourceLabel="BCB · SGS 29034"
-            universeLabel="Famílias tomadoras no SFN (agregado macro nacional)"
-            comparisonNote="O Banco Central não publica desagregação estadual ou municipal desta série."
+            universeLabel="Famílias no Brasil"
+            comparisonNote="O Banco Central publica esse número para o Brasil."
           />
         </div>
 
         <div className="comparison-table-container">
           <table className="comparison-table">
             <caption>
-              Comparação alinhada entre Ceará, Nordeste e Brasil — Pessoa Física (competência
-              2026-09)
+              Crédito de pessoas físicas · Setembro de 2026
             </caption>
             <thead>
               <tr>
-                <th scope="col">Território (escala)</th>
-                <th scope="col">Carteira ativa PF</th>
-                <th scope="col">Atraso 15 a 90 dias</th>
-                <th scope="col">Inadimplência (&gt; 90d)</th>
-                <th scope="col">Ativo problemático</th>
-                <th scope="col">Saldo por operação</th>
+                <th scope="col">Local</th>
+                <th scope="col">Crédito a pagar</th>
+                <th scope="col">Parcelas atrasadas de 15 a 90 dias</th>
+                <th scope="col">Em contratos com atraso acima de 90 dias</th>
+                <th scope="col">Crédito com risco de não ser pago</th>
+                <th scope="col">Valor médio por contrato</th>
               </tr>
             </thead>
             <tbody>
@@ -418,7 +417,7 @@ export function InvestigationChapters({
                   <td>
                     {formatCurrency(row.saldoOperacaoBrl)}
                     <span className="comparison-cell-note">
-                      {integerFormatter.format(row.linhasSuprimidas)} linhas &le;15 ocultadas
+                      Apenas grupos com contagem publicada
                     </span>
                   </td>
                 </tr>
@@ -431,10 +430,10 @@ export function InvestigationChapters({
           sourceLabel="Banco Central do Brasil · SCR.data e SGS 29034"
           sourceUrl="https://dadosabertos.bcb.gov.br/dataset/scr_data"
           period="2026-09 (SCR.data) e 2026-08 (SGS 29034)"
-          territoryScope="UF (Ceará), Região (Nordeste) e País (Brasil)"
+          territoryScope="Ceará, Nordeste e Brasil"
           universe="Operações de crédito de Pessoas Físicas acima de R$ 200 reportadas ao SCR"
-          formula="inad90_carteira = SUM(carteira_inadimplida) / SUM(carteira_ativa)"
-          limitNote="Saldos e taxas do SCR medem volume financeiro de contratos, não quantidade de CPFs únicos. A série SGS 29034 de comprometimento de renda existe apenas para o agregado nacional."
+          formula="Saldo dos contratos com parcela atrasada há mais de 90 dias ÷ saldo de todos os contratos × 100"
+          limitNote="As taxas de crédito medem valores em reais. A parcela da renda usada para pagar dívidas vem de uma série separada do Banco Central, para todo o Brasil."
         />
       </section>
 
@@ -442,32 +441,28 @@ export function InvestigationChapters({
       <section className="content-section investigation-section" id="evolucao">
         <div className="chapter-top-bar">
           <SectionHeader
-            marker="Capítulo 02 · Série histórica (2019–2026) e quebra metodológica"
-            title="A inadimplência PF no Ceará subiu de 4,17% em 2019 para 6,20% em 2026; em janeiro de 2025, o conceito de ativo problemático mudou."
-            description="A série de inadimplência (> 90 dias) permanece metodologicamente contínua nas 33 competências auditadas. Já o indicador de ativo problemático sofreu quebra em 2025-01 (Resolução CMN 4.966 / Característica Especial 19) e por isso é exibido em dois segmentos separados, sem suavização artificial."
+            title="Como o crédito e os atrasos mudaram com o tempo?"
+            description="Veja quanto ainda faltava pagar em crédito e quanto desse saldo estava em contratos com atraso. Escolha um item para mudar o gráfico."
           />
           <div className="chapter-filter-bar">
             <div className="filter-group">
-              <span className="filter-group-label">Indicador da série histórica</span>
+              <span className="filter-group-label">O que mostrar no gráfico?</span>
               <SegmentedControl
-                label="Selecionar métrica da evolução histórica"
+                label="Escolher dado do gráfico"
                 value={evolutionMetric}
                 onChange={setEvolutionMetric}
                 options={[
                   {
                     value: "inad90_pct",
-                    label: "Inadimplência > 90d (%)",
-                    badge: "Série contínua",
+                    label: "Contratos com atraso acima de 90 dias",
                   },
                   {
                     value: "ativo_problematico_pct",
-                    label: "Ativo problemático (%)",
-                    badge: "Quebra 2025-01",
+                    label: "Crédito com risco de não ser pago",
                   },
                   {
                     value: "carteira_bilhoes",
-                    label: "Carteira ativa PF (R$ bi)",
-                    badge: valueMode === "real" ? "Real IPCA" : "Nominal",
+                    label: "Crédito a pagar",
                   },
                 ]}
               />
@@ -475,21 +470,21 @@ export function InvestigationChapters({
           </div>
         </div>
 
-        <figure className="timeseries-figure" aria-label="Gráfico de evolução histórica do SCR.data">
+        <figure className="timeseries-figure" aria-label="Gráfico de crédito ao longo do tempo">
           <div className="timeseries-header">
             <div>
               <strong>
                 {evolutionMetric === "inad90_pct" &&
-                  "Taxa de inadimplência (> 90 dias) da carteira PF — Ceará, Nordeste e Brasil (%)"}
+                  "Parte do crédito em contratos com atraso acima de 90 dias (%)"}
                 {evolutionMetric === "ativo_problematico_pct" &&
-                  "Ativo problemático da carteira PF — Segmentado antes e depois de 2025-01 (%)"}
+                  "Parte do crédito com sinais de dificuldade de pagamento (%)"}
                 {evolutionMetric === "carteira_bilhoes" &&
-                  `Evolução da carteira ativa PF — ${selectedTerritorySnapshot.territoryName} (${
-                    valueMode === "real" ? "R$ bilhões reais de set/2026" : "R$ bilhões nominais"
+                  `Crédito a pagar ao longo do tempo · ${selectedTerritorySnapshot.territoryName} (${
+                    valueMode === "real" ? "R$ bilhões ajustados pela inflação até set/2026" : "R$ bilhões em valores da época"
                   })`}
               </strong>
               <p>
-                33 datas-base auditadas de agosto de 2019 a setembro de 2026 · Sem interpolação
+                Meses com dados entre agosto de 2019 e setembro de 2026
               </p>
             </div>
             <div className="timeseries-legend">
@@ -498,9 +493,11 @@ export function InvestigationChapters({
                   <i style={{ background: s.color }} /> {s.label}
                 </span>
               ))}
-              <span className="legend-item legend-break">
-                <i className="break-swatch" /> Marco 2025-01 (CMN 4.966)
-              </span>
+              {evolutionMetric === "ativo_problematico_pct" && (
+                <span className="legend-item legend-break">
+                  <i className="break-swatch" /> Mudança de regra · Janeiro de 2025
+                </span>
+              )}
             </div>
           </div>
 
@@ -508,7 +505,7 @@ export function InvestigationChapters({
             <svg
               viewBox={`0 0 ${chartWidth} ${chartHeight}`}
               role="img"
-              aria-label="Série temporal de crédito PF entre 2019 e 2026 com marcação de mudança metodológica em janeiro de 2025"
+              aria-label="Crédito ao longo do tempo, de 2019 a 2026"
             >
               {[0, 0.25, 0.5, 0.75, 1].map((ratio) => {
                 const val = minVal + valSpan * ratio;
@@ -538,25 +535,28 @@ export function InvestigationChapters({
                 );
               })}
 
-              {/* Vertical Methodological Break Line at 2025-01 */}
-              <line
-                x1={breakX}
-                y1={padTop}
-                x2={breakX}
-                y2={chartHeight - padBottom}
-                stroke="#b94d32"
-                strokeWidth="1.8"
-                strokeDasharray="5 4"
-              />
-              <text
-                x={breakX + 6}
-                y={padTop + 12}
-                fontSize="10.5"
-                fontWeight="600"
-                fill="#b94d32"
-              >
-                2025-01: Nova regra de ativo problemático (Caract. 19)
-              </text>
+              {evolutionMetric === "ativo_problematico_pct" && (
+                <g>
+                  <line
+                    x1={breakX}
+                    y1={padTop}
+                    x2={breakX}
+                    y2={chartHeight - padBottom}
+                    stroke="#b94d32"
+                    strokeWidth="1.8"
+                    strokeDasharray="5 4"
+                  />
+                  <text
+                    x={breakX + 6}
+                    y={padTop + 12}
+                    fontSize="10.5"
+                    fontWeight="600"
+                    fill="#b94d32"
+                  >
+                    Jan/2025 · Mudança de regra
+                  </text>
+                </g>
+              )}
 
               {activeSeriesList.map((s) => {
                 if (evolutionMetric === "ativo_problematico_pct") {
@@ -611,11 +611,11 @@ export function InvestigationChapters({
             </svg>
           </div>
 
-          <figcaption className="timeseries-break-note">
-            <strong>Nota de quebra metodológica (2025-01):</strong>{" "}
-            {macro.methodology_breaks[0]?.description} Versão anterior:{" "}
-            <code>sdd-scr-v2-pre2025</code> · Versão atual: <code>sdd-scr-v2-pos2025</code>.
-          </figcaption>
+          {evolutionMetric === "ativo_problematico_pct" && (
+            <figcaption className="timeseries-break-note">
+              O Banco Central mudou em janeiro de 2025 a regra para identificar crédito com risco de não ser pago. A linha é interrompida nessa data.
+            </figcaption>
+          )}
         </figure>
       </section>
 
@@ -656,12 +656,12 @@ export function InvestigationChapters({
               </caption>
               <thead>
                 <tr>
-                  <th scope="col">Modalidade (SCR.data)</th>
-                  <th scope="col">Carteira ativa (set/2026)</th>
-                  <th scope="col">Participação na carteira</th>
-                  <th scope="col">Mudança de peso (2019→2026)</th>
-                  <th scope="col">Variação real (IPCA)</th>
-                  <th scope="col">Inadimplência (&gt; 90d)</th>
+                  <th scope="col">Tipo de crédito</th>
+                  <th scope="col">Crédito a pagar</th>
+                  <th scope="col">Parte do crédito total</th>
+                  <th scope="col">Mudança na participação (2019 a 2026)</th>
+                  <th scope="col">Mudança do saldo, descontada a inflação</th>
+                  <th scope="col">Em contratos com atraso acima de 90 dias</th>
                 </tr>
               </thead>
               <tbody>
@@ -678,7 +678,7 @@ export function InvestigationChapters({
                     </td>
                     <td>
                       {row.shareDeltaPp !== null
-                        ? `${row.shareDeltaPp > 0 ? "+" : ""}${pctFormatter.format(row.shareDeltaPp)} p.p.`
+                        ? `${row.shareDeltaPp > 0 ? "+" : ""}${pctFormatter.format(row.shareDeltaPp)} pontos percentuais`
                         : "—"}
                     </td>
                     <td>
@@ -773,23 +773,20 @@ export function InvestigationChapters({
         {profileTab === "sub_regiao" ? (
           <>
             <aside className="methodology-alert-banner" role="note">
-              <strong>Isolamento metodológico do BCB-SUB (status: parcial):</strong>{" "}
-              {profiles.sub_regiao_ce.methodology_note} Este serviço mede{" "}
-              <strong>atraso acima de 15 dias</strong> (e não inadimplência acima de 90 dias).
+              O Banco Central agrupa endereços pelos dois primeiros dígitos do CEP. Aqui, o número mostra a parcela do saldo vencida há mais de 15 dias.
             </aside>
             <div className="comparison-table-container">
               <table className="comparison-table">
                 <caption>
-                  Recorte sub-regional postal do Ceará (Olinda BCB-SUB · competência 2026-08 ·
-                  Pessoa Física)
+                  Parcelas em atraso por região do CEP · Ceará · Agosto de 2026
                 </caption>
                 <thead>
                   <tr>
-                    <th scope="col">Sub-região postal BCB</th>
-                    <th scope="col">Escala territorial</th>
-                    <th scope="col">Vencido &gt; 15 dias (%)</th>
-                    <th scope="col">Operações visíveis</th>
-                    <th scope="col">Modalidade predominante</th>
+                    <th scope="col">Início do CEP</th>
+                    <th scope="col">Tipo de região</th>
+                    <th scope="col">Saldo vencido há mais de 15 dias (%)</th>
+                    <th scope="col">Contratos com contagem publicada</th>
+                    <th scope="col">Principal tipo de crédito</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -800,7 +797,7 @@ export function InvestigationChapters({
                       </th>
                       <td>
                         <span className="status-chip status-partial">
-                          sub_regiao · parcial
+                          Região por CEP
                         </span>
                       </td>
                       <td>
@@ -823,48 +820,47 @@ export function InvestigationChapters({
         id="trabalho-e-percepcao"
       >
         <SectionHeader
-          marker="Capítulo 04 · Renda, trabalho formal e percepção das famílias"
-          title="Trabalho, renda e contas em atraso em Fortaleza e no Brasil"
-          description="Fontes com periodicidades, amostras e conceitos distintos não permitem inferência causal automática: uma família pode estar endividada por financiamento imobiliário em dia (PEIC/IPDC) enquanto a inadimplência bancária (> 90 dias no SCR) reflete contratos em atraso prolongado."
+          title="O que as pesquisas mostram sobre emprego, renda e dívidas?"
+          description="As pesquisas perguntam sobre dívidas e contas em atraso. Uma família com financiamento em dia também tem dívida. Confira o local e o mês de cada dado."
         />
 
         <div className="metric-card-grid">
           <MetricCard
-            eyebrow="Ceará · Trimestral (PNAD Contínua)"
-            title="Taxa de desocupação (2º tri/2026)"
+            eyebrow="Ceará"
+            title="Pessoas sem trabalho e procurando emprego"
             formattedValue={formatPercent(pnadCeDesoc?.taxa_desocupacao_pct)}
-            unitLabel={`Pessoas de 14+ anos na força de trabalho · CV ${formatPercent(pnadCeDesoc?.cv_pct)}`}
-            periodLabel="2026-T2"
+            unitLabel="Parte de quem trabalha ou procura trabalho"
+            periodLabel="Abril a junho de 2026"
             sourceLabel="IBGE · SIDRA 4099"
-            universeLabel="Amostra domiciliar trimestral"
-            comparisonNote={`Brasil em 2026-T2 · ${formatPercent(pnadBrDesoc?.taxa_desocupacao_pct)} (CV ${formatPercent(pnadBrDesoc?.cv_pct)}).`}
+            universeLabel="Pessoas de 14 anos ou mais na força de trabalho"
+            comparisonNote={`Brasil no mesmo período · ${formatPercent(pnadBrDesoc?.taxa_desocupacao_pct)}.`}
           />
           <MetricCard
-            eyebrow="Ceará · Trimestral (PNAD Contínua)"
-            title="Rendimento médio habitual real"
+            eyebrow="Ceará"
+            title="Quanto se ganha com trabalho, em média"
             formattedValue={formatCurrency(pnadCeRend?.rendimento_habitual_real_brl)}
-            unitLabel={`Reais deflacionados pelo IBGE · CV ${formatPercent(pnadCeRend?.cv_real_pct)}`}
-            periodLabel="2026-T2"
+            unitLabel="Reais por mês, com ajuste pela inflação"
+            periodLabel="Abril a junho de 2026"
             sourceLabel="IBGE · SIDRA 6472"
             universeLabel="Pessoas ocupadas com rendimento de trabalho"
-            comparisonNote={`Brasil em 2026-T2 · ${formatCurrency(pnadBrRend?.rendimento_habitual_real_brl)}.`}
+            comparisonNote={`Brasil no mesmo período · ${formatCurrency(pnadBrRend?.rendimento_habitual_real_brl)}.`}
           />
           <MetricCard
-            eyebrow="Ceará · Mensal (Novo Caged Ajustado)"
-            title="Saldo de emprego formal (acumulado 2026)"
+            eyebrow="Ceará"
+            title="Postos com carteira assinada ganhos ou perdidos"
             formattedValue={formatBalance(cagedCeYtd?.saldo)}
-            unitLabel="Vínculos celetistas (jan–ago/2026 com declarações fora do prazo)"
-            periodLabel="2026-01..2026-08"
+            unitLabel="Contratações menos desligamentos"
+            periodLabel="Janeiro a agosto de 2026"
             sourceLabel="MTE · Novo Caged Ajustado"
-            universeLabel="Estabelecimentos com movimentação declarada"
-            comparisonNote={`Saldo em 12 meses (set/25–ago/26) · ${formatBalance(cagedCe12m?.saldo)}.`}
+            universeLabel="Estabelecimentos que informaram contratações ou desligamentos"
+            comparisonNote={`Postos ganhos ou perdidos em 12 meses (set/25 a ago/26) · ${formatBalance(cagedCe12m?.saldo)}.`}
           />
           <MetricCard
-            eyebrow="Fortaleza · Escala capital_pesquisa"
-            title="Consumidores endividados (IPDC Fortaleza)"
+            eyebrow="Fortaleza"
+            title="Consumidores com dívidas"
             formattedValue={formatPercent(ipdcOctober?.familias_endividadas_pct)}
             unitLabel={`Com contas em atraso · ${formatPercent(ipdcOctober?.familias_atraso_pct)}`}
-            periodLabel="2026-10"
+            periodLabel="Outubro de 2026"
             sourceLabel="Fecomércio-CE · IPDC"
             universeLabel="Consumidores pesquisados em Fortaleza"
           />
@@ -877,12 +873,12 @@ export function InvestigationChapters({
             </caption>
             <thead>
               <tr>
-                <th scope="col">Competência</th>
+                <th scope="col">Mês</th>
                 <th scope="col">PEIC Brasil — Endividadas (%)</th>
                 <th scope="col">PEIC Brasil — Em atraso (%)</th>
                 <th scope="col">IPDC Fortaleza — Endividados (%)</th>
                 <th scope="col">IPDC Fortaleza — Em atraso (%)</th>
-                <th scope="col">Estado de cobertura IPDC</th>
+                <th scope="col">Dado do IPDC</th>
               </tr>
             </thead>
             <tbody>
@@ -947,44 +943,37 @@ export function InvestigationChapters({
         {/* SÍNTESE COM LASTRO E PERGUNTAS EM ABERTO (05-05) + EXPORTAÇÃO CSV (05-06) */}
         <div className="evidence-synthesis-grid">
           <article className="synthesis-card">
-            <span className="section-marker">O que a evidência comprova</span>
-            <h3>Fatos rastreáveis nas fontes oficiais</h3>
+            <h3>O que os números mostram</h3>
             <ul>
               <li>
-                <strong>Diferença entre modalidades.</strong> Em setembro de 2026, a parcela
-                da carteira PF cearense em operações inadimplentes era de 11,24% em empréstimos
+                <strong>O tipo de crédito faz diferença.</strong> Em setembro de 2026, a parcela
+                do crédito no Ceará em contratos com atraso acima de 90 dias era de 11,24% em empréstimos
                 e 1,68% em financiamentos imobiliários.
               </li>
               <li>
-                <strong>Diferença por faixa de renda.</strong> No Ceará, 7,37% da carteira de
+                <strong>O atraso pesa de forma diferente por renda.</strong> No Ceará, 7,37% da carteira de
                 tomadores na faixa de mais de 1 a 2 salários mínimos correspondia a operações com parcela vencida há mais de
                 90 dias, ante 4,23% na faixa de mais de 5 a 10 salários mínimos.
               </li>
               <li>
-                <strong>Diferença de escala e conceito:</strong> O IPDC mede percepção
-                amostral de consumidores em Fortaleza (<code>capital_pesquisa</code>),
-                enquanto o SCR mede estoque financeiro estadual (<code>UF</code>).
+                <strong>Duas formas de medir.</strong> A pesquisa em Fortaleza conta consumidores. O Banco Central soma o valor dos contratos no Ceará.
               </li>
             </ul>
           </article>
 
           <article className="synthesis-card is-open-questions">
-            <span className="section-marker">O que permanece em aberto</span>
-            <h3>Perguntas que os dados públicos atuais não resolvem</h3>
+            <h3>O que ainda precisamos descobrir</h3>
             <ul>
               <li>
-                <strong>Qual é a inadimplência bancária de cada município cearense?</strong>{" "}
-                O Banco Central não publica o SCR por código IBGE municipal e os códigos
-                sub-regionais 60–63 não possuem tabela oficial de correspondência municipal.
+                <strong>Qual é a situação das dívidas em cada cidade?</strong>{" "}
+                As fontes disponíveis trazem dados do estado e de regiões por CEP.
               </li>
               <li>
-                <strong>Quantos CPFs únicos estão inadimplentes no Ceará?</strong> O SCR.data
-                divulga o número de operações contratadas (com supressão para grupos &le; 15),
-                não o total desduplicado de pessoas físicas.
+                <strong>Quantas pessoas têm parcelas atrasadas no Ceará?</strong> Os dados do Banco Central contam contratos. Uma pessoa pode ter vários.
               </li>
               <li>
-                <strong>Qual é o comprometimento mensal da renda das famílias cearenses?</strong>{" "}
-                A série <code>SGS 29034</code> do BCB é calculada apenas para o Brasil.
+                <strong>Quanto da renda as famílias cearenses gastam pagando dívidas?</strong>{" "}
+                Esse dado está disponível para o Brasil.
               </li>
             </ul>
           </article>
@@ -992,12 +981,9 @@ export function InvestigationChapters({
 
         <div className="export-panel" aria-label="Exportar dados validados em CSV">
           <div>
-            <span className="section-marker">Exportação pública reprodutível · 05-06</span>
-            <h3>Baixar observações validadas com dicionário metodológico (CSV)</h3>
+            <h3>Baixe os dados para conferir ou usar</h3>
             <p>
-              Cada arquivo inclui código do indicador, território, nível territorial,
-              competência, valor (preservando <code>null</code>), unidade, estado de cobertura,
-              fonte oficial, universo, regra de agregação e versão metodológica.
+              Cada arquivo traz os valores, o local, a data e a fonte. Campos em branco indicam dado indisponível.
             </p>
           </div>
           <div className="export-actions">
@@ -1013,7 +999,7 @@ export function InvestigationChapters({
               className="button button-ghost-dark"
               onClick={() => handleDownloadCsv("all")}
             >
-              Baixar base completa (872 observações)
+              Baixar todos os dados (CSV)
             </button>
           </div>
         </div>

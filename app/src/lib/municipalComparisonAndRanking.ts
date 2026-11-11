@@ -42,72 +42,72 @@ export type MunicipalMetricDefinition = {
 export const MUNICIPAL_METRICS: Record<MunicipalMetricId, MunicipalMetricDefinition> = {
   population_2022: {
     id: "population_2022",
-    label: "População residente",
-    shortLabel: "População (2022)",
+    label: "Número de habitantes",
+    shortLabel: "Habitantes (2022)",
     period: "2022",
     sourceLabel: "Censo Demográfico 2022 · IBGE",
     sourceUrl:
       "https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93?localidades=N6[N3[23]]",
     unit: "pessoas",
     unitLabel: "habitantes",
-    universe: "População residente recenseada no município",
+    universe: "Pessoas que moravam na cidade em 2022",
     territoryScale: "municipio",
     eligibleForRanking: true,
     getValue: (municipality) => municipality.population_2022,
   },
   income_pc_median_2022: {
     id: "income_pc_median_2022",
-    label: "Renda domiciliar per capita mediana",
-    shortLabel: "Renda mediana (2022)",
+    label: "Renda mensal por pessoa (mediana)",
+    shortLabel: "Renda por pessoa, valor do meio (2022)",
     period: "2022",
     sourceLabel: "Censo Demográfico 2022 · IBGE (SIDRA 10295)",
     sourceUrl: "https://sidra.ibge.gov.br/tabela/10295",
     unit: "BRL",
-    unitLabel: "R$ nominais de 2022",
-    universe: "Domicílios particulares permanentes no município",
+    unitLabel: "R$ por mês em valores de 2022",
+    universe: "Moradores de domicílios particulares permanentes",
     territoryScale: "municipio",
     eligibleForRanking: true,
     getValue: (municipality) => municipality.income_pc_median_2022,
   },
   income_pc_mean_2022: {
     id: "income_pc_mean_2022",
-    label: "Renda domiciliar per capita média",
-    shortLabel: "Renda média (2022)",
+    label: "Renda média mensal por pessoa",
+    shortLabel: "Renda média por pessoa (2022)",
     period: "2022",
     sourceLabel: "Censo Demográfico 2022 · IBGE (SIDRA 10295)",
     sourceUrl: "https://sidra.ibge.gov.br/tabela/10295",
     unit: "BRL",
-    unitLabel: "R$ nominais de 2022",
-    universe: "Domicílios particulares permanentes no município",
+    unitLabel: "R$ por mês em valores de 2022",
+    universe: "Moradores de domicílios particulares permanentes",
     territoryScale: "municipio",
     eligibleForRanking: true,
     getValue: (municipality) => municipality.income_pc_mean_2022,
   },
   employment_balance_202609: {
     id: "employment_balance_202609",
-    label: "Saldo do emprego formal",
-    shortLabel: "Saldo de emprego (set/2026)",
+    label: "Postos de trabalho ganhos ou perdidos",
+    shortLabel: "Postos ganhos ou perdidos (set/2026)",
     period: "2026-09",
     sourceLabel: "Novo Caged · MTE",
     sourceUrl:
       "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/novo-caged/2026/setembro/pagina-inicial",
     unit: "vinculos",
     unitLabel: "postos formais no mês",
-    universe: "Vínculos celetistas declarados no município em setembro de 2026",
+    universe: "Contratações menos desligamentos de empregos com carteira assinada",
     territoryScale: "municipio",
     eligibleForRanking: true,
     getValue: (municipality) => municipality.formal_employment.balance,
   },
   admission_salary_202609: {
     id: "admission_salary_202609",
-    label: "Salário médio nominal de admissão",
-    shortLabel: "Salário de admissão (set/2026)",
+    label: "Salário médio de quem foi contratado",
+    shortLabel: "Salário inicial médio (set/2026)",
     period: "2026-09",
-    sourceLabel: "Novo Caged · MTE (microdados de movimentação)",
+    sourceLabel: "Novo Caged · Ministério do Trabalho",
     sourceUrl:
       "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/novo-caged/2026/setembro/pagina-inicial",
     unit: "BRL",
-    unitLabel: "R$ nominais de set/2026",
+    unitLabel: "R$ por mês em setembro de 2026",
     universe: "Admissões com salário mensalizado entre 0,3 e 150 salários mínimos, sem vínculos intermitentes",
     territoryScale: "municipio",
     eligibleForRanking: true,
@@ -116,17 +116,17 @@ export const MUNICIPAL_METRICS: Record<MunicipalMetricId, MunicipalMetricDefinit
   divida_municipal_direta: {
     id: "divida_municipal_direta",
     label: "Endividamento dos moradores",
-    shortLabel: "Endividamento dos moradores (inelegível)",
+    shortLabel: "Endividamento dos moradores",
     period: "Não disponível",
-    sourceLabel: "BCB · SCR.data (restrito à escala estadual)",
-    sourceUrl: "https://dadosabertos.bcb.gov.br/",
+    sourceLabel: "Banco Central · SCR.data",
+    sourceUrl: "https://dadosabertos.bcb.gov.br/dataset/scr_data",
     unit: "indisponivel",
-    unitLabel: "Indisponível na escala municipal",
-    universe: "Sistema de Informações de Créditos (SCR) — publicado apenas por UF e sub-região BCB",
+    unitLabel: "Sem dado por cidade",
+    universe: "Dados de crédito do Banco Central para estados e regiões por CEP",
     territoryScale: "uf_indisponivel_no_municipio",
     eligibleForRanking: false,
     ineligibilityReason:
-      "Nenhuma fonte pública direta passou pelos seis critérios de viabilidade na escala municipal. O SCR.data é divulgado apenas por UF e os códigos sub-regionais 60–63 do Banco Central não possuem tabela oficial de correspondência com os 184 municípios do IBGE.",
+      "O SCR.data do Banco Central mostra o crédito por estado. Ainda não temos uma fonte que informe a dívida dos moradores de cada cidade.",
     getValue: () => null,
   },
 };
@@ -160,14 +160,14 @@ export function formatMunicipalMetricValue(
 ): { text: string; status: "observado" | "indisponivel" | "sem_observacao" } {
   if (metricId === "divida_municipal_direta") {
     return {
-      text: "Indisponível na escala municipal",
+      text: "Sem dado por cidade",
       status: "indisponivel",
     };
   }
 
   if (value === null) {
     return {
-      text: "Sem observação no período (null)",
+      text: "Sem dado no período",
       status: "sem_observacao",
     };
   }
@@ -264,7 +264,7 @@ export function buildMunicipalComparison(
   const rows: ComparisonRow[] = MUNICIPAL_METRIC_LIST.map((metric) => {
     const compatible = metric.eligibleForRanking;
     const compatibilityNote = compatible
-      ? `Mesmo período (${metric.period}), mesma unidade (${metric.unitLabel}) e mesmo universo (${metric.universe}).`
+      ? `${metric.universe}. Unidade: ${metric.unitLabel}.`
       : metric.ineligibilityReason ?? "Indicador indisponível para comparação municipal.";
 
     const cells: ComparisonCell[] = selectedMunicipalities.map((municipality) => {
@@ -273,14 +273,14 @@ export function buildMunicipalComparison(
       let detailNote: string | undefined;
 
       if (metric.id === "employment_balance_202609") {
-        detailNote = `${integerFormatter.format(municipality.formal_employment.admissions)} admissões · ${integerFormatter.format(municipality.formal_employment.dismissals)} desligamentos`;
+        detailNote = `${integerFormatter.format(municipality.formal_employment.admissions)} contratações · ${integerFormatter.format(municipality.formal_employment.dismissals)} desligamentos`;
       } else if (metric.id === "admission_salary_202609") {
         detailNote =
           value === null
-            ? "0 admissões elegíveis para a média salarial em set/2026"
-            : `${integerFormatter.format(municipality.formal_employment.salary_observations)} admissões elegíveis${municipality.formal_employment.salary_observations < 5 ? " · poucas admissões; média sensível a variações" : ""}`;
+            ? "Nenhum salário entrou no cálculo em setembro de 2026"
+            : `${integerFormatter.format(municipality.formal_employment.salary_observations)} salários usados no cálculo${municipality.formal_employment.salary_observations < 5 ? " · com poucos salários, a média pode variar muito" : ""}`;
       } else if (metric.id === "divida_municipal_direta") {
-        detailNote = "Escala municipal sem fonte direta validada";
+        detailNote = "Sem dados de endividamento por cidade";
       }
 
       return {
@@ -356,7 +356,7 @@ export function rankMunicipalities(
   if (!metric.eligibleForRanking) {
     const reason =
       metric.ineligibilityReason ??
-      "Este indicador não possui cobertura municipal observada para ordenação.";
+      "A lista precisa de dados por cidade para mostrar posições.";
     return {
       eligible: false,
       metric,
@@ -381,7 +381,7 @@ export function rankMunicipalities(
     if (rawValue === null || Number.isNaN(rawValue)) {
       excludedMunicipalities.push({
         municipality,
-        reason: "Sem observação válida no período (valor nulo na fonte oficial; nunca convertido em zero).",
+        reason: "A fonte não informa um valor para a cidade nesse período.",
       });
     } else {
       validItems.push({ municipality, value: rawValue });

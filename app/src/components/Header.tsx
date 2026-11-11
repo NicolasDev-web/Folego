@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
 
 const navItems = [
-  { label: "Panorama", to: "/#panorama" },
+  { label: "Resumo", to: "/#resumo-ceara" },
   { label: "Cidades", to: "/cidades" },
-  { label: "Evolução", to: "/#evolucao" },
-  { label: "Dívidas", to: "/#dividas" },
-  { label: "Método", to: "/metodo" },
+  { label: "Ao longo do tempo", to: "/#evolucao" },
+  { label: "Renda e dívidas", to: "/#dividas" },
+  { label: "Fontes e cálculos", to: "/metodo" },
 ];
 
 function Navigation() {

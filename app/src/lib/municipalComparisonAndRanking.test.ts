@@ -17,8 +17,8 @@ describe("municipalComparisonAndRanking", () => {
     const salaryRow = model.rows.find((row) => row.metric.id === "admission_salary_202609");
     const croata = salaryRow?.cells.find((cell) => cell.municipalityName === "Croatá");
     expect(croata?.value).toBe(1633);
-    expect(croata?.detailNote).toContain("2 admissões elegíveis");
-    expect(croata?.detailNote).toContain("poucas admissões");
+    expect(croata?.detailNote).toContain("2 salários usados no cálculo");
+    expect(croata?.detailNote).toContain("poucos salários");
     expect(salaryRow?.metric.universe).toContain("sem vínculos intermitentes");
   });
 
@@ -65,7 +65,7 @@ describe("municipalComparisonAndRanking", () => {
     expect(fortalezaCell?.status).toBe("observado");
     expect(baixioCell?.value).toBeNull();
     expect(baixioCell?.status).toBe("sem_observacao");
-    expect(baixioCell?.formatted).toContain("null");
+    expect(baixioCell?.formatted).toBe("Sem dado no período");
   });
 
   it("excludes municipalities with null values from numeric ranking and reports exact counts", () => {

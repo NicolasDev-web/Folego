@@ -39,10 +39,10 @@ const HEIGHT = 620;
 const PADDING = 24;
 const FULL_VIEWBOX = `0 0 ${WIDTH} ${HEIGHT}`;
 const modes: Array<{ id: MapMode; label: string; description: string }> = [
-  { id: "territory", label: "Território", description: "clique em um município para aproximar a região" },
-  { id: "employment", label: "Emprego", description: "saldo em círculos proporcionais" },
-  { id: "income", label: "Renda", description: "mediana por faixas de cor" },
-  { id: "population", label: "População", description: "cartograma populacional" },
+  { id: "territory", label: "Território", description: "Escolha uma cidade no mapa para aproximar a região." },
+  { id: "employment", label: "Emprego", description: "Veja onde as contratações superaram os desligamentos e onde houve perda de postos." },
+  { id: "income", label: "Renda", description: "As cores mostram o valor que divide a população em duas metades pela renda por pessoa." },
+  { id: "population", label: "População", description: "Cidades com mais habitantes aparecem com círculos maiores." },
 ];
 const incomeColors = ["#285b56", "#3f746d", "#6f9b87", "#a8bda2", "#e4d7a8"];
 const number = new Intl.NumberFormat("pt-BR");
@@ -230,7 +230,7 @@ export function MunicipalityMap({ collection, municipalities, selected, onSelect
         </div>
         {mode === "territory" && (
           <div className="region-zoom-control">
-            <label htmlFor={regionSelectId}>Zoom regional</label>
+            <label htmlFor={regionSelectId}>Ampliar região</label>
             <select
               id={regionSelectId}
               value={activeRegion}
@@ -339,9 +339,9 @@ export function MunicipalityMap({ collection, municipalities, selected, onSelect
           )}
           {mode === "employment" && (
             <>
-              <span><i className="legend-employment-positive" /> Saldo positivo</span>
-              <span><i className="legend-employment-negative" /> Saldo negativo</span>
-              <span>Tamanho = magnitude do saldo</span>
+              <span><i className="legend-employment-positive" /> Mais contratações</span>
+              <span><i className="legend-employment-negative" /> Mais desligamentos</span>
+              <span>Círculos maiores indicam uma diferença maior</span>
             </>
           )}
           {mode === "income" && (
@@ -360,10 +360,10 @@ export function MunicipalityMap({ collection, municipalities, selected, onSelect
           )}
         </div>
         <figcaption>
-          {mode === "territory" && "Malha municipal do IBGE · contexto territorial"}
-          {mode === "employment" && "Saldo do Novo Caged · setembro de 2026"}
-          {mode === "income" && "Renda mediana domiciliar per capita · Censo 2022"}
-          {mode === "population" && "Cartograma: posição aproximada; área proporcional à população"}
+          {mode === "territory" && "Limites das cidades · IBGE"}
+          {mode === "employment" && "Contratações menos desligamentos · Novo Caged · setembro de 2026"}
+          {mode === "income" && "Renda mensal por pessoa (mediana) · Censo 2022"}
+          {mode === "population" && "Cada círculo representa uma cidade. A posição é aproximada."}
         </figcaption>
       </div>
     </figure>

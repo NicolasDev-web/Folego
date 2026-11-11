@@ -42,7 +42,9 @@ export function MetricCard({
     <article className={`metric-card ${highlight ? "is-highlight" : ""}`}>
       <header className="metric-card-header">
         <span className="metric-eyebrow">{eyebrow}</span>
-        <span className={`status-chip status-${badge.tone}`}>{badge.label}</span>
+        {status !== "observado" && (
+          <span className={`status-chip status-${badge.tone}`}>{badge.label}</span>
+        )}
       </header>
       <h3 className="metric-card-title">{title}</h3>
       <p className="metric-card-value">{formattedValue}</p>
@@ -54,7 +56,7 @@ export function MetricCard({
       ) : null}
       <footer className="metric-card-footer">
         <span>Fonte: {sourceLabel}</span>
-        <small>Universo: {universeLabel}</small>
+        <small>{universeLabel}</small>
       </footer>
     </article>
   );

@@ -79,10 +79,9 @@ export function MunicipalRankingSection({
     <section className="municipal-ranking-section" aria-labelledby="ranking-heading">
       <header className="ranking-intro">
         <div>
-          <p className="section-marker">Ranking municipal · valores observados</p>
-          <h2 id="ranking-heading">Onde cada município se posiciona</h2>
+          <h2 id="ranking-heading">Em que posição está sua cidade?</h2>
           <p className="section-lead">
-            Escolha um indicador, encontre sua cidade e compare a distância entre os valores.
+            Escolha o que comparar e veja onde sua cidade aparece na lista.
           </p>
         </div>
 
@@ -100,7 +99,7 @@ export function MunicipalRankingSection({
 
       <div className="ranking-control-deck">
         <div className="ranking-control-field">
-          <label htmlFor={metricSelectId}>Indicador do ranking</label>
+          <label htmlFor={metricSelectId}>O que você quer comparar?</label>
           <select
             id={metricSelectId}
             value={metricId}
@@ -118,7 +117,7 @@ export function MunicipalRankingSection({
           <>
             <div className="ranking-direction-control">
               <span>Ordenar por</span>
-              <div className="ranking-direction-group" role="group" aria-label="Direção da ordenação">
+              <div className="ranking-direction-group" role="group" aria-label="Ordem dos resultados">
                 <button
                   type="button"
                   aria-pressed={direction === "desc"}
@@ -137,7 +136,7 @@ export function MunicipalRankingSection({
             </div>
 
             <div className="ranking-control-field ranking-search-field">
-              <label htmlFor={searchId}>Encontrar município</label>
+              <label htmlFor={searchId}>Buscar cidade na lista</label>
               <input
                 id={searchId}
                 type="search"
@@ -152,8 +151,7 @@ export function MunicipalRankingSection({
         <details className="ranking-method-note">
           <summary>Como o ranking funciona</summary>
           <p>
-            Apenas dados observados diretamente na escala municipal recebem posição. Empates usam
-            a mesma colocação e valores ausentes nunca são convertidos em zero.
+            Cidades com o mesmo valor dividem a posição. Cidades sem dado ficam fora da lista.
           </p>
         </details>
       </div>
@@ -165,15 +163,15 @@ export function MunicipalRankingSection({
           <p>{ranking.reason}</p>
           <dl className="ineligible-meta-grid">
             <div>
-              <dt>Escala oficial</dt>
-              <dd>Ceará e sub-regiões BCB, sem vínculo municipal</dd>
+              <dt>Onde há dados</dt>
+              <dd>Ceará e regiões por CEP</dd>
             </div>
             <div>
-              <dt>Regra aplicada</dt>
-              <dd>Nenhuma média estadual ou regional é atribuída aos municípios</dd>
+              <dt>Como ver os dados</dt>
+              <dd><a href="/#resumo-ceara">Ver o resumo do Ceará</a></dd>
             </div>
             <div>
-              <dt>Municípios ranqueados</dt>
+              <dt>Cidades com posição</dt>
               <dd>0 de {ranking.totalMunicipalities} municípios</dd>
             </div>
           </dl>
@@ -197,7 +195,7 @@ export function MunicipalRankingSection({
             ) : (
               <div className="callout-rank-box is-excluded">
                 <strong>Sem posição neste período</strong>
-                <span>{selectedExclusion?.reason ?? "Sem observação válida."}</span>
+                <span>{selectedExclusion?.reason ?? "Sem dado para o período."}</span>
               </div>
             )}
           </div>
@@ -206,7 +204,7 @@ export function MunicipalRankingSection({
             <div className="ranking-list-heading">
               <div>
                 <p>{direction === "desc" ? "Maiores valores" : "Menores valores"}</p>
-                <h3 id="ranking-podium-title">Três destaques</h3>
+                <h3 id="ranking-podium-title">Três cidades em destaque</h3>
               </div>
               <a href={ranking.metric.sourceUrl} target="_blank" rel="noreferrer">
                 Fonte: {ranking.metric.sourceLabel}
@@ -237,7 +235,7 @@ export function MunicipalRankingSection({
               <div>
                 <p>{query.trim() ? "Resultado da busca" : "Lista municipal"}</p>
                 <h3 id="ranking-list-title">
-                  {query.trim() ? `${matchingEntries.length} resultado(s)` : "Posições e distâncias"}
+                  {query.trim() ? `${matchingEntries.length} resultado(s)` : "Lista de cidades"}
                 </h3>
               </div>
               <span>{ranking.metric.unitLabel} · {ranking.metric.period}</span>
@@ -275,7 +273,7 @@ export function MunicipalRankingSection({
               </ol>
             ) : (
               <div className="ranking-empty-state">
-                <strong>Nenhum município encontrado.</strong>
+                <strong>Nenhuma cidade encontrada.</strong>
                 <p>Tente outro nome de município.</p>
               </div>
             )}
@@ -301,14 +299,14 @@ export function MunicipalRankingSection({
                 <strong>{ranking.excludedCount} municípios</strong>
               </summary>
               <p>
-                Eles permanecem fora do ranking numérico: ausência não é zero e não recebe posição artificial.
+                Essas cidades ficam sem posição porque a fonte não informa um valor para elas.
               </p>
               <ul className="excluded-city-list">
                 {ranking.excludedMunicipalities.map((item) => (
                   <li key={item.municipality.id}>
                     <button type="button" onClick={() => onSelectMunicipality(item.municipality.slug)}>
                       <strong>{item.municipality.name}</strong>
-                      <span>{item.municipality.region} · Sem observação</span>
+                      <span>{item.municipality.region} · Sem dado</span>
                     </button>
                   </li>
                 ))}

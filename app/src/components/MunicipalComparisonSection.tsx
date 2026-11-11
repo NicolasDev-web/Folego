@@ -60,10 +60,9 @@ export function MunicipalComparisonSection({
     <section className="municipal-comparison-section" aria-labelledby="comparison-heading">
       <header className="comparison-intro">
         <div>
-          <p className="section-marker">Comparação municipal · mesma régua</p>
-          <h2 id="comparison-heading">Cidades na mesma régua</h2>
+          <h2 id="comparison-heading">Compare cidades lado a lado</h2>
           <p className="section-lead">
-            Escolha até três cidades. Cada linha usa o mesmo período, unidade e universo.
+            Escolha até três cidades para comparar população, renda e emprego no mesmo período.
           </p>
         </div>
         <p className="comparison-counter" aria-live="polite">
@@ -103,7 +102,7 @@ export function MunicipalComparisonSection({
         <div className="comparison-actions">
           <div className="comparison-select-field">
             <label htmlFor={selectId}>
-              {model.canAddMore ? "Adicionar outra cidade" : "As três cidades estão selecionadas"}
+              {model.canAddMore ? "Adicionar outra cidade" : "Você já escolheu três cidades"}
             </label>
             <select
               id={selectId}
@@ -112,7 +111,7 @@ export function MunicipalComparisonSection({
               onChange={(event) => handleAddSlug(event.target.value)}
             >
               <option value="">
-                {model.canAddMore ? "Busque entre os 184 municípios" : "Remova uma cidade para trocar"}
+                {model.canAddMore ? "Escolha uma cidade" : "Remova uma cidade para trocar"}
               </option>
               {municipalities.map((city) => (
                 <option key={city.id} value={city.slug} disabled={activeSlugs.has(city.slug)}>
@@ -134,7 +133,7 @@ export function MunicipalComparisonSection({
         </div>
 
         <details className="comparison-suggestions">
-          <summary>Sugestões rápidas de cidades</summary>
+          <summary>Ver sugestões de cidades</summary>
           <div className="pilot-buttons-wrap" aria-label="Cidades-polo do Ceará">
             {pilotMunicipalities.map((pilotCity) => {
               const isSelectedPrimary = pilotCity.slug === selected.slug;
@@ -161,10 +160,10 @@ export function MunicipalComparisonSection({
 
       <div className="comparison-table-container">
         <table className="comparison-table">
-          <caption>Valores municipais comparáveis, com fonte e período visíveis</caption>
+          <caption>População, renda e emprego das cidades escolhidas</caption>
           <thead>
             <tr>
-              <th scope="col">Indicador</th>
+              <th scope="col">O que comparar</th>
               {model.selectedMunicipalities.map((city, index) => (
                 <th key={city.id} scope="col" style={cityStyle(index)}>
                   <div className="th-city-header">
@@ -208,7 +207,7 @@ export function MunicipalComparisonSection({
                       </a>
                       {row.compatible ? (
                         <details>
-                          <summary>Escopo comparável</summary>
+                          <summary>Como ler este número</summary>
                           <small>{row.compatibilityNote}</small>
                         </details>
                       ) : null}
@@ -234,7 +233,7 @@ export function MunicipalComparisonSection({
                     </td>
                   )) : (
                     <td colSpan={model.selectedMunicipalities.length} className="comparison-unavailable-cell">
-                      <strong>Ainda não existe uma fonte municipal validada.</strong>
+                      <strong>Sem dados de endividamento por cidade.</strong>
                       <p>{row.compatibilityNote}</p>
                     </td>
                   )}

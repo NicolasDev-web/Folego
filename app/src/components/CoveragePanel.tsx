@@ -20,7 +20,7 @@ export function CoveragePanel({ municipality }: CoveragePanelProps) {
   const medianIncome = currency.format(municipality.income_pc_median_2022);
   const meanIncome = currency.format(municipality.income_pc_mean_2022);
   const employment = municipality.formal_employment;
-  const balance = `${employment.balance >= 0 ? "+" : ""}${new Intl.NumberFormat("pt-BR").format(employment.balance)}`;
+  const balance = new Intl.NumberFormat("pt-BR").format(Math.abs(employment.balance));
   const employmentPeriod = new Intl.DateTimeFormat("pt-BR", {
     month: "long",
     year: "numeric",
@@ -41,27 +41,27 @@ export function CoveragePanel({ municipality }: CoveragePanelProps) {
         <p>Censo 2022 · IBGE</p>
       </section>
 
-      <section className="income-fact" aria-label="Rendimento domiciliar per capita">
+      <section className="income-fact" aria-label="Renda mensal por pessoa">
         <div>
-          <h3>Renda domiciliar per capita</h3>
-          <span>Mediana</span>
+          <h3>Renda mensal por pessoa</h3>
+          <span>Censo 2022</span>
         </div>
         <p className="income-value">{medianIncome}</p>
-        <p>mensal nominal · Censo 2022</p>
-        <small>Média municipal: {meanIncome}</small>
+        <p>Metade dos moradores tinha renda por pessoa de até esse valor por mês.</p>
+        <small>Média por pessoa: {meanIncome}</small>
       </section>
 
-      <section className="employment-fact" aria-label="Movimentação do emprego formal">
+      <section className="employment-fact" aria-label="Empregos com carteira assinada">
         <div>
-          <h3>Emprego formal</h3>
+          <h3>Empregos com carteira assinada</h3>
           <span>{employmentPeriod}</span>
         </div>
         <p className={`employment-value ${employment.balance < 0 ? "is-negative" : ""}`}>
           {balance}
         </p>
-        <p>postos no mês</p>
+        <p>{employment.balance > 0 ? "postos a mais no mês" : employment.balance < 0 ? "postos a menos no mês" : "de diferença entre entradas e saídas"}</p>
         <small>
-          {new Intl.NumberFormat("pt-BR").format(employment.admissions)} admissões ·{" "}
+          {new Intl.NumberFormat("pt-BR").format(employment.admissions)} contratações ·{" "}
           {new Intl.NumberFormat("pt-BR").format(employment.dismissals)} desligamentos
         </small>
         <EmploymentDetailsDialog municipality={municipality} periodLabel={employmentPeriod} />
@@ -70,23 +70,17 @@ export function CoveragePanel({ municipality }: CoveragePanelProps) {
       <section className="availability-row">
         <div>
           <h3>Endividamento dos moradores</h3>
-          <p>Ainda não há dado municipal validado para este indicador.</p>
+          <p>Ainda não temos uma fonte confiável que informe a dívida dos moradores desta cidade.</p>
         </div>
         <span className={`status-chip status-${state.tone}`}>{state.label}</span>
       </section>
 
       <details className="coverage-details">
-        <summary>Fontes e limites</summary>
+        <summary>De onde vêm os dados?</summary>
         <div>
           <p>
-            População, renda e emprego formal são observados no município. A dívida não recebe
-            valor estadual, regional ou demonstrativo.
+            A população e a renda vêm do Censo. Os dados de emprego contam contratações e saídas em estabelecimentos da cidade.
           </p>
-          <dl>
-            <div><dt>Escala</dt><dd>Município</dd></div>
-            <div><dt>Universo</dt><dd>{observation.universe}</dd></div>
-            <div><dt>Apuração</dt><dd>Fonte direta ainda não validada</dd></div>
-          </dl>
           <a
             href="https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/2022/variaveis/93?localidades=N6[N3[23]]"
           >
@@ -96,7 +90,7 @@ export function CoveragePanel({ municipality }: CoveragePanelProps) {
           <a href="https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/novo-caged/2026/setembro/pagina-inicial">
             Fonte do emprego
           </a>
-          <a href={observation.source_url}>Entender a cobertura</a>
+          <a href={observation.source_url}>Ver a fonte de crédito do Banco Central</a>
         </div>
       </details>
     </aside>
