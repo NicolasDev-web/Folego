@@ -129,7 +129,11 @@ export function EmploymentDetailsDialog({
                   <span>Salário médio das admissões</span>
                   <strong>{currency.format(employment.average_admission_salary)}</strong>
                   <small>
-                    valor nominal · {number.format(employment.salary_observations)} registros válidos
+                    valor nominal · {number.format(employment.salary_observations)} admissões elegíveis
+                  </small>
+                  <small>
+                    Entre 0,3 e 150 salários mínimos, sem vínculos intermitentes.
+                    {employment.salary_observations < 5 && " Poucas admissões: a média pode variar muito."}
                   </small>
                     </section>
                   )}

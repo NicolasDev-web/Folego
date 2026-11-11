@@ -42,7 +42,9 @@ A etapa consulta a tabela SIDRA 10295 somente nos totais de sexo, cor ou raça e
 python pipeline/extract/municipal_employment.py
 ```
 
-A etapa baixa o `CAGEDMOV` mais recente configurado, lê o arquivo nacional em fluxo e agrega admissões, desligamentos e saldo para os 184 municípios do Ceará. Ela também cruza ocupações com o dicionário oficial da CBO 2002, resume setores pela seção CNAE e calcula o salário médio nominal das admissões com valor positivo. O arquivo nacional não é versionado por causa do volume; URL, tamanho e SHA-256 ficam no manifesto, enquanto os agregados municipais e o pequeno dicionário CBO são preservados. A competência de setembro de 2026 é conferida contra o saldo estadual e os cinco destaques municipais publicados pelo Governo Federal.
+A etapa baixa o `CAGEDMOV` mais recente configurado, lê o arquivo nacional em fluxo e agrega admissões, desligamentos e saldo para os 184 municípios do Ceará. Ela também cruza ocupações com o dicionário oficial da CBO 2002 e resume setores pela seção CNAE. O salário médio nominal usa o campo `salário`, já mensalizado pelo MTE, somente nas admissões entre 0,3 e 150 salários mínimos (limites inclusivos), excluindo vínculos intermitentes (`indtrabintermitente = 1`). Em 2026 a faixa é de R$ 486,30 a R$ 243.150,00. Essa seleção afeta apenas a média salarial; os fluxos e saldos continuam contando todos os vínculos. O arquivo nacional não é versionado por causa do volume; URL, tamanho e SHA-256 ficam no manifesto, enquanto os agregados municipais e o pequeno dicionário CBO são preservados.
+
+Antes de gravar os dados processados e públicos, setembro de 2026 é conferido contra o saldo estadual, os cinco destaques municipais e a média salarial estadual de R$ 2.081,38 publicados pelo Governo Federal. Uma divergência bloqueia a geração. Novas competências exigem configurar o salário mínimo e o valor oficial independente em `municipal_employment.py`. O manifesto registra a faixa, a metodologia, a amostra elegível e exclusões sem dupla contagem, por ordem: ausente/não positivo, abaixo do mínimo, acima do máximo e intermitente dentro da faixa. Amostras vazias permanecem `null`; amostras inferiores a cinco admissões recebem uma observação de cautela na interface, sem supressão arbitrária.
 
 Para reutilizar um arquivo já baixado:
 
@@ -77,7 +79,7 @@ Executa os adaptadores de extração (`bcb_adapter.py`, `ibge_adapter.py`, `mte_
 Para executar a suíte de testes automatizados da Fase 02:
 
 ```bash
-python -m pytest pipeline/tests/test_phase02.py -v
+python -m pytest pipeline/tests -v
 ```
 
 ## Automação segura

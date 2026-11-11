@@ -77,7 +77,7 @@ const indicatorCatalog = [
   {
     id: "saldo_emprego_formal",
     name: "Saldo de emprego formal, ocupações CBO e salário médio de admissão",
-    formula: "Admissões − Desligamentos; média salarial de admissões positivas",
+    formula: "Admissões − Desligamentos; média salarial mensalizada das admissões entre 0,3 e 150 salários mínimos, excluindo vínculos intermitentes",
     unit: "Vínculos celetistas e R$ nominais",
     scale: "184 municípios do Ceará, UF, Região e Brasil",
     source: "MTE · Novo Caged",

@@ -12,6 +12,16 @@ const contextData = rawContextData as unknown as MunicipalContextFile;
 const allMunicipalities: Municipality[] = contextData.municipalities;
 
 describe("municipalComparisonAndRanking", () => {
+  it("shows the corrected salary sample and warns about few eligible admissions", () => {
+    const model = buildMunicipalComparison(allMunicipalities, ["croata", "ipueiras"]);
+    const salaryRow = model.rows.find((row) => row.metric.id === "admission_salary_202609");
+    const croata = salaryRow?.cells.find((cell) => cell.municipalityName === "Croatá");
+    expect(croata?.value).toBe(1633);
+    expect(croata?.detailNote).toContain("2 admissões elegíveis");
+    expect(croata?.detailNote).toContain("poucas admissões");
+    expect(salaryRow?.metric.universe).toContain("sem vínculos intermitentes");
+  });
+
   it("validates the 8 pilot municipalities and 184 total municipalities in municipal_context.json", () => {
     expect(allMunicipalities).toHaveLength(184);
     const pilots = allMunicipalities.filter((m) => m.pilot).map((m) => m.slug).sort();

@@ -54,3 +54,30 @@ Manifesto técnico: `metadata/phase02_manifest.json` e `metadata/scr_data_monthl
    - Na série de Fortaleza (`capital_pesquisa`, `2304400`) do `IPDC / Fecomércio-CE`, a competência `2025-11` permanece `value = null` e `status = "indisponivel"` por ausência de boletim mensal publicado.
 4. **Validação de contrato (`04_tecnico/CONTRATO_DADOS.json`):**
    - Todas as **872 observações** exportadas em `state_macro_series.json`, `credit_profiles.json` e `labor_and_surveys.json` passaram sem erros pelo validador `JSON Schema Draft 2020-12`.
+
+## 4. Correção da elegibilidade salarial municipal — 10/11/2026
+
+A revisão dos microdados `CAGEDMOV202609` identificou que a média salarial aceitava qualquer salário positivo. A [metodologia do MTE, tabela 5 e nota de rodapé](https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/novo-caged/2026/setembro/sumario-executivo_setembro-de-2026.pdf/@@download/file) exclui valores inferiores a 0,3 ou superiores a 150 salários mínimos e vínculos intermitentes. O [salário mínimo de 2026 é R$ 1.621,00](https://www.gov.br/esocial/pt-br/noticias/novo-salario-minimo-2026-veja-como-registrar-o-reajuste-no-esocial-domestico), resultando na faixa inclusiva de R$ 486,30 a R$ 243.150,00.
+
+O reprocessamento usa o mesmo arquivo oficial, SHA-256 `967a29800166b32ba4f9d786e95b53122eed6dbd78ca94da783290d67cd5d50d`. O campo `salário` já está mensalizado pelo MTE e não recebe outra multiplicação por horas. Não houve duplicação nem divergência entre a agregação anterior e o painel: faltavam os filtros metodológicos.
+
+| Reconciliação das admissões do Ceará | Registros |
+|---|---:|
+| Total de admissões | 58.672 |
+| Ausentes, não finitos ou não positivos | 401 |
+| Abaixo de 0,3 salário mínimo | 604 |
+| Acima de 150 salários mínimos | 61 |
+| Intermitentes dentro da faixa salarial | 369 |
+| Elegíveis para a média salarial | 57.237 |
+
+As exclusões da tabela não se sobrepõem: cada registro recebe o primeiro motivo aplicável, na ordem apresentada. Dos 58.271 salários positivos anteriormente aceitos, 1.034 deixam de compor a média; os 401 ausentes/não positivos já eram excluídos. A média estadual passa de **R$ 2.548,75** para **R$ 2.081,38**, valor idêntico ao divulgado pelo MTE. A amostra ou média de **52 municípios** é corrigida, mantendo os sete municípios sem amostra elegível como `null`.
+
+| Município | Média anterior | Média corrigida | Admissões elegíveis |
+|---|---:|---:|---:|
+| Croatá | R$ 143.290,06 | R$ 1.633,00 | 2 |
+| Ipueiras | R$ 36.450,47 | R$ 1.519,54 | 21 |
+| Quixelô | R$ 27.100,93 | R$ 1.753,31 | 13 |
+| Iguatu | R$ 8.467,92 | R$ 1.772,68 | 494 |
+| Itarema | R$ 8.420,88 | R$ 1.593,44 | 51 |
+
+O saldo permanece em **5.156 vínculos**, com **58.672 admissões** e **53.516 desligamentos**; ocupações e setores preservam todos os vínculos. A geração agora falha antes de gravar os pacotes processados/públicos quando a média salarial estadual não coincide com a referência independente. Os testes de elegibilidade, limites, intermitentes, amostra vazia, regressões municipais e integridade dos pacotes passam a integrar a verificação contínua. Amostras com menos de cinco admissões elegíveis recebem uma observação de cautela no detalhe e na comparação; esse limiar é uma decisão de apresentação do Fôlego, não um critério de exclusão do MTE.

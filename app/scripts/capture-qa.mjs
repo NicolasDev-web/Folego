@@ -126,7 +126,7 @@ try {
           `${capture.name}: detalhamento ocupacional inesperado: ${firstOccupation ?? "vazio"}.`,
         );
       }
-      await dialog.getByText("R$ 2.440,17", { exact: true }).waitFor();
+      await dialog.getByText("R$ 1.751,34", { exact: true }).waitFor();
     }
     if (capture.region) {
       const map = page.locator(".municipality-map-panel");

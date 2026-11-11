@@ -25,7 +25,7 @@ jobs:
       - name: Instalar dependências do pipeline
         run: python -m pip install --requirement requirements.txt
       - name: Validar pipeline e contrato dos dados
-        run: python -m pytest pipeline/tests/test_phase02.py -v
+        run: python -m pytest pipeline/tests -v
 
   aplicacao:
     name: Testes e build do site

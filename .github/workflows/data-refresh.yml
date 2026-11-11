@@ -43,7 +43,7 @@ jobs:
           fi
 
       - name: Validar contratos e transformações
-        run: python -m pytest pipeline/tests/test_phase02.py -v
+        run: python -m pytest pipeline/tests -v
 
       - uses: actions/setup-node@v4
         with:

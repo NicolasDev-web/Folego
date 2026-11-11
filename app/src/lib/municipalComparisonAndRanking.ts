@@ -108,7 +108,7 @@ export const MUNICIPAL_METRICS: Record<MunicipalMetricId, MunicipalMetricDefinit
       "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/novo-caged/2026/setembro/pagina-inicial",
     unit: "BRL",
     unitLabel: "R$ nominais de set/2026",
-    universe: "Admissões formais com salário positivo válido no mês",
+    universe: "Admissões com salário mensalizado entre 0,3 e 150 salários mínimos, sem vínculos intermitentes",
     territoryScale: "municipio",
     eligibleForRanking: true,
     getValue: (municipality) => municipality.formal_employment.average_admission_salary,
@@ -277,8 +277,8 @@ export function buildMunicipalComparison(
       } else if (metric.id === "admission_salary_202609") {
         detailNote =
           value === null
-            ? "0 admissões com salário positivo informado em set/2026"
-            : `${integerFormatter.format(municipality.formal_employment.salary_observations)} admissões com salário válido`;
+            ? "0 admissões elegíveis para a média salarial em set/2026"
+            : `${integerFormatter.format(municipality.formal_employment.salary_observations)} admissões elegíveis${municipality.formal_employment.salary_observations < 5 ? " · poucas admissões; média sensível a variações" : ""}`;
       } else if (metric.id === "divida_municipal_direta") {
         detailNote = "Escala municipal sem fonte direta validada";
       }

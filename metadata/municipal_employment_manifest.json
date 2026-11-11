@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.1.0",
-  "collected_at": "2026-11-09T12:59:56+00:00",
+  "schema_version": "1.2.0",
+  "collected_at": "2026-11-11T01:53:01+00:00",
   "source_id": "MTE-CAGEDMOV-202609",
   "source_url": "ftp://ftp.mtps.gov.br/pdet/microdados/NOVO%20CAGED/2026/202609/CAGEDMOV202609.7z",
   "release_page": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/novo-caged/2026/setembro/pagina-inicial",
@@ -32,7 +32,17 @@
     "balance": "admissions - dismissals",
     "occupation": "CBO 2002 de seis dígitos",
     "sector": "seção da CNAE 2.0",
-    "average_admission_salary": "média nominal de salário positivo nas admissões",
+    "average_admission_salary": {
+      "description": "Média nominal mensalizada das admissões elegíveis segundo o MTE",
+      "salary_field": "salário (mensalizado pelo MTE; sem nova conversão por horas)",
+      "minimum_wage": 1621.0,
+      "minimum_wage_source": "https://www.gov.br/esocial/pt-br/noticias/novo-salario-minimo-2026-veja-como-registrar-o-reajuste-no-esocial-domestico",
+      "minimum_inclusive": 486.3,
+      "maximum_inclusive": 243150.0,
+      "exclude_intermittent": true,
+      "methodology_url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/novo-caged/2026/setembro/sumario-executivo_setembro-de-2026.pdf/@@download/file",
+      "empty_sample": null
+    },
     "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente"
   },
   "validation": {
@@ -78,6 +88,20 @@
         }
       },
       "source_url": "https://www.gov.br/secom/pt-br/assuntos/noticias-regionalizadas/numeros-do-novo-caged-em-2026/09/ceara-gera-5-1-mil-empregos-com-carteira-assinada-em-setembro"
+    },
+    "official_salary_cross_check": {
+      "expected": 2081.38,
+      "observed": 2081.38,
+      "eligible_admissions": 57237,
+      "salary_sum": 119132102.73,
+      "excluded_admissions": {
+        "missing_or_nonpositive": 401,
+        "below_minimum": 604,
+        "above_maximum": 61,
+        "intermittent": 369
+      },
+      "exclusion_counts_are_disjoint": true,
+      "source_url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/novo-caged/2026/setembro/sumario-executivo_setembro-de-2026.pdf/@@download/file"
     },
     "coverage_matrix_updates": 8
   }

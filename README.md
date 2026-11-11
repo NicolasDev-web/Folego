@@ -28,7 +28,7 @@ Pergunta central: *como o crédito, os atrasos, o trabalho formal e a pressão s
 
 1. **Dívida municipal direta permanece indisponível:** Nenhuma fonte pública direta passou pelos seis critérios do portão de viabilidade (`02_fontes/RELATORIO_VIABILIDADE.md`). A aplicação bloqueia qualquer atribuição de média estadual ou sub-regional às cidades e impede ranking por dívida municipal.
 2. **Operações $\neq$ Pessoas $\neq$ Famílias:** Contratos no SCR não são CPFs desduplicados, e pesquisas amostrais de percepção (`PEIC`/`IPDC`) não equivalem a inadimplência bancária acima de 90 dias.
-3. **Ausência nunca vira zero:** Valores suprimidos (`<= 15`) ou não publicados (`2025-11` no IPDC; 7 municípios sem admissões com salário positivo em `2026-09`) são mantidos como `null` e explicitados na interface e no CSV exportado.
+3. **Ausência nunca vira zero:** Valores suprimidos (`<= 15`) ou não publicados (`2025-11` no IPDC; 7 municípios sem admissões elegíveis para a média salarial em `2026-09`) são mantidos como `null` e explicitados na interface e no CSV exportado. A média salarial segue a faixa de 0,3 a 150 salários mínimos e exclui vínculos intermitentes, conforme o MTE.
 
 ---
 

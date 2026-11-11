@@ -5,6 +5,7 @@ import csv
 import hashlib
 import io
 import json
+import math
 import shutil
 import subprocess
 import tempfile
@@ -35,6 +36,18 @@ CBO_URL = (
     "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/cbo/servicos/downloads/"
     "cbo2002-ocupacao.csv"
 )
+SALARY_METHODOLOGY_URL = (
+    "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/acoes-e-programas/"
+    "programas-projetos-acoes-obras-e-atividades/estatisticas-trabalho/novo-caged/"
+    "2026/setembro/sumario-executivo_setembro-de-2026.pdf/@@download/file"
+)
+MINIMUM_WAGE_BY_YEAR = {"2026": 1621.00}
+MINIMUM_WAGE_SOURCE = (
+    "https://www.gov.br/esocial/pt-br/noticias/"
+    "novo-salario-minimo-2026-veja-como-registrar-o-reajuste-no-esocial-domestico"
+)
+EXPECTED_STATE_SALARY = {"202609": 2081.38}
+SALARY_EXCLUSIONS = ("missing_or_nonpositive", "below_minimum", "above_maximum", "intermittent")
 
 CNAE_SECTIONS = {
     "A": "Agropecuária",
@@ -147,6 +160,60 @@ def canonical_municipality_map(context: dict[str, object]) -> dict[str, dict[str
     return mapping
 
 
+def salary_bounds(period: str) -> tuple[float, float]:
+    minimum_wage = MINIMUM_WAGE_BY_YEAR.get(period[:4])
+    if minimum_wage is None:
+        raise ValueError(f"Salário mínimo não configurado para a competência {period}.")
+    return round(minimum_wage * 0.3, 2), minimum_wage * 150
+
+
+def classify_admission_salary(
+    raw_salary: str, intermittent: str, bounds: tuple[float, float]
+) -> tuple[float, str | None]:
+    if intermittent not in {"0", "1"}:
+        raise ValueError(f"Indicador de trabalho intermitente inválido: {intermittent!r}.")
+    try:
+        salary = float(raw_salary.replace(".", "").replace(",", "."))
+    except ValueError:
+        return 0.0, "missing_or_nonpositive"
+    if not math.isfinite(salary) or salary <= 0:
+        return 0.0, "missing_or_nonpositive"
+    if salary < bounds[0]:
+        return salary, "below_minimum"
+    if salary > bounds[1]:
+        return salary, "above_maximum"
+    if intermittent == "1":
+        return salary, "intermittent"
+    return salary, None
+
+
+def validate_official_salary(
+    period: str, salaries: dict[str, dict[str, float | int]]
+) -> dict[str, object]:
+    count = sum(int(item["count"]) for item in salaries.values())
+    total = sum(float(item["sum"]) for item in salaries.values())
+    observed = round(total / count, 2) if count else None
+    expected = EXPECTED_STATE_SALARY.get(period)
+    if expected is None:
+        raise ValueError(f"Média salarial oficial não configurada para {period}.")
+    if observed != expected:
+        raise ValueError(
+            f"Salário médio do Ceará divergente: {observed}; divulgação oficial: {expected}."
+        )
+    return {
+        "expected": expected,
+        "observed": observed,
+        "eligible_admissions": count,
+        "salary_sum": round(total, 2),
+        "excluded_admissions": {
+            reason: sum(int(item[reason]) for item in salaries.values())
+            for reason in SALARY_EXCLUSIONS
+        },
+        "exclusion_counts_are_disjoint": True,
+        "source_url": SALARY_METHODOLOGY_URL,
+    }
+
+
 def aggregate_archive(
     archive: Path,
     period: str,
@@ -158,6 +225,7 @@ def aggregate_archive(
     dict[str, dict[str, float | int]],
     int,
 ]:
+    bounds = salary_bounds(period)
     seven_zip = shutil.which("7z")
     if seven_zip is None:
         raise RuntimeError("7-Zip não encontrado. Instale o comando `7z` para ler o microdado.")
@@ -178,6 +246,7 @@ def aggregate_archive(
         "cbo2002ocupação",
         "seção",
         "salário",
+        "indtrabintermitente",
     }
     if reader.fieldnames is None or not required.issubset(reader.fieldnames):
         raise ValueError(f"Leiaute inesperado no CAGEDMOV: {reader.fieldnames}.")
@@ -193,7 +262,8 @@ def aggregate_archive(
         code: {} for code in municipality_map
     }
     admission_salaries: dict[str, dict[str, float | int]] = {
-        code: {"sum": 0.0, "count": 0} for code in municipality_map
+        code: {"sum": 0.0, "count": 0, **dict.fromkeys(SALARY_EXCLUSIONS, 0)}
+        for code in municipality_map
     }
     movement_counts: defaultdict[int, int] = defaultdict(int)
     ce_rows = 0
@@ -230,14 +300,14 @@ def aggregate_archive(
             totals[short_code]["admissions"] += 1
             occupation["admissions"] += 1
             sector["admissions"] += 1
-            raw_salary = row["salário"].replace(".", "").replace(",", ".")
-            try:
-                salary = float(raw_salary)
-            except ValueError:
-                salary = 0
-            if salary > 0:
+            salary, exclusion = classify_admission_salary(
+                row["salário"], row["indtrabintermitente"], bounds
+            )
+            if exclusion is None:
                 admission_salaries[short_code]["sum"] += salary
                 admission_salaries[short_code]["count"] += 1
+            else:
+                admission_salaries[short_code][exclusion] += 1
         else:
             totals[short_code]["dismissals"] += 1
             occupation["dismissals"] += 1
@@ -421,6 +491,8 @@ def main() -> None:
     collected_at = datetime.now(UTC).replace(microsecond=0).isoformat()
     collected_date = collected_at[:10]
     cbo_raw_relative = f"data/raw/mte/cbo2002_ocupacao_{collected_date}.csv"
+    if args.cbo and args.cbo.resolve().parent == (ROOT / "data/raw/mte").resolve():
+        cbo_raw_relative = args.cbo.resolve().relative_to(ROOT).as_posix()
     cbo_raw_path = ROOT / cbo_raw_relative
     cbo_raw_path.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="folego-caged-") as temp_dir:
@@ -446,6 +518,8 @@ def main() -> None:
         ) = aggregate_archive(archive, period, municipality_map)
 
     official_validation = validate_official_totals(period, totals, municipality_map)
+    # Reconcile unrounded sums before writing any processed/public data.
+    official_salary_validation = validate_official_salary(period, admission_salaries)
     period_label = f"{period[:4]}-{period[4:]}"
 
     for short_code, municipality in municipality_map.items():
@@ -475,7 +549,7 @@ def main() -> None:
             "label": f"MTE — Novo Caged, {period_label}",
             "url": source_url,
             "period": period_label,
-            "metric": "Admissões, desligamentos, saldo, ocupações e setores formais",
+            "metric": "Admissões, desligamentos, saldo, ocupações, setores e salário de admissão",
             "unit": "vínculos",
             "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente",
         }
@@ -548,7 +622,7 @@ def main() -> None:
         if values["admissions"] + values["dismissals"] == 0
     ]
     manifest = {
-        "schema_version": "1.1.0",
+        "schema_version": "1.2.0",
         "collected_at": collected_at,
         "source_id": source_id,
         "source_url": source_url,
@@ -578,7 +652,17 @@ def main() -> None:
             "balance": "admissions - dismissals",
             "occupation": "CBO 2002 de seis dígitos",
             "sector": "seção da CNAE 2.0",
-            "average_admission_salary": "média nominal de salário positivo nas admissões",
+            "average_admission_salary": {
+                "description": "Média nominal mensalizada das admissões elegíveis segundo o MTE",
+                "salary_field": "salário (mensalizado pelo MTE; sem nova conversão por horas)",
+                "minimum_wage": MINIMUM_WAGE_BY_YEAR[period[:4]],
+                "minimum_wage_source": MINIMUM_WAGE_SOURCE,
+                "minimum_inclusive": salary_bounds(period)[0],
+                "maximum_inclusive": salary_bounds(period)[1],
+                "exclude_intermittent": True,
+                "methodology_url": SALARY_METHODOLOGY_URL,
+                "empty_sample": None,
+            },
             "revision": "CAGEDMOV da competência; sem ajustes declarados posteriormente",
         },
         "validation": {
@@ -594,6 +678,7 @@ def main() -> None:
             "municipalities_with_movements": len(totals) - len(municipalities_without_movements),
             "municipalities_without_movements": municipalities_without_movements,
             "official_cross_check": official_validation,
+            "official_salary_cross_check": official_salary_validation,
             "coverage_matrix_updates": coverage_updates,
         },
     }
