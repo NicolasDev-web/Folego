@@ -324,7 +324,7 @@ export function InvestigationChapters({
             eyebrow={selectedTerritorySnapshot.territoryName}
             title="Inadimplência da carteira PF (> 90 dias)"
             formattedValue={formatPercent(selectedTerritorySnapshot.inad90Pct)}
-            unitLabel="Proporção do saldo com atraso > 90 dias"
+            unitLabel="Parcela da carteira em operações com prestação vencida há mais de 90 dias"
             periodLabel="set/2026"
             sourceLabel="BCB · SCR.data"
             universeLabel="Saldo inadimplido / Carteira ativa PF"
@@ -596,7 +596,7 @@ export function InvestigationChapters({
           <SectionHeader
             marker="Capítulo 03 · Composição, faixas de renda e sub-regiões postais"
             title="Crédito e atrasos por modalidade, renda e ocupação"
-            description="Compare o saldo da carteira e a proporção em atraso por modalidade de crédito, faixa de renda e categoria ocupacional. As sub-regiões postais usam um indicador com prazo de atraso diferente."
+            description="Compare o saldo da carteira e a taxa de inadimplência por modalidade de crédito, faixa de renda e categoria ocupacional. As sub-regiões postais usam um indicador com prazo de atraso diferente."
           />
           <div className="chapter-filter-bar">
             <div className="filter-group">
@@ -927,12 +927,12 @@ export function InvestigationChapters({
             <ul>
               <li>
                 <strong>Diferença entre modalidades.</strong> Em setembro de 2026, a parcela
-                da carteira PF cearense em atraso acima de 90 dias era de 11,24% em empréstimos
+                da carteira PF cearense em operações inadimplentes era de 11,24% em empréstimos
                 e 1,68% em financiamentos imobiliários.
               </li>
               <li>
                 <strong>Diferença por faixa de renda.</strong> No Ceará, 7,37% da carteira de
-                tomadores na faixa de mais de 1 a 2 salários mínimos estava em atraso acima de
+                tomadores na faixa de mais de 1 a 2 salários mínimos correspondia a operações com parcela vencida há mais de
                 90 dias, ante 4,23% na faixa de mais de 5 a 10 salários mínimos.
               </li>
               <li>

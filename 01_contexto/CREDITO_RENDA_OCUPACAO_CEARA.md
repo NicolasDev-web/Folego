@@ -1,12 +1,12 @@
 # Crédito e endividamento no Ceará por renda e ocupação
 
-Em setembro de 2026, a carteira de crédito de pessoas físicas no Ceará somava **R$ 120,14 bilhões**. O saldo em atraso acima de 90 dias era **R$ 7,45 bilhões**, equivalente a **6,20%** da carteira. Os dois valores são agregados de crédito reportado ao SCR. Para estimar a proporção de famílias endividadas em todo o estado e o comprometimento de sua renda, é necessária uma pesquisa representativa do Ceará.
+Em setembro de 2026, a carteira de crédito de pessoas físicas no Ceará somava **R$ 120,14 bilhões**. Operações com pelo menos uma parcela vencida há mais de 90 dias somavam **R$ 7,45 bilhões**, equivalente a **6,20%** da carteira. Os dois valores são agregados de crédito reportado ao SCR. Para estimar a proporção de famílias endividadas em todo o estado e o comprometimento de sua renda, é necessária uma pesquisa representativa do Ceará.
 
 ## Quais faixas concentram crédito e atraso
 
-A faixa de mais de 1 a 2 salários mínimos concentrava o maior saldo da carteira (**R$ 22,64 bilhões**) e o maior saldo em atraso (**R$ 1,67 bilhão**) entre as faixas de renda. Entre as faixas com renda positiva informada, até 1 salário mínimo tinha a maior proporção em atraso (**8,72%**), frente a **3,19%** acima de 20 salários mínimos. Até 1 e mais de 1 a 2 salários mínimos, juntas, reuniam **31,23% da carteira e 39,83% do saldo em atraso**. A taxa ponderada das duas faixas era **7,90%**.
+A faixa de mais de 1 a 2 salários mínimos concentrava o maior saldo da carteira (**R$ 22,64 bilhões**) e o maior saldo das operações inadimplentes (**R$ 1,67 bilhão**) entre as faixas de renda. Entre as faixas com renda positiva informada, até 1 salário mínimo tinha a maior taxa de inadimplência (**8,72%**), frente a **3,19%** acima de 20 salários mínimos. Até 1 e mais de 1 a 2 salários mínimos, juntas, reuniam **31,23% da carteira e 39,83% do saldo das operações inadimplentes**. A taxa ponderada das duas faixas era **7,90%**.
 
-| Faixa de rendimento do tomador | Carteira ativa | Saldo em atraso acima de 90 dias | % da carteira da faixa em atraso |
+| Faixa de rendimento do tomador | Carteira ativa | Saldo das operações inadimplentes | Inadimplência da carteira da faixa |
 |---|---:|---:|---:|
 | Sem rendimento | R$ 1,37 bi | R$ 0,24 bi | 17,31% |
 | Até 1 salário mínimo | R$ 14,88 bi | R$ 1,30 bi | 8,72% |
@@ -22,9 +22,9 @@ A faixa de mais de 1 a 2 salários mínimos concentrava o maior saldo da carteir
 
 ## O que aparece por ocupação
 
-O Banco Central divulga categorias amplas de ocupação das pessoas físicas. A categoria “Outros” concentra **38,75% da carteira** e **53,36% do saldo em atraso**, o que limita conclusões sobre ocupações específicas. Entre as categorias identificadas, o maior saldo em atraso aparece no emprego privado, cerca de **R$ 900 milhões**, seguido pelo emprego público, cerca de **R$ 890 milhões**. Entre essas categorias, a maior proporção em atraso aparece em **MEI (7,47%)**, com carteira menor.
+O Banco Central divulga categorias amplas de ocupação das pessoas físicas. A categoria “Outros” concentra **38,75% da carteira** e **53,36% do saldo das operações inadimplentes**, o que limita conclusões sobre ocupações específicas. Entre as categorias identificadas, o maior saldo das operações inadimplentes aparece no emprego privado, cerca de **R$ 900 milhões**, seguido pelo emprego público, cerca de **R$ 890 milhões**. Entre essas categorias, a maior taxa de inadimplência aparece em **MEI (7,47%)**, com carteira menor.
 
-| Categoria ocupacional | Carteira ativa | Saldo em atraso acima de 90 dias | % da carteira da categoria em atraso |
+| Categoria ocupacional | Carteira ativa | Saldo das operações inadimplentes | Inadimplência da carteira da categoria |
 |---|---:|---:|---:|
 | Outros | R$ 46,56 bi | R$ 3,97 bi | 8,53% |
 | Servidor ou empregado público | R$ 24,61 bi | R$ 0,89 bi | 3,62% |
@@ -51,11 +51,11 @@ As duas dimensões existem juntas no arquivo do SCR.data. O agrupamento direto d
 | Acima de 20 salários mínimos | 2,49% | 2,43% | 4,36% | 5,06% |
 | Renda indisponível | 10,71% | 10,02% | 11,85% | 13,56% |
 
-Na faixa de mais de 1 a 2 salários mínimos, por exemplo, o atraso era de **8,58% entre MEIs**, **8,12% entre autônomos** e **5,78% entre empregados privados e públicos**. Essa comparação controla apenas a faixa de renda. A composição por produto de crédito, prazo e outros fatores pode diferir entre os grupos. O Novo Caged acrescenta contexto municipal sobre cargos e admissões, em uma base separada sem identificação compartilhada de tomadores.
+Na faixa de mais de 1 a 2 salários mínimos, por exemplo, a inadimplência da carteira era de **8,58% entre MEIs**, **8,12% entre autônomos** e **5,78% entre empregados privados e públicos**. Essa comparação controla apenas a faixa de renda. A composição por produto de crédito, prazo e outros fatores pode diferir entre os grupos. O Novo Caged acrescenta contexto municipal sobre cargos e admissões, em uma base separada sem identificação compartilhada de tomadores.
 
 ## Tipos de crédito
 
-Empréstimos somavam **R$ 50,25 bilhões**, com **11,24%** em atraso, e respondiam por cerca de **76%** do saldo estadual em atraso. Financiamentos imobiliários somavam **R$ 35,21 bilhões**, com **1,68%** em atraso. Cartão de crédito deve ser analisado por submodalidade, com os códigos e a definição do Banco Central.
+Empréstimos somavam **R$ 50,25 bilhões**, com **11,24%** de inadimplência, e respondiam por cerca de **76%** do saldo estadual em atraso. Financiamentos imobiliários somavam **R$ 35,21 bilhões**, com **1,68%** de inadimplência. Cartão de crédito deve ser analisado por submodalidade, com os códigos e a definição do Banco Central.
 
 ## Pesquisa sobre o orçamento em Fortaleza
 
