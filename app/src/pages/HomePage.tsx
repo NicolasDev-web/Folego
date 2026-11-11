@@ -101,7 +101,7 @@ export function HomePage() {
           <SectionHeader
             marker="Território · 184 municípios"
             title="Cada cidade tem uma história — e uma cobertura."
-            description="População, renda domiciliar (mediana e média) e emprego formal por ocupação estão disponíveis para os 184 municípios. A ausência de dívida municipal direta permanece transparente antes de qualquer comparação."
+            description="População, renda domiciliar (mediana e média) e emprego formal por ocupação estão disponíveis para os 184 municípios. O endividamento dos moradores ainda não possui fonte municipal validada."
           />
           <Link className="button button-dark" to="/cidades?cidade=sobral">
             Abrir o explorador municipal
@@ -111,7 +111,7 @@ export function HomePage() {
           <p>Ficha municipal · Sobral</p>
           <strong>R$ 650</strong>
           <span>Renda per capita mediana (Censo 2022) · +454 empregos formais (set/2026)</span>
-          <small>Dívida municipal direta: indisponível (escala restrita à UF no SCR)</small>
+          <small>Endividamento dos moradores: dado municipal indisponível</small>
         </div>
       </section>
 

@@ -115,8 +115,8 @@ export const MUNICIPAL_METRICS: Record<MunicipalMetricId, MunicipalMetricDefinit
   },
   divida_municipal_direta: {
     id: "divida_municipal_direta",
-    label: "Dívida e inadimplência municipal direta",
-    shortLabel: "Dívida municipal (inelegível)",
+    label: "Endividamento dos moradores",
+    shortLabel: "Endividamento dos moradores (inelegível)",
     period: "Não disponível",
     sourceLabel: "BCB · SCR.data (restrito à escala estadual)",
     sourceUrl: "https://dadosabertos.bcb.gov.br/",

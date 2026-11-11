@@ -69,8 +69,8 @@ export function CoveragePanel({ municipality }: CoveragePanelProps) {
 
       <section className="availability-row">
         <div>
-          <h3>Dívida municipal direta</h3>
-          <p>{state.description}</p>
+          <h3>Endividamento dos moradores</h3>
+          <p>Ainda não há dado municipal validado para este indicador.</p>
         </div>
         <span className={`status-chip status-${state.tone}`}>{state.label}</span>
       </section>
