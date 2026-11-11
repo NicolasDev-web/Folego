@@ -149,12 +149,11 @@ a {
 }
 
 .hero {
-  min-height: calc(100svh - 84px);
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
   align-items: center;
   gap: clamp(2rem, 6vw, 7rem);
-  padding: clamp(4rem, 8vw, 8rem) var(--gutter);
+  padding: clamp(2.5rem, 5vw, 4.5rem) var(--gutter);
   color: #f8f5ed;
   background: var(--hero);
 }
@@ -165,8 +164,7 @@ a {
 
 .hero-context,
 .section-marker,
-.place-kicker,
-.prototype-label {
+.place-kicker {
   margin: 0 0 1.5rem;
   color: var(--brand);
   font-family: "Geist Mono", "Cascadia Mono", monospace;
@@ -181,7 +179,7 @@ a {
 .hero h1 {
   max-width: 780px;
   margin: 0;
-  font-size: clamp(3.4rem, 8.4vw, 8rem);
+  font-size: clamp(3rem, 6vw, 6rem);
   font-weight: 430;
   letter-spacing: -0.07em;
   line-height: 0.9;
@@ -229,22 +227,10 @@ a {
   background: var(--brand);
 }
 
-.prototype-label {
-  margin: 2rem 0 0;
-  color: #a9c8bd;
-}
-
 .hero-visual {
   justify-self: center;
-  width: min(100%, 520px);
+  width: min(100%, 310px);
   text-align: center;
-}
-
-.hero-visual > p {
-  margin-top: 1.5rem;
-  color: #a9c8bd;
-  font-family: "Geist Mono", "Cascadia Mono", monospace;
-  font-size: 0.72rem;
 }
 
 .breathing-graphic {
@@ -327,45 +313,65 @@ a {
   line-height: 1.6;
 }
 
-.concept-grid {
+.content-section.credit-overview {
+  padding-block: clamp(2rem, 4.5vw, 4rem);
+  scroll-margin-top: 5rem;
+}
+
+.credit-overview h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 550;
+  letter-spacing: -0.05em;
+  margin: 0.5rem 0 1.5rem;
+}
+
+.credit-overview-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  margin-top: 4rem;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
 }
 
-.concept-grid article {
-  min-height: 270px;
-  padding: 2rem;
-  border-right: 1px solid var(--line);
+.credit-overview-grid article {
+  padding: clamp(1rem, 3vw, 1.75rem);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
 }
 
-.concept-grid article:first-child {
-  padding-left: 0;
+.credit-overview-grid h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
-.concept-grid article:last-child {
-  border-right: 0;
-}
-
-.concept-number {
-  color: var(--accent);
-  font-family: "Geist Mono", "Cascadia Mono", monospace;
-  font-size: 0.8rem;
-}
-
-.concept-grid h3 {
-  margin: 3.5rem 0 0.85rem;
-  font-size: 1.6rem;
-  font-weight: 560;
-}
-
-.concept-grid p {
+.credit-overview-grid p,
+.credit-overview-note {
   margin: 0;
   color: var(--muted);
-  line-height: 1.6;
+  line-height: 1.55;
+}
+
+.credit-overview-grid .credit-overview-value {
+  margin-bottom: 0.65rem;
+  color: var(--brand);
+  font-size: clamp(1.85rem, 3.2vw, 2.7rem);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+.credit-overview-value small {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--ink);
+  font-size: 0.85rem;
+  letter-spacing: 0;
+}
+
+.credit-overview-note {
+  margin: 1rem 0 0.75rem;
+  max-width: 74ch;
+  font-size: 0.9rem;
 }
 
 .city-invitation {
@@ -405,7 +411,8 @@ a {
 }
 
 .coverage-preview span {
-  font-size: 4rem;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .coverage-preview small {
@@ -2090,7 +2097,7 @@ a {
   }
 
   .hero-visual {
-    width: min(75vw, 430px);
+    display: none;
   }
 
   .city-invitation,
@@ -2134,37 +2141,12 @@ a {
     display: none;
   }
 
-  .hero {
-    min-height: calc(100svh - 72px);
-    padding-top: 3rem;
-  }
-
   .hero h1 {
-    font-size: clamp(3.25rem, 17vw, 5.2rem);
+    font-size: clamp(2.7rem, 11vw, 4.3rem);
   }
 
-  .hero-visual {
-    width: min(76vw, 330px);
-  }
-
-  .concept-grid {
+  .credit-overview-grid {
     grid-template-columns: 1fr;
-  }
-
-  .concept-grid article,
-  .concept-grid article:first-child {
-    min-height: auto;
-    padding: 2rem 0;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .concept-grid article:last-child {
-    border-bottom: 0;
-  }
-
-  .concept-grid h3 {
-    margin-top: 1.5rem;
   }
 
   .method-grid {

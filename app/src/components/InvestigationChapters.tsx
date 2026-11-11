@@ -77,7 +77,7 @@ export function InvestigationChapters({
 
   const [evolutionMetric, setEvolutionMetric] =
     useState<EvolutionMetric>("inad90_pct");
-  const [profileTab, setProfileTab] = useState<ProfileTab>("modalidades");
+  const [profileTab, setProfileTab] = useState<ProfileTab>("porte_pf");
 
   function updateUrlFilter(key: string, value: string) {
     const next = new URLSearchParams(searchParams);
@@ -264,22 +264,51 @@ export function InvestigationChapters({
     | undefined;
   const cagedCeYtd = ceMacroCaged?.["2026-YTD"];
   const cagedCe12m = ceMacroCaged?.["2025-09..2026-08"];
+  const ceara = panorama.territories[0];
+  const cearaIncome = profiles.profiles_by_period[ceara.period]?.porte_pf.CE ?? [];
+  const upToOneMinimumWage = cearaIncome.find((row) => row.porte === "Até 1 salário mínimo")?.inad90_pct;
+  const fiveToTenMinimumWages = cearaIncome.find((row) => row.porte === "Mais de 5 a 10 salários mínimos")?.inad90_pct;
 
   return (
     <div className="investigation-chapters">
+      <section className="content-section credit-overview" id="resumo-ceara" aria-labelledby="credit-overview-title">
+        <p className="section-marker">Ceará · Setembro de 2026</p>
+        <h2 id="credit-overview-title">As dívidas em três números</h2>
+        <div className="credit-overview-grid">
+          <article>
+            <h3>Quanto ainda falta pagar</h3>
+            <p className="credit-overview-value">{formatBillions(ceara.carteiraAtivaBrl)}</p>
+            <p>Crédito que as pessoas no Ceará ainda tinham a pagar, incluindo parcelas em dia.</p>
+          </article>
+          <article>
+            <h3>Quanto está em contratos com atraso</h3>
+            <p className="credit-overview-value">{formatCurrency(ceara.inad90Pct)}{ceara.inad90Pct !== null && <small> a cada R$ 100</small>}</p>
+            <p>De cada R$ 100 a pagar, essa parte estava em contratos com pelo menos uma parcela atrasada há mais de 90 dias.</p>
+          </article>
+          <article>
+            <h3>Como o atraso varia com a renda</h3>
+            <p className="credit-overview-value">{formatPercent(upToOneMinimumWage)} <small>até 1 salário mínimo</small></p>
+            <p>Parte do crédito em contratos com atraso acima de 90 dias. Na faixa de mais de 5 a 10 salários mínimos, foi {formatPercent(fiveToTenMinimumWages)}.</p>
+          </article>
+        </div>
+        <p className="credit-overview-note">
+          Os números acima medem dinheiro. Para saber quantas famílias têm dívidas em todo o Ceará, seria necessária uma pesquisa que cobrisse o estado. <a href="https://dadosabertos.bcb.gov.br/dataset/scr_data">Fonte: Banco Central</a>
+        </p>
+        <a className="text-link" href="#dividas">Ver os dados por renda e ocupação</a>
+      </section>
       {/* CAPÍTULO 1: PANORAMA CE / NE / BR (05-01) */}
       <section className="content-section investigation-section" id="panorama">
         <div className="chapter-top-bar">
           <SectionHeader
-            marker="Capítulo 01 · Recorte comum (setembro de 2026)"
-            title="No Ceará, a carteira PF soma R$ 120,15 bilhões com inadimplência acima da média nacional e contratos menores."
-            description="Quando alinhamos a mesma data-base (2026-09) e o mesmo universo (Pessoas Físicas no Sistema Financeiro Nacional), o Ceará responde por 15,44% do saldo do Nordeste e 2,51% do Brasil, mas exibe saldo médio por contrato 28,8% inferior ao nacional."
+            marker="Setembro de 2026"
+            title="Como o Ceará se compara ao Nordeste e ao Brasil?"
+            description="Veja quanto as pessoas ainda têm a pagar em crédito e qual parte está em contratos com parcelas atrasadas há mais de 90 dias."
           />
           <div className="chapter-filter-bar" aria-label="Filtros públicos sincronizados na URL">
             <div className="filter-group">
-              <span className="filter-group-label">Território em destaque</span>
+              <span className="filter-group-label">Local em destaque</span>
               <SegmentedControl
-                label="Selecionar território macro"
+                label="Escolher local"
                 value={activeTerritory}
                 onChange={(next) => updateUrlFilter("territorio", next)}
                 options={[
@@ -290,14 +319,14 @@ export function InvestigationChapters({
               />
             </div>
             <div className="filter-group">
-              <span className="filter-group-label">Base monetária</span>
+              <span className="filter-group-label">Como mostrar os valores</span>
               <SegmentedControl
-                label="Alternar entre valor real e nominal"
+                label="Ajuste pela inflação"
                 value={valueMode}
                 onChange={(next) => updateUrlFilter("valor", next)}
                 options={[
-                  { value: "real", label: "Real (IPCA set/2026)" },
-                  { value: "nominal", label: "Nominal (corrente)" },
+                  { value: "real", label: "Com ajuste pela inflação" },
+                  { value: "nominal", label: "Valores da época" },
                 ]}
               />
             </div>
@@ -307,7 +336,7 @@ export function InvestigationChapters({
         <div className="metric-card-grid">
           <MetricCard
             eyebrow={selectedTerritorySnapshot.territoryName}
-            title="Carteira ativa de crédito PF"
+            title="Crédito a pagar"
             formattedValue={formatBillions(selectedTerritorySnapshot.carteiraAtivaBrl)}
             unitLabel={
               valueMode === "real"
@@ -322,7 +351,7 @@ export function InvestigationChapters({
           />
           <MetricCard
             eyebrow={selectedTerritorySnapshot.territoryName}
-            title="Inadimplência da carteira PF (> 90 dias)"
+            title="Crédito em contratos com atraso"
             formattedValue={formatPercent(selectedTerritorySnapshot.inad90Pct)}
             unitLabel="Parcela da carteira em operações com prestação vencida há mais de 90 dias"
             periodLabel="set/2026"
@@ -332,17 +361,17 @@ export function InvestigationChapters({
           />
           <MetricCard
             eyebrow={selectedTerritorySnapshot.territoryName}
-            title="Saldo médio por operação visível"
+            title="Quanto falta pagar por contrato, em média"
             formattedValue={formatCurrency(selectedTerritorySnapshot.saldoOperacaoBrl)}
             unitLabel="R$ por contrato em grupos com > 15 operações"
             periodLabel="set/2026"
             sourceLabel="BCB · SCR.data"
             universeLabel={`${integerFormatter.format(selectedTerritorySnapshot.operacoesVisiveis)} contratos visíveis (${integerFormatter.format(selectedTerritorySnapshot.linhasSuprimidas)} linhas <= 15 suprimidas)`}
-            comparisonNote="Mede ticket médio por contrato; uma mesma pessoa física pode deter múltiplos contratos."
+            comparisonNote="Uma pessoa pode ter mais de um contrato."
           />
           <MetricCard
             eyebrow="Brasil (exclusivo escala nacional)"
-            title="Comprometimento de renda com dívidas"
+            title="Parte da renda usada para pagar dívidas"
             formattedValue={formatPercent(panorama.nationalIncomeCommitment.valuePct)}
             unitLabel="Serviço da dívida / Renda disponível (série ajustada)"
             periodLabel={panorama.nationalIncomeCommitment.period}
@@ -594,25 +623,23 @@ export function InvestigationChapters({
       <section className="content-section investigation-section" id="dividas">
         <div className="chapter-top-bar">
           <SectionHeader
-            marker="Capítulo 03 · Composição, faixas de renda e sub-regiões postais"
-            title="Crédito e atrasos por modalidade, renda e ocupação"
-            description="Compare o saldo da carteira e a taxa de inadimplência por modalidade de crédito, faixa de renda e categoria ocupacional. As sub-regiões postais usam um indicador com prazo de atraso diferente."
+            title="Em quais grupos os atrasos pesam mais?"
+            description="Veja quanto falta pagar por faixa de renda, categoria de trabalho ou tipo de crédito. A taxa mostra a parte desse saldo em contratos com parcela atrasada há mais de 90 dias."
           />
           <div className="chapter-filter-bar">
             <div className="filter-group">
-              <span className="filter-group-label">Dimensão do perfil ({selectedTerritorySnapshot.territoryName})</span>
+              <span className="filter-group-label">Comparar por ({selectedTerritorySnapshot.territoryName})</span>
               <SegmentedControl
-                label="Alternar dimensão de composição do crédito"
+                label="Escolher o que comparar"
                 value={profileTab}
                 onChange={setProfileTab}
                 options={[
-                  { value: "modalidades", label: "Modalidades PF" },
-                  { value: "porte_pf", label: "Porte de renda (SM)" },
-                  { value: "ocupacao_pf", label: "Ocupação PF" },
+                  { value: "porte_pf", label: "Faixas de renda" },
+                  { value: "ocupacao_pf", label: "Categorias de trabalho" },
+                  { value: "modalidades", label: "Tipos de crédito" },
                   {
                     value: "sub_regiao",
-                    label: "Sub-regiões BCB (60–63)",
-                    badge: "Parcial",
+                    label: "Regiões por CEP",
                   },
                 ]}
               />
@@ -671,23 +698,18 @@ export function InvestigationChapters({
 
         {profileTab === "porte_pf" ? (
           <>
-            <aside className="methodology-alert-banner" role="note">
-              <strong>Distinção entre composição e equivalência em salários mínimos:</strong>{" "}
-              {incomeProfile.methodologyWarning}
-            </aside>
             <div className="comparison-table-container">
               <table className="comparison-table">
                 <caption>
-                  Carteira PF e inadimplência por faixa de rendimento em salários mínimos —{" "}
-                  {selectedTerritorySnapshot.territoryName} (2026-09)
+                  Crédito e atrasos por faixa de renda · {selectedTerritorySnapshot.territoryName} · Setembro de 2026
                 </caption>
                 <thead>
                   <tr>
-                    <th scope="col">Faixa de porte de renda (SM nominal vigente)</th>
-                    <th scope="col">Carteira ativa PF</th>
-                    <th scope="col">Participação (%)</th>
-                    <th scope="col">Inadimplência (&gt; 90d)</th>
-                    <th scope="col">Saldo por operação visível</th>
+                    <th scope="col">Faixa de renda</th>
+                    <th scope="col">Crédito a pagar</th>
+                    <th scope="col">Parte do crédito total</th>
+                    <th scope="col">Em contratos com atraso</th>
+                    <th scope="col">Valor médio por contrato</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -707,6 +729,10 @@ export function InvestigationChapters({
                 </tbody>
               </table>
             </div>
+            <details className="methodology-alert-banner">
+              <summary>Como são definidas as faixas de renda?</summary>
+              <p>{incomeProfile.methodologyWarning}</p>
+            </details>
           </>
         ) : null}
 
@@ -714,16 +740,15 @@ export function InvestigationChapters({
           <div className="comparison-table-container">
             <table className="comparison-table">
               <caption>
-                Carteira PF e inadimplência por natureza da ocupação —{" "}
-                {selectedTerritorySnapshot.territoryName} (2026-09)
+                Crédito e atrasos por categoria de trabalho · {selectedTerritorySnapshot.territoryName} · Setembro de 2026
               </caption>
               <thead>
                 <tr>
-                  <th scope="col">Ocupação declarada no SCR</th>
-                  <th scope="col">Carteira ativa PF</th>
-                  <th scope="col">Participação (%)</th>
-                  <th scope="col">Inadimplência (&gt; 90d)</th>
-                  <th scope="col">Saldo por operação visível</th>
+                  <th scope="col">Categoria de trabalho</th>
+                  <th scope="col">Crédito a pagar</th>
+                  <th scope="col">Parte do crédito total</th>
+                  <th scope="col">Em contratos com atraso</th>
+                  <th scope="col">Valor médio por contrato</th>
                 </tr>
               </thead>
               <tbody>
