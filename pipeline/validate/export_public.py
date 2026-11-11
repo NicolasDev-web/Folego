@@ -429,8 +429,8 @@ def export_labor_and_surveys(
     for period, vals in sorted(surveys_data["ipdc_fortaleza"].items()):
         src_url = vals.get("source_url") or "https://www.fecomercio-ce.com.br/pesquisas-e-estudos/"
         for ind_id, field_key, desc in (
-            ("familias_endividadas", "familias_endividadas_pct", "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"),
-            ("familias_atraso", "familias_atraso_pct", "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"),
+            ("consumidores_endividados_ipdc", "familias_endividadas_pct", "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"),
+            ("consumidores_atraso_ipdc", "familias_atraso_pct", "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"),
         ):
             val = vals.get(field_key)
             observations.append(
@@ -445,14 +445,14 @@ def export_labor_and_surveys(
                     status="observado" if val is not None else "indisponivel",
                     source_id="FECOMERCIO-CE-IPDC",
                     source_url=src_url,
-                    universe="Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-                    aggregation_rule="proporcao_amostral_total_familias",
+                    universe="Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+                    aggregation_rule="proporcao_amostral_total_consumidores",
                     version="IPDC-FECOMERCIO-CE-2026",
                     comparable_with=[],
                     note=(
-                        desc
+                        desc + (f". Relatório retrospectivo, p. {vals['source_page']}." if vals.get("source_page") else "")
                         if val is not None
-                        else "Boletim mensal não publicado para a competência 2025-11; mantido como null."
+                        else "Indicador indisponível na fonte consultada para esta competência."
                     ),
                 )
             )
@@ -643,21 +643,21 @@ def write_coverage_matrix_full() -> dict[str, Any]:
             "territory_id": "2304400",
             "territory_name": "Fortaleza",
             "territory_level": "capital_pesquisa",
-            "indicator_id": "familias_endividadas",
+            "indicator_id": "consumidores_endividados_ipdc",
             "period": "2025-04..2026-10",
             "status": "observado",
             "source_id": "FECOMERCIO-CE-IPDC",
-            "note": "Pesquisa local de Fortaleza (capital_pesquisa); 2025-11 indisponível (null).",
+            "note": "Pesquisa com consumidores em Fortaleza; 2025-11 recuperado da tabela histórica do relatório de janeiro de 2026.",
         },
         {
             "territory_id": "2304400",
             "territory_name": "Fortaleza",
             "territory_level": "capital_pesquisa",
-            "indicator_id": "familias_endividadas",
+            "indicator_id": "consumidores_endividados_ipdc",
             "period": "2025-11",
-            "status": "indisponivel",
+            "status": "observado",
             "source_id": "FECOMERCIO-CE-IPDC",
-            "note": "Ausência de boletim mensal publicado pela Fecomércio-CE para novembro/2025.",
+            "note": "Tabela histórica oficial da Fecomércio-CE, relatório de janeiro de 2026, página 4.",
         },
     ]
 

@@ -20,7 +20,7 @@ Pergunta central: *como o crédito, os atrasos, o trabalho formal e a pressão s
 | **IBGE · PNAD Contínua (`SIDRA 4099 / 6472`)** | Taxa de desocupação e rendimento médio habitual real (com CV%) | `BR`, `NE`, `CE` e `Fortaleza` (`capital_pesquisa`) | `2026-T2` (`2019-T1..2026-T2`) | `observado` |
 | **MTE · Novo Caged** | Admissões, desligamentos, saldo formal, ocupações CBO, setores CNAE e salário médio de admissão | **184 municípios** do Ceará, `CE`, `NE` e `BR` | `2026-09` (municipal) e `2020-01..2026-08` (série ajustada) | `observado` (7 municípios com `null` em salário de admissão em `2026-09` preservados sem conversão para zero) |
 | **CNC · PEIC Nacional** | Proporção de famílias endividadas e com contas em atraso | `BR` | `2026-10` | `observado` |
-| **Fecomércio-CE · IPDC** | Proporção de famílias endividadas e em atraso na capital | `Fortaleza` (`capital_pesquisa` · `2304400`) | `2026-10` (`2025-04..2026-10`) | `observado` (`2025-11` preservado como `null` / `indisponivel`) |
+| **Fecomércio-CE · IPDC** | Proporção de consumidores endividados e em atraso na capital | `Fortaleza` (`capital_pesquisa` · `2304400`) | `2026-10` (`2025-04..2026-10`) | `observado` (`2025-11` recuperado de tabela histórica oficial) |
 
 ---
 
@@ -28,7 +28,7 @@ Pergunta central: *como o crédito, os atrasos, o trabalho formal e a pressão s
 
 1. **Dívida municipal direta permanece indisponível:** Nenhuma fonte pública direta passou pelos seis critérios do portão de viabilidade (`02_fontes/RELATORIO_VIABILIDADE.md`). A aplicação bloqueia qualquer atribuição de média estadual ou sub-regional às cidades e impede ranking por dívida municipal.
 2. **Operações $\neq$ Pessoas $\neq$ Famílias:** Contratos no SCR não são CPFs desduplicados, e pesquisas amostrais de percepção (`PEIC`/`IPDC`) não equivalem a inadimplência bancária acima de 90 dias.
-3. **Ausência nunca vira zero:** Valores suprimidos (`<= 15`) ou não publicados (`2025-11` no IPDC; 7 municípios sem admissões elegíveis para a média salarial em `2026-09`) são mantidos como `null` e explicitados na interface e no CSV exportado. A média salarial segue a faixa de 0,3 a 150 salários mínimos e exclui vínculos intermitentes, conforme o MTE.
+3. **Ausência nunca vira zero:** Valores suprimidos (`<= 15`) ou não publicados (7 municípios sem admissões elegíveis para a média salarial em `2026-09`) são mantidos como `null` e explicitados na interface e no CSV exportado. A média salarial segue a faixa de 0,3 a 150 salários mínimos e exclui vínculos intermitentes, conforme o MTE.
 
 ---
 

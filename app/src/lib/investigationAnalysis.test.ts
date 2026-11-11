@@ -65,12 +65,28 @@ describe("investigationAnalysis (Phase 03 & Phase 05)", () => {
     expect(split.pre2025Points.length + split.pos2025Points.length).toBe(33);
   });
 
-  it("preserves the 2025-11 null gap in IPDC Fortaleza without interpolating or converting to zero", () => {
+  it("uses the official historical IPDC table for November 2025", () => {
     const surveys = buildSurveyComparisonRows(laborFile);
-    expect(surveys.missingIpdcPeriods).toContain("2025-11");
+    expect(surveys.missingIpdcPeriods).not.toContain("2025-11");
     const nov2025 = surveys.ipdcPoints.find((p) => p.period === "2025-11");
-    expect(nov2025?.status).toBe("indisponivel");
-    expect(nov2025?.familias_endividadas_pct).toBeNull();
+    expect(nov2025?.status).toBe("observado");
+    expect(nov2025?.familias_endividadas_pct).toBe(72.2);
+    expect(nov2025?.familias_atraso_pct).toBe(20.5);
+    expect(nov2025?.source_page).toBe(4);
+  });
+
+  it("rejects mixed credit periods and leaves unavailable profile slices empty", () => {
+    const period = "2026-09";
+    const incompleteMacro = {
+      ...macroFile,
+      series: {
+        ...macroFile.series,
+        NE: { ...macroFile.series.NE, PF: macroFile.series.NE.PF.filter((point) => point.period !== period) },
+      },
+    };
+    expect(() => buildMacroPanoramaComparison(incompleteMacro, period)).toThrow("NE em 2026-09");
+    expect(buildModalitiesComparison(profilesFile, "CE", "2026-10")).toEqual([]);
+    expect(buildIncomeBracketProfile(profilesFile, "CE", "2026-10").brackets).toEqual([]);
   });
 
   it("exports contract observations to CSV with full methodological headers and null preservation", () => {

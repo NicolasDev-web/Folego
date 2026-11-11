@@ -37,7 +37,7 @@ Evidência: `pipeline/transform/facts.py`, `data/processed/dim_territory.parquet
 - [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 02-03.
-Evidência: `pipeline/extract/surveys_adapter.py`, `data/raw/surveys/peic_cnc_202610_2026-11-09.xls`, `data/raw/surveys/peic_cnc_202611_2026-11-09.xls`, `data/raw/surveys/ipdc_fecomercio_posts_2026-11-09.json`, `data/raw/surveys/surveys_peic_ipdc_2026-11-09.json` e `metadata/municipal_employment_manifest.json`. Denominadores (`% do total de famílias` vs. `% dos endividados`) e ausência em `2025-11` (`null` / `indisponivel`) preservados. Status: concluída em 09/11/2026.
+Evidência: `pipeline/extract/surveys_adapter.py`, `data/raw/surveys/peic_cnc_202610_2026-11-09.xls`, `data/raw/surveys/peic_cnc_202611_2026-11-09.xls`, `data/raw/surveys/ipdc_fecomercio_posts_2026-11-09.json`, `data/raw/surveys/surveys_peic_ipdc_2026-11-09.json` e `metadata/municipal_employment_manifest.json`. Denominadores documentados por pesquisa. A tabela histórica oficial recupera quatro indicadores do IPDC para `2025-11`. Status: concluída em 09/11/2026.
 
 
 ## 02-05 — Implementar indicadores prioritários

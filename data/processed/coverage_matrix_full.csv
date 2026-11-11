@@ -43,5 +43,5 @@ NE,Nordeste,regiao,inad90_carteira,2019-08..2026-09,observado,BCB-SCR,Agregado r
 BR,Brasil,br,inad90_carteira,2019-08..2026-09,observado,BCB-SCR,Agregado nacional ponderado pela carteira.
 BR,Brasil,br,comprometimento_br,2019-01..2026-08,observado,BCB-RENDA,Série SGS 29034 de comprometimento de renda das famílias no SFN.
 BR,Brasil,br,familias_endividadas,2025-08..2026-10,observado,CNC-PEIC,Proporção de famílias endividadas na PEIC Nacional.
-2304400,Fortaleza,capital_pesquisa,familias_endividadas,2025-04..2026-10,observado,FECOMERCIO-CE-IPDC,Pesquisa local de Fortaleza (capital_pesquisa); 2025-11 indisponível (null).
-2304400,Fortaleza,capital_pesquisa,familias_endividadas,2025-11,indisponivel,FECOMERCIO-CE-IPDC,Ausência de boletim mensal publicado pela Fecomércio-CE para novembro/2025.
+2304400,Fortaleza,capital_pesquisa,consumidores_endividados_ipdc,2025-04..2026-10,observado,FECOMERCIO-CE-IPDC,Pesquisa com consumidores em Fortaleza; 2025-11 recuperado da tabela histórica do relatório de janeiro de 2026.
+2304400,Fortaleza,capital_pesquisa,consumidores_endividados_ipdc,2025-11,observado,FECOMERCIO-CE-IPDC,"Tabela histórica oficial da Fecomércio-CE, relatório de janeiro de 2026, página 4."

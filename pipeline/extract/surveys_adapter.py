@@ -14,6 +14,10 @@ PEIC_CNC_PORTAL_URL = "https://portaldocomercio.org.br/economia/peic-pesquisa-de
 
 IPDC_FECOMERCIO_WP_API_URL = "https://www.fecomercio-ce.com.br/wp-json/wp/v2/posts?search=endividamento&per_page=20"
 IPDC_FECOMERCIO_PORTAL_URL = "https://www.fecomercio-ce.com.br/pesquisas-e-estudos/"
+IPDC_JAN_2026_REPORT = (
+    "https://www.fecomercio-ce.com.br/wp-content/uploads/2026/01/"
+    "01_2026_Fortaleza_Perfil-de-Endividamento-do-Consumidor.pdf"
+)
 
 PEIC_ROW_MAP = {
     "Familias Endividadas (% do total de famílias)": ("familias_endividadas_pct", "pct_total_familias", 100.0),
@@ -159,19 +163,20 @@ IPDC_FORTALEZA_AUDITED_SERIES: dict[str, dict[str, Any]] = {
         "extraction_mode": "boletim_direto",
     },
     "2025-11": {
-        "familias_endividadas_pct": None,
-        "familias_atraso_pct": None,
-        "nao_terao_condicao_pagar_pct": None,
-        "parcela_renda_comprometida_pct": None,
+        "familias_endividadas_pct": 72.2,
+        "familias_atraso_pct": 20.5,
+        "nao_terao_condicao_pagar_pct": 8.3,
+        "parcela_renda_comprometida_pct": 40.9,
         "divida_media_brl": None,
         "tempo_medio_atraso_dias": None,
         "tipo_cartao_credito_pct_endividados": None,
         "tipo_financiamento_bancario_pct_endividados": None,
         "tipo_credito_pessoal_pct_endividados": None,
         "tipo_carnes_pct_endividados": None,
-        "release_date": None,
-        "source_url": None,
-        "extraction_mode": "indisponivel_sem_boletim_publicado",
+        "release_date": "2026-01-19",
+        "source_url": IPDC_JAN_2026_REPORT,
+        "source_page": 4,
+        "extraction_mode": "tabela_historica_relatorio_oficial",
     },
     "2025-12": {
         "familias_endividadas_pct": 69.6,
@@ -415,7 +420,15 @@ def collect_surveys(collected_date: str = "2026-11-06") -> dict[str, Any]:
     collected_links = {str(post.get("link", "")).rstrip("/") for post in ipdc_posts}
     for period, entry in IPDC_FORTALEZA_AUDITED_SERIES.items():
         src_url = entry.get("source_url")
-        if src_url and src_url.rstrip("/") not in collected_links:
+        # The historical table is an attachment in the official January release.
+        report_attachment = entry.get("extraction_mode") == "tabela_historica_relatorio_oficial"
+        source_in_posts = src_url and src_url.rstrip("/") in collected_links
+        if report_attachment:
+            source_in_posts = src_url == IPDC_JAN_2026_REPORT and any(
+                src_url in str(post.get("content", {}).get("rendered", "")).replace("http://", "https://")
+                for post in ipdc_posts
+            )
+        if src_url and not source_in_posts:
             raise ValueError(
                 f"URL auditada do IPDC ({period}: {src_url}) não encontrada no payload bruto {ipdc_rel}."
             )
@@ -423,10 +436,10 @@ def collect_surveys(collected_date: str = "2026-11-06") -> dict[str, Any]:
     consolidated_rel = f"data/raw/surveys/surveys_peic_ipdc_{collected_date}.json"
     consolidated_payload = {
         "collected_at": collected_date,
-        "denominators": {
+        "peic_denominators": {
             "familias_endividadas_pct": "% do total de famílias pesquisadas",
             "familias_atraso_pct": "% do total de famílias pesquisadas",
-            "nao_terao_condicao_pagar_pct": "% do total de famílias pesquisadas (inadimplência potencial no IPDC)",
+            "nao_terao_condicao_pagar_pct": "% do total de famílias pesquisadas",
             "parcela_renda_comprometida_pct": "% da renda familiar mensal entre as famílias endividadas",
             "tipo_*_pct_endividados": "% das famílias endividadas (múltipla resposta; soma > 100%)",
         },
@@ -445,8 +458,15 @@ def collect_surveys(collected_date: str = "2026-11-06") -> dict[str, Any]:
             "methodology_note": (
                 "Pesquisa amostral de percepção e orçamento familiar restrita ao município de Fortaleza "
                 "(capital_pesquisa). Nunca deve ser atribuída ao Ceará como UF ou aos outros 183 municípios. "
-                "A competência 2025-11 permanece null (indisponível) por ausência de boletim mensal publicado."
+                "Novembro de 2025 usa os indicadores publicados na tabela histórica do relatório de janeiro de 2026."
             ),
+            "universe": "Consumidores pesquisados em Fortaleza",
+            "denominators": {
+                "familias_endividadas_pct": "% dos consumidores pesquisados",
+                "familias_atraso_pct": "% dos consumidores pesquisados",
+                "nao_terao_condicao_pagar_pct": "% dos consumidores pesquisados (inadimplência potencial)",
+                "parcela_renda_comprometida_pct": "% da renda familiar mensal",
+            },
             "series": IPDC_FORTALEZA_AUDITED_SERIES,
         },
     }
@@ -482,9 +502,9 @@ def collect_surveys(collected_date: str = "2026-11-06") -> dict[str, Any]:
             "source_id": "FECOMERCIO-CE-IPDC",
             "url": IPDC_FECOMERCIO_WP_API_URL,
             "portal_url": IPDC_FECOMERCIO_PORTAL_URL,
-            "competence": "2025-04..2026-10 (2025-11 indisponível)",
+            "competence": "2025-04..2026-10",
             "rows": len(ipdc_posts),
-            "unit": "% do total de famílias, % dos endividados, R$ e dias",
+            "unit": "% dos consumidores, % da renda familiar, R$ e dias",
             "geography": "Fortaleza (capital_pesquisa - 2304400)",
             "license": "Divulgação pública Sistema Fecomércio-CE / IPDC",
             "version": "Boletins Mensais Pesquisa do Endividamento do Consumidor em Fortaleza",

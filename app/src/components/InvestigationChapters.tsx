@@ -49,6 +49,18 @@ function formatBillions(valueBrl: number): string {
   return `R$ ${brlBillions.format(valueBrl / 1_000_000_000)} bi`;
 }
 
+function formatPercent(value: number | null | undefined): string {
+  return value == null ? "Não disponível" : `${pctFormatter.format(value)}%`;
+}
+
+function formatCurrency(value: number | null | undefined): string {
+  return value == null ? "Não disponível" : brlCurrency.format(value);
+}
+
+function formatBalance(value: number | null | undefined): string {
+  return value == null ? "Não disponível" : `${value > 0 ? "+" : ""}${integerFormatter.format(value)}`;
+}
+
 export function InvestigationChapters({
   macro,
   profiles,
@@ -158,10 +170,10 @@ export function InvestigationChapters({
   const plotW = chartWidth - padLeft - padRight;
   const plotH = chartHeight - padTop - padBottom;
 
-  const extractMetricValue = (p: (typeof chartPoints)[number]): number => {
-    if (evolutionMetric === "inad90_pct") return p.inad90_pct ?? 0;
+  const extractMetricValue = (p: (typeof chartPoints)[number]): number | null => {
+    if (evolutionMetric === "inad90_pct") return p.inad90_pct;
     if (evolutionMetric === "ativo_problematico_pct")
-      return p.ativo_problematico_pct ?? 0;
+      return p.ativo_problematico_pct;
     const raw =
       valueMode === "real" ? p.carteira_ativa_real_brl : p.carteira_ativa_brl;
     return raw / 1_000_000_000;
@@ -205,9 +217,9 @@ export function InvestigationChapters({
 
   const allValues = activeSeriesList.flatMap((s) =>
     s.split.allPoints.map(extractMetricValue),
-  );
-  const minVal = Math.max(0, Math.floor(Math.min(...allValues) * 0.85));
-  const maxVal = Math.ceil(Math.max(...allValues) * 1.08);
+  ).filter((value): value is number => value !== null);
+  const minVal = Math.max(0, Math.floor(Math.min(...(allValues.length ? allValues : [0])) * 0.85));
+  const maxVal = Math.ceil(Math.max(0, ...allValues) * 1.08);
   const valSpan = Math.max(maxVal - minVal, 1);
 
   const periodToX = (index: number) =>
@@ -221,14 +233,24 @@ export function InvestigationChapters({
   const breakIdx = indexByPeriod.get("2025-01") ?? 21;
   const breakX = periodToX(breakIdx);
 
-  const buildPolyline = (pts: typeof chartPoints) =>
-    pts
-      .map((pt) => {
-        const idx = indexByPeriod.get(pt.period) ?? 0;
-        return `${periodToX(idx).toFixed(1)},${valueToY(extractMetricValue(pt)).toFixed(1)}`;
-      })
-      .join(" ");
+  function buildSeriesPath(points: typeof chartPoints) {
+    const commands: string[] = [];
+    let previousIndex: number | undefined;
+    for (const point of points) {
+      const index = indexByPeriod.get(point.period);
+      const value = extractMetricValue(point);
+      if (index === undefined || value === null) {
+        previousIndex = undefined;
+        continue;
+      }
+      const command = previousIndex === index - 1 ? "L" : "M";
+      commands.push(`${command}${periodToX(index).toFixed(1)},${valueToY(value).toFixed(1)}`);
+      previousIndex = index;
+    }
+    return commands.join(" ");
+  }
 
+  const ipdcOctober = surveyComparison.ipdcPoints.find((point) => point.period === "2026-10");
   const pnadCeDesoc =
     labor.pnad_continua.desocupacao_trimestral.CE?.series["2026-T2"];
   const pnadBrDesoc =
@@ -301,19 +323,17 @@ export function InvestigationChapters({
           <MetricCard
             eyebrow={selectedTerritorySnapshot.territoryName}
             title="Inadimplência da carteira PF (> 90 dias)"
-            formattedValue={`${pctFormatter.format(selectedTerritorySnapshot.inad90Pct ?? 0)}%`}
+            formattedValue={formatPercent(selectedTerritorySnapshot.inad90Pct)}
             unitLabel="Proporção do saldo com atraso > 90 dias"
             periodLabel="set/2026"
             sourceLabel="BCB · SCR.data"
             universeLabel="Saldo inadimplido / Carteira ativa PF"
-            comparisonNote={`Ceará: 6,20% · Nordeste: 7,04% · Brasil: 6,17% (média ponderada pelo estoque).`}
+            comparisonNote={panorama.territories.map((row) => `${row.territoryName} · ${formatPercent(row.inad90Pct)}`).join(" | ")}
           />
           <MetricCard
             eyebrow={selectedTerritorySnapshot.territoryName}
             title="Saldo médio por operação visível"
-            formattedValue={brlCurrency.format(
-              selectedTerritorySnapshot.saldoOperacaoBrl ?? 0,
-            )}
+            formattedValue={formatCurrency(selectedTerritorySnapshot.saldoOperacaoBrl)}
             unitLabel="R$ por contrato em grupos com > 15 operações"
             periodLabel="set/2026"
             sourceLabel="BCB · SCR.data"
@@ -323,7 +343,7 @@ export function InvestigationChapters({
           <MetricCard
             eyebrow="Brasil (exclusivo escala nacional)"
             title="Comprometimento de renda com dívidas"
-            formattedValue={`${pctFormatter.format(panorama.nationalIncomeCommitment.valuePct)}%`}
+            formattedValue={formatPercent(panorama.nationalIncomeCommitment.valuePct)}
             unitLabel="Serviço da dívida / Renda disponível (série ajustada)"
             periodLabel={panorama.nationalIncomeCommitment.period}
             sourceLabel="BCB · SGS 29034"
@@ -363,11 +383,11 @@ export function InvestigationChapters({
                   <td>{formatBillions(row.carteiraAtivaBrl)}</td>
                   <td>{formatBillions(row.vencido15a90Brl)}</td>
                   <td>
-                    <strong>{pctFormatter.format(row.inad90Pct ?? 0)}%</strong>
+                    <strong>{formatPercent(row.inad90Pct)}</strong>
                   </td>
-                  <td>{pctFormatter.format(row.ativoProblematicoPct ?? 0)}%</td>
+                  <td>{formatPercent(row.ativoProblematicoPct)}</td>
                   <td>
-                    {brlCurrency.format(row.saldoOperacaoBrl ?? 0)}
+                    {formatCurrency(row.saldoOperacaoBrl)}
                     <span className="comparison-cell-note">
                       {integerFormatter.format(row.linhasSuprimidas)} linhas &le;15 ocultadas
                     </span>
@@ -513,28 +533,28 @@ export function InvestigationChapters({
                 if (evolutionMetric === "ativo_problematico_pct") {
                   return (
                     <g key={s.id}>
-                      <polyline
+                      <path
                         fill="none"
                         stroke={s.color}
                         strokeWidth="2.4"
-                        points={buildPolyline(s.split.pre2025Points)}
+                        d={buildSeriesPath(s.split.pre2025Points)}
                       />
-                      <polyline
+                      <path
                         fill="none"
                         stroke={s.color}
                         strokeWidth="2.4"
-                        points={buildPolyline(s.split.pos2025Points)}
+                        d={buildSeriesPath(s.split.pos2025Points)}
                       />
                     </g>
                   );
                 }
                 return (
-                  <polyline
+                  <path
                     key={s.id}
                     fill="none"
                     stroke={s.color}
                     strokeWidth="2.5"
-                    points={buildPolyline(s.split.allPoints)}
+                    d={buildSeriesPath(s.split.allPoints)}
                   />
                 );
               })}
@@ -575,8 +595,8 @@ export function InvestigationChapters({
         <div className="chapter-top-bar">
           <SectionHeader
             marker="Capítulo 03 · Composição, faixas de renda e sub-regiões postais"
-            title="Empréstimos e cartão somam 68% da carteira PF no Ceará; nas faixas até 2 salários mínimos, a inadimplência supera 7,3%."
-            description="A taxa média estadual esconde perfis opostos: o financiamento imobiliário tem 1,25% de inadimplência (> 90 dias), enquanto o cartão de crédito atinge 10,75%. Abaixo, separamos mudanças de composição, faixas em salários mínimos e o recorte sub-regional postal do BCB."
+            title="Crédito e atrasos por modalidade, renda e ocupação"
+            description="Compare o saldo da carteira e a proporção em atraso por modalidade de crédito, faixa de renda e categoria ocupacional. As sub-regiões postais usam um indicador com prazo de atraso diferente."
           />
           <div className="chapter-filter-bar">
             <div className="filter-group">
@@ -626,7 +646,7 @@ export function InvestigationChapters({
                     <td>{formatBillions(row.current.carteira_ativa_brl)}</td>
                     <td>
                       <strong>
-                        {pctFormatter.format(row.current.participacao_pct ?? 0)}%
+                        {formatPercent(row.current.participacao_pct)}
                       </strong>
                     </td>
                     <td>
@@ -640,7 +660,7 @@ export function InvestigationChapters({
                         : "—"}
                     </td>
                     <td>
-                      <strong>{pctFormatter.format(row.current.inad90_pct ?? 0)}%</strong>
+                      <strong>{formatPercent(row.current.inad90_pct)}</strong>
                     </td>
                   </tr>
                 ))}
@@ -677,11 +697,11 @@ export function InvestigationChapters({
                         <strong>{item.porte}</strong>
                       </th>
                       <td>{formatBillions(item.carteira_ativa_brl)}</td>
-                      <td>{pctFormatter.format(item.participacao_pct ?? 0)}%</td>
+                      <td>{formatPercent(item.participacao_pct)}</td>
                       <td>
-                        <strong>{pctFormatter.format(item.inad90_pct ?? 0)}%</strong>
+                        <strong>{formatPercent(item.inad90_pct)}</strong>
                       </td>
-                      <td>{brlCurrency.format(item.saldo_operacao_brl ?? 0)}</td>
+                      <td>{formatCurrency(item.saldo_operacao_brl)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -713,11 +733,11 @@ export function InvestigationChapters({
                       <strong>{item.ocupacao}</strong>
                     </th>
                     <td>{formatBillions(item.carteira_ativa_brl)}</td>
-                    <td>{pctFormatter.format(item.participacao_pct ?? 0)}%</td>
+                    <td>{formatPercent(item.participacao_pct)}</td>
                     <td>
-                      <strong>{pctFormatter.format(item.inad90_pct ?? 0)}%</strong>
+                      <strong>{formatPercent(item.inad90_pct)}</strong>
                     </td>
-                    <td>{brlCurrency.format(item.saldo_operacao_brl ?? 0)}</td>
+                    <td>{formatCurrency(item.saldo_operacao_brl)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -759,7 +779,7 @@ export function InvestigationChapters({
                         </span>
                       </td>
                       <td>
-                        <strong>{pctFormatter.format(sub.vencido15_pct ?? 0)}%</strong>
+                        <strong>{formatPercent(sub.vencido15_pct)}</strong>
                       </td>
                       <td>{integerFormatter.format(sub.operacoes_visiveis)}</td>
                       <td>{sub.modalidades[0]?.modalidade ?? "—"}</td>
@@ -779,7 +799,7 @@ export function InvestigationChapters({
       >
         <SectionHeader
           marker="Capítulo 04 · Renda, trabalho formal e percepção das famílias"
-          title="Desocupação menor e saldo positivo no Novo Caged convivem com 79,5% de famílias endividadas na PEIC e 73,6% no IPDC de Fortaleza."
+          title="Trabalho, renda e contas em atraso em Fortaleza e no Brasil"
           description="Fontes com periodicidades, amostras e conceitos distintos não permitem inferência causal automática: uma família pode estar endividada por financiamento imobiliário em dia (PEIC/IPDC) enquanto a inadimplência bancária (> 90 dias no SCR) reflete contratos em atraso prolongado."
         />
 
@@ -787,66 +807,55 @@ export function InvestigationChapters({
           <MetricCard
             eyebrow="Ceará · Trimestral (PNAD Contínua)"
             title="Taxa de desocupação (2º tri/2026)"
-            formattedValue={`${pctFormatter.format(pnadCeDesoc?.taxa_desocupacao_pct ?? 6.3)}%`}
-            unitLabel={`Pessoas de 14+ anos na força de trabalho (CV: ${pnadCeDesoc?.cv_pct ?? 6.7}%)`}
+            formattedValue={formatPercent(pnadCeDesoc?.taxa_desocupacao_pct)}
+            unitLabel={`Pessoas de 14+ anos na força de trabalho · CV ${formatPercent(pnadCeDesoc?.cv_pct)}`}
             periodLabel="2026-T2"
             sourceLabel="IBGE · SIDRA 4099"
             universeLabel="Amostra domiciliar trimestral"
-            comparisonNote={`Brasil em 2026-T2: ${pctFormatter.format(pnadBrDesoc?.taxa_desocupacao_pct ?? 5.8)}% (CV: ${pnadBrDesoc?.cv_pct ?? 1.4}%).`}
+            comparisonNote={`Brasil em 2026-T2 · ${formatPercent(pnadBrDesoc?.taxa_desocupacao_pct)} (CV ${formatPercent(pnadBrDesoc?.cv_pct)}).`}
           />
           <MetricCard
             eyebrow="Ceará · Trimestral (PNAD Contínua)"
             title="Rendimento médio habitual real"
-            formattedValue={brlCurrency.format(
-              pnadCeRend?.rendimento_habitual_real_brl ?? 2345,
-            )}
-            unitLabel={`Reais deflacionados pelo IBGE (CV: ${pnadCeRend?.cv_real_pct ?? 4.2}%)`}
+            formattedValue={formatCurrency(pnadCeRend?.rendimento_habitual_real_brl)}
+            unitLabel={`Reais deflacionados pelo IBGE · CV ${formatPercent(pnadCeRend?.cv_real_pct)}`}
             periodLabel="2026-T2"
             sourceLabel="IBGE · SIDRA 6472"
             universeLabel="Pessoas ocupadas com rendimento de trabalho"
-            comparisonNote={`Brasil em 2026-T2: ${brlCurrency.format(pnadBrRend?.rendimento_habitual_real_brl ?? 3457)} (diferença de 32,2%).`}
+            comparisonNote={`Brasil em 2026-T2 · ${formatCurrency(pnadBrRend?.rendimento_habitual_real_brl)}.`}
           />
           <MetricCard
             eyebrow="Ceará · Mensal (Novo Caged Ajustado)"
             title="Saldo de emprego formal (acumulado 2026)"
-            formattedValue={`+${integerFormatter.format(cagedCeYtd?.saldo ?? 38412)}`}
+            formattedValue={formatBalance(cagedCeYtd?.saldo)}
             unitLabel="Vínculos celetistas (jan–ago/2026 com declarações fora do prazo)"
             periodLabel="2026-01..2026-08"
             sourceLabel="MTE · Novo Caged Ajustado"
             universeLabel="Estabelecimentos com movimentação declarada"
-            comparisonNote={`Acumulado 12 meses (set/25–ago/26): +${integerFormatter.format(cagedCe12m?.saldo ?? 52190)} postos · Set/2026: +5.156 postos.`}
+            comparisonNote={`Saldo em 12 meses (set/25–ago/26) · ${formatBalance(cagedCe12m?.saldo)}.`}
           />
           <MetricCard
             eyebrow="Fortaleza · Escala capital_pesquisa"
-            title="Famílias endividadas (IPDC Fortaleza)"
-            formattedValue={`${pctFormatter.format(
-              surveyComparison.ipdcPoints[surveyComparison.ipdcPoints.length - 1]
-                ?.familias_endividadas_pct ?? 73.6,
-            )}%`}
-            unitLabel={`Com contas em atraso: ${pctFormatter.format(
-              surveyComparison.ipdcPoints[surveyComparison.ipdcPoints.length - 1]
-                ?.familias_atraso_pct ?? 24.8,
-            )}%`}
+            title="Consumidores endividados (IPDC Fortaleza)"
+            formattedValue={formatPercent(ipdcOctober?.familias_endividadas_pct)}
+            unitLabel={`Com contas em atraso · ${formatPercent(ipdcOctober?.familias_atraso_pct)}`}
             periodLabel="2026-10"
             sourceLabel="Fecomércio-CE · IPDC"
-            universeLabel="Famílias pesquisadas no município de Fortaleza (capital_pesquisa)"
-            comparisonNote="Novembro/2025 (2025-11) permanece explicitamente como null (indisponível) por ausência de boletim mensal."
+            universeLabel="Consumidores pesquisados em Fortaleza"
           />
         </div>
 
         <div className="comparison-table-container">
           <table className="comparison-table">
             <caption>
-              Pesquisas de percepção de endividamento: PEIC Nacional (Brasil) vs. IPDC
-              (Fortaleza — escala <code>capital_pesquisa</code>) com preservação da lacuna{" "}
-              <code>2025-11</code>
+              Endividamento declarado pelas famílias na PEIC Brasil e pelos consumidores no IPDC Fortaleza
             </caption>
             <thead>
               <tr>
                 <th scope="col">Competência</th>
                 <th scope="col">PEIC Brasil — Endividadas (%)</th>
                 <th scope="col">PEIC Brasil — Em atraso (%)</th>
-                <th scope="col">IPDC Fortaleza — Endividadas (%)</th>
+                <th scope="col">IPDC Fortaleza — Endividados (%)</th>
                 <th scope="col">IPDC Fortaleza — Em atraso (%)</th>
                 <th scope="col">Estado de cobertura IPDC</th>
               </tr>
@@ -882,14 +891,14 @@ export function InvestigationChapters({
                         </strong>
                       ) : (
                         <span className="comparison-cell-note">
-                          Indisponível (null — sem boletim 2025-11)
+                          Não disponível
                         </span>
                       )}
                     </td>
                     <td>
                       {ipdcRow.familias_atraso_pct !== null
                         ? `${pctFormatter.format(ipdcRow.familias_atraso_pct)}%`
-                        : "null"}
+                        : "Não disponível"}
                     </td>
                     <td>
                       <span
@@ -897,8 +906,11 @@ export function InvestigationChapters({
                           isMissing ? "status-missing" : "status-available"
                         }`}
                       >
-                        {isMissing ? "Indisponível (null)" : "Observado"}
+                        {isMissing ? "Não disponível" : "Observado"}
                       </span>
+                      {ipdcRow.source_page && (
+                        <p><a href={ipdcRow.source_url}>Relatório histórico, p. {ipdcRow.source_page}</a></p>
+                      )}
                     </td>
                   </tr>
                 );
@@ -914,19 +926,18 @@ export function InvestigationChapters({
             <h3>Fatos rastreáveis nas fontes oficiais</h3>
             <ul>
               <li>
-                <strong>Concentração em modalidades caras:</strong> Em setembro de 2026,{" "}
-                <code>Empréstimos</code> (42,57%) e <code>Cartão de crédito</code> (25,40%)
-                respondem por 67,97% da carteira PF no Ceará, com inadimplência (&gt; 90d) de
-                6,88% e 10,75%, respectivamente.
+                <strong>Diferença entre modalidades.</strong> Em setembro de 2026, a parcela
+                da carteira PF cearense em atraso acima de 90 dias era de 11,24% em empréstimos
+                e 1,68% em financiamentos imobiliários.
               </li>
               <li>
-                <strong>Assimetria por faixa de renda:</strong> Tomadores na faixa de 1 a 2
-                salários mínimos no Ceará registram inadimplência de 7,37%, ante 4,23% na
-                faixa de 5 a 10 salários mínimos.
+                <strong>Diferença por faixa de renda.</strong> No Ceará, 7,37% da carteira de
+                tomadores na faixa de mais de 1 a 2 salários mínimos estava em atraso acima de
+                90 dias, ante 4,23% na faixa de mais de 5 a 10 salários mínimos.
               </li>
               <li>
                 <strong>Diferença de escala e conceito:</strong> O IPDC mede percepção
-                amostral de famílias na capital Fortaleza (<code>capital_pesquisa</code>),
+                amostral de consumidores em Fortaleza (<code>capital_pesquisa</code>),
                 enquanto o SCR mede estoque financeiro estadual (<code>UF</code>).
               </li>
             </ul>

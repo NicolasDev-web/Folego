@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { CREDIT_REFERENCE_PERIOD } from "../lib/investigationAnalysis";
 import type {
   CreditProfilesFile,
   LaborAndSurveysFile,
@@ -52,6 +53,12 @@ export function useInvestigationData(): InvestigationDataState {
           laborRes.json(),
         ])) as [StateMacroSeriesFile, CreditProfilesFile, LaborAndSurveysFile];
 
+        const completePeriod = (["CE", "NE", "BR"] as const).every((territory) =>
+          macro.series[territory]?.PF?.some((point) => point.period === CREDIT_REFERENCE_PERIOD),
+        );
+        if (!completePeriod) {
+          throw new Error(`A comparação de crédito está indisponível em ${CREDIT_REFERENCE_PERIOD}.`);
+        }
         cachedPayload = { macro, profiles, labor };
         if (active) {
           setState({ status: "ready", macro, profiles, labor });

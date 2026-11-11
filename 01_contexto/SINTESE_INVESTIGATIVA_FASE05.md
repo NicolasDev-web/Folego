@@ -22,10 +22,10 @@ Na data-base comum de **setembro de 2026 (`2026-09`)**, no universo de operaçõ
 ## 2. Composição por Modalidade, Porte de Renda e Sub-regiões Postais (`05-02`)
 
 ### 2.1 Modalidades de crédito PF no Ceará (`2026-09` vs. `2019-12`)
-- **Empréstimos (consignado, pessoal e outros):** R$ 51,15 bilhões (**42,57%** da carteira PF estadual), com inadimplência (`> 90 dias`) de **6,88%**.
-- **Cartão de crédito:** R$ 30,52 bilhões (**25,40%** da carteira PF), com inadimplência (`> 90 dias`) de **10,75%** — o maior foco proporcional de atraso prolongado.
-- **Financiamentos imobiliários:** R$ 25,28 bilhões (**21,04%** da carteira PF), com inadimplência (`> 90 dias`) de apenas **1,25%**.
-- **Financiamentos (veículos e bens):** R$ 9,53 bilhões (**7,93%** da carteira PF), com inadimplência de **4,12%**.
+- **Empréstimos:** R$ 50,25 bilhões na carteira PF estadual, com inadimplência (`> 90 dias`) de **11,24%**.
+- A tabela de modalidades não separa cartão de crédito. A análise de cartão exige filtrar as submodalidades oficiais do Banco Central.
+- **Financiamentos imobiliários:** R$ 35,23 bilhões, com inadimplência (`> 90 dias`) de **1,68%**.
+- **Financiamentos:** R$ 14,11 bilhões, com inadimplência de **6,68%**.
 
 ### 2.2 Porte de renda PF em salários mínimos (`2026-09`)
 - A inadimplência (`> 90 dias`) no Ceará apresenta gradiente inverso à faixa de rendimento nos portes intermediários: **7,37%** na faixa de `Mais de 1 a 2 salários mínimos` (18,84% da carteira) contra **4,23%** na faixa de `Mais de 5 a 10 salários mínimos` (18,19% da carteira).
@@ -48,4 +48,4 @@ Na data-base comum de **setembro de 2026 (`2026-09`)**, no universo de operaçõ
 
 - **PNAD Contínua Trimestral (`2026-T2`):** A taxa de desocupação no Ceará ficou em **6,3%** (CV: 6,7%), próxima à média nacional de **5,8%** (CV: 1,4%), mas o rendimento médio habitual real no Ceará (**R$ 2.345**, CV: 4,2%) permaneceu **32,2% abaixo** da média brasileira (**R$ 3.457**).
 - **Novo Caged Ajustado (`2020-01..2026-08`) e Setembro/2026:** O Ceará acumulou saldo positivo de **+38.412 vínculos formais** no acumulado de jan–ago/2026 (série ajustada) e **+5.156 postos** em setembro de 2026 nos 184 municípios.
-- **Percepção de endividamento (`PEIC` vs. `IPDC Fortaleza`):** Em outubro de 2026 (`2026-10`), **73,6%** das famílias pesquisadas em Fortaleza (`capital_pesquisa`) declararam possuir dívidas no IPDC/Fecomércio-CE (e **24,8%** com contas em atraso). A competência `2025-11` é preservada como `null` (`indisponivel`).
+- **Percepção de endividamento (`PEIC` vs. `IPDC Fortaleza`):** Em outubro de 2026 (`2026-10`), **65,5%** dos consumidores pesquisados em Fortaleza (`capital_pesquisa`) declararam possuir dívidas no IPDC/Fecomércio-CE (e **16,8%** com contas em atraso). A tabela histórica de janeiro de 2026 registra **72,2%** com dívidas e **20,5%** com atrasos em `2025-11`.

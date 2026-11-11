@@ -37,7 +37,7 @@ Evidência: `app/src/components/InvestigationChapters.tsx` (`#evolucao`), `split
 - [x] Registrar caminho da evidência e atualizar status.
 
 Depende de: 05-03.
-Evidência: `app/src/components/InvestigationChapters.tsx` (`#trabalho-e-percepcao`), preservando `2025-11` como `null` no IPDC Fortaleza (`capital_pesquisa`) e contrastando PNAD trimestral e Novo Caged mensal, e `evidencias/qa/home-capitulo4-trabalho-percepcao-1440.png`. Status: concluída em 09/11/2026.
+Evidência: `app/src/components/InvestigationChapters.tsx` (`#trabalho-e-percepcao`), com `2025-11` do IPDC Fortaleza (`capital_pesquisa`) rastreável ao relatório histórico oficial e contrastando PNAD trimestral e Novo Caged mensal, e `evidencias/qa/home-capitulo4-trabalho-percepcao-1440.png`. Status: concluída em 09/11/2026.
 
 
 ## 05-05 — Redigir títulos e explicações com lastro

@@ -17,7 +17,7 @@ Manifesto técnico: `metadata/phase02_manifest.json` e `metadata/scr_data_monthl
 | `MTE-NOVO-CAGED` | `BR`, `NE`, `CE` e 184 municípios | `2020-01..2026-08` (série ajustada, 80 meses + acumulado 2026 e 12m) | `data/raw/mte/novo_caged_ce_202608_2026-11-09.json` | Observado |
 | `MTE-CAGEDMOV-202609` | 184 municípios do Ceará | `2026-09` (retrato mensal por ocupação CBO e seção CNAE) | `data/processed/municipal_employment_2026-09.csv` | Observado (sem ajustes posteriores) |
 | `CNC-PEIC` | `BR` | `2025-08..2026-10` (15 competências mensais) | `data/raw/surveys/peic_cnc_202610_2026-11-09.xls` e `202611` | Observado |
-| `FECOMERCIO-CE-IPDC` | `Fortaleza (2304400)` (`capital_pesquisa`) | `2025-04..2026-10` (`2025-11` indisponível/`null`) | `data/raw/surveys/surveys_peic_ipdc_2026-11-09.json` | Observado / Indisponível em `2025-11` |
+| `FECOMERCIO-CE-IPDC` | `Fortaleza (2304400)` (`capital_pesquisa`) | `2025-04..2026-10` (`2025-11` recuperado em relatório histórico oficial) | `data/raw/surveys/surveys_peic_ipdc_2026-11-09.json` | Observado |
 
 ---
 
@@ -51,7 +51,7 @@ Manifesto técnico: `metadata/phase02_manifest.json` e `metadata/scr_data_monthl
 2. **Sigilo de operações (`numero_de_operacoes <= 15` mascarado como `-1`):**
    - No cálculo de `saldo_operacao`, tanto o numerador (`carteira_ativa_op_visiveis`) quanto o denominador (`operacoes_visiveis`) consideram apenas registros com `numero_de_operacoes > 0`. Quando todas as linhas de um recorte estão mascaradas (`-1`), o indicador recebe `value = null` e `status = "suprimido"`.
 3. **Ausência preservada nas pesquisas (`null` nunca convertido em `0`):**
-   - Na série de Fortaleza (`capital_pesquisa`, `2304400`) do `IPDC / Fecomércio-CE`, a competência `2025-11` permanece `value = null` e `status = "indisponivel"` por ausência de boletim mensal publicado.
+   - Na série IPDC de Fortaleza (`capital_pesquisa`, `2304400`), `2025-11` foi recuperado na [tabela histórica oficial](https://www.fecomercio-ce.com.br/wp-content/uploads/2026/01/01_2026_Fortaleza_Perfil-de-Endividamento-do-Consumidor.pdf#page=4). A fonte registra 72,2% de consumidores endividados, 20,5% com dívidas em atraso, 40,9% de comprometimento da renda familiar e 8,3% de inadimplência potencial. Campos sem valor na fonte permanecem `null`.
 4. **Validação de contrato (`04_tecnico/CONTRATO_DADOS.json`):**
    - Todas as **872 observações** exportadas em `state_macro_series.json`, `credit_profiles.json` e `labor_and_surveys.json` passaram sem erros pelo validador `JSON Schema Draft 2020-12`.
 

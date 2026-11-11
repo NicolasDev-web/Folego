@@ -11,6 +11,7 @@ import type {
 } from "../data/investigation";
 
 export type ValueMode = "real" | "nominal";
+export const CREDIT_REFERENCE_PERIOD = "2026-09";
 
 const PORTE_ORDER = [
   "Sem rendimento",
@@ -60,7 +61,7 @@ export type MacroTerritorySnapshot = {
 
 export function buildMacroPanoramaComparison(
   macroFile: StateMacroSeriesFile,
-  period = "2026-09",
+  period = CREDIT_REFERENCE_PERIOD,
   valueMode: ValueMode = "real",
 ): {
   period: string;
@@ -71,7 +72,7 @@ export function buildMacroPanoramaComparison(
   ceShareOfBrPct: number;
   nationalIncomeCommitment: {
     period: string;
-    valuePct: number;
+    valuePct: number | null;
   };
 } {
   const meta: Record<TerritoryMacroCode, { name: string; scope: string }> = {
@@ -82,7 +83,9 @@ export function buildMacroPanoramaComparison(
 
   const findPoint = (t: TerritoryMacroCode): ScrSliceMetrics => {
     const list = macroFile.series[t].PF;
-    return list.find((item) => item.period === period) ?? list[list.length - 1];
+    const point = list.find((item) => item.period === period);
+    if (!point) throw new Error(`Crédito PF indisponível para ${t} em ${period}.`);
+    return point;
   };
 
   const cePoint = findPoint("CE");
@@ -133,7 +136,7 @@ export function buildMacroPanoramaComparison(
   const compEntries = Object.entries(macroFile.comprometimento_renda_pf_br).sort(
     ([a], [b]) => a.localeCompare(b),
   );
-  const lastComp = compEntries[compEntries.length - 1] ?? ["2026-08", 28.99];
+  const lastComp = compEntries.at(-1);
 
   return {
     period: cePoint.period,
@@ -143,8 +146,8 @@ export function buildMacroPanoramaComparison(
     ceShareOfNePct,
     ceShareOfBrPct,
     nationalIncomeCommitment: {
-      period: lastComp[0],
-      valuePct: lastComp[1],
+      period: lastComp?.[0] ?? "Não disponível",
+      valuePct: lastComp?.[1] ?? null,
     },
   };
 }
@@ -162,9 +165,7 @@ export function buildModalitiesComparison(
   territoryId: TerritoryMacroCode = "CE",
   period = "2026-09",
 ): ModalityShiftRow[] {
-  const currentProfile =
-    profilesFile.profiles_by_period[period] ??
-    profilesFile.profiles_by_period["2026-09"];
+  const currentProfile = profilesFile.profiles_by_period[period];
   const baseProfile = profilesFile.profiles_by_period["2019-12"];
 
   const currentList = currentProfile?.modalidades[territoryId]?.PF ?? [];
@@ -210,9 +211,7 @@ export function buildIncomeBracketProfile(
   orderedCanonicalLabels: string[];
   methodologyWarning: string;
 } {
-  const currentProfile =
-    profilesFile.profiles_by_period[period] ??
-    profilesFile.profiles_by_period["2026-09"];
+  const currentProfile = profilesFile.profiles_by_period[period];
   const rawBrackets = currentProfile?.porte_pf[territoryId] ?? [];
 
   const brackets = [...rawBrackets].sort(

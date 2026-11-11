@@ -211,7 +211,7 @@ try {
 
       const cap4 = page.locator("#trabalho-e-percepcao");
       await cap4.scrollIntoViewIfNeeded();
-      await cap4.getByText("Indisponível (null — sem boletim 2025-11)").waitFor();
+      await cap4.getByRole("row").filter({ hasText: "2025-11" }).getByText("72,20%").waitFor();
       await cap4.screenshot({
         path: resolve(outputDirectory, "home-capitulo4-trabalho-percepcao-1440.png"),
       });

@@ -208,13 +208,14 @@ def test_facts_and_dimensions_separation() -> None:
     assert set(fact_sub["territory_level"].unique()) == {"sub_regiao"}
     assert set(fact_sub["status"].unique()) == {"parcial"}
 
-    # Pesquisa IPDC restrita a capital_pesquisa (2304400) e 2025-11 preservado como null
+    # Novembro de 2025 está documentado na tabela histórica do IPDC de janeiro de 2026.
     ipdc_2511 = fact_surveys[
         (fact_surveys["source_id"] == "FECOMERCIO-CE-IPDC") & (fact_surveys["period"] == "2025-11")
     ].iloc[0]
     assert ipdc_2511["territory_level"] == "capital_pesquisa"
-    assert pd.isna(ipdc_2511["familias_endividadas_pct"])
-    assert ipdc_2511["status"] == "indisponivel"
+    assert ipdc_2511["familias_endividadas_pct"] == 72.2
+    assert ipdc_2511["familias_atraso_pct"] == 20.5
+    assert ipdc_2511["status"] == "observado"
 
 
 def test_exported_public_files_and_contract_validation() -> None:

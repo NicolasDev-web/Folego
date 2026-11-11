@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-09T14:19:07+00:00",
+  "generated_at": "2026-11-11T18:44:31+00:00",
   "pnad_continua": {
     "desocupacao_trimestral": {
       "BR": {
@@ -9287,19 +9287,20 @@
         "extraction_mode": "boletim_direto"
       },
       "2025-11": {
-        "familias_endividadas_pct": null,
-        "familias_atraso_pct": null,
-        "nao_terao_condicao_pagar_pct": null,
-        "parcela_renda_comprometida_pct": null,
+        "familias_endividadas_pct": 72.2,
+        "familias_atraso_pct": 20.5,
+        "nao_terao_condicao_pagar_pct": 8.3,
+        "parcela_renda_comprometida_pct": 40.9,
         "divida_media_brl": null,
         "tempo_medio_atraso_dias": null,
         "tipo_cartao_credito_pct_endividados": null,
         "tipo_financiamento_bancario_pct_endividados": null,
         "tipo_credito_pessoal_pct_endividados": null,
         "tipo_carnes_pct_endividados": null,
-        "release_date": null,
-        "source_url": null,
-        "extraction_mode": "indisponivel_sem_boletim_publicado"
+        "release_date": "2026-01-19",
+        "source_url": "https://www.fecomercio-ce.com.br/wp-content/uploads/2026/01/01_2026_Fortaleza_Perfil-de-Endividamento-do-Consumidor.pdf",
+        "source_page": 4,
+        "extraction_mode": "tabela_historica_relatorio_oficial"
       },
       "2025-12": {
         "familias_endividadas_pct": 69.6,
@@ -10131,8 +10132,8 @@
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10141,20 +10142,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-ipdc-inadimplencia-cai-em-abril-entre-consumidores-de-fortaleza/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10163,20 +10164,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-ipdc-inadimplencia-cai-em-abril-entre-consumidores-de-fortaleza/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10185,20 +10186,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/endividamento-tem-leve-queda-em-fortaleza-aponta-fecomercio-ce/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10207,20 +10208,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/endividamento-tem-leve-queda-em-fortaleza-aponta-fecomercio-ce/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10229,20 +10230,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/fecomercio-aponta-queda-de-61-no-endividamento-do-consumidor-em-fortaleza-em-julho/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10251,20 +10252,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/fecomercio-aponta-queda-de-61-no-endividamento-do-consumidor-em-fortaleza-em-julho/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10273,20 +10274,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/fecomercio-aponta-queda-de-61-no-endividamento-do-consumidor-em-fortaleza-em-julho/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10295,20 +10296,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/fecomercio-aponta-queda-de-61-no-endividamento-do-consumidor-em-fortaleza-em-julho/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10317,20 +10318,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/b-r-o-bros-meses-de-consumo-em-alta-no-ceara/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10339,20 +10340,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/b-r-o-bros-meses-de-consumo-em-alta-no-ceara/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10361,20 +10362,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-de-endividamento-da-fecomercio-aponta-recuperacao-do-poder-de-compra-do-consumidor/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10383,20 +10384,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-de-endividamento-da-fecomercio-aponta-recuperacao-do-poder-de-compra-do-consumidor/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10405,20 +10406,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/inadimplencia-do-consumidor-em-fortaleza-recua-e-abre-espaco-para-o-consumo-de-fim-de-ano/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10427,64 +10428,64 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/inadimplencia-do-consumidor-em-fortaleza-recua-e-abre-espaco-para-o-consumo-de-fim-de-ano/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
       "period": "2025-11",
-      "value": null,
+      "value": 72.2,
       "unit": "%",
-      "status": "indisponivel",
-      "source_url": "https://www.fecomercio-ce.com.br/pesquisas-e-estudos/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "status": "observado",
+      "source_url": "https://www.fecomercio-ce.com.br/wp-content/uploads/2026/01/01_2026_Fortaleza_Perfil-de-Endividamento-do-Consumidor.pdf",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Boletim mensal não publicado para a competência 2025-11; mantido como null.",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE). Relatório retrospectivo, p. 4.",
       "notes": [
-        "Boletim mensal não publicado para a competência 2025-11; mantido como null."
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE). Relatório retrospectivo, p. 4."
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
       "period": "2025-11",
-      "value": null,
+      "value": 20.5,
       "unit": "%",
-      "status": "indisponivel",
-      "source_url": "https://www.fecomercio-ce.com.br/pesquisas-e-estudos/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "status": "observado",
+      "source_url": "https://www.fecomercio-ce.com.br/wp-content/uploads/2026/01/01_2026_Fortaleza_Perfil-de-Endividamento-do-Consumidor.pdf",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Boletim mensal não publicado para a competência 2025-11; mantido como null.",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE). Relatório retrospectivo, p. 4.",
       "notes": [
-        "Boletim mensal não publicado para a competência 2025-11; mantido como null."
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE). Relatório retrospectivo, p. 4."
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10493,20 +10494,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/ano-comeca-com-queda-do-endividamento-em-fortaleza/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10515,20 +10516,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/ano-comeca-com-queda-do-endividamento-em-fortaleza/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10537,20 +10538,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/ano-comeca-com-queda-do-endividamento-em-fortaleza/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10559,20 +10560,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/ano-comeca-com-queda-do-endividamento-em-fortaleza/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10581,20 +10582,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/fecomercio-divulga-dados-do-endividamento-dos-consumidores-de-fortaleza-para-o-mes-de-fevereiro/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10603,20 +10604,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/fecomercio-divulga-dados-do-endividamento-dos-consumidores-de-fortaleza-para-o-mes-de-fevereiro/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10625,20 +10626,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-endividamento-do-consumidor-mostra-estabilidade-nos-ultimos-doze-meses/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10647,20 +10648,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-endividamento-do-consumidor-mostra-estabilidade-nos-ultimos-doze-meses/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10669,20 +10670,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-fecomercio-endividamento-se-mantem-estavel-em-fortaleza/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10691,20 +10692,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-fecomercio-endividamento-se-mantem-estavel-em-fortaleza/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10713,20 +10714,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-fecomercio-endividamento-segue-estavel-em-fortaleza/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10735,20 +10736,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-fecomercio-endividamento-segue-estavel-em-fortaleza/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10757,20 +10758,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-fecomercio-qualidade-do-credito-melhora-e-endividamento-recua-em-fortaleza/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10779,20 +10780,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-fecomercio-qualidade-do-credito-melhora-e-endividamento-recua-em-fortaleza/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10801,20 +10802,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-fecomercio-contas-em-atraso-atingem-menor-nivel-dos-ultimos-cinco-anos-em-fortaleza/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10823,20 +10824,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-fecomercio-contas-em-atraso-atingem-menor-nivel-dos-ultimos-cinco-anos-em-fortaleza/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10845,20 +10846,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/endividamento-do-consumidor-de-fortaleza-cai-ao-menor-nivel-em-12-meses/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10867,20 +10868,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/endividamento-do-consumidor-de-fortaleza-cai-ao-menor-nivel-em-12-meses/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10889,20 +10890,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/endividamento-se-mantem-no-menor-patamar-dos-ultimos-12-meses/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10911,20 +10912,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/endividamento-se-mantem-no-menor-patamar-dos-ultimos-12-meses/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_endividadas",
-      "indicator_id": "familias_endividadas",
+      "metric_id": "consumidores_endividados_ipdc",
+      "indicator_id": "consumidores_endividados_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10933,20 +10934,20 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-ipdc-endividamento-cai-ao-menor-nivel-desde-a-pandemia/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
       ]
     },
     {
       "source_id": "FECOMERCIO-CE-IPDC",
-      "metric_id": "familias_atraso",
-      "indicator_id": "familias_atraso",
+      "metric_id": "consumidores_atraso_ipdc",
+      "indicator_id": "consumidores_atraso_ipdc",
       "territory_id": "2304400",
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
@@ -10955,14 +10956,14 @@
       "unit": "%",
       "status": "observado",
       "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-ipdc-endividamento-cai-ao-menor-nivel-desde-a-pandemia/",
-      "universe": "Consumidores/famílias residentes no município de Fortaleza (capital_pesquisa)",
-      "aggregation_rule": "proporcao_amostral_total_familias",
+      "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
+      "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
       "notes": [
-        "Proporção de famílias de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
       ]
     },
     {

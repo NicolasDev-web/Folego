@@ -104,9 +104,9 @@
       "source_id": "FECOMERCIO-CE-IPDC",
       "url": "https://www.fecomercio-ce.com.br/wp-json/wp/v2/posts?search=endividamento&per_page=20",
       "portal_url": "https://www.fecomercio-ce.com.br/pesquisas-e-estudos/",
-      "competence": "2025-04..2026-10 (2025-11 indisponível)",
+      "competence": "2025-04..2026-10",
       "rows": 20,
-      "unit": "% do total de famílias, % dos endividados, R$ e dias",
+      "unit": "% dos consumidores, % da renda familiar, R$ e dias",
       "geography": "Fortaleza (capital_pesquisa - 2304400)",
       "license": "Divulgação pública Sistema Fecomércio-CE / IPDC",
       "version": "Boletins Mensais Pesquisa do Endividamento do Consumidor em Fortaleza",
@@ -114,7 +114,7 @@
       "sha256": "3648a9dc624bf684ebdc3ca1dbe582d909f7c3e8ce03d256f73641ece5b99a38",
       "bytes": 429199,
       "consolidated_path": "data/raw/surveys/surveys_peic_ipdc_2026-11-09.json",
-      "consolidated_sha256": "4259c7a67facf455d2838b36f63c9a196ca858dd5dc82c1ab4c636729afc8d9f"
+      "consolidated_sha256": "ceacb7d1b5dbc829303efc7c41cfb8242c49e4eb5b7bd07665f6e297c320187c"
     },
     {
       "source_id": "BCB-RENDA",
@@ -198,7 +198,7 @@
     },
     "dim_indicator": {
       "path": "data/processed/dim_indicator.parquet",
-      "rows": 14,
+      "rows": 16,
       "columns": [
         "indicator_id",
         "name",
@@ -319,7 +319,7 @@
   "coverage_matrix_full": {
     "path": "data/processed/coverage_matrix_full.csv",
     "rows": 46,
-    "sha256": "834fe84d92ff6adbb7afe3a69ddfd76ad52d58a888e81cfb631420a61e4831d0"
+    "sha256": "2185e04f246d722898bbb57546464f2000b87d4963fd2f5cf206d7007e045493"
   },
   "exported_public_files": {
     "data/processed/state_macro_series.json": {
@@ -344,13 +344,13 @@
     },
     "data/processed/labor_and_surveys.json": {
       "path": "data/processed/labor_and_surveys.json",
-      "bytes": 579291,
-      "sha256": "9605c9b39c1b1c20c2dd085cb94334d6e1b471908a9c4563b41a35fd6470cf81"
+      "bytes": 579932,
+      "sha256": "b81e7fbad9637c5770027cc30b9a3579caad8964c257416f2f70dcfd19e8a022"
     },
     "app/public/data/labor_and_surveys.json": {
       "path": "app/public/data/labor_and_surveys.json",
-      "bytes": 579291,
-      "sha256": "9605c9b39c1b1c20c2dd085cb94334d6e1b471908a9c4563b41a35fd6470cf81"
+      "bytes": 579932,
+      "sha256": "b81e7fbad9637c5770027cc30b9a3579caad8964c257416f2f70dcfd19e8a022"
     }
   },
   "reconciliations": {

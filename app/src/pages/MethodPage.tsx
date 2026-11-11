@@ -61,9 +61,18 @@ const indicatorCatalog = [
     name: "Proporção de famílias endividadas e com contas em atraso",
     formula: "Proporção amostral ponderada sobre o total de famílias",
     unit: "% das famílias pesquisadas",
-    scale: "Brasil (PEIC/CNC) e Fortaleza — capital_pesquisa (IPDC/Fecomércio-CE)",
-    source: "CNC · PEIC e Fecomércio-CE · IPDC",
-    period: "2025-04 a 2026-10 (2025-11 preservado como null no IPDC)",
+    scale: "Brasil",
+    source: "CNC · PEIC",
+    period: "2025-08 a 2026-10",
+  },
+  {
+    id: "consumidores_endividados_ipdc",
+    name: "Proporção de consumidores endividados e com contas em atraso",
+    formula: "Proporções da pesquisa sobre o total de consumidores pesquisados",
+    unit: "% dos consumidores pesquisados",
+    scale: "Fortaleza (pesquisa na capital)",
+    source: "Fecomércio-CE · IPDC",
+    period: "2025-04 a 2026-10",
   },
   {
     id: "renda_domiciliar_pc_mediana",
@@ -199,13 +208,13 @@ export function MethodPage() {
           limitNote="A partir de janeiro de 2025, o SCR.data passou a contabilizar como ativo problemático apenas operações marcadas com a característica especial 19. A série de inadimplência (> 90 dias) permanece contínua."
         />
         <SourceNote
-          sourceLabel="Lacuna preservada 02 · IPDC Fortaleza em novembro de 2025 (2025-11)"
-          sourceUrl="https://www.fecomercio-ce.com.br/pesquisas-e-estudos/"
+          sourceLabel="IPDC Fortaleza · Recuperação de novembro de 2025"
+          sourceUrl="https://www.fecomercio-ce.com.br/wp-content/uploads/2026/01/01_2026_Fortaleza_Perfil-de-Endividamento-do-Consumidor.pdf#page=4"
           period="Competência 2025-11"
           territoryScope="Fortaleza (capital_pesquisa · IBGE 2304400)"
-          universe="Famílias residentes na capital Fortaleza"
-          formula="status = indisponivel · value = null"
-          limitNote="A Fecomércio-CE não publicou boletim mensal do IPDC para novembro de 2025. A competência é mantida estritamente como null, sem interpolação linear nem substituição por zero."
+          universe="Consumidores pesquisados em Fortaleza"
+          formula="Leitura direta da tabela histórica do relatório de janeiro de 2026, página 4"
+          limitNote="A Fecomércio registrou 72,2% de consumidores endividados e 20,5% com contas em atraso. Campos ausentes na tabela histórica continuam indisponíveis."
         />
       </section>
 
