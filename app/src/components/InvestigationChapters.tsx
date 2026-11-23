@@ -271,9 +271,9 @@ export function InvestigationChapters({
 
   return (
     <div className="investigation-chapters">
-      <section className="content-section credit-overview" id="resumo-ceara" aria-labelledby="credit-overview-title">
+      <section className="content-section credit-overview" id="credito-resumo" aria-labelledby="credit-overview-title">
         <p className="section-marker">Ceará · Setembro de 2026</p>
-        <h2 id="credit-overview-title">As dívidas em três números</h2>
+        <h2 id="credit-overview-title">O crédito no Ceará, em três números</h2>
         <div className="credit-overview-grid">
           <article>
             <h3>Quanto ainda falta pagar</h3>

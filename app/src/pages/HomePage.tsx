@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { BreathingGraphic } from "../components/BreathingGraphic";
 import { InvestigationChapters } from "../components/InvestigationChapters";
 import { SectionHeader } from "../components/SectionHeader";
+import { PopulationDebtSection } from "../components/PopulationDebtSection";
 import { useInvestigationData } from "../data/useInvestigationData";
 import { useMunicipalities } from "../data/useMunicipalities";
 
@@ -25,12 +26,12 @@ export function HomePage() {
       <section className="hero">
         <div className="hero-copy">
           <p className="hero-context">Ceará · crédito, renda e trabalho</p>
-          <h1>Como estão as dívidas no Ceará?</h1>
+          <h1>Como as dívidas pesam na vida das pessoas?</h1>
           <p className="hero-lead">
-            Veja quanto ainda falta pagar em crédito, onde as parcelas atrasam mais e o que os dados mostram sobre sua cidade.
+            Entenda o que pressiona o orçamento em Fortaleza e como o atraso varia com a renda e o trabalho no Ceará.
           </p>
           <div className="hero-actions">
-            <a className="button button-light" href="#resumo-ceara">Ver resumo do Ceará</a>
+            <a className="button button-light" href="#resumo-ceara">Entender o impacto nas pessoas</a>
             <Link className="button button-ghost" to="/cidades">
               Explorar minha cidade
             </Link>
@@ -41,8 +42,10 @@ export function HomePage() {
         </div>
       </section>
 
+      <PopulationDebtSection />
+
       {investigationState.status === "loading" ? (
-        <section className="content-section" id="resumo-ceara" aria-live="polite">
+        <section className="content-section" aria-live="polite">
           <div className="data-state">
             <h2>Carregando os dados do Ceará</h2>
           </div>
@@ -50,7 +53,7 @@ export function HomePage() {
       ) : null}
 
       {investigationState.status === "error" ? (
-        <section className="content-section" id="resumo-ceara" role="alert">
+        <section className="content-section" role="alert">
           <div className="data-state data-state-error">
             <h2>O resumo do Ceará está indisponível</h2>
             <p>{investigationState.error}</p>

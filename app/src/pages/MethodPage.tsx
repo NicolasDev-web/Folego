@@ -11,6 +11,33 @@ const readingTips = [
 
 const indicatorCatalog = [
   {
+    id: "population_serasa_adultos_negativados",
+    name: "Adultos com nome negativado no Ceará",
+    formula: "Percentual publicado no Mapa da Serasa de outubro de 2026, páginas 6 e 7: 52,79% no Ceará e 51,32% no Brasil. A ilustração 53 a cada 100 arredonda 52,79%.",
+    unit: "% da população adulta, segundo a Serasa. Pessoas negativadas, não famílias.",
+    scale: "Ceará e Brasil; negativação na base Serasa. Não mede todas as dívidas em dia ou em outros cadastros.",
+    source: "Serasa · Mapa da Inadimplência e Negociação de Dívidas",
+    period: "Outubro de 2026",
+  },
+  {
+    id: "population_ipdc_orcamento",
+    name: "Dívidas no cotidiano em Fortaleza",
+    formula: "Leitura direta dos percentuais de consumidores com dívidas, contas em atraso e dificuldade de quitação, da média de renda comprometida e das menções a gastos e instrumentos de crédito. Respostas podem se sobrepor; não devem ser somadas.",
+    unit: "% divulgados pelo IPDC. O exemplo de R$ 1.000 ilustra a média de 41,8%; não é o orçamento de uma família observada.",
+    scale: "Fortaleza; consumidores pesquisados e renda familiar. Não é uma estimativa estadual.",
+    source: "Fecomércio-CE / IPDC · boletim de 22/10/2026",
+    period: "Outubro de 2026",
+  },
+  {
+    id: "population_scr_renda_ocupacao",
+    name: "Atraso por renda e tipo de trabalho, no mesmo grupo",
+    formula: "Filtrar CE e PF no arquivo SCR de setembro de 2026, agrupar conjuntamente por porte e cnae_ocupacao e dividir a soma de carteira_inadimplencia pela soma de carteira_ativa, multiplicando por 100. As 72 combinações reconciliam com o total.",
+    unit: "Reais em contratos com atraso acima de 90 dias a cada R$ 100 de crédito. Inclui parcelas futuras dos contratos.",
+    scale: "Ceará; renda individual do tomador e categorias amplas de ocupação. Sem contagem de famílias ou associação com CPFs do Caged.",
+    source: "Banco Central · SCR.data · versão identificada em population_debt.json",
+    period: "Setembro de 2026",
+  },
+  {
     id: "carteira_pf",
     name: "Quanto falta pagar em crédito",
     formula: "Soma do saldo a pagar nos contratos de crédito de pessoas físicas.",
@@ -243,6 +270,9 @@ export function MethodPage() {
           </a>
           <a href="/data/labor_and_surveys.json" download>
             Baixar labor_and_surveys.json
+          </a>
+          <a href="/data/population_debt.json" download>
+            Baixar dados de impacto no orçamento, renda e trabalho
           </a>
         </aside>
       </section>

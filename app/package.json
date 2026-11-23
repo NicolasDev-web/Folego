@@ -8,6 +8,7 @@
     "build": "tsc --noEmit && vite build",
     "test": "vitest run",
     "qa:screenshots": "node scripts/capture-qa.mjs",
+    "qa:population": "node scripts/verify-population.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
