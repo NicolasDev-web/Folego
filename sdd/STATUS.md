@@ -14,3 +14,7 @@ As fases técnicas `00_viabilidade`, `02_dados`, `03_fundacao`, `04_cidades`, `0
 | 07_entrega | Concluída (6/6) | Build estático verificado, desempenho medido, deploy em produção na Vercel (`https://folego-vert.vercel.app`), runbook de atualização/rollback e README finalizados |
 
 46 de 48 microtarefas principais estão concluídas e verificadas com evidência rastreável (`46/48`). As 2 tarefas restantes (`01-05` e `06-04`) dependem exclusivamente de sessões com usuários humanos reais.
+
+## Revisão de 23/11/2026 — famílias e qualidade das séries
+
+POF e DataSenado acrescentam medidas estaduais de contas adiadas e atraso pessoal. A parcela atual da renda familiar destinada a dívidas e as necessidades sacrificadas para pagá-las seguem em aberto. Crédito de setembro usa uma única edição em todos os recortes. Seis valores históricos do IPDC em maio e junho de 2025 foram retirados das comparações até confirmação do produtor. [Fontes, confronto e cálculos](../01_contexto/CREDITO_RENDA_OCUPACAO_CEARA.md)

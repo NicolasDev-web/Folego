@@ -11,6 +11,7 @@ import csv
 import hashlib
 import io
 import json
+import re
 from collections import defaultdict
 from decimal import Decimal
 from pathlib import Path
@@ -26,14 +27,14 @@ def normalize_label(value: str) -> str:
     return value.strip().replace("salários-mínimos", "salários mínimos").replace("salário-mínimo", "salário mínimo")
 
 
-def aggregate(rows):
+def aggregate(rows, period: str):
     cross = defaultdict(lambda: [Decimal(0), Decimal(0), 0])
     products = defaultdict(lambda: [Decimal(0), Decimal(0), 0])
     for row in rows:
         if row["uf"] != "CE" or row["cliente"] != "PF":
             continue
-        if row["data_base"][:7] != "2026-09":
-            raise ValueError("Expected the single reference month 2026-09")
+        if row["data_base"][:7] != period:
+            raise ValueError(f"Expected the single reference month {period}")
         income = normalize_label(row["porte"])
         if income not in INCOMES:
             raise ValueError(f"Unexpected income label: {income}")
@@ -67,24 +68,69 @@ def aggregate(rows):
     }
 
 
+def credit_from_bytes(payload: bytes, ym: str):
+    period = f"{ym[:4]}-{ym[4:]}"
+    rows = csv.DictReader(io.TextIOWrapper(io.BytesIO(payload), encoding="utf-8-sig"), delimiter=";")
+    result = aggregate(rows, period)
+    result.update({"period": period, "territory": "Ceará", "unit": "BRL nominal",
+                   "source_url": f"https://www.bcb.gov.br/pda/desig/scrdata_{ym[:4]}.zip",
+                   "methodology_url": "https://www.bcb.gov.br/pda/desig/metodologia_versao2.pdf",
+                   "file": f"scrdata_{ym}.csv", "sha256": hashlib.sha256(payload).hexdigest(),
+                   "filter": "uf = CE AND cliente = PF; GROUP BY porte, cnae_ocupacao",
+                   "rate_formula": "100 * SUM(carteira_inadimplencia) / SUM(carteira_ativa)"})
+    return result
+
+
+def read_json(path):
+    return json.loads((ROOT / path).read_text(encoding="utf-8"))
+
+
+def population_package(credit, month):
+    expected = month["macro"]["CE"]["PF"]
+    total = credit["total"]
+    if (credit["period"] != month["period"] or credit["sha256"] != month["sha256"]
+            or total["balance_brl"] != expected["carteira_ativa_mil"]
+            or total["late_brl"] != expected["carteira_inadimplida_mil"]):
+        raise ValueError("SCR de população e histórico devem usar o mesmo arquivo e reconciliar em centavos.")
+    approved = read_json("metadata/population_sources.json")
+    result = {"schema_version": "1.1.0", "credit": credit,
+              "households": read_json("data/raw/surveys/household_evidence_ce.json")}
+    for key, prefix, territory in (("survey", "ipdc", "Fortaleza"), ("registry", "serasa", "Ceará")):
+        period = approved[f"{key}_period"]
+        source = read_json(f"data/raw/surveys/{prefix}_population_{period}.json")
+        if source["period"] != period or source["territory"] != territory:
+            raise ValueError(f"Competência ou território incorretos para {prefix}")
+        if not source.get("source_url") or not source.get("universe"):
+            raise ValueError(f"Fonte ou população ausente em {prefix}")
+        numbers = [v for k, v in source.items() if k.endswith("_pct")]
+        if key == "survey":
+            numbers.extend(item["pct"] for group in ("uses", "products", "nonpayment_reasons")
+                           for item in source[group])
+            if not source.get("release_date"):
+                raise ValueError("Data do boletim ausente")
+        if not numbers or any(type(value) not in (int, float) or not 0 <= value <= 100 for value in numbers):
+            raise ValueError(f"Percentual inválido em {prefix}")
+        result[key] = source
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--csv", type=Path, required=True)
     args = parser.parse_args()
-    payload = args.csv.read_bytes()
-    result = aggregate(csv.DictReader(io.StringIO(payload.decode("utf-8-sig")), delimiter=";"))
-    result.update({"period": "2026-09", "territory": "Ceará", "unit": "BRL nominal",
-                   "source_url": "https://www.bcb.gov.br/pda/desig/scrdata_2026.zip",
-                   "methodology_url": "https://www.bcb.gov.br/pda/desig/metodologia_versao2.pdf",
-                   "file": args.csv.name, "sha256": hashlib.sha256(payload).hexdigest(),
-                   "filter": "uf = CE AND cliente = PF; GROUP BY porte, cnae_ocupacao",
-                   "rate_formula": "100 * SUM(carteira_inadimplencia) / SUM(carteira_ativa)"})
-    survey = json.loads((ROOT / "data/raw/surveys/ipdc_population_2026-10.json").read_text(encoding="utf-8"))
-    registry = json.loads((ROOT / "data/raw/surveys/serasa_population_2026-10.json").read_text(encoding="utf-8"))
-    output = {"schema_version": "1.0.0", "registry": registry, "survey": survey, "credit": result}
+    match = re.fullmatch(r"scrdata_(\d{4}(?:0[1-9]|1[0-2]))\.csv", args.csv.name)
+    if not match:
+        parser.error("Esperado scrdata_AAAAMM.csv")
+    ym = match.group(1)
+    manifest = read_json("metadata/phase02_manifest.json")
+    snapshot = next(item for item in manifest["raw_files"] if item["source_id"] == "BCB-SCR")
+    months = read_json(snapshot["path"])["monthly"]
+    if ym != max(months):
+        parser.error("Use a última competência do histórico publicado.")
+    output = population_package(credit_from_bytes(args.csv.read_bytes(), ym), months[ym])
+    from pipeline.extract.http_client import write_json
     for directory in ("data/processed", "app/public/data"):
-        (ROOT / directory / "population_debt.json").write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"sha256": result["sha256"], "total": result["total"], "combinations": len(result["cross"])}, ensure_ascii=False))
+        write_json(f"{directory}/population_debt.json", output)
 
 
 if __name__ == "__main__":

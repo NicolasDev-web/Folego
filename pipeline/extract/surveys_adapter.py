@@ -75,7 +75,7 @@ IPDC_FORTALEZA_AUDITED_SERIES: dict[str, dict[str, Any]] = {
     "2025-05": {
         "familias_endividadas_pct": 70.6,
         "familias_atraso_pct": 23.6,
-        "nao_terao_condicao_pagar_pct": 9.2,
+        "nao_terao_condicao_pagar_pct": None,
         "parcela_renda_comprometida_pct": 43.7,
         "divida_media_brl": 1849.0,
         "tempo_medio_atraso_dias": 63.0,
@@ -346,6 +346,35 @@ IPDC_FORTALEZA_AUDITED_SERIES: dict[str, dict[str, Any]] = {
 }
 
 
+def reconcile_ipdc(series):
+    """Keep both readings available and remove disputed values from comparisons."""
+    retrospective = {
+        "2025-05": (67.6, 19.6, 43.0, 9.2),
+        "2025-06": (80.0, 23.1, 43.3, 11.3),
+    }
+    fields = ("familias_endividadas_pct", "familias_atraso_pct",
+              "parcela_renda_comprometida_pct", "nao_terao_condicao_pagar_pct")
+    reconciled = dict(series)
+    for period, values in retrospective.items():
+        bulletin = series[period]
+        entry = dict(bulletin)
+        comparison = {}
+        for field, historical in zip(fields, values):
+            original = bulletin[field]
+            if original is None:
+                status = "apenas_retrospectiva"
+            elif original == historical:
+                status = "coincidente"
+            else:
+                status = "em_revisao"
+            comparison[field] = {"bulletin": original, "historical": historical, "status": status}
+            entry[field] = None if status == "em_revisao" else historical
+        entry["historical_url"] = IPDC_JAN_2026_REPORT + "#page=4"
+        entry["comparison"] = comparison
+        reconciled[period] = entry
+    return reconciled
+
+
 def parse_peic_sheet(xls_rel_path: str) -> dict[str, dict[str, float]]:
     wb = python_calamine.CalamineWorkbook.from_path(str(ROOT / xls_rel_path))
     if "PEIC" not in wb.sheet_names:
@@ -417,7 +446,9 @@ def collect_surveys(collected_date: str = "2026-11-06") -> dict[str, Any]:
 
     # Verificar que todos os links auditados do IPDC constam nos posts coletados da Fecomércio-CE
     ipdc_posts = json.loads(ipdc_bytes.decode("utf-8"))
-    collected_links = {str(post.get("link", "")).rstrip("/") for post in ipdc_posts}
+    archive = ROOT / "data/raw/surveys/ipdc_fecomercio_posts_2026-11-09.json"
+    evidence_posts = ipdc_posts + json.loads(archive.read_text(encoding="utf-8"))
+    collected_links = {str(post.get("link", "")).rstrip("/") for post in evidence_posts}
     for period, entry in IPDC_FORTALEZA_AUDITED_SERIES.items():
         src_url = entry.get("source_url")
         # The historical table is an attachment in the official January release.
@@ -426,13 +457,14 @@ def collect_surveys(collected_date: str = "2026-11-06") -> dict[str, Any]:
         if report_attachment:
             source_in_posts = src_url == IPDC_JAN_2026_REPORT and any(
                 src_url in str(post.get("content", {}).get("rendered", "")).replace("http://", "https://")
-                for post in ipdc_posts
+                for post in evidence_posts
             )
         if src_url and not source_in_posts:
             raise ValueError(
                 f"URL auditada do IPDC ({period}: {src_url}) não encontrada no payload bruto {ipdc_rel}."
             )
 
+    ipdc_series = reconcile_ipdc(IPDC_FORTALEZA_AUDITED_SERIES)
     consolidated_rel = f"data/raw/surveys/surveys_peic_ipdc_{collected_date}.json"
     consolidated_payload = {
         "collected_at": collected_date,
@@ -467,7 +499,7 @@ def collect_surveys(collected_date: str = "2026-11-06") -> dict[str, Any]:
                 "nao_terao_condicao_pagar_pct": "% dos consumidores pesquisados (inadimplência potencial)",
                 "parcela_renda_comprometida_pct": "% da renda familiar mensal",
             },
-            "series": IPDC_FORTALEZA_AUDITED_SERIES,
+            "series": ipdc_series,
         },
     }
     consolidated_path = write_json(consolidated_rel, consolidated_payload)
@@ -516,6 +548,6 @@ def collect_surveys(collected_date: str = "2026-11-06") -> dict[str, Any]:
 
     return {
         "peic_nacional": peic_merged,
-        "ipdc_fortaleza": IPDC_FORTALEZA_AUDITED_SERIES,
+        "ipdc_fortaleza": ipdc_series,
         "raw_files": raw_files,
     }

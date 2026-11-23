@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0.0",
-  "checked_at": "2026-11-10T16:52:50+00:00",
+  "checked_at": "2026-11-23T17:27:00+00:00",
   "publication_policy": "Somente alerta; nenhuma competência é publicada automaticamente.",
   "summary": {
-    "sources_checked": 8,
-    "new_available": 1,
+    "sources_checked": 9,
+    "new_available": 4,
     "check_failed": 0
   },
   "checks": [
@@ -12,22 +12,22 @@
       "source_id": "IBGE-SIDRA-1737",
       "label": "IPCA",
       "published_period": "2026-09",
-      "available_period": "2026-09",
-      "status": "current"
+      "available_period": "2026-10",
+      "status": "new_available"
     },
     {
       "source_id": "IBGE-SIDRA-4099",
       "label": "PNAD Contínua — desocupação",
       "published_period": "2026-T2",
-      "available_period": "2026-T2",
-      "status": "current"
+      "available_period": "2026-T3",
+      "status": "new_available"
     },
     {
       "source_id": "IBGE-SIDRA-6472",
       "label": "PNAD Contínua — rendimento",
       "published_period": "2026-T2",
-      "available_period": "2026-T2",
-      "status": "current"
+      "available_period": "2026-T3",
+      "status": "new_available"
     },
     {
       "source_id": "MTE-NOVO-CAGED",
@@ -42,6 +42,13 @@
       "label": "SCR.data",
       "published_period": "2026-09",
       "available_period": "2026-09",
+      "status": "current"
+    },
+    {
+      "source_id": "SERASA-POP",
+      "label": "Serasa — negativação de adultos",
+      "published_period": "2026-10",
+      "available_period": "2026-10",
       "status": "current"
     },
     {
@@ -65,5 +72,16 @@
       "available_period": "2026-09",
       "status": "current"
     }
-  ]
+  ],
+  "ipdc_review": {
+    "status": "no_candidate",
+    "published_period": "2026-10",
+    "candidate_urls": []
+  },
+  "scr_revision": {
+    "period": "202609",
+    "published_crc32": "af1b5952",
+    "available_crc32": "af1b5952",
+    "status": "current"
+  }
 }

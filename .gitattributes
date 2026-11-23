@@ -1,0 +1,5 @@
+# Preserve the bytes used to identify exported and revised data packages.
+app/public/data/*.json text eol=lf
+data/processed/*.json text eol=lf
+data/raw/bcb/scr_data_ce_ne_br_2026-11-23.json text eol=lf
+data/raw/surveys/surveys_peic_ipdc_2026-11-23.json text eol=lf

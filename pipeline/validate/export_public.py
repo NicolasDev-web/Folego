@@ -452,6 +452,8 @@ def export_labor_and_surveys(
                     note=(
                         desc + (f". Relatório retrospectivo, p. {vals['source_page']}." if vals.get("source_page") else "")
                         if val is not None
+                        else "Em revisão. O boletim e a tabela retrospectiva do IPDC (p. 4) divergem."
+                        if vals.get("comparison", {}).get(field_key, {}).get("status") == "em_revisao"
                         else "Indicador indisponível na fonte consultada para esta competência."
                     ),
                 )

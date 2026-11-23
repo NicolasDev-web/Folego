@@ -1,103 +1,5 @@
 {
-  "schema_version": "1.0.0",
-  "registry": {
-    "source_label": "Serasa · Mapa da Inadimplência e Negociação de Dívidas",
-    "source_url": "https://www.serasa.com.br/limpa-nome-online/blog/mapa-da-inadimplencia-e-renogociacao-de-dividas-no-brasil/",
-    "document_url": "https://cdn.builder.io/o/assets%2Fb212bb18f00a40869a6cd42f77cbeefc%2Fb26928e78a6f4fd29a8c3b54cde44d50?alt=media&apiKey=b212bb18f00a40869a6cd42f77cbeefc&token=1ac3a6ee-c2b8-4233-b1bf-6ff5f9a727a7",
-    "sha256": "4974be2bb22177e143be50ccec1748e1e6cac1649ed8f73cc4baa442ff6eea99",
-    "period": "2026-10",
-    "collected_at": "2026-11-23",
-    "territory": "Ceará",
-    "universe": "Pessoas com dívidas negativadas na base Serasa; proporção em relação à população adulta, conforme o relatório",
-    "state_adults_negative_pct": 52.79,
-    "br_adults_negative_pct": 51.32,
-    "source_pages": [
-      6,
-      7
-    ],
-    "extraction": "Transcrição manual conferida no texto e nas imagens das páginas 6 e 7 do PDF de outubro de 2026, acessado pelo link Baixe o mapa de Outubro na página da Serasa.",
-    "notes": [
-      "São pessoas negativadas na base da Serasa, não famílias nem todas as pessoas que têm dívidas em dia ou em outros cadastros.",
-      "Não somar a percentuais do IPDC ou do SCR: os universos e as unidades são distintos.",
-      "O total de pessoas negativadas no Ceará não aparece nessas páginas. Não estimar a contagem usando a população geral do Censo.",
-      "O PDF não abre renda e ocupação para o Ceará. Perfis etários e segmentos nacionais não podem ser atribuídos ao estado."
-    ]
-  },
-  "survey": {
-    "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-ipdc-endividamento-cai-ao-menor-nivel-desde-a-pandemia/",
-    "source_label": "Fecomércio-CE / IPDC · boletim de 22/10/2026",
-    "period": "2026-10",
-    "territory": "Fortaleza",
-    "universe": "Consumidores pesquisados na capital; não representa todo o Ceará",
-    "collected_at": "2026-11-23",
-    "debt_pct": 65.5,
-    "late_pct": 16.8,
-    "unable_to_pay_pct": 7.4,
-    "income_commitment_pct": 41.8,
-    "low_income_late_pct": 18.3,
-    "low_income_unable_pct": 9.0,
-    "high_income_debt_pct": 68.3,
-    "uses": [
-      {
-        "label": "Alimentação",
-        "pct": 61.6
-      },
-      {
-        "label": "Aluguel da moradia",
-        "pct": 28.2
-      },
-      {
-        "label": "Tratamentos de saúde",
-        "pct": 27.4
-      },
-      {
-        "label": "Educação",
-        "pct": 22.4
-      }
-    ],
-    "products": [
-      {
-        "label": "Cartão de crédito",
-        "pct": 80.4
-      },
-      {
-        "label": "Financiamento bancário",
-        "pct": 14.5
-      },
-      {
-        "label": "Empréstimo pessoal",
-        "pct": 7.4
-      },
-      {
-        "label": "Carnês e crediários",
-        "pct": 2.9
-      }
-    ],
-    "nonpayment_reasons": [
-      {
-        "label": "Desequilíbrio financeiro",
-        "pct": 52.7
-      },
-      {
-        "label": "Usar os recursos para outras finalidades",
-        "pct": 41.1
-      },
-      {
-        "label": "Esquecimento do prazo",
-        "pct": 12.8
-      },
-      {
-        "label": "Contestação da dívida",
-        "pct": 8.9
-      }
-    ],
-    "notes": [
-      "Produtos, gastos e motivos são respostas da pesquisa; podem se sobrepor e não devem ser somados.",
-      "O boletim não detalha a base de cada pergunta nem os erros amostrais. Não converter os percentuais em contagens de famílias ou em parcelas do valor da dívida.",
-      "Comprometimento da renda é a média divulgada pelo IPDC. Não significa que cada família gasta essa proporção.",
-      "O boletim descreve a faixa de até três salários mínimos para contas em atraso e inferior a três para dificuldade de quitação. Preservar essa distinção."
-    ]
-  },
+  "schema_version": "1.1.0",
   "credit": {
     "total": {
       "balance_brl": 120144136163.43,
@@ -1041,5 +943,143 @@
     "sha256": "624e15adf151d4099eb17ddd8705e5c0d976a91d4acb729e9e2153847cd43d02",
     "filter": "uf = CE AND cliente = PF; GROUP BY porte, cnae_ocupacao",
     "rate_formula": "100 * SUM(carteira_inadimplencia) / SUM(carteira_ativa)"
+  },
+  "households": {
+    "territory": "Ceará",
+    "budget_debt_share_pct": null,
+    "needs_foregone_to_pay_debt_pct": null,
+    "pof": {
+      "period": "2017–2018",
+      "universe": "Pessoas residentes no Ceará, todas as condições de ocupação do domicílio",
+      "reference": "12 meses anteriores à entrevista",
+      "source_url": "https://ftp.ibge.gov.br/Indicadores_Sociais/Sintese_de_Indicadores_Sociais/Sintese_de_Indicadores_Sociais_2021/xls/4_Habitacao_xls.zip",
+      "file": "Tabela 4.1.4 (Inadimp_Geo).xls",
+      "sheet": "2017-2018",
+      "row": "Ceará",
+      "columns": "Total, estimativa e coeficiente de variação (%)",
+      "file_sha256": "a66c6c0a2c3164bfaefb00b22042911608109d7e395caf7721eeea39125d1ec3",
+      "utilities_late_pct": 42.35,
+      "utilities_cv_pct": 3.45,
+      "housing_late_pct": 6.73,
+      "housing_cv_pct": 10.32
+    },
+    "datasenado": {
+      "period": "2024-06",
+      "universe": "Moradores do Ceará com 16 anos ou mais",
+      "source_url": "https://www.senado.leg.br/institucional/datasenado/relatorio_online/pesquisa_panorama_politico/2024/assets/PDF/relatorio_CE.pdf#page=75",
+      "table": 38,
+      "over90_days_pct": 33,
+      "margin_pp": 5.4
+    },
+    "pof_spending": {
+      "period": "2017–2018",
+      "territory": "Ceará",
+      "universe": "Todas as famílias (unidades de consumo) representadas pela POF no Ceará",
+      "source_url": "https://www.ipece.ce.gov.br/wp-content/uploads/sites/45/2019/11/ipece_informe_162_11_nov2019.pdf",
+      "source_locator": "IPECE Informe 162, seção 1 e gráfico 1",
+      "liability_payments_avg_brl": 119.28,
+      "total_spending_avg_brl": 2830.34,
+      "total_spending_share_pct": 4.2,
+      "unit": "Valores médios mensais por família, em reais da pesquisa. Despesa total monetária e não monetária."
+    }
+  },
+  "survey": {
+    "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-ipdc-endividamento-cai-ao-menor-nivel-desde-a-pandemia/",
+    "source_label": "Fecomércio-CE / IPDC · boletim de 22/10/2026",
+    "period": "2026-10",
+    "territory": "Fortaleza",
+    "universe": "Consumidores pesquisados na capital; não representa todo o Ceará",
+    "release_date": "2026-10-22",
+    "collected_at": "2026-11-23",
+    "debt_pct": 65.5,
+    "late_pct": 16.8,
+    "unable_to_pay_pct": 7.4,
+    "income_commitment_pct": 41.8,
+    "low_income_late_pct": 18.3,
+    "low_income_unable_pct": 9.0,
+    "high_income_debt_pct": 68.3,
+    "uses": [
+      {
+        "label": "Alimentação",
+        "pct": 61.6
+      },
+      {
+        "label": "Aluguel da moradia",
+        "pct": 28.2
+      },
+      {
+        "label": "Tratamentos de saúde",
+        "pct": 27.4
+      },
+      {
+        "label": "Educação",
+        "pct": 22.4
+      }
+    ],
+    "products": [
+      {
+        "label": "Cartão de crédito",
+        "pct": 80.4
+      },
+      {
+        "label": "Financiamento bancário",
+        "pct": 14.5
+      },
+      {
+        "label": "Empréstimo pessoal",
+        "pct": 7.4
+      },
+      {
+        "label": "Carnês e crediários",
+        "pct": 2.9
+      }
+    ],
+    "nonpayment_reasons": [
+      {
+        "label": "Desequilíbrio financeiro",
+        "pct": 52.7
+      },
+      {
+        "label": "Usar os recursos para outras finalidades",
+        "pct": 41.1
+      },
+      {
+        "label": "Esquecimento do prazo",
+        "pct": 12.8
+      },
+      {
+        "label": "Contestação da dívida",
+        "pct": 8.9
+      }
+    ],
+    "notes": [
+      "Produtos, gastos e motivos são respostas da pesquisa; podem se sobrepor e não devem ser somados.",
+      "O boletim não detalha a base de cada pergunta nem os erros amostrais. Não converter os percentuais em contagens de famílias ou em parcelas do valor da dívida.",
+      "Comprometimento da renda é a média divulgada pelo IPDC. Não significa que cada família gasta essa proporção.",
+      "O boletim descreve a faixa de até três salários mínimos para contas em atraso e inferior a três para dificuldade de quitação. Preservar essa distinção."
+    ]
+  },
+  "registry": {
+    "source_label": "Serasa · Mapa da Inadimplência e Negociação de Dívidas",
+    "source_url": "https://www.serasa.com.br/limpa-nome-online/blog/mapa-da-inadimplencia-e-renogociacao-de-dividas-no-brasil/",
+    "document_url": "https://cdn.builder.io/o/assets%2Fb212bb18f00a40869a6cd42f77cbeefc%2Fb26928e78a6f4fd29a8c3b54cde44d50?alt=media&apiKey=b212bb18f00a40869a6cd42f77cbeefc&token=1ac3a6ee-c2b8-4233-b1bf-6ff5f9a727a7",
+    "sha256": "4974be2bb22177e143be50ccec1748e1e6cac1649ed8f73cc4baa442ff6eea99",
+    "period": "2026-10",
+    "collected_at": "2026-11-23",
+    "territory": "Ceará",
+    "universe": "Pessoas com dívidas negativadas na base Serasa; proporção em relação à população adulta, conforme o relatório",
+    "state_adults_negative_pct": 52.79,
+    "br_adults_negative_pct": 51.32,
+    "source_pages": [
+      6,
+      7
+    ],
+    "extraction": "Transcrição manual conferida no texto e nas imagens das páginas 6 e 7 do PDF de outubro de 2026, acessado pelo link Baixe o mapa de Outubro na página da Serasa.",
+    "notes": [
+      "São pessoas negativadas na base da Serasa, não famílias nem todas as pessoas que têm dívidas em dia ou em outros cadastros.",
+      "Não somar a percentuais do IPDC ou do SCR: os universos e as unidades são distintos.",
+      "O total de pessoas negativadas no Ceará não aparece nessas páginas. Não estimar a contagem usando a população geral do Censo.",
+      "O PDF não abre renda e ocupação para o Ceará. Perfis etários e segmentos nacionais não podem ser atribuídos ao estado."
+    ]
   }
 }

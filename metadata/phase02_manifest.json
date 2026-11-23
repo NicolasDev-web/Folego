@@ -113,8 +113,8 @@
       "path": "data/raw/surveys/ipdc_fecomercio_posts_2026-11-09.json",
       "sha256": "3648a9dc624bf684ebdc3ca1dbe582d909f7c3e8ce03d256f73641ece5b99a38",
       "bytes": 429199,
-      "consolidated_path": "data/raw/surveys/surveys_peic_ipdc_2026-11-09.json",
-      "consolidated_sha256": "ceacb7d1b5dbc829303efc7c41cfb8242c49e4eb5b7bd07665f6e297c320187c"
+      "consolidated_path": "data/raw/surveys/surveys_peic_ipdc_2026-11-23.json",
+      "consolidated_sha256": "97b0193b11ebe33cf2a489ab86fa86821cceef64bc65f0f61ad8e9f94a36d31c"
     },
     {
       "source_id": "BCB-RENDA",
@@ -177,9 +177,9 @@
       "geography": "BR, NE e CE",
       "license": "Dados Abertos BCB / SCR.data",
       "version": "SCR.data Metodologia v2 (pré e pós-jan/2025)",
-      "path": "data/raw/bcb/scr_data_ce_ne_br_2026-11-09.json",
-      "sha256": "c86457e3676f149be0dc3e2244823686e9f106db68b783798ca6f72a43c90cda",
-      "bytes": 2305113,
+      "path": "data/raw/bcb/scr_data_ce_ne_br_2026-11-23.json",
+      "sha256": "95b99381b584cae2b5f8dfea8d28b0622719f826c78a505b81f51becef6cd9e8",
+      "bytes": 2287127,
       "hashes_manifest": "metadata/scr_data_monthly_hashes.json"
     }
   ],
@@ -324,33 +324,43 @@
   "exported_public_files": {
     "data/processed/state_macro_series.json": {
       "path": "data/processed/state_macro_series.json",
-      "bytes": 615089,
-      "sha256": "bbf2391d310b3a5fc7886b3e06222b72992743b70e4f32c0572d84f61e09be60"
+      "bytes": 599227,
+      "sha256": "de047c28b44edf2d659c8e5c88f3c81c6527d8b9862e968156edfa1a44815849"
     },
     "app/public/data/state_macro_series.json": {
       "path": "app/public/data/state_macro_series.json",
-      "bytes": 615089,
-      "sha256": "bbf2391d310b3a5fc7886b3e06222b72992743b70e4f32c0572d84f61e09be60"
+      "bytes": 599227,
+      "sha256": "de047c28b44edf2d659c8e5c88f3c81c6527d8b9862e968156edfa1a44815849"
     },
     "data/processed/credit_profiles.json": {
       "path": "data/processed/credit_profiles.json",
-      "bytes": 2080604,
-      "sha256": "eb4ebd8e147bf7f933bd553ca0efdf23d123e36e187bcb09d43583441fb058b8"
+      "bytes": 2031684,
+      "sha256": "47c82281f456917366d967328ff07b00752facaec2bfad6e42afb9c1db819358"
     },
     "app/public/data/credit_profiles.json": {
       "path": "app/public/data/credit_profiles.json",
-      "bytes": 2080604,
-      "sha256": "eb4ebd8e147bf7f933bd553ca0efdf23d123e36e187bcb09d43583441fb058b8"
+      "bytes": 2031684,
+      "sha256": "47c82281f456917366d967328ff07b00752facaec2bfad6e42afb9c1db819358"
     },
     "data/processed/labor_and_surveys.json": {
       "path": "data/processed/labor_and_surveys.json",
-      "bytes": 579932,
-      "sha256": "b81e7fbad9637c5770027cc30b9a3579caad8964c257416f2f70dcfd19e8a022"
+      "bytes": 564019,
+      "sha256": "c3558fca6c1e2c83a24de1461df75aafb0739521371c9f58e0b310c4b4c31fd4"
     },
     "app/public/data/labor_and_surveys.json": {
       "path": "app/public/data/labor_and_surveys.json",
-      "bytes": 579932,
-      "sha256": "b81e7fbad9637c5770027cc30b9a3579caad8964c257416f2f70dcfd19e8a022"
+      "bytes": 564019,
+      "sha256": "c3558fca6c1e2c83a24de1461df75aafb0739521371c9f58e0b310c4b4c31fd4"
+    },
+    "app/public/data/population_debt.json": {
+      "path": "app/public/data/population_debt.json",
+      "bytes": 35243,
+      "sha256": "a866bb290a938e6d8134f61923e1cc7736d8181450ed4f96d38190ee77cb925e"
+    },
+    "data/processed/population_debt.json": {
+      "path": "data/processed/population_debt.json",
+      "bytes": 35243,
+      "sha256": "a866bb290a938e6d8134f61923e1cc7736d8181450ed4f96d38190ee77cb925e"
     }
   },
   "reconciliations": {
@@ -374,5 +384,6 @@
     },
     "caged_adjusted_flows_exact_match_all_80_months": true,
     "caged_adjusted_stocks_exact_match_from_2022_09": true
-  }
+  },
+  "revised_at": "2026-11-23T17:21:12+00:00"
 }

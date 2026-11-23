@@ -6,7 +6,6 @@ import os
 import re
 import subprocess
 from concurrent.futures import ThreadPoolExecutor
-from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, Callable
@@ -31,6 +30,7 @@ SOURCE_LABELS = {
     "IBGE-SIDRA-6472": "PNAD Contínua — rendimento",
     "MTE-NOVO-CAGED": "Novo Caged — competência municipal",
     "BCB-SCR": "SCR.data",
+    "SERASA-POP": "Serasa — negativação de adultos",
     "BCB-RENDA": "Comprometimento de renda (SGS 29034)",
     "BCB-SGS-20541": "Saldo de crédito PF (SGS 20541)",
     "BCB-SGS-21084": "Inadimplência PF (SGS 21084)",
@@ -167,6 +167,35 @@ def latest_sgs_period(code: str) -> str:
     return max(periods, key=period_sort_key)
 
 
+MONTHS_PT = "janeiro fevereiro março abril maio junho julho agosto setembro outubro novembro dezembro".split()
+
+
+def latest_serasa_period() -> str:
+    population = json.loads((ROOT / "app/public/data/population_debt.json").read_text(encoding="utf-8"))
+    html = fetch_bytes(population["registry"]["source_url"], timeout=20, retries=1).decode("utf-8")
+    headings = re.findall(r"<h2\b[^>]*>(.*?)</h2>", html, re.S | re.I)
+    periods = []
+    for heading in headings:
+        label = re.sub(r"<[^>]*>", "", heading).strip().lower()
+        match = re.fullmatch(r"([a-zç]+)/((?:20)?\d{2})", label)
+        if match and match[1] in MONTHS_PT:
+            periods.append(f"20{match[2][-2:]}-{MONTHS_PT.index(match[1]) + 1:02d}")
+    if not periods:
+        raise ValueError("Nenhuma edição identificada nos títulos do Mapa da Serasa.")
+    return max(periods)
+
+
+def review_ipdc_bulletins(survey):
+    from pipeline.extract.surveys_adapter import IPDC_FECOMERCIO_WP_API_URL
+    posts = json.loads(fetch_bytes(IPDC_FECOMERCIO_WP_API_URL + "&_fields=date,link,title",
+                                  timeout=20, retries=1))
+    if not posts:
+        raise ValueError("Nenhum boletim localizado no portal do IPDC.")
+    # Publication date flags candidates. It cannot establish the survey reference month.
+    cutoff = survey["release_date"]
+    return [p["link"] for p in posts if p["date"][:10] >= cutoff and p["link"] != survey["source_url"]]
+
+
 def discovery_functions(year: int) -> dict[str, Callable[[], str]]:
     return {
         "IBGE-SIDRA-1737": lambda: latest_sidra_period("1737"),
@@ -174,6 +203,7 @@ def discovery_functions(year: int) -> dict[str, Callable[[], str]]:
         "IBGE-SIDRA-6472": lambda: latest_sidra_period("6472", quarterly=True),
         "MTE-NOVO-CAGED": lambda: latest_mte_period(year),
         "BCB-SCR": lambda: latest_scr_period(year),
+        "SERASA-POP": latest_serasa_period,
         "BCB-RENDA": lambda: latest_sgs_period("29034"),
         "BCB-SGS-20541": lambda: latest_sgs_period("20541"),
         "BCB-SGS-21084": lambda: latest_sgs_period("21084"),
@@ -187,6 +217,8 @@ def build_freshness_report(
     discoverers: dict[str, Callable[[], str]] | None = None,
 ) -> dict[str, Any]:
     published = published_periods(manifest)
+    population = json.loads((ROOT / "app/public/data/population_debt.json").read_text(encoding="utf-8"))
+    published["SERASA-POP"] = population["registry"]["period"]
     source_discoverers = discoverers or discovery_functions(year)
 
     def check_source(source_id: str, discover: Callable[[], str]) -> dict[str, Any]:
@@ -243,6 +275,13 @@ def markdown_summary(report: dict[str, Any]) -> str:
             f"(publicado: {item['published_period'] or '-'}; "
             f"disponível: {item['available_period'] or '-'})"
         )
+    if "ipdc_review" in report:
+        review = report["ipdc_review"]
+        lines.append(f"- **IPDC Fortaleza**: {review['status']} (publicado: {review.get('published_period', '-')})")
+        lines.extend(f"  - [Conferir possível boletim]({url})" for url in review.get("candidate_urls", []))
+    if "scr_revision" in report:
+        revision = report["scr_revision"]
+        lines.append(f"- **Edição do SCR já publicado** ({revision['period']}): {revision['status']}")
     return "\n".join(lines) + "\n"
 
 
@@ -263,6 +302,25 @@ def main() -> int:
 
     manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
     report = build_freshness_report(manifest, year=args.year)
+    population = json.loads((ROOT / "app/public/data/population_debt.json").read_text(encoding="utf-8"))
+    try:
+        links = review_ipdc_bulletins(population["survey"])
+        report["ipdc_review"] = {"status": "review_required" if links else "no_candidate",
+                                 "published_period": population["survey"]["period"], "candidate_urls": links}
+    except Exception as error:
+        report["ipdc_review"] = {"status": "check_failed", "error": str(error)}
+        report["summary"]["check_failed"] += 1
+    ym = population["credit"]["period"].replace("-", "")
+    hashes = json.loads((ROOT / "metadata/scr_data_monthly_hashes.json").read_text(encoding="utf-8"))
+    expected_crc = hashes["extracted_months"][ym]["crc32"]
+    try:
+        available_crc = list_scr_zip_entries(int(ym[:4]), timeout=20)[ym]["crc32"]
+        report["scr_revision"] = {"period": ym, "published_crc32": expected_crc,
+                                  "available_crc32": available_crc,
+                                  "status": "current" if expected_crc == available_crc else "revision_available"}
+    except Exception as error:
+        report["scr_revision"] = {"period": ym, "status": "check_failed", "error": str(error)}
+        report["summary"]["check_failed"] += 1
     report_path = write_json(args.output, report)
     if args.summary:
         args.summary.parent.mkdir(parents=True, exist_ok=True)

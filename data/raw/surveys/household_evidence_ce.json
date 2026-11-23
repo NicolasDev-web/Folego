@@ -1,0 +1,39 @@
+{
+  "territory": "Ceará",
+  "budget_debt_share_pct": null,
+  "needs_foregone_to_pay_debt_pct": null,
+  "pof": {
+    "period": "2017–2018",
+    "universe": "Pessoas residentes no Ceará, todas as condições de ocupação do domicílio",
+    "reference": "12 meses anteriores à entrevista",
+    "source_url": "https://ftp.ibge.gov.br/Indicadores_Sociais/Sintese_de_Indicadores_Sociais/Sintese_de_Indicadores_Sociais_2021/xls/4_Habitacao_xls.zip",
+    "file": "Tabela 4.1.4 (Inadimp_Geo).xls",
+    "sheet": "2017-2018",
+    "row": "Ceará",
+    "columns": "Total, estimativa e coeficiente de variação (%)",
+    "file_sha256": "a66c6c0a2c3164bfaefb00b22042911608109d7e395caf7721eeea39125d1ec3",
+    "utilities_late_pct": 42.35,
+    "utilities_cv_pct": 3.45,
+    "housing_late_pct": 6.73,
+    "housing_cv_pct": 10.32
+  },
+  "datasenado": {
+    "period": "2024-06",
+    "universe": "Moradores do Ceará com 16 anos ou mais",
+    "source_url": "https://www.senado.leg.br/institucional/datasenado/relatorio_online/pesquisa_panorama_politico/2024/assets/PDF/relatorio_CE.pdf#page=75",
+    "table": 38,
+    "over90_days_pct": 33,
+    "margin_pp": 5.4
+  },
+  "pof_spending": {
+    "period": "2017–2018",
+    "territory": "Ceará",
+    "universe": "Todas as famílias (unidades de consumo) representadas pela POF no Ceará",
+    "source_url": "https://www.ipece.ce.gov.br/wp-content/uploads/sites/45/2019/11/ipece_informe_162_11_nov2019.pdf",
+    "source_locator": "IPECE Informe 162, seção 1 e gráfico 1",
+    "liability_payments_avg_brl": 119.28,
+    "total_spending_avg_brl": 2830.34,
+    "total_spending_share_pct": 4.2,
+    "unit": "Valores médios mensais por família, em reais da pesquisa. Despesa total monetária e não monetária."
+  }
+}

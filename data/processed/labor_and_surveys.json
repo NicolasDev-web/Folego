@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-11-11T18:44:31+00:00",
+  "generated_at": "2026-11-23T17:21:12+00:00",
   "pnad_continua": {
     "desocupacao_trimestral": {
       "BR": {
@@ -9197,10 +9197,10 @@
         "extraction_mode": "boletim_direto"
       },
       "2025-05": {
-        "familias_endividadas_pct": 70.6,
-        "familias_atraso_pct": 23.6,
+        "familias_endividadas_pct": null,
+        "familias_atraso_pct": null,
         "nao_terao_condicao_pagar_pct": 9.2,
-        "parcela_renda_comprometida_pct": 43.7,
+        "parcela_renda_comprometida_pct": null,
         "divida_media_brl": 1849.0,
         "tempo_medio_atraso_dias": 63.0,
         "tipo_cartao_credito_pct_endividados": 79.4,
@@ -9209,13 +9209,36 @@
         "tipo_carnes_pct_endividados": 5.2,
         "release_date": "2025-05-26",
         "source_url": "https://www.fecomercio-ce.com.br/blog/endividamento-tem-leve-queda-em-fortaleza-aponta-fecomercio-ce/",
-        "extraction_mode": "boletim_direto"
+        "extraction_mode": "boletim_direto",
+        "historical_url": "https://www.fecomercio-ce.com.br/wp-content/uploads/2026/01/01_2026_Fortaleza_Perfil-de-Endividamento-do-Consumidor.pdf#page=4",
+        "comparison": {
+          "familias_endividadas_pct": {
+            "bulletin": 70.6,
+            "historical": 67.6,
+            "status": "em_revisao"
+          },
+          "familias_atraso_pct": {
+            "bulletin": 23.6,
+            "historical": 19.6,
+            "status": "em_revisao"
+          },
+          "parcela_renda_comprometida_pct": {
+            "bulletin": 43.7,
+            "historical": 43.0,
+            "status": "em_revisao"
+          },
+          "nao_terao_condicao_pagar_pct": {
+            "bulletin": null,
+            "historical": 9.2,
+            "status": "apenas_retrospectiva"
+          }
+        }
       },
       "2025-06": {
-        "familias_endividadas_pct": 71.7,
-        "familias_atraso_pct": 20.7,
-        "nao_terao_condicao_pagar_pct": 10.1,
-        "parcela_renda_comprometida_pct": null,
+        "familias_endividadas_pct": null,
+        "familias_atraso_pct": null,
+        "nao_terao_condicao_pagar_pct": null,
+        "parcela_renda_comprometida_pct": 43.3,
         "divida_media_brl": null,
         "tempo_medio_atraso_dias": null,
         "tipo_cartao_credito_pct_endividados": null,
@@ -9224,7 +9247,30 @@
         "tipo_carnes_pct_endividados": null,
         "release_date": "2025-07-17",
         "source_url": "https://www.fecomercio-ce.com.br/blog/fecomercio-aponta-queda-de-61-no-endividamento-do-consumidor-em-fortaleza-em-julho/",
-        "extraction_mode": "referencia_retroativa_no_boletim_seguinte"
+        "extraction_mode": "referencia_retroativa_no_boletim_seguinte",
+        "historical_url": "https://www.fecomercio-ce.com.br/wp-content/uploads/2026/01/01_2026_Fortaleza_Perfil-de-Endividamento-do-Consumidor.pdf#page=4",
+        "comparison": {
+          "familias_endividadas_pct": {
+            "bulletin": 71.7,
+            "historical": 80.0,
+            "status": "em_revisao"
+          },
+          "familias_atraso_pct": {
+            "bulletin": 20.7,
+            "historical": 23.1,
+            "status": "em_revisao"
+          },
+          "parcela_renda_comprometida_pct": {
+            "bulletin": null,
+            "historical": 43.3,
+            "status": "apenas_retrospectiva"
+          },
+          "nao_terao_condicao_pagar_pct": {
+            "bulletin": 10.1,
+            "historical": 11.3,
+            "status": "em_revisao"
+          }
+        }
       },
       "2025-07": {
         "familias_endividadas_pct": 65.6,
@@ -10182,18 +10228,18 @@
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
       "period": "2025-05",
-      "value": 70.6,
+      "value": null,
       "unit": "%",
-      "status": "observado",
+      "status": "indisponivel",
       "source_url": "https://www.fecomercio-ce.com.br/blog/endividamento-tem-leve-queda-em-fortaleza-aponta-fecomercio-ce/",
       "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
       "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Em revisão. O boletim e a tabela retrospectiva do IPDC (p. 4) divergem.",
       "notes": [
-        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Em revisão. O boletim e a tabela retrospectiva do IPDC (p. 4) divergem."
       ]
     },
     {
@@ -10204,18 +10250,18 @@
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
       "period": "2025-05",
-      "value": 23.6,
+      "value": null,
       "unit": "%",
-      "status": "observado",
+      "status": "indisponivel",
       "source_url": "https://www.fecomercio-ce.com.br/blog/endividamento-tem-leve-queda-em-fortaleza-aponta-fecomercio-ce/",
       "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
       "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Em revisão. O boletim e a tabela retrospectiva do IPDC (p. 4) divergem.",
       "notes": [
-        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Em revisão. O boletim e a tabela retrospectiva do IPDC (p. 4) divergem."
       ]
     },
     {
@@ -10226,18 +10272,18 @@
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
       "period": "2025-06",
-      "value": 71.7,
+      "value": null,
       "unit": "%",
-      "status": "observado",
+      "status": "indisponivel",
       "source_url": "https://www.fecomercio-ce.com.br/blog/fecomercio-aponta-queda-de-61-no-endividamento-do-consumidor-em-fortaleza-em-julho/",
       "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
       "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)",
+      "note": "Em revisão. O boletim e a tabela retrospectiva do IPDC (p. 4) divergem.",
       "notes": [
-        "Proporção de consumidores de Fortaleza com dívidas declaradas (IPDC/Fecomércio-CE)"
+        "Em revisão. O boletim e a tabela retrospectiva do IPDC (p. 4) divergem."
       ]
     },
     {
@@ -10248,18 +10294,18 @@
       "territory_name": "Fortaleza",
       "territory_level": "capital_pesquisa",
       "period": "2025-06",
-      "value": 20.7,
+      "value": null,
       "unit": "%",
-      "status": "observado",
+      "status": "indisponivel",
       "source_url": "https://www.fecomercio-ce.com.br/blog/fecomercio-aponta-queda-de-61-no-endividamento-do-consumidor-em-fortaleza-em-julho/",
       "universe": "Consumidores pesquisados em Fortaleza (capital_pesquisa)",
       "aggregation_rule": "proporcao_amostral_total_consumidores",
       "methodology_version": "IPDC-FECOMERCIO-CE-2026",
       "version": "IPDC-FECOMERCIO-CE-2026",
       "comparable_with": [],
-      "note": "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)",
+      "note": "Em revisão. O boletim e a tabela retrospectiva do IPDC (p. 4) divergem.",
       "notes": [
-        "Proporção de consumidores de Fortaleza com contas ou dívidas em atraso (IPDC/Fecomércio-CE)"
+        "Em revisão. O boletim e a tabela retrospectiva do IPDC (p. 4) divergem."
       ]
     },
     {

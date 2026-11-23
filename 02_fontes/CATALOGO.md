@@ -34,6 +34,14 @@ Metadados: `https://olinda.bcb.gov.br/olinda/servico/scr_sub_regiao/versao/v1/od
 
 Função: `scr_sub_regiao(DataBase=@DataBase)`; parâmetro inteiro no formato AAAAMM. Os códigos de sub-região observados no Ceará foram `60, 61, 62 e 63`. A documentação consultada define `SUB_REGIAO` pelos dois primeiros dígitos do CEP de residência do cliente, sem fornecer tabela oficial de correspondência com municípios IBGE; por isso `SUB_REGIAO` permanece estritamente em `territory_level: "sub_regiao"` com `status: "parcial"`.
 
+## Fontes que descrevem o orçamento e o atraso no Ceará inteiro
+
+| Fonte | O que mede no Fôlego |
+|---|---|
+| [POF 2017–2018, IPECE Informe 162](https://www.ipece.ce.gov.br/wp-content/uploads/sites/45/2019/11/ipece_informe_162_11_nov2019.pdf) | Pagamentos de empréstimos e prestações imobiliárias como parcela das despesas totais médias das famílias do estado. |
+| [POF 2017–2018, IBGE, SIS 2021, tabela 4.1.4](https://ftp.ibge.gov.br/Indicadores_Sociais/Sintese_de_Indicadores_Sociais/Sintese_de_Indicadores_Sociais_2021/xls/4_Habitacao_xls.zip) | Percentual de moradores cujas famílias atrasaram contas por dificuldade financeira. |
+| [DataSenado, Panorama Político 2024, tabela 38](https://www.senado.leg.br/institucional/datasenado/relatorio_online/pesquisa_panorama_politico/2024/assets/PDF/relatorio_CE.pdf#page=75) | Percentual das pessoas de 16 anos ou mais que declararam dívida em atraso superior a 90 dias. |
+
 ## Registro por arquivo coletado
 
 Todos os arquivos coletados registram `source_id`, URL exata, data de coleta, competência inicial/final, unidade, geografia, licença, versão metodológica, hash SHA-256 e contagem de linhas em `metadata/phase02_manifest.json`.

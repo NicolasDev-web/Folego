@@ -293,10 +293,10 @@
     },
     "202609": {
       "period": "2026-09",
-      "sha256": "90c14d9606e38608725bb11e188b6e87e09dc72274a421cd4e9cdb0cec960f5a",
-      "crc32": "7b2b56ec",
-      "compressed_bytes": 15153750,
-      "uncompressed_bytes": 101589798,
+      "sha256": "624e15adf151d4099eb17ddd8705e5c0d976a91d4acb729e9e2153847cd43d02",
+      "crc32": "af1b5952",
+      "compressed_bytes": 15159670,
+      "uncompressed_bytes": 101638758,
       "methodology_version": "sdd-scr-v2-pos2025",
       "zip_url": "https://www.bcb.gov.br/pda/desig/scrdata_2026.zip"
     }
@@ -1603,6 +1603,34 @@
       "uncompressed_bytes": 84337222,
       "lfh_offset": 138881836,
       "methodology_version": "sdd-scr-v2-pre2025"
+    }
+  },
+  "revisions": {
+    "202609": {
+      "previous_extraction": {
+        "period": "2026-09",
+        "sha256": "90c14d9606e38608725bb11e188b6e87e09dc72274a421cd4e9cdb0cec960f5a",
+        "crc32": "7b2b56ec",
+        "compressed_bytes": 15153750,
+        "uncompressed_bytes": 101589798,
+        "methodology_version": "sdd-scr-v2-pos2025",
+        "zip_url": "https://www.bcb.gov.br/pda/desig/scrdata_2026.zip"
+      },
+      "reviewed_at": "2026-11-23",
+      "archive_entry": {
+        "ym": "202609",
+        "period": "2026-09",
+        "year": 2026,
+        "zip_url": "https://www.bcb.gov.br/pda/desig/scrdata_2026.zip",
+        "zip_total_bytes": 136102883,
+        "filename": "scrdata_202609.csv",
+        "compression_method": 8,
+        "crc32": "af1b5952",
+        "compressed_bytes": 15159670,
+        "uncompressed_bytes": 101638758,
+        "lfh_offset": 120942323,
+        "methodology_version": "sdd-scr-v2-pos2025"
+      }
     }
   }
 }

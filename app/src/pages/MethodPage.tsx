@@ -1,7 +1,10 @@
+import { monthLabel } from "../lib/populationDebt";
+import population from "../../public/data/population_debt.json";
 import { Link } from "react-router-dom";
 import { SourceNote } from "../components/SourceNote";
 import { useInvestigationData } from "../data/useInvestigationData";
 import { observationsToCsv } from "../lib/investigationAnalysis";
+
 
 const readingTips = [
   { title: "Quem foi contado?", text: "Um contrato é um empréstimo ou financiamento. Uma pessoa pode ter vários contratos, e uma família pode ter várias pessoas." },
@@ -11,31 +14,58 @@ const readingTips = [
 
 const indicatorCatalog = [
   {
+    id: "population_pof_passivo",
+    name: "Quanto as famílias gastavam com empréstimos e prestações de imóvel",
+    formula: "O IPECE divide a despesa média mensal com esses pagamentos (R$ 119,28) pela despesa média mensal total (R$ 2.830,34). A participação arredondada é de 4,2%.",
+    unit: "% das despesas totais, monetárias e não monetárias. Valores em reais da época.",
+    scale: "Todas as famílias do Ceará representadas pela pesquisa, inclusive as que não fizeram esses pagamentos.",
+    source: "IBGE · POF, resultados para o Ceará publicados pelo IPECE no Informe 162",
+    period: "2017–2018",
+  },
+  {
+    id: "population_pof_atraso",
+    name: "Quando uma conta de casa precisou esperar",
+    formula: "Na tabela 4.1.4 da Síntese de Indicadores Sociais de 2021, a linha Ceará mostra que 42,35% dos moradores viviam em famílias que atrasaram água, luz ou gás por dificuldade financeira. Para aluguel ou prestação da casa, foram 6,73%.",
+    unit: "% de moradores, coluna Total. A família podia relatar mais de um tipo de atraso.",
+    scale: "Ceará inteiro. A pergunta cobre os 12 meses anteriores à entrevista.",
+    source: "IBGE · Pesquisa de Orçamentos Familiares",
+    period: "2017–2018",
+  },
+  {
+    id: "population_datasenado_atraso",
+    name: "Pessoas que relataram dívida atrasada havia mais de 90 dias",
+    formula: "O DataSenado estima em 33% as respostas afirmativas no Ceará. A tabela 38 informa margem de erro de 5,4 pontos percentuais para esse resultado.",
+    unit: "% de moradores com 16 anos ou mais.",
+    scale: "Ceará inteiro. É a resposta de cada pessoa sobre as próprias dívidas.",
+    source: "Instituto DataSenado · Panorama Político",
+    period: "Junho de 2024",
+  },
+  {
     id: "population_serasa_adultos_negativados",
     name: "Adultos com nome negativado no Ceará",
-    formula: "Percentual publicado no Mapa da Serasa de outubro de 2026, páginas 6 e 7: 52,79% no Ceará e 51,32% no Brasil. A ilustração 53 a cada 100 arredonda 52,79%.",
+    formula: "Percentual da população adulta com registro de negativação, publicado pela Serasa. A ilustração por 100 adultos usa o inteiro mais próximo.",
     unit: "% da população adulta, segundo a Serasa. Pessoas negativadas, não famílias.",
     scale: "Ceará e Brasil; negativação na base Serasa. Não mede todas as dívidas em dia ou em outros cadastros.",
     source: "Serasa · Mapa da Inadimplência e Negociação de Dívidas",
-    period: "Outubro de 2026",
+    period: monthLabel(population.registry.period),
   },
   {
     id: "population_ipdc_orcamento",
     name: "Dívidas no cotidiano em Fortaleza",
     formula: "Leitura direta dos percentuais de consumidores com dívidas, contas em atraso e dificuldade de quitação, da média de renda comprometida e das menções a gastos e instrumentos de crédito. Respostas podem se sobrepor; não devem ser somadas.",
-    unit: "% divulgados pelo IPDC. O exemplo de R$ 1.000 ilustra a média de 41,8%; não é o orçamento de uma família observada.",
+    unit: "% divulgados pelo IPDC. O exemplo de R$ 1.000 aplica a proporção média divulgada ao orçamento ilustrativo.",
     scale: "Fortaleza; consumidores pesquisados e renda familiar. Não é uma estimativa estadual.",
-    source: "Fecomércio-CE / IPDC · boletim de 22/10/2026",
-    period: "Outubro de 2026",
+    source: population.survey.source_label,
+    period: monthLabel(population.survey.period),
   },
   {
     id: "population_scr_renda_ocupacao",
     name: "Atraso por renda e tipo de trabalho, no mesmo grupo",
-    formula: "Filtrar CE e PF no arquivo SCR de setembro de 2026, agrupar conjuntamente por porte e cnae_ocupacao e dividir a soma de carteira_inadimplencia pela soma de carteira_ativa, multiplicando por 100. As 72 combinações reconciliam com o total.",
+    formula: "Filtrar CE e PF no arquivo mensal do SCR, agrupar conjuntamente por porte e cnae_ocupacao e dividir a soma de carteira_inadimplencia pela soma de carteira_ativa, multiplicando por 100. As combinações somam o total estadual.",
     unit: "Reais em contratos com atraso acima de 90 dias a cada R$ 100 de crédito. Inclui parcelas futuras dos contratos.",
     scale: "Ceará; renda individual do tomador e categorias amplas de ocupação. Sem contagem de famílias ou associação com CPFs do Caged.",
     source: "Banco Central · SCR.data · versão identificada em population_debt.json",
-    period: "Setembro de 2026",
+    period: monthLabel(population.credit.period),
   },
   {
     id: "carteira_pf",

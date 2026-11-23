@@ -1,3 +1,7 @@
+export const monthLabel = (period: string) => new Intl.DateTimeFormat("pt-BR", {
+  month: "long", year: "numeric", timeZone: "UTC",
+}).format(new Date(period + "-01T00:00:00Z"));
+
 export type CreditGroup = {
   income: string;
   occupation: string;

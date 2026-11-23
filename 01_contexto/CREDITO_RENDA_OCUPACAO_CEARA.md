@@ -73,7 +73,7 @@ O mesmo relatório abre a pesquisa por renda familiar. Em janeiro de 2026, a fai
 
 Fonte primária: arquivo `scrdata_202609.csv` de [SCR.data 2026](https://www.bcb.gov.br/pda/desig/scrdata_2026.zip). Filtrar `uf = 'CE'` e `cliente = 'PF'`. Agrupar por `porte` e `cnae_ocupacao` ou `modalidade`, somar `carteira_ativa` e `carteira_inadimplencia`, e calcular `100 × soma(carteira_inadimplencia) / soma(carteira_ativa)`. O saldo em reais é nominal. As contagens de linhas representam agregados da fonte, sem identificação de CPFs ou domicílios. [Metodologia SCR.data](https://www.bcb.gov.br/pda/desig/metodologia_versao2.pdf)
 
-O arquivo consultado tinha SHA-256 `624e15adf151d4099eb17ddd8705e5c0d976a91d4acb729e9e2153847cd43d02`. O pacote atual do site preserva a versão anterior (`90c14d9606e38608725bb11e188b6e87e09dc72274a421cd4e9cdb0cec960f5a`). As duas versões arredondam para **6,20%** no Ceará. O saldo total difere em cerca de **R$ 2,20 milhões**. Os valores do estudo são da versão consultada e devem ser usados juntos.
+A edição republicada de setembro tem SHA-256 `624e15adf151d4099eb17ddd8705e5c0d976a91d4acb729e9e2153847cd43d02`. Ela alimenta o histórico, os perfis e o cruzamento renda × ocupação. O saldo PF do Ceará passou de R$ 120.146.335.639,16 na coleta de 9/11 para R$ 120.144.136.163,43 na revisão. A diferença é de R$ 2.199.475,73 a menos. A coleta original permanece arquivada para auditoria.
 
 ## Da análise do crédito à vida das pessoas
 
@@ -101,4 +101,29 @@ As transcrições conferidas ficam em `data/raw/surveys/ipdc_population_2026-10.
 python -m pipeline.extract.population_debt --csv data/raw/cache/population/scrdata_202609.csv
 ```
 
-O extrator valida a competência, as faixas conhecidas e valores monetários, soma em centavos com `Decimal` e reconcilia os produtos com as combinações de renda e ocupação. Exporta `population_debt.json` em `data/processed` e `app/public/data`. Os pacotes históricos preservam a coleta anterior; a nova seção usa os valores do estudo e publica o hash da revisão. Novos meses e transcrições exigem revisão das fontes e dos rótulos antes da publicação.
+O extrator valida a competência, as faixas conhecidas e valores monetários, soma em centavos com `Decimal` e reconcilia os produtos com as combinações de renda e ocupação. Exporta `population_debt.json` em `data/processed` e `app/public/data`. A rotina principal gera os recortes a partir dos mesmos bytes do arquivo mensal. A exportação avulsa exige o mesmo SHA-256 do histórico e confere carteira e atraso até os centavos. Novos meses e transcrições exigem revisão das fontes e dos rótulos antes da publicação.
+
+
+## O orçamento no Ceará inteiro
+
+Em 2017–2018, os pagamentos de empréstimos e prestações de imóvel somavam R$ 119,28 por mês por família, em média. A despesa média mensal total era de R$ 2.830,34. Dividir 119,28 por 2.830,34 e multiplicar por 100 resulta em 4,2% da **despesa total**, após arredondamento. O termo da POF é “diminuição do passivo”. A média inclui todas as famílias e a despesa total inclui gastos monetários e não monetários. A pergunta sobre o percentual **da renda atual** gasto com todas as dívidas continua aberta. [IPECE, Informe 162, seção 1 e gráfico 1](https://www.ipece.ce.gov.br/wp-content/uploads/sites/45/2019/11/ipece_informe_162_11_nov2019.pdf)
+
+| O que foi perguntado | Resultado estadual | Quem entra na conta |
+|---|---|---|
+| A família atrasou contas de água, eletricidade ou gás por dificuldade financeira nos 12 meses anteriores à entrevista? | 42,35% em 2017–2018 | Moradores em famílias que relataram esse atraso, sobre todos os moradores. Para aluguel ou prestação do imóvel, 6,73%, usando a mesma coluna Total. |
+| A pessoa tinha dívida vencida havia mais de 90 dias? | 33% em junho de 2024, com margem de erro de 5,4 pontos percentuais | Pessoas de 16 anos ou mais no Ceará. Estimativa ponderada do DataSenado. |
+
+A primeira estimativa vem da POF, linha Ceará na tabela 4.1.4 da Síntese de Indicadores Sociais 2021. Os coeficientes de variação são 3,45% para as contas de serviços e 10,32% para aluguel ou prestação. Medem a precisão relativa da estimativa. A segunda vem da tabela 38 do Panorama Político, coleta de 5 a 28 de junho. As duas pesquisas têm perguntas, períodos e unidades diferentes. [Planilhas do IBGE](https://ftp.ibge.gov.br/Indicadores_Sociais/Sintese_de_Indicadores_Sociais/Sintese_de_Indicadores_Sociais_2021/xls/4_Habitacao_xls.zip) · [DataSenado, tabela 38](https://www.senado.leg.br/institucional/datasenado/relatorio_online/pesquisa_panorama_politico/2024/assets/PDF/relatorio_CE.pdf#page=75)
+
+O levantamento estadual ainda precisa de duas perguntas dirigidas às mesmas famílias. Qual foi a parcela da renda mensal destinada a pagar dívidas? Por causa desses pagamentos, que necessidades ficaram sem atendimento? Atrasar uma conta, comprar alimento a prazo e deixar de comprar comida para quitar uma dívida são experiências diferentes. A PNAD sobre segurança alimentar também mede restrições de acesso a alimentos, mas não identifica o pagamento de dívidas como motivo. [IBGE, módulo de segurança alimentar](https://www.ibge.gov.br/estatisticas/sociais/populacao/17270-pnad-continua.html?edicao=44654)
+
+## Fortaleza, confronto documental de maio e junho de 2025
+
+| Indicador (%) | Maio, boletim | Maio, histórico | Junho, citado em julho | Junho, histórico |
+|---|---:|---:|---:|---:|
+| Consumidores com dívidas | 70,6 | 67,6 | 71,7 | 80,0 |
+| Consumidores com atraso | 23,6 | 19,6 | 20,7 | 23,1 |
+| Renda comprometida | 43,7 | 43,0 | Sem valor no texto | 43,3 |
+| Dificuldade prevista de quitar | Sem valor no texto | 9,2 | 10,1 | 11,3 |
+
+O atraso cai 2,9 pontos percentuais na primeira leitura e sobe 3,5 na segunda. Não encontramos uma errata que confirme qual delas substitui a outra. Os seis pares divergentes ficam em revisão e saem da série numérica e do CSV de indicadores. Os valores das duas publicações seguem disponíveis no JSON. Junho tem 43,3% de comprometimento e maio tem 9,2% de dificuldade prevista de quitação na tabela histórica, com essa origem registrada individualmente. [Boletim de maio](https://www.fecomercio-ce.com.br/blog/endividamento-tem-leve-queda-em-fortaleza-aponta-fecomercio-ce/) · [Referência a junho no boletim de julho](https://www.fecomercio-ce.com.br/blog/fecomercio-aponta-queda-de-61-no-endividamento-do-consumidor-em-fortaleza-em-julho/) · [Retrospectiva, p. 4](https://www.fecomercio-ce.com.br/wp-content/uploads/2026/01/01_2026_Fortaleza_Perfil-de-Endividamento-do-Consumidor.pdf#page=4)

@@ -940,6 +940,22 @@ export function InvestigationChapters({
           </table>
         </div>
 
+        <details className="population-explanation">
+          <summary>Por que maio e junho de 2025 estão em revisão em Fortaleza?</summary>
+          <p>Os boletins e a tabela histórica do IPDC dão respostas diferentes até sobre a direção do atraso. O Fôlego retirou os percentuais divergentes das comparações. A tabela abaixo preserva os números como foram publicados.</p>
+          <div className="comparison-table-container"><table className="comparison-table">
+            <caption>Consumidores com contas atrasadas em Fortaleza</caption>
+            <thead><tr><th scope="col">Mês de 2025</th><th scope="col">Boletim da época</th><th scope="col">Tabela histórica</th></tr></thead>
+            <tbody>{(["2025-05", "2025-06"] as const).map((period) => {
+              const entry = labor.surveys.ipdc_fortaleza_capital[period];
+              const reading = entry?.comparison?.familias_atraso_pct;
+              return reading && <tr key={period}><th scope="row">{period === "2025-05" ? "Maio" : "Junho"}</th>
+                <td><a href={entry.source_url ?? undefined}>{reading.bulletin == null ? "Sem valor no boletim" : reading.bulletin.toLocaleString("pt-BR") + "%"}</a></td>
+                <td><a href={entry.historical_url}>{reading.historical.toLocaleString("pt-BR")}%</a></td></tr>;
+            })}</tbody>
+          </table></div>
+        </details>
+
         {/* SÍNTESE COM LASTRO E PERGUNTAS EM ABERTO (05-05) + EXPORTAÇÃO CSV (05-06) */}
         <div className="evidence-synthesis-grid">
           <article className="synthesis-card">

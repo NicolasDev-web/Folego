@@ -157,6 +157,8 @@ export type SurveyPoint = {
   familias_endividadas_pct: number | null;
   familias_atraso_pct: number | null;
   source_page?: number;
+  historical_url?: string;
+  comparison?: Record<string, { bulletin: number | null; historical: number; status: string }>;
   nao_terao_condicoes_pagar_pct: number | null;
   comprometimento_medio_renda_pct?: number | null;
   tempo_medio_atraso_dias?: number | null;

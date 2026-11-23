@@ -98,3 +98,11 @@ python -m pipeline.audit_source_freshness
 ```
 
 O resultado fica em `metadata/source_freshness.json`. O monitor não altera os pacotes públicos: uma competência nova gera apenas um alerta para revisão humana. Falhas temporárias de consulta também ficam explícitas no relatório sem apagar os resultados das demais fontes. A publicação continua dependendo da coleta completa, das reconciliações, dos testes e da aprovação da proposta de atualização.
+
+### Atualização de População
+
+A Fase 02 agrega renda × ocupação e produtos a partir do CSV da última competência selecionada do SCR. O pacote de população usa o mesmo arquivo que o histórico e confere SHA-256, saldo e atraso antes da exportação. A coleta de 9/11 fica como arquivo histórico. A revisão de 23/11 alterou somente setembro no SCR.
+
+IPDC e Serasa podem avançar em meses diferentes. A auditoria semanal consulta novos títulos da Serasa e publicações do IPDC posteriores ao boletim selecionado. Um título é um candidato à conferência. A verificação confere também o CRC da competência do SCR já publicada, para detectar uma reedição mesmo quando o mês continua o mesmo. Para aprovar uma edição, confira território, denominadores, data e perguntas no original, salve a transcrição em `data/raw/surveys` e altere a competência correspondente em `metadata/population_sources.json`. Confira as chamadas editoriais e o catálogo de método na mesma revisão. Rode a Fase 02 ou, para regenerar apenas População usando o histórico publicado, `python -m pipeline.extract.population_debt --csv CAMINHO/scrdata_AAAAMM.csv`. A POF e o DataSenado têm períodos próprios e ficam identificados como retratos históricos.
+
+A conciliação de maio e junho de 2025 registra, por indicador, os dois valores do IPDC e a fonte. Divergências ficam nulas nas comparações e nos arquivos de indicadores. Para encerrar a pendência, documentar qual publicação o produtor retificou e qual edição da série deve prevalecer. [Memória de conciliação](../01_contexto/CREDITO_RENDA_OCUPACAO_CEARA.md)

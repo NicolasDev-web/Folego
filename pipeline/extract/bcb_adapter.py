@@ -426,13 +426,13 @@ def aggregate_scr_csv_bytes(ym: str, csv_bytes: bytes, entry_meta: dict[str, Any
     }
 
 
-def fetch_and_aggregate_scr_month(entry_meta: dict[str, Any]) -> dict[str, Any]:
+def fetch_and_aggregate_scr_month(entry_meta: dict[str, Any], include_population: bool = False) -> dict[str, Any]:
     ym = entry_meta["ym"]
     cache_path = ROOT / f"data/raw/cache/scr_monthly/scrdata_{ym}.json"
     cache_path.parent.mkdir(parents=True, exist_ok=True)
     if cache_path.exists() and cache_path.stat().st_size > 0:
         cached = json.loads(cache_path.read_text(encoding="utf-8"))
-        if cached.get("crc32") == entry_meta["crc32"] and "macro" in cached:
+        if cached.get("crc32") == entry_meta["crc32"] and "macro" in cached and (not include_population or "population_credit" in cached):
             return cached
 
     lfh_offset = int(entry_meta["lfh_offset"])
@@ -454,7 +454,13 @@ def fetch_and_aggregate_scr_month(entry_meta: dict[str, Any]) -> dict[str, Any]:
             f"{len(csv_bytes)} vs {entry_meta['uncompressed_bytes']}"
         )
 
+    if f"{zlib.crc32(csv_bytes):08x}" != entry_meta["crc32"]:
+        raise ValueError(f"CRC inválido para scrdata_{ym}.csv")
+
     agg = aggregate_scr_csv_bytes(ym, csv_bytes, entry_meta)
+    if include_population:
+        from pipeline.extract.population_debt import credit_from_bytes
+        agg["population_credit"] = credit_from_bytes(csv_bytes, ym)
     cache_path.write_text(json.dumps(agg, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return agg
 
@@ -556,7 +562,7 @@ def collect_bcb_all(
     scr_monthly: dict[str, dict[str, Any]] = {}
     with ThreadPoolExecutor(max_workers=6) as pool:
         fut_to_ym = {
-            pool.submit(fetch_and_aggregate_scr_month, all_zip_entries[ym]): ym
+            pool.submit(fetch_and_aggregate_scr_month, all_zip_entries[ym], ym == max(target_competences)): ym
             for ym in target_competences
         }
         for idx, fut in enumerate(as_completed(fut_to_ym), 1):

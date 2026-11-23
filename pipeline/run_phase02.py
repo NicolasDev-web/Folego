@@ -14,6 +14,7 @@ from pipeline.extract.bcb_adapter import collect_bcb_all
 from pipeline.extract.http_client import ROOT, sha256_bytes, write_json
 from pipeline.extract.ibge_adapter import collect_ibge_all
 from pipeline.extract.mte_caged_adapter import collect_mte_caged
+from pipeline.extract.population_debt import population_package
 from pipeline.extract.surveys_adapter import collect_surveys
 from pipeline.transform.facts import save_facts_and_dimensions
 from pipeline.validate.export_public import (
@@ -82,8 +83,12 @@ def run_phase02(collected_date: str | None = None) -> dict[str, Any]:
         surveys_data=surveys_res,
     )
 
+    latest = bcb_res["scr_monthly"][max(bcb_res["scr_monthly"])]
+    population = population_package(latest["population_credit"], latest)
+
     exported_files: dict[str, Any] = {}
     for filename, payload in (
+        ("population_debt.json", population),
         ("state_macro_series.json", macro_payload),
         ("credit_profiles.json", profiles_payload),
         ("labor_and_surveys.json", labor_payload),
