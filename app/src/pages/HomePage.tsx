@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { EditorialArt } from "../components/EditorialArt";
 import { InvestigationChapters } from "../components/InvestigationChapters";
-import { SectionHeader } from "../components/SectionHeader";
+
 import { PopulationDebtSection } from "../components/PopulationDebtSection";
 import { useInvestigationData } from "../data/useInvestigationData";
 import { useMunicipalities } from "../data/useMunicipalities";
@@ -23,10 +23,13 @@ export function HomePage() {
 
   return (
     <main id="conteudo">
-      <section className="hero">
-        <div className="hero-copy">
+      <section className="editorial-cover">
+        <header className="editorial-cover-heading">
           <p className="hero-context">Ceará · crédito, renda e trabalho</p>
           <h1>Como as dívidas pesam na vida das pessoas?</h1>
+          </header>
+        <EditorialArt name="contas-em-casa" sizes="(max-width: 780px) 100vw, 65vw" />
+        <div className="editorial-cover-summary">
           <p className="hero-lead">
             Entenda o que pressiona o orçamento em Fortaleza e como o atraso varia com a renda e o trabalho no Ceará.
           </p>
@@ -37,7 +40,6 @@ export function HomePage() {
             </Link>
           </div>
         </div>
-        <EditorialArt name="contas-em-casa" sizes="(max-width: 920px) 100vw, 50vw" />
       </section>
 
       <PopulationDebtSection />
@@ -67,19 +69,17 @@ export function HomePage() {
         />
       ) : null}
 
-      <section className="content-section city-invitation" id="cidades">
-        <div>
-          <SectionHeader
-            marker="Território · 184 municípios"
-            title="O que sabemos sobre sua cidade?"
-            description="Veja quantas pessoas moram lá, a renda por pessoa e quais ocupações ganharam ou perderam postos com carteira assinada."
-          />
-          <Link className="button button-dark" to="/cidades?cidade=sobral">
-            Abrir o explorador municipal
-          </Link>
+      <section className="content-section urban-spread" id="cidades">
+        <div className="urban-scene">
+          <EditorialArt name="praca-cearense" sizes="(max-width: 780px) 100vw, 64vw" />
+          <div className="urban-caption">
+            <p>Território · 184 municípios</p>
+            <h2>O que sabemos sobre sua cidade?</h2>
+            <p>Veja quantas pessoas moram lá, a renda por pessoa e quais ocupações ganharam ou perderam postos com carteira assinada.</p>
+            <Link className="button button-light" to="/cidades?cidade=sobral">Abrir o explorador municipal</Link>
+          </div>
         </div>
         <div>
-          <EditorialArt name="praca-cearense" sizes="(max-width: 920px) 100vw, 450px" />
           {sobral && employment && (
           <div className="coverage-preview" aria-label="Resumo de Sobral">
             <p>Exemplo · Sobral</p>

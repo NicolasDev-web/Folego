@@ -1,0 +1,52 @@
+.editorial-cover {
+  display:grid;
+  grid-template-columns:minmax(0, .55fr) minmax(0, 1fr);
+  grid-template-rows:1fr auto;
+  background:#173f3b;
+  color:#fffdf6;
+  align-items:center;
+}
+.editorial-cover > img {grid-column:2;grid-row:1/3;align-self:center}
+.editorial-cover-heading {grid-column:1;grid-row:1;align-self:end;position:relative;z-index:1;padding:clamp(24px,3vw,58px) 0 0 var(--gutter)}
+.editorial-cover-heading h1 {font-weight:530;font-size:clamp(3.3rem,5.7vw,6.6rem);letter-spacing:-.065em;line-height:.99;margin:0 -.45em 0 0}
+.editorial-cover-heading {background:#173f3b}
+.editorial-cover-heading .hero-context {margin-bottom:1rem}
+.editorial-cover-summary {grid-column:1;grid-row:2;padding:1rem 1.6rem clamp(24px,3vw,58px) var(--gutter)}
+.editorial-cover-summary .hero-lead {margin:0;font-size:clamp(1rem,1.3vw,1.2rem);max-width:37ch}
+.editorial-cover-summary .hero-actions {margin-top:1rem}
+.food-spread {margin:clamp(2.5rem,6vw,5.5rem) 0}
+.food-spread .population-expenses {display:grid;grid-template-columns:7fr 5fr;grid-template-rows:auto auto;column-gap:clamp(1.6rem,4vw,4rem);align-items:start}
+.food-spread .editorial-art {grid-column:1;grid-row:1/3;align-self:center}
+.food-spread h3,.work-spread h3,.urban-caption h2 {font-weight:510;letter-spacing:-.052em;text-wrap:balance;line-height:1.02}
+.food-spread .population-expenses h3 {grid-column:2;grid-row:1;font-size:clamp(2.05rem,3.5vw,3.7rem);margin:0}
+.food-data {grid-column:2;grid-row:2}
+.food-data p,.work-spread p,.urban-caption p {line-height:1.5}
+.food-spread .population-attention {margin-top:clamp(1.8rem,4vw,3rem);background:transparent;border:0;border-top:1px solid var(--line);padding:1.6rem 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem 2.5rem;border-radius:0}
+.food-spread .population-attention h3 {font-size:1.65rem;grid-column:1;grid-row:1}
+.food-spread .population-attention p {margin:0}
+.food-spread .population-attention p:nth-child(2) {grid-column:1;grid-row:2}
+.food-spread .population-attention p:nth-child(3) {grid-column:2;grid-row:1}
+.food-spread .population-attention p:last-child {grid-column:1/-1;max-width:85ch}
+.work-spread {display:grid;grid-template-columns:3fr 7fr;position:relative;align-items:start;background:#e9e4d7;margin:1.2rem 0 2rem}
+.work-spread img {grid-column:2;grid-row:1/3}
+.work-spread h3 {grid-column:1;grid-row:1;position:relative;z-index:1;margin:0 -2rem 0 0;padding:clamp(1rem,2vw,2rem);background:#e9e4d7;font-size:clamp(2rem,3.5vw,3.9rem)}
+.work-spread p {align-self:end;grid-column:1;grid-row:2;padding:0 clamp(1rem,2vw,2rem) 1.3rem;margin:0}
+.urban-scene {display:grid;grid-template-columns:repeat(12,minmax(0,1fr));align-items:end}
+.urban-scene > img {grid-column:1/9;grid-row:1}
+.urban-caption {position:relative;grid-column:8/-1;grid-row:1;background:var(--map-deep);color:#fffdf6;padding:clamp(1.4rem,3.2vw,3.1rem)}
+.urban-caption p {max-width:43ch;margin:0 0 1rem}
+.urban-caption h2 {margin:0 0 1.2rem;font-size:clamp(2.2rem,4.4vw,4.8rem)}
+.urban-spread .coverage-preview {margin:1.5rem 0 0;border:0;border-radius:0;border-top:1px solid var(--line);padding:1.25rem 0;display:grid;grid-template-columns:auto auto 1fr 1fr;align-items:center;gap:1.4rem;min-height:auto;background:transparent}
+.urban-spread .coverage-preview strong {font-size:2rem}
+@media(max-width:780px){
+ .editorial-cover,.work-spread,.urban-scene,.food-spread .population-expenses,.food-spread .population-attention {display:flex;flex-direction:column;align-items:stretch}
+ .editorial-cover-heading {padding:1.5rem var(--gutter) 1.2rem;align-self:stretch}
+ .editorial-cover-heading h1 {font-size:clamp(2.75rem,8vw,4.6rem);margin:0}
+ .editorial-cover-summary {padding:1.2rem var(--gutter) 1.8rem}
+ .food-spread .population-expenses h3 {margin-bottom:1rem}
+ .food-spread .population-attention {gap:.7rem}
+ .work-spread h3 {font-size:clamp(2rem,6.7vw,3.3rem);margin:0}
+ .work-spread p {padding:1rem;align-self:stretch}
+ .urban-caption {margin:-.8rem 0 0 1rem}
+ .urban-spread .coverage-preview {grid-template-columns:1fr;gap:.5rem}
+}

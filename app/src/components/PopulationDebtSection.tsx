@@ -68,13 +68,15 @@ export function PopulationDebtSection() {
         </div>
       </div>
 
-      <div className="population-story-grid">
+      <div className="food-spread">
         <article className="population-expenses">
           <h3>Quais gastos aparecem por trás da dívida?</h3>
-          <EditorialArt name="compras-de-feira" sizes="(max-width: 760px) 100vw, (max-width: 1320px) 52vw, 660px" />
+          <EditorialArt name="compras-de-feira" sizes="(max-width: 780px) 100vw, 57vw" />
+          <div className="food-data">
           <p>A alimentação a prazo é a despesa mais citada. Moradia, saúde e educação também aparecem.</p>
           <ResponseList rows={survey.uses} />
           <p className="population-reading-note">Percentuais de menções publicados pelo IPDC. Uma pessoa pode citar vários gastos; não são fatias do dinheiro devido.</p>
+          </div>
         </article>
         <aside className="population-attention"><h3>Quem enfrenta mais dificuldade?</h3><p>Na capital, a faixa com renda familiar de até 3 salários mínimos teve a maior proporção com contas em atraso, segundo o boletim:</p><p className="population-attention-value">{percent(survey.low_income_late_pct)} <span>nessa faixa</span></p><p>Na pesquisa como um todo, foram {percent(survey.late_pct)}.</p><p>Já ter dívidas também é comum entre rendas maiores: acima de 7 salários mínimos, {percent(survey.high_income_debt_pct)} relataram dívidas. Isso, por si só, não indica dificuldade para pagar.</p></aside>
       </div>
@@ -91,9 +93,11 @@ export function PopulationDebtSection() {
         limitNote="A pesquisa ajuda a entender o cotidiano na capital. Para dizer quantas famílias têm dívidas e quanto da renda usam para pagá-las no Ceará inteiro, ainda precisamos de uma pesquisa que represente o estado." />
     </div> : <div className="population-panel" id="population-credit">
       <p className="population-scope">Ceará · Setembro de 2026 · Crédito de pessoas físicas</p>
-      <div className="population-comparison-heading"><div><h3>Na mesma faixa de renda, onde o atraso pesa mais?</h3><p>Compare a renda do tomador e o tipo de trabalho informado ao banco. A renda aqui é individual; na pesquisa de Fortaleza, é familiar.</p></div>
-        <EditorialArt name="gestos-de-trabalho" sizes="(max-width: 760px) 100vw, 440px" />
-      </div>
+      <header className="work-spread">
+        <h3>Na mesma faixa de renda, onde o atraso pesa mais?</h3>
+        <EditorialArt name="gestos-de-trabalho" sizes="(max-width: 780px) 100vw, 68vw" />
+        <p>Compare a renda do tomador e o tipo de trabalho informado ao banco. A renda aqui é individual. Na pesquisa de Fortaleza, é familiar.</p>
+      </header>
       <div className="population-art-filter">
         <label className="population-income-filter">Renda mensal do tomador<select value={income} onChange={(event) => setIncome(event.target.value)}>{credit.incomes.map((item) => <option key={item} value={item}>{item === "Indisponível" ? "Renda não informada" : item}</option>)}</select></label>
       </div>

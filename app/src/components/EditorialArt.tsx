@@ -6,8 +6,8 @@ const descriptions = {
 };
 
 export function EditorialArt({ name, sizes }: { name: keyof typeof descriptions; sizes: string }) {
-  const base = `/artes/${name}`;
   const cover = name === "contas-em-casa";
+  const base = `/artes/${name}${cover ? "-recorte" : ""}`;
   return (
     <img
       className="editorial-art"
