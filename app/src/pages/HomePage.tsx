@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BreathingGraphic } from "../components/BreathingGraphic";
+import { EditorialArt } from "../components/EditorialArt";
 import { InvestigationChapters } from "../components/InvestigationChapters";
 import { SectionHeader } from "../components/SectionHeader";
 import { PopulationDebtSection } from "../components/PopulationDebtSection";
@@ -37,9 +37,7 @@ export function HomePage() {
             </Link>
           </div>
         </div>
-        <div className="hero-visual">
-          <BreathingGraphic />
-        </div>
+        <EditorialArt name="contas-em-casa" sizes="(max-width: 920px) 100vw, 50vw" />
       </section>
 
       <PopulationDebtSection />
@@ -80,7 +78,9 @@ export function HomePage() {
             Abrir o explorador municipal
           </Link>
         </div>
-        {sobral && employment && (
+        <div>
+          <EditorialArt name="praca-cearense" sizes="(max-width: 920px) 100vw, 450px" />
+          {sobral && employment && (
           <div className="coverage-preview" aria-label="Resumo de Sobral">
             <p>Exemplo · Sobral</p>
             <strong>{currency.format(sobral.income_pc_median_2022)}</strong>
@@ -92,7 +92,8 @@ export function HomePage() {
               {" em "}{month.format(new Date(`${employment.period}-01T00:00:00Z`))}.
             </small>
           </div>
-        )}
+          )}
+        </div>
       </section>
 
       <section className="content-section method-callout">
