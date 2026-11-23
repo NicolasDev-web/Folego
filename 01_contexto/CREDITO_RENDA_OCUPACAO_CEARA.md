@@ -74,3 +74,31 @@ O mesmo relatório abre a pesquisa por renda familiar. Em janeiro de 2026, a fai
 Fonte primária: arquivo `scrdata_202609.csv` de [SCR.data 2026](https://www.bcb.gov.br/pda/desig/scrdata_2026.zip). Filtrar `uf = 'CE'` e `cliente = 'PF'`. Agrupar por `porte` e `cnae_ocupacao` ou `modalidade`, somar `carteira_ativa` e `carteira_inadimplencia`, e calcular `100 × soma(carteira_inadimplencia) / soma(carteira_ativa)`. O saldo em reais é nominal. As contagens de linhas representam agregados da fonte, sem identificação de CPFs ou domicílios. [Metodologia SCR.data](https://www.bcb.gov.br/pda/desig/metodologia_versao2.pdf)
 
 O arquivo consultado tinha SHA-256 `624e15adf151d4099eb17ddd8705e5c0d976a91d4acb729e9e2153847cd43d02`. O pacote atual do site preserva a versão anterior (`90c14d9606e38608725bb11e188b6e87e09dc72274a421cd4e9cdb0cec960f5a`). As duas versões arredondam para **6,20%** no Ceará. O saldo total difere em cerca de **R$ 2,20 milhões**. Os valores do estudo são da versão consultada e devem ser usados juntos.
+
+## Da análise do crédito à vida das pessoas
+
+A abertura da aplicação agora distingue três perguntas e três universos:
+
+| Pergunta | Fonte e período | O que podemos dizer |
+|---|---|---|
+| Quantos adultos estão negativados no Ceará? | Serasa, outubro de 2026, PDF pp. 6–7 | 52,79% da população adulta no Ceará, frente a 51,32% no Brasil, segundo o cadastro. A tradução visual é aproximadamente 53 em cada 100 adultos. Não são famílias nem todas as pessoas que têm dívidas. |
+| Como o orçamento é pressionado? | IPDC, consumidores de Fortaleza, outubro de 2026 | A média de renda comprometida divulgada é 41,8%. Alimentação a prazo é a despesa mais citada (61,6%); moradia, saúde e educação também aparecem. São menções, não parcelas do montante devido. |
+| Em qual grupo o crédito está mais sujeito a atraso? | SCR, Ceará PF, setembro de 2026 | O filtro de renda compara quatro categorias iniciais e permite exibir as oito. Taxa e volume usam o mesmo grupo, mês e arquivo. Não estima a proporção de pessoas nem estabelece causa. |
+
+O [Mapa da Serasa](https://www.serasa.com.br/limpa-nome-online/blog/mapa-da-inadimplencia-e-renogociacao-de-dividas-no-brasil/) foi acessado pelo link “Baixe o mapa de Outubro”. As páginas 6 e 7 foram conferidas visualmente e no texto. O PDF tem SHA-256 `4974be2bb22177e143be50ccec1748e1e6cac1649ed8f73cc4baa442ff6eea99`. Os perfis etários e segmentos do PDF são nacionais; não foram atribuídos ao Ceará. Não foi inferida uma contagem estadual com o Censo.
+
+No IPDC, 18,3% do grupo com renda familiar de até 3 salários mínimos relatava contas em atraso, frente a 16,8% no conjunto da pesquisa. A maior prevalência de dívidas não equivale à maior dificuldade: acima de 7 salários mínimos, 68,3% tinham dívidas, o que pode incluir pagamentos em dia. Cartão é o instrumento de crédito; alimentação é uma finalidade; desequilíbrio financeiro é um motivo relatado de não pagamento. Essas dimensões podem se sobrepor e não devem ser somadas.
+
+O orçamento de R$ 1.000 na interface é uma ilustração aritmética: 1.000 × 41,8 / 100 = R$ 418 para dívidas e R$ 582 para outras despesas. Não representa a renda de uma família observada nem dinheiro livre para consumo. O boletim não detalha os denominadores de cada pergunta nem os erros amostrais; essas limitações ficam indicadas na interface e no arquivo de dados.
+
+Ainda não medimos, para as famílias do Ceará inteiro, quanto da renda vai para dívidas, quantas cortaram alimentação ou saúde para pagar, ou como renda e ocupação se relacionam com esses efeitos. Negativação, saldo bancário e pesquisa de orçamento não podem ser fundidos para produzir esse resultado. É necessário validar uma pesquisa com essa cobertura e perguntas, preservando seu desenho amostral.
+
+### Reproduzir a seção da população
+
+As transcrições conferidas ficam em `data/raw/surveys/ipdc_population_2026-10.json` e `serasa_population_2026-10.json`. Com o CSV mensal extraído do ZIP oficial, executar:
+
+```powershell
+python -m pipeline.extract.population_debt --csv data/raw/cache/population/scrdata_202609.csv
+```
+
+O extrator valida a competência, as faixas conhecidas e valores monetários, soma em centavos com `Decimal` e reconcilia os produtos com as combinações de renda e ocupação. Exporta `population_debt.json` em `data/processed` e `app/public/data`. Os pacotes históricos preservam a coleta anterior; a nova seção usa os valores do estudo e publica o hash da revisão. Novos meses e transcrições exigem revisão das fontes e dos rótulos antes da publicação.

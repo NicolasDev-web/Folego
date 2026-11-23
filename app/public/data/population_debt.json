@@ -1,0 +1,1045 @@
+{
+  "schema_version": "1.0.0",
+  "registry": {
+    "source_label": "Serasa · Mapa da Inadimplência e Negociação de Dívidas",
+    "source_url": "https://www.serasa.com.br/limpa-nome-online/blog/mapa-da-inadimplencia-e-renogociacao-de-dividas-no-brasil/",
+    "document_url": "https://cdn.builder.io/o/assets%2Fb212bb18f00a40869a6cd42f77cbeefc%2Fb26928e78a6f4fd29a8c3b54cde44d50?alt=media&apiKey=b212bb18f00a40869a6cd42f77cbeefc&token=1ac3a6ee-c2b8-4233-b1bf-6ff5f9a727a7",
+    "sha256": "4974be2bb22177e143be50ccec1748e1e6cac1649ed8f73cc4baa442ff6eea99",
+    "period": "2026-10",
+    "collected_at": "2026-11-23",
+    "territory": "Ceará",
+    "universe": "Pessoas com dívidas negativadas na base Serasa; proporção em relação à população adulta, conforme o relatório",
+    "state_adults_negative_pct": 52.79,
+    "br_adults_negative_pct": 51.32,
+    "source_pages": [
+      6,
+      7
+    ],
+    "extraction": "Transcrição manual conferida no texto e nas imagens das páginas 6 e 7 do PDF de outubro de 2026, acessado pelo link Baixe o mapa de Outubro na página da Serasa.",
+    "notes": [
+      "São pessoas negativadas na base da Serasa, não famílias nem todas as pessoas que têm dívidas em dia ou em outros cadastros.",
+      "Não somar a percentuais do IPDC ou do SCR: os universos e as unidades são distintos.",
+      "O total de pessoas negativadas no Ceará não aparece nessas páginas. Não estimar a contagem usando a população geral do Censo.",
+      "O PDF não abre renda e ocupação para o Ceará. Perfis etários e segmentos nacionais não podem ser atribuídos ao estado."
+    ]
+  },
+  "survey": {
+    "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-ipdc-endividamento-cai-ao-menor-nivel-desde-a-pandemia/",
+    "source_label": "Fecomércio-CE / IPDC · boletim de 22/10/2026",
+    "period": "2026-10",
+    "territory": "Fortaleza",
+    "universe": "Consumidores pesquisados na capital; não representa todo o Ceará",
+    "collected_at": "2026-11-23",
+    "debt_pct": 65.5,
+    "late_pct": 16.8,
+    "unable_to_pay_pct": 7.4,
+    "income_commitment_pct": 41.8,
+    "low_income_late_pct": 18.3,
+    "low_income_unable_pct": 9.0,
+    "high_income_debt_pct": 68.3,
+    "uses": [
+      {
+        "label": "Alimentação",
+        "pct": 61.6
+      },
+      {
+        "label": "Aluguel da moradia",
+        "pct": 28.2
+      },
+      {
+        "label": "Tratamentos de saúde",
+        "pct": 27.4
+      },
+      {
+        "label": "Educação",
+        "pct": 22.4
+      }
+    ],
+    "products": [
+      {
+        "label": "Cartão de crédito",
+        "pct": 80.4
+      },
+      {
+        "label": "Financiamento bancário",
+        "pct": 14.5
+      },
+      {
+        "label": "Empréstimo pessoal",
+        "pct": 7.4
+      },
+      {
+        "label": "Carnês e crediários",
+        "pct": 2.9
+      }
+    ],
+    "nonpayment_reasons": [
+      {
+        "label": "Desequilíbrio financeiro",
+        "pct": 52.7
+      },
+      {
+        "label": "Usar os recursos para outras finalidades",
+        "pct": 41.1
+      },
+      {
+        "label": "Esquecimento do prazo",
+        "pct": 12.8
+      },
+      {
+        "label": "Contestação da dívida",
+        "pct": 8.9
+      }
+    ],
+    "notes": [
+      "Produtos, gastos e motivos são respostas da pesquisa; podem se sobrepor e não devem ser somados.",
+      "O boletim não detalha a base de cada pergunta nem os erros amostrais. Não converter os percentuais em contagens de famílias ou em parcelas do valor da dívida.",
+      "Comprometimento da renda é a média divulgada pelo IPDC. Não significa que cada família gasta essa proporção.",
+      "O boletim descreve a faixa de até três salários mínimos para contas em atraso e inferior a três para dificuldade de quitação. Preservar essa distinção."
+    ]
+  },
+  "credit": {
+    "total": {
+      "balance_brl": 120144136163.43,
+      "late_brl": 7445750248.63,
+      "source_rows": 6217,
+      "late_pct": 6.197348024128014
+    },
+    "incomes": [
+      "Sem rendimento",
+      "Até 1 salário mínimo",
+      "Mais de 1 a 2 salários mínimos",
+      "Mais de 2 a 3 salários mínimos",
+      "Mais de 3 a 5 salários mínimos",
+      "Mais de 5 a 10 salários mínimos",
+      "Mais de 10 a 20 salários mínimos",
+      "Acima de 20 salários mínimos",
+      "Indisponível"
+    ],
+    "cross": [
+      {
+        "income": "Sem rendimento",
+        "occupation": "Aposentado/pensionista",
+        "balance_brl": 34687646.06,
+        "late_brl": 4723120.85,
+        "source_rows": 34,
+        "late_pct": 13.616146918214952
+      },
+      {
+        "income": "Sem rendimento",
+        "occupation": "Autônomo",
+        "balance_brl": 55799575.74,
+        "late_brl": 11736551.88,
+        "source_rows": 41,
+        "late_pct": 21.033407018517234
+      },
+      {
+        "income": "Sem rendimento",
+        "occupation": "Empregado de empresa privada",
+        "balance_brl": 108784856.26,
+        "late_brl": 14330340.79,
+        "source_rows": 44,
+        "late_pct": 13.173102656632587
+      },
+      {
+        "income": "Sem rendimento",
+        "occupation": "Empregado de entidades sem fins lucrativos",
+        "balance_brl": 648574.22,
+        "late_brl": 171483.84,
+        "source_rows": 26,
+        "late_pct": 26.440125850207245
+      },
+      {
+        "income": "Sem rendimento",
+        "occupation": "Empresário",
+        "balance_brl": 70226690.77,
+        "late_brl": 11390141.76,
+        "source_rows": 48,
+        "late_pct": 16.21910648944565
+      },
+      {
+        "income": "Sem rendimento",
+        "occupation": "MEI",
+        "balance_brl": 23955580.4,
+        "late_brl": 3997240.09,
+        "source_rows": 32,
+        "late_pct": 16.68604986084996
+      },
+      {
+        "income": "Sem rendimento",
+        "occupation": "Outros",
+        "balance_brl": 1018037706.46,
+        "late_brl": 181458284.39,
+        "source_rows": 52,
+        "late_pct": 17.824318612026747
+      },
+      {
+        "income": "Sem rendimento",
+        "occupation": "Servidor ou empregado público",
+        "balance_brl": 55881724.58,
+        "late_brl": 8936307.44,
+        "source_rows": 42,
+        "late_pct": 15.99146681167083
+      },
+      {
+        "income": "Até 1 salário mínimo",
+        "occupation": "Aposentado/pensionista",
+        "balance_brl": 470380913.58,
+        "late_brl": 19068933.81,
+        "source_rows": 70,
+        "late_pct": 4.053934430474474
+      },
+      {
+        "income": "Até 1 salário mínimo",
+        "occupation": "Autônomo",
+        "balance_brl": 596882859.62,
+        "late_brl": 52275966.49,
+        "source_rows": 94,
+        "late_pct": 8.758161781238117
+      },
+      {
+        "income": "Até 1 salário mínimo",
+        "occupation": "Empregado de empresa privada",
+        "balance_brl": 736357236.02,
+        "late_brl": 65859842.84,
+        "source_rows": 99,
+        "late_pct": 8.944007014308909
+      },
+      {
+        "income": "Até 1 salário mínimo",
+        "occupation": "Empregado de entidades sem fins lucrativos",
+        "balance_brl": 7257351.85,
+        "late_brl": 328156.73,
+        "source_rows": 39,
+        "late_pct": 4.521714487358085
+      },
+      {
+        "income": "Até 1 salário mínimo",
+        "occupation": "Empresário",
+        "balance_brl": 496087286.93,
+        "late_brl": 41677295.22,
+        "source_rows": 89,
+        "late_pct": 8.40120202997277
+      },
+      {
+        "income": "Até 1 salário mínimo",
+        "occupation": "MEI",
+        "balance_brl": 152764485.04,
+        "late_brl": 16901916.99,
+        "source_rows": 75,
+        "late_pct": 11.064035587574157
+      },
+      {
+        "income": "Até 1 salário mínimo",
+        "occupation": "Outros",
+        "balance_brl": 11966916836.59,
+        "late_brl": 1063588574.65,
+        "source_rows": 134,
+        "late_pct": 8.887741004416238
+      },
+      {
+        "income": "Até 1 salário mínimo",
+        "occupation": "Servidor ou empregado público",
+        "balance_brl": 452670708.02,
+        "late_brl": 37204094.97,
+        "source_rows": 80,
+        "late_pct": 8.21879885551513
+      },
+      {
+        "income": "Mais de 1 a 2 salários mínimos",
+        "occupation": "Aposentado/pensionista",
+        "balance_brl": 702351777.59,
+        "late_brl": 29406322.82,
+        "source_rows": 84,
+        "late_pct": 4.186836818567295
+      },
+      {
+        "income": "Mais de 1 a 2 salários mínimos",
+        "occupation": "Autônomo",
+        "balance_brl": 1123175245.42,
+        "late_brl": 91239456.85,
+        "source_rows": 122,
+        "late_pct": 8.12335004907288
+      },
+      {
+        "income": "Mais de 1 a 2 salários mínimos",
+        "occupation": "Empregado de empresa privada",
+        "balance_brl": 3131922008.21,
+        "late_brl": 180945459.56,
+        "source_rows": 120,
+        "late_pct": 5.777457391520949
+      },
+      {
+        "income": "Mais de 1 a 2 salários mínimos",
+        "occupation": "Empregado de entidades sem fins lucrativos",
+        "balance_brl": 17475385.33,
+        "late_brl": 1361543.92,
+        "source_rows": 41,
+        "late_pct": 7.791209717491248
+      },
+      {
+        "income": "Mais de 1 a 2 salários mínimos",
+        "occupation": "Empresário",
+        "balance_brl": 919335734.62,
+        "late_brl": 77006020.94,
+        "source_rows": 111,
+        "late_pct": 8.376267563647987
+      },
+      {
+        "income": "Mais de 1 a 2 salários mínimos",
+        "occupation": "MEI",
+        "balance_brl": 360579775.3,
+        "late_brl": 30943258.89,
+        "source_rows": 82,
+        "late_pct": 8.581529250844813
+      },
+      {
+        "income": "Mais de 1 a 2 salários mínimos",
+        "occupation": "Outros",
+        "balance_brl": 14954146262.99,
+        "late_brl": 1175249829.55,
+        "source_rows": 162,
+        "late_pct": 7.859023235974524
+      },
+      {
+        "income": "Mais de 1 a 2 salários mínimos",
+        "occupation": "Servidor ou empregado público",
+        "balance_brl": 1432895643.45,
+        "late_brl": 82853655.9,
+        "source_rows": 106,
+        "late_pct": 5.78225331891667
+      },
+      {
+        "income": "Mais de 2 a 3 salários mínimos",
+        "occupation": "Aposentado/pensionista",
+        "balance_brl": 781660884.76,
+        "late_brl": 29837180.57,
+        "source_rows": 82,
+        "late_pct": 3.8171515489304757
+      },
+      {
+        "income": "Mais de 2 a 3 salários mínimos",
+        "occupation": "Autônomo",
+        "balance_brl": 747754723.32,
+        "late_brl": 50671880.3,
+        "source_rows": 100,
+        "late_pct": 6.776537642586723
+      },
+      {
+        "income": "Mais de 2 a 3 salários mínimos",
+        "occupation": "Empregado de empresa privada",
+        "balance_brl": 3270607144.35,
+        "late_brl": 160934051.89,
+        "source_rows": 110,
+        "late_pct": 4.920617022683842
+      },
+      {
+        "income": "Mais de 2 a 3 salários mínimos",
+        "occupation": "Empregado de entidades sem fins lucrativos",
+        "balance_brl": 15179919.22,
+        "late_brl": 808236.86,
+        "source_rows": 33,
+        "late_pct": 5.324381825004204
+      },
+      {
+        "income": "Mais de 2 a 3 salários mínimos",
+        "occupation": "Empresário",
+        "balance_brl": 835470976.45,
+        "late_brl": 68335194.7,
+        "source_rows": 99,
+        "late_pct": 8.179242203046131
+      },
+      {
+        "income": "Mais de 2 a 3 salários mínimos",
+        "occupation": "MEI",
+        "balance_brl": 346792396.66,
+        "late_brl": 22368328.67,
+        "source_rows": 79,
+        "late_pct": 6.450063174807784
+      },
+      {
+        "income": "Mais de 2 a 3 salários mínimos",
+        "occupation": "Outros",
+        "balance_brl": 5282224254.83,
+        "late_brl": 374695711.92,
+        "source_rows": 128,
+        "late_pct": 7.093521475870376
+      },
+      {
+        "income": "Mais de 2 a 3 salários mínimos",
+        "occupation": "Servidor ou empregado público",
+        "balance_brl": 2261444011.69,
+        "late_brl": 103528024.74,
+        "source_rows": 102,
+        "late_pct": 4.57796099327847
+      },
+      {
+        "income": "Mais de 3 a 5 salários mínimos",
+        "occupation": "Aposentado/pensionista",
+        "balance_brl": 1297219610.74,
+        "late_brl": 52332455.23,
+        "source_rows": 95,
+        "late_pct": 4.034201672309511
+      },
+      {
+        "income": "Mais de 3 a 5 salários mínimos",
+        "occupation": "Autônomo",
+        "balance_brl": 1029913822.0,
+        "late_brl": 70538650.36,
+        "source_rows": 117,
+        "late_pct": 6.8489856969799945
+      },
+      {
+        "income": "Mais de 3 a 5 salários mínimos",
+        "occupation": "Empregado de empresa privada",
+        "balance_brl": 4009802844.27,
+        "late_brl": 188954449.41,
+        "source_rows": 116,
+        "late_pct": 4.712312718317698
+      },
+      {
+        "income": "Mais de 3 a 5 salários mínimos",
+        "occupation": "Empregado de entidades sem fins lucrativos",
+        "balance_brl": 21275723.89,
+        "late_brl": 713426.76,
+        "source_rows": 41,
+        "late_pct": 3.3532431784157732
+      },
+      {
+        "income": "Mais de 3 a 5 salários mínimos",
+        "occupation": "Empresário",
+        "balance_brl": 1635813184.58,
+        "late_brl": 123248957.58,
+        "source_rows": 115,
+        "late_pct": 7.534415221848486
+      },
+      {
+        "income": "Mais de 3 a 5 salários mínimos",
+        "occupation": "MEI",
+        "balance_brl": 478287999.52,
+        "late_brl": 32390319.62,
+        "source_rows": 87,
+        "late_pct": 6.7721372170128165
+      },
+      {
+        "income": "Mais de 3 a 5 salários mínimos",
+        "occupation": "Outros",
+        "balance_brl": 4625762629.03,
+        "late_brl": 362765149.41,
+        "source_rows": 148,
+        "late_pct": 7.842277663220045
+      },
+      {
+        "income": "Mais de 3 a 5 salários mínimos",
+        "occupation": "Servidor ou empregado público",
+        "balance_brl": 4986699520.94,
+        "late_brl": 199802591.32,
+        "source_rows": 122,
+        "late_pct": 4.006710059047972
+      },
+      {
+        "income": "Mais de 5 a 10 salários mínimos",
+        "occupation": "Aposentado/pensionista",
+        "balance_brl": 1651984427.88,
+        "late_brl": 57638175.17,
+        "source_rows": 94,
+        "late_pct": 3.4890265426997615
+      },
+      {
+        "income": "Mais de 5 a 10 salários mínimos",
+        "occupation": "Autônomo",
+        "balance_brl": 1394377870.01,
+        "late_brl": 74518349.77,
+        "source_rows": 105,
+        "late_pct": 5.344200547980985
+      },
+      {
+        "income": "Mais de 5 a 10 salários mínimos",
+        "occupation": "Empregado de empresa privada",
+        "balance_brl": 3867701560.22,
+        "late_brl": 151186969.45,
+        "source_rows": 122,
+        "late_pct": 3.908961617023013
+      },
+      {
+        "income": "Mais de 5 a 10 salários mínimos",
+        "occupation": "Empregado de entidades sem fins lucrativos",
+        "balance_brl": 17824550.48,
+        "late_brl": 781529.91,
+        "source_rows": 41,
+        "late_pct": 4.384570095481028
+      },
+      {
+        "income": "Mais de 5 a 10 salários mínimos",
+        "occupation": "Empresário",
+        "balance_brl": 2726597954.21,
+        "late_brl": 136918961.5,
+        "source_rows": 125,
+        "late_pct": 5.021604350894141
+      },
+      {
+        "income": "Mais de 5 a 10 salários mínimos",
+        "occupation": "MEI",
+        "balance_brl": 414791571.51,
+        "late_brl": 24975962.45,
+        "source_rows": 84,
+        "late_pct": 6.02132834065985
+      },
+      {
+        "income": "Mais de 5 a 10 salários mínimos",
+        "occupation": "Outros",
+        "balance_brl": 3687923322.93,
+        "late_brl": 233513724.5,
+        "source_rows": 127,
+        "late_pct": 6.331848686986172
+      },
+      {
+        "income": "Mais de 5 a 10 salários mínimos",
+        "occupation": "Servidor ou empregado público",
+        "balance_brl": 8099821620.88,
+        "late_brl": 246016605.59,
+        "source_rows": 127,
+        "late_pct": 3.0373089322832727
+      },
+      {
+        "income": "Mais de 10 a 20 salários mínimos",
+        "occupation": "Aposentado/pensionista",
+        "balance_brl": 1030419642.62,
+        "late_brl": 36892650.52,
+        "source_rows": 89,
+        "late_pct": 3.580352023006353
+      },
+      {
+        "income": "Mais de 10 a 20 salários mínimos",
+        "occupation": "Autônomo",
+        "balance_brl": 1380184985.51,
+        "late_brl": 66301472.94,
+        "source_rows": 109,
+        "late_pct": 4.803810622204426
+      },
+      {
+        "income": "Mais de 10 a 20 salários mínimos",
+        "occupation": "Empregado de empresa privada",
+        "balance_brl": 2063656688.03,
+        "late_brl": 77043302.73,
+        "source_rows": 110,
+        "late_pct": 3.7333391342116493
+      },
+      {
+        "income": "Mais de 10 a 20 salários mínimos",
+        "occupation": "Empregado de entidades sem fins lucrativos",
+        "balance_brl": 12360806.84,
+        "late_brl": 215645.72,
+        "source_rows": 26,
+        "late_pct": 1.744592588423621
+      },
+      {
+        "income": "Mais de 10 a 20 salários mínimos",
+        "occupation": "Empresário",
+        "balance_brl": 2968696795.05,
+        "late_brl": 160680674.8,
+        "source_rows": 121,
+        "late_pct": 5.412498678474632
+      },
+      {
+        "income": "Mais de 10 a 20 salários mínimos",
+        "occupation": "MEI",
+        "balance_brl": 205831300.73,
+        "late_brl": 14249052.14,
+        "source_rows": 72,
+        "late_pct": 6.92268478577573
+      },
+      {
+        "income": "Mais de 10 a 20 salários mínimos",
+        "occupation": "Outros",
+        "balance_brl": 2029422449.5,
+        "late_brl": 137757936.92,
+        "source_rows": 124,
+        "late_pct": 6.788036515213488
+      },
+      {
+        "income": "Mais de 10 a 20 salários mínimos",
+        "occupation": "Servidor ou empregado público",
+        "balance_brl": 4758788900.44,
+        "late_brl": 112741278.01,
+        "source_rows": 114,
+        "late_pct": 2.3691170247029847
+      },
+      {
+        "income": "Acima de 20 salários mínimos",
+        "occupation": "Aposentado/pensionista",
+        "balance_brl": 443098755.38,
+        "late_brl": 10255657.02,
+        "source_rows": 74,
+        "late_pct": 2.3145307666695616
+      },
+      {
+        "income": "Acima de 20 salários mínimos",
+        "occupation": "Autônomo",
+        "balance_brl": 1102031857.87,
+        "late_brl": 48096796.29,
+        "source_rows": 117,
+        "late_pct": 4.364374400478873
+      },
+      {
+        "income": "Acima de 20 salários mínimos",
+        "occupation": "Empregado de empresa privada",
+        "balance_brl": 885194236.55,
+        "late_brl": 21478113.28,
+        "source_rows": 101,
+        "late_pct": 2.4263729239482923
+      },
+      {
+        "income": "Acima de 20 salários mínimos",
+        "occupation": "Empregado de entidades sem fins lucrativos",
+        "balance_brl": 32925795.16,
+        "late_brl": 83680.05,
+        "source_rows": 24,
+        "late_pct": 0.2541473929281409
+      },
+      {
+        "income": "Acima de 20 salários mínimos",
+        "occupation": "Empresário",
+        "balance_brl": 3983120458.97,
+        "late_brl": 108533325.11,
+        "source_rows": 127,
+        "late_pct": 2.7248316044668597
+      },
+      {
+        "income": "Acima de 20 salários mínimos",
+        "occupation": "MEI",
+        "balance_brl": 77170760.33,
+        "late_brl": 3904217.15,
+        "source_rows": 63,
+        "late_pct": 5.059192281253503
+      },
+      {
+        "income": "Acima de 20 salários mínimos",
+        "occupation": "Outros",
+        "balance_brl": 848107931.2,
+        "late_brl": 57949619.28,
+        "source_rows": 109,
+        "late_pct": 6.83281185662375
+      },
+      {
+        "income": "Acima de 20 salários mínimos",
+        "occupation": "Servidor ou empregado público",
+        "balance_brl": 2127701774.42,
+        "late_brl": 53043906.37,
+        "source_rows": 103,
+        "late_pct": 2.4930141530036316
+      },
+      {
+        "income": "Indisponível",
+        "occupation": "Aposentado/pensionista",
+        "balance_brl": 198436213.49,
+        "late_brl": 29650650.24,
+        "source_rows": 55,
+        "late_pct": 14.94215683645577
+      },
+      {
+        "income": "Indisponível",
+        "occupation": "Autônomo",
+        "balance_brl": 219347634.44,
+        "late_brl": 25996206.67,
+        "source_rows": 73,
+        "late_pct": 11.851601106330126
+      },
+      {
+        "income": "Indisponível",
+        "occupation": "Empregado de empresa privada",
+        "balance_brl": 396264119.17,
+        "late_brl": 39696734.9,
+        "source_rows": 70,
+        "late_pct": 10.017746492704738
+      },
+      {
+        "income": "Indisponível",
+        "occupation": "Empregado de entidades sem fins lucrativos",
+        "balance_brl": 2900424.34,
+        "late_brl": 376022.13,
+        "source_rows": 28,
+        "late_pct": 12.964383342611171
+      },
+      {
+        "income": "Indisponível",
+        "occupation": "Empresário",
+        "balance_brl": 357494567.57,
+        "late_brl": 28936317.34,
+        "source_rows": 74,
+        "late_pct": 8.09419777667924
+      },
+      {
+        "income": "Indisponível",
+        "occupation": "MEI",
+        "balance_brl": 70134452.39,
+        "late_brl": 9506867.67,
+        "source_rows": 51,
+        "late_pct": 13.555203392955443
+      },
+      {
+        "income": "Indisponível",
+        "occupation": "Outros",
+        "balance_brl": 2144772192.34,
+        "late_brl": 386197759.62,
+        "source_rows": 90,
+        "late_pct": 18.006469917844683
+      },
+      {
+        "income": "Indisponível",
+        "occupation": "Servidor ou empregado público",
+        "balance_brl": 429919031.67,
+        "late_brl": 46033672.88,
+        "source_rows": 67,
+        "late_pct": 10.707521530550622
+      }
+    ],
+    "products": [
+      {
+        "modality": "Financiamentos imobiliários",
+        "submodality": "Financiamento habitacional - SFH",
+        "balance_brl": 32554878456.22,
+        "late_brl": 574469128.29,
+        "source_rows": 315,
+        "late_pct": 1.7646176411395595
+      },
+      {
+        "modality": "Empréstimos",
+        "submodality": "Crédito pessoal - com consignação em folha de pagam.",
+        "balance_brl": 29916979060.32,
+        "late_brl": 922638800.85,
+        "source_rows": 342,
+        "late_pct": 3.083997214390306
+      },
+      {
+        "modality": "Outros créditos",
+        "submodality": "Cartão de crédito - compra à vista e parcelado lojista ",
+        "balance_brl": 18190951163.63,
+        "late_brl": 7538111.24,
+        "source_rows": 452,
+        "late_pct": 0.04143879653237314
+      },
+      {
+        "modality": "Financiamentos",
+        "submodality": "Aquisição de bens - veículos automotores",
+        "balance_brl": 13087804151.25,
+        "late_brl": 859897947.17,
+        "source_rows": 327,
+        "late_pct": 6.570223218750352
+      },
+      {
+        "modality": "Empréstimos",
+        "submodality": "Crédito pessoal - sem consignação em folha de pagam.",
+        "balance_brl": 9151561180.95,
+        "late_brl": 1298776864.32,
+        "source_rows": 499,
+        "late_pct": 14.19186124246811
+      },
+      {
+        "modality": "Empréstimos",
+        "submodality": "Cartão de crédito - compra, fatura parcelada ou saque financiado pela instituição financeira emitente do cartão",
+        "balance_brl": 3323742061.29,
+        "late_brl": 495261824.1,
+        "source_rows": 276,
+        "late_pct": 14.900729808972619
+      },
+      {
+        "modality": "Empréstimos",
+        "submodality": "Cartão de crédito - não migrado",
+        "balance_brl": 2617364160.8,
+        "late_brl": 2140842327.92,
+        "source_rows": 332,
+        "late_pct": 81.79382754540542
+      },
+      {
+        "modality": "Financiamentos imobiliários",
+        "submodality": "Financiamento habitacional  exceto SFH",
+        "balance_brl": 2560251195.58,
+        "late_brl": 17722377.6,
+        "source_rows": 169,
+        "late_pct": 0.6922124528482123
+      },
+      {
+        "modality": "Empréstimos",
+        "submodality": "Outros empréstimos",
+        "balance_brl": 2049199370.97,
+        "late_brl": 382970952.34,
+        "source_rows": 360,
+        "late_pct": 18.688808798468376
+      },
+      {
+        "modality": "Financiamentos rurais  (ex-financiamentos rurais e agroindustriais)",
+        "submodality": "Investimento",
+        "balance_brl": 1330494527.41,
+        "late_brl": 107824895.62,
+        "source_rows": 317,
+        "late_pct": 8.104121692999126
+      },
+      {
+        "modality": "Empréstimos",
+        "submodality": "Microcrédito",
+        "balance_brl": 1225852988.94,
+        "late_brl": 40855088.39,
+        "source_rows": 140,
+        "late_pct": 3.3327885773095485
+      },
+      {
+        "modality": "Financiamentos rurais  (ex-financiamentos rurais e agroindustriais)",
+        "submodality": "Custeio",
+        "balance_brl": 940681610.3,
+        "late_brl": 131436052.6,
+        "source_rows": 241,
+        "late_pct": 13.972427138028426
+      },
+      {
+        "modality": "Empréstimos",
+        "submodality": "Crédito rotativo vinculado a cartão de crédito",
+        "balance_brl": 803474758.9,
+        "late_brl": 233752235.61,
+        "source_rows": 331,
+        "late_pct": 29.092666947001465
+      },
+      {
+        "modality": "Empréstimos",
+        "submodality": "Cheque especial",
+        "balance_brl": 730142507.11,
+        "late_brl": 116839837.76,
+        "source_rows": 294,
+        "late_pct": 16.0023333283892
+      },
+      {
+        "modality": "Financiamentos",
+        "submodality": "Aquisição de bens - outros bens",
+        "balance_brl": 446643628.29,
+        "late_brl": 54343525.35,
+        "source_rows": 284,
+        "late_pct": 12.167088458881013
+      },
+      {
+        "modality": "Empréstimos",
+        "submodality": "Home Equity",
+        "balance_brl": 422157562.18,
+        "late_brl": 15044845.02,
+        "source_rows": 226,
+        "late_pct": 3.563798535861632
+      },
+      {
+        "modality": "Financiamentos",
+        "submodality": "Microcrédito",
+        "balance_brl": 370037684.81,
+        "late_brl": 10085749.91,
+        "source_rows": 77,
+        "late_pct": 2.7256007493341228
+      },
+      {
+        "modality": "Financiamentos",
+        "submodality": "Outros financiamentos",
+        "balance_brl": 198647287.3,
+        "late_brl": 14240682.21,
+        "source_rows": 255,
+        "late_pct": 7.168827927911
+      },
+      {
+        "modality": "Financiamentos imobiliários",
+        "submodality": "Financiamento imobiliário - empreendim, exceto habitac.",
+        "balance_brl": 96073848.06,
+        "late_brl": 77857.69,
+        "source_rows": 73,
+        "late_pct": 0.08103942079157311
+      },
+      {
+        "modality": "Outros créditos",
+        "submodality": "Recebíveis adquiridos",
+        "balance_brl": 57017123.71,
+        "late_brl": 2073422.75,
+        "source_rows": 126,
+        "late_pct": 3.63649131188347
+      },
+      {
+        "modality": "Adiantamentos a depositantes",
+        "submodality": "Adiantamentos a depositantes",
+        "balance_brl": 21625140.85,
+        "late_brl": 9760249.69,
+        "source_rows": 157,
+        "late_pct": 45.13380864291573
+      },
+      {
+        "modality": "Outros créditos",
+        "submodality": "Devedores por compra de valores e bens",
+        "balance_brl": 8384224.08,
+        "late_brl": 290026.11,
+        "source_rows": 52,
+        "late_pct": 3.459188438102909
+      },
+      {
+        "modality": "Operações de arrendamento",
+        "submodality": "Arrendamento financeiro exceto veículos automotores e imóveis",
+        "balance_brl": 7593302.42,
+        "late_brl": 0.0,
+        "source_rows": 1,
+        "late_pct": 0.0
+      },
+      {
+        "modality": "Financiamentos",
+        "submodality": "Financiamento de projeto",
+        "balance_brl": 6752785.92,
+        "late_brl": 4273479.43,
+        "source_rows": 22,
+        "late_pct": 63.28468695184105
+      },
+      {
+        "modality": "Empréstimos",
+        "submodality": "Capital de giro com prazo de vencimento até 365 dias",
+        "balance_brl": 5145683.74,
+        "late_brl": 363585.31,
+        "source_rows": 77,
+        "late_pct": 7.065830866628426
+      },
+      {
+        "modality": "Empréstimos",
+        "submodality": "Conta Garantida",
+        "balance_brl": 4046685.83,
+        "late_brl": 185532.07,
+        "source_rows": 42,
+        "late_pct": 4.584790561811417
+      },
+      {
+        "modality": "Empréstimos",
+        "submodality": "Capital de giro com teto rotativo",
+        "balance_brl": 3024860.18,
+        "late_brl": 622025.03,
+        "source_rows": 63,
+        "late_pct": 20.563761396733387
+      },
+      {
+        "modality": "Financiamentos",
+        "submodality": "Vendor",
+        "balance_brl": 2510183.38,
+        "late_brl": 20267.74,
+        "source_rows": 37,
+        "late_pct": 0.8074206913122021
+      },
+      {
+        "modality": "Outros créditos",
+        "submodality": "Avais e fianças honrados",
+        "balance_brl": 2431503.51,
+        "late_brl": 1807868.66,
+        "source_rows": 63,
+        "late_pct": 74.3518836211756
+      },
+      {
+        "modality": "Financiamentos rurais  (ex-financiamentos rurais e agroindustriais)",
+        "submodality": "Comercialização ",
+        "balance_brl": 2267044.87,
+        "late_brl": 1135576.83,
+        "source_rows": 5,
+        "late_pct": 50.090619953190426
+      },
+      {
+        "modality": "Empréstimos",
+        "submodality": "Capital de giro com prazo de vencimento superior a 365 dias",
+        "balance_brl": 1613801.35,
+        "late_brl": 126756.47,
+        "source_rows": 49,
+        "late_pct": 7.8545274484991605
+      },
+      {
+        "modality": "Financiamentos de títulos e valores mobiliários",
+        "submodality": "Financiamento de TVM",
+        "balance_brl": 1444619.88,
+        "late_brl": 16683.96,
+        "source_rows": 48,
+        "late_pct": 1.1549031154133085
+      },
+      {
+        "modality": "Financiamentos",
+        "submodality": "Financiamentos agroindustriais",
+        "balance_brl": 1059024.78,
+        "late_brl": 0.0,
+        "source_rows": 6,
+        "late_pct": 0.0
+      },
+      {
+        "modality": "Outros créditos",
+        "submodality": "Títulos e créditos a receber",
+        "balance_brl": 793410.33,
+        "late_brl": 187644.03,
+        "source_rows": 37,
+        "late_pct": 23.650313451300793
+      },
+      {
+        "modality": "Direitos creditórios descontados",
+        "submodality": "Outros direitos creditórios descontados",
+        "balance_brl": 417007.68,
+        "late_brl": 87181.01,
+        "source_rows": 18,
+        "late_pct": 20.906331988897662
+      },
+      {
+        "modality": "Outros créditos",
+        "submodality": "Outros com característica de crédito",
+        "balance_brl": 405067.34,
+        "late_brl": 68604.19,
+        "source_rows": 58,
+        "late_pct": 16.93649011544599
+      },
+      {
+        "modality": "Empréstimos",
+        "submodality": "Recebíveis adquiridos",
+        "balance_brl": 299022.9,
+        "late_brl": 0.0,
+        "source_rows": 13,
+        "late_pct": 0.0
+      },
+      {
+        "modality": "Direitos creditórios descontados",
+        "submodality": "Desconto de cheques",
+        "balance_brl": 159335.61,
+        "late_brl": 43964.19,
+        "source_rows": 10,
+        "late_pct": 27.592193609451144
+      },
+      {
+        "modality": "Financiamentos",
+        "submodality": "Cartão de crédito - compra ou fatura parcelada pela instituição financeira emitente do cartão",
+        "balance_brl": 138955.15,
+        "late_brl": 68277.17,
+        "source_rows": 16,
+        "late_pct": 49.13612053961296
+      },
+      {
+        "modality": "Empréstimos",
+        "submodality": "Vendor",
+        "balance_brl": 66823.34,
+        "late_brl": 0.0,
+        "source_rows": 5,
+        "late_pct": 0.0
+      },
+      {
+        "modality": "Direitos creditórios descontados",
+        "submodality": "Desconto de duplicatas",
+        "balance_brl": 2835.64,
+        "late_brl": 0.0,
+        "source_rows": 1,
+        "late_pct": 0.0
+      },
+      {
+        "modality": "Financiamentos com interveniência",
+        "submodality": "Aquisição de bens com interveniência - outros bens",
+        "balance_brl": 516.63,
+        "late_brl": 0.0,
+        "source_rows": 1,
+        "late_pct": 0.0
+      }
+    ],
+    "period": "2026-09",
+    "territory": "Ceará",
+    "unit": "BRL nominal",
+    "source_url": "https://www.bcb.gov.br/pda/desig/scrdata_2026.zip",
+    "methodology_url": "https://www.bcb.gov.br/pda/desig/metodologia_versao2.pdf",
+    "file": "scrdata_202609.csv",
+    "sha256": "624e15adf151d4099eb17ddd8705e5c0d976a91d4acb729e9e2153847cd43d02",
+    "filter": "uf = CE AND cliente = PF; GROUP BY porte, cnae_ocupacao",
+    "rate_formula": "100 * SUM(carteira_inadimplencia) / SUM(carteira_ativa)"
+  }
+}

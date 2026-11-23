@@ -1,0 +1,39 @@
+{
+  "source_url": "https://www.fecomercio-ce.com.br/blog/pesquisa-ipdc-endividamento-cai-ao-menor-nivel-desde-a-pandemia/",
+  "source_label": "Fecomércio-CE / IPDC · boletim de 22/10/2026",
+  "period": "2026-10",
+  "territory": "Fortaleza",
+  "universe": "Consumidores pesquisados na capital; não representa todo o Ceará",
+  "collected_at": "2026-11-23",
+  "debt_pct": 65.5,
+  "late_pct": 16.8,
+  "unable_to_pay_pct": 7.4,
+  "income_commitment_pct": 41.8,
+  "low_income_late_pct": 18.3,
+  "low_income_unable_pct": 9.0,
+  "high_income_debt_pct": 68.3,
+  "uses": [
+    { "label": "Alimentação", "pct": 61.6 },
+    { "label": "Aluguel da moradia", "pct": 28.2 },
+    { "label": "Tratamentos de saúde", "pct": 27.4 },
+    { "label": "Educação", "pct": 22.4 }
+  ],
+  "products": [
+    { "label": "Cartão de crédito", "pct": 80.4 },
+    { "label": "Financiamento bancário", "pct": 14.5 },
+    { "label": "Empréstimo pessoal", "pct": 7.4 },
+    { "label": "Carnês e crediários", "pct": 2.9 }
+  ],
+  "nonpayment_reasons": [
+    { "label": "Desequilíbrio financeiro", "pct": 52.7 },
+    { "label": "Usar os recursos para outras finalidades", "pct": 41.1 },
+    { "label": "Esquecimento do prazo", "pct": 12.8 },
+    { "label": "Contestação da dívida", "pct": 8.9 }
+  ],
+  "notes": [
+    "Produtos, gastos e motivos são respostas da pesquisa; podem se sobrepor e não devem ser somados.",
+    "O boletim não detalha a base de cada pergunta nem os erros amostrais. Não converter os percentuais em contagens de famílias ou em parcelas do valor da dívida.",
+    "Comprometimento da renda é a média divulgada pelo IPDC. Não significa que cada família gasta essa proporção.",
+    "O boletim descreve a faixa de até três salários mínimos para contas em atraso e inferior a três para dificuldade de quitação. Preservar essa distinção."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "source_label": "Serasa · Mapa da Inadimplência e Negociação de Dívidas",
+  "source_url": "https://www.serasa.com.br/limpa-nome-online/blog/mapa-da-inadimplencia-e-renogociacao-de-dividas-no-brasil/",
+  "document_url": "https://cdn.builder.io/o/assets%2Fb212bb18f00a40869a6cd42f77cbeefc%2Fb26928e78a6f4fd29a8c3b54cde44d50?alt=media&apiKey=b212bb18f00a40869a6cd42f77cbeefc&token=1ac3a6ee-c2b8-4233-b1bf-6ff5f9a727a7",
+  "sha256": "4974be2bb22177e143be50ccec1748e1e6cac1649ed8f73cc4baa442ff6eea99",
+  "period": "2026-10",
+  "collected_at": "2026-11-23",
+  "territory": "Ceará",
+  "universe": "Pessoas com dívidas negativadas na base Serasa; proporção em relação à população adulta, conforme o relatório",
+  "state_adults_negative_pct": 52.79,
+  "br_adults_negative_pct": 51.32,
+  "source_pages": [6, 7],
+  "extraction": "Transcrição manual conferida no texto e nas imagens das páginas 6 e 7 do PDF de outubro de 2026, acessado pelo link Baixe o mapa de Outubro na página da Serasa.",
+  "notes": [
+    "São pessoas negativadas na base da Serasa, não famílias nem todas as pessoas que têm dívidas em dia ou em outros cadastros.",
+    "Não somar a percentuais do IPDC ou do SCR: os universos e as unidades são distintos.",
+    "O total de pessoas negativadas no Ceará não aparece nessas páginas. Não estimar a contagem usando a população geral do Censo.",
+    "O PDF não abre renda e ocupação para o Ceará. Perfis etários e segmentos nacionais não podem ser atribuídos ao estado."
+  ]
+}
